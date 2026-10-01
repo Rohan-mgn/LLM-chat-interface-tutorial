@@ -8,7 +8,7 @@ Each stage is a separate FastAPI app. The feature audit covers the following les
 | Stage 2 | Lessons 3–4 — Conversation history and system instructions | Complete |
 | Stage 3 | Lessons 5–6 — Streaming and chat UI | Complete |
 | Stage 4 | Lessons 7–8 — Markdown and localStorage persistence | Complete |
-| Stage 5 | Lesson 9 — SQLite conversation persistence | Complete |
+| Stage 5 | Lessons 9–10 — SQLite persistence and multiple conversations | Complete |
 
 ## Lesson 1 — Architecture
 
@@ -192,12 +192,16 @@ replaces the current saved conversation; the sidebar shows that one chat.
 ## Lesson 9 — SQLite conversation persistence — Complete in Stage 5
 
 Stage 5 builds on the streaming and Markdown UI, replacing browser storage
-with one conversation stored by Python's built-in `sqlite3` module.
+with history stored by Python's built-in `sqlite3` module. Lesson 9 originally
+stored one conversation. **Stage 5 now also implements Lesson 10**, so New chat
+preserves previous chats and the sidebar switches between them.
 
 ### Lesson 9 checklist
 
-The implementation items below are present in Stage 5. The explanations that
-follow cover the learning items; a code audit cannot verify personal understanding.
+The checklist records the original Lesson 9 milestone. Lesson 10 replaces
+`clear_messages()` and the global `/messages` endpoints with conversation-scoped
+history, and adds `conversation_id` to chat requests. The explanations cover
+the learning items; a code audit cannot verify personal understanding.
 
 - [x] Choose SQLite for backend persistence.
 - [x] Explain why SQLite fits backend persistence better than `localStorage`.
@@ -232,20 +236,21 @@ it directly: the browser would have to send that history on each request.
 Clearing browser storage also removes that browser's saved copy.
 
 SQLite keeps history in a file controlled by the backend. Every browser window
-using this Stage 5 server loads the same saved conversation, and closing a
+using this Stage 5 server can access the saved conversations, and closing a
 browser or restarting the server does not delete the database. SQL lets the
 backend load rows in order and commit writes as transactions. This makes SQLite
 suitable for this lesson's backend persistence; `localStorage` can still be
 useful for browser preferences. SQLite does not automatically provide user
-accounts or separate conversations: this lesson has one shared conversation.
+accounts. Lesson 10 groups messages into separate conversations, all available
+to anyone using this local server.
 
 There is no ORM such as SQLAlchemy. The helpers call `sqlite3.connect()` and
 execute SQL directly. For example, `save_message()` uses:
 
 ```python
 connection.execute(
-    "INSERT INTO messages (role, content) VALUES (?, ?)",
-    (role, content),
+    "INSERT INTO messages (conversation_id, role, content) VALUES (?, ?, ?)",
+    (conversation_id, role, content),
 )
 ```
 
@@ -254,20 +259,23 @@ message containing quotes or SQL-looking text as data, rather than as part of
 the command. Building this query with an f-string or string concatenation could
 break its syntax or let user-controlled text change the query (SQL injection).
 
-### How Stage 5 implements it
+### How Stage 5 now implements it
 
-- `init_db()` creates the directory and `messages` table at server startup.
-- `save_message()` uses SQL parameters; `load_messages()` orders by increasing
-  message ID; `clear_messages()` deletes the stored conversation.
+- `init_db()` creates the directory and both tables at server startup, migrating
+  the original messages table without discarding its history.
+- `save_message(conversation_id, role, content)` uses SQL parameters;
+  `load_messages(conversation_id)` orders that chat's messages by increasing ID.
 - Every connection is closed after use. Writes commit before returning.
-- `POST /chat` accepts only `{ "message": "..." }`. The backend saves the
-  user message, loads SQLite history, and prepends the existing system prompt.
+- `POST /chat` accepts `{ "conversation_id": 1, "message": "..." }`. The backend
+  saves the user message, loads only that chat's SQLite history, and prepends
+  the existing system prompt.
 - Ollama uses `llama3.2:3b` with `stream=True`. The browser renders
   chunks immediately; one complete assistant row is saved before stream EOF.
-- `GET /messages` restores the conversation after refresh or server restart.
+- `GET /conversations` lists saved chats; `GET /conversations/{id}/messages`
+  restores a selected conversation after refresh or server restart.
   Assistant Markdown is parsed with Marked and sanitized with DOMPurify again.
-- **New chat** calls `DELETE /messages` and clears the page only after success.
-  This permanently deletes the one conversation; multiple chats come later.
+- **New chat** opens a blank draft without deleting anything. The browser calls
+  `POST /conversations` only when the first message is sent.
 - Stage 5 no longer reads or writes chat history in `localStorage`.
   Existing Stage 4 browser saves are left alone and are not imported.
 
@@ -281,19 +289,19 @@ directory, and changing the terminal's directory does not change this path.
 The request flow is:
 
 ```text
-Browser sends newest message
-  → FastAPI saves user row in SQLite
-  → loads ordered history and prepends system instructions
+Browser sends selected conversation ID and newest message
+  → FastAPI saves user row in that SQLite conversation
+  → loads only that chat's ordered history and prepends system instructions
   → Ollama generates a streamed response
   → FastAPI yields chunks; browser displays sanitized Markdown
-  → FastAPI saves the completed assistant response as one row
+  → FastAPI saves the completed assistant response as one row in the same chat
 ```
 
 If generation fails or is interrupted, the saved user message remains, but
 partial assistant text is not saved. The page reloads server history on an
 error instead of guessing what was committed or automatically resending it.
-Run this single-conversation lesson with **one Uvicorn worker**: a lock rejects
-overlapping sends/deletes with HTTP 409 while a reply is in progress.
+Run this tutorial with **one Uvicorn worker**: a lock rejects overlapping sends
+with HTTP 409 while a reply is in progress, including sends from other windows.
 
 From the project root, with Ollama running and `llama3.2:3b` installed:
 
@@ -324,7 +332,7 @@ The restart check uses a separate tiny app and verifies that each watched file
 produces a new server process while unrelated file changes leave it running.
 
 An optional test uses the actual configured model, stops and restarts a real
-Uvicorn process, and verifies preference recall before and after the restart:
+Uvicorn process, and verifies the pineapple test across Conversations A and B:
 
 ```powershell
 .\.venv\Scripts\python.exe -B "Stage 5(Creating a database for UI)/tests/check_live.py"
@@ -332,7 +340,7 @@ Uvicorn process, and verifies preference recall before and after the restart:
 
 This also uses an isolated database and requires Ollama to be running.
 
-Verified on September 30, 2026:
+The original Lesson 9 checks passed on September 30, 2026:
 
 - All 14 database/API tests passed, including parameterized SQL, path stability,
   completed-only assistant saves, invalid requests, and disconnect/error cleanup.
@@ -342,6 +350,125 @@ Verified on September 30, 2026:
 - Live `llama3.2:3b` recalled **Python** as the preferred language before and
   after an actual Uvicorn restart. The first reply arrived in 140 chunks.
   Deleting messages then produced a fresh conversation with no old context.
+
+## Lesson 10 — Multiple conversations — Complete in Stage 5
+
+One global list of messages cannot distinguish separate chats: every question
+would include every earlier message. A conversation ID gives each message a
+parent, so loading Chat B cannot accidentally include Chat A's history.
+
+### Tables and relationship
+
+```text
+conversations                         messages
+id (primary key)          1 ─── many  id (primary key)
+title                                conversation_id (foreign key)
+created_at                           role
+updated_at                           content
+                                     created_at
+```
+
+`messages.conversation_id` references `conversations.id` with `ON DELETE CASCADE`.
+If a conversation is explicitly deleted from the database, its messages are
+deleted together. New chat does not delete anything, and there is no delete-chat
+API in this lesson. `get_connection()` enables `PRAGMA foreign_keys = ON` on
+**every connection** and uses `sqlite3.Row` to access columns by name.
+An index on `(conversation_id, id)` supports loading one chat in message order.
+
+### Preserving Lesson 9 history
+
+`init_db()` inspects `PRAGMA table_info(messages)`. When an existing table lacks
+`conversation_id`, it migrates in one transaction:
+
+1. Create `conversations` and temporarily rename the old messages table.
+2. Create the new messages table with the foreign key.
+3. If old messages exist, create **Imported chat** and copy them into it,
+   preserving message IDs, roles, content, order, and timestamps.
+4. Check that every message was copied before dropping the old table.
+5. Create the index, verify foreign keys, and commit.
+
+A failure rolls back the schema and data changes. Repeated startup does not
+duplicate imported history; an empty old table does not create an empty chat.
+The database stays at `D:\Projects\LLM chat wrapper tutorial\data\chat.db`.
+
+### Backend helpers and API
+
+| Helper | Purpose |
+| --- | --- |
+| `get_connection()` | Open SQLite with named rows and foreign keys enabled |
+| `init_db()` | Initialize or migrate the schema |
+| `create_conversation()` | Return a new conversation with its ID and timestamps |
+| `load_conversations()` | List most recently updated chats first |
+| `load_messages(conversation_id)` | Read only one chat, in message ID order |
+| `save_message(conversation_id, role, content)` | Save one row and update the parent timestamp |
+| `conversation_exists(conversation_id)` | Validate a selected chat |
+| `set_initial_title(conversation_id, message)` | Title the chat from its first user message |
+
+All message and title values use SQL parameters. Connections close after use;
+writes commit as transactions.
+
+| Endpoint | Request or result |
+| --- | --- |
+| `POST /conversations` | No body; returns the new conversation object (HTTP 201) |
+| `GET /conversations` | `{ "conversations": [{ "id": 1, "title": "...", "created_at": "...", "updated_at": "..." }] }` |
+| `GET /conversations/{conversation_id}/messages` | `{ "messages": [{ "role": "user", "content": "..." }] }` |
+| `POST /chat` | `{ "conversation_id": 1, "message": "..." }`; streams plain text |
+
+`ChatRequest` requires a positive integer conversation ID and a nonblank string
+message. Unknown conversations return 404. The backend saves the user message,
+loads only that conversation, prepends the unchanged system prompt, and calls
+`llama3.2:3b` with `stream=True`. It yields chunks as they arrive and saves the
+completed assistant answer once, under the same conversation ID.
+
+Titles use the first user message with whitespace collapsed and a 60-character
+limit. Later messages do not replace that title. LLM-generated titles remain a
+future improvement; they are not implemented here.
+
+### Sidebar and New chat
+
+- `currentConversationId` tracks the selected chat; SQLite owns the history.
+- `getConversations()`, `renderConversationList()`, and `refreshSidebar()` build
+  the sidebar using safe text APIs and highlight the active chat.
+- `initializeApp()` opens the most recently updated conversation on page load.
+- `openConversation(id)` fetches and redraws only that chat. Assistant Markdown
+  still passes through Marked and DOMPurify when switching or refreshing.
+- New chat sets `currentConversationId = null`, clears the visible conversation,
+  and focuses the textarea. Clicking it repeatedly creates no database rows.
+- The first send calls `createConversation()`, then sends its ID and the newest
+  message to `/chat`. No full conversation array or `localStorage` history is sent.
+- Chat switching, New chat, and sending are disabled during generation. The
+  existing streaming, keyboard shortcuts, scrolling, and mobile layout remain.
+
+The old global `GET /messages` and `DELETE /messages` routes are removed. Refresh
+the page after this update so its JavaScript uses the new API. API routes still
+come before the static mount; the existing automatic restart launcher is unchanged.
+
+### Isolation and verification
+
+Use the sidebar and New chat to try this sequence:
+
+1. In Conversation A, send **My secret test word is pineapple.** Then ask
+   **What is my secret test word?** The answer should recall pineapple.
+2. Click New chat and send **What is my secret test word?** Conversation B has
+   no earlier user history, so the model should not know the word.
+3. Select A in the sidebar and ask **What is my secret word again?** It should
+   still recall pineapple. Refresh or restart the server: both chats remain.
+
+The tests inspect the exact history sent to Ollama as well as displayed answers:
+an LLM answer alone is not proof that histories were isolated. The database suite
+also checks legacy migration, rollback, foreign-key cascades, title generation,
+request validation, completed-only assistant saves, and stream cleanup. The
+desktop and mobile browser checks cover selection, no deletion on New chat,
+delayed creation, refresh, streamed Markdown, sanitization, and error recovery.
+
+Verified on October 1, 2026 using the Stage 5 test commands above:
+
+- All 24 database/API tests passed.
+- Desktop and mobile Edge integration checks passed.
+- Live `llama3.2:3b` recalled pineapple in A, did not know it in B, and recalled
+  it again in A after an actual Uvicorn restart. Both conversations survived.
+- The first live reply arrived progressively in 43 chunks. Tests used isolated
+  databases and did not send messages to or delete history from `data/chat.db`.
 
 ## Automatic server restarts in Stage 5
 
@@ -517,7 +644,7 @@ Stage 5(Creating a database for UI)/
     └── check_live.py
 
 data/
-└── chat.db  (Stage 5's SQLite conversation)
+└── chat.db  (Stage 5's SQLite conversations and messages)
 ```
 
 ## Run a stage

@@ -39,7 +39,7 @@ uvicorn.run(module.app, host='127.0.0.1', port=int(sys.argv[3]), log_level='warn
 
 def main():
     test_root = (ROOT / "data").resolve()
-    run_dir = test_root / ("lesson9-live-" + uuid.uuid4().hex)
+    run_dir = test_root / ("lesson10-live-" + uuid.uuid4().hex)
     run_dir.mkdir(parents=True)
     with socket.socket() as sock:
         sock.bind(("127.0.0.1", 0))
@@ -59,7 +59,7 @@ def main():
                 if process.poll() is not None:
                     raise RuntimeError("Uvicorn failed to start")
                 try:
-                    if httpx.get(base_url + "/messages", timeout=1).status_code == 200:
+                    if httpx.get(base_url + "/conversations", timeout=1).status_code == 200:
                         return process
                 except httpx.HTTPError:
                     pass
@@ -78,18 +78,18 @@ def main():
                 process.kill()
                 process.wait(timeout=10)
 
-    def send(client, message):
+    def send(client, conversation_id, message):
         started = time.monotonic()
         pieces = []
         timings = []
-        with client.stream("POST", "/chat", json={"message": message}) as response:
+        with client.stream("POST", "/chat", json={"conversation_id": conversation_id, "message": message}) as response:
             response.raise_for_status()
             for piece in response.iter_text():
                 pieces.append(piece)
                 timings.append(time.monotonic() - started)
         reply = "".join(pieces)
         assert reply.strip(), "Ollama returned an empty reply"
-        print(json.dumps({"question": message, "reply": reply, "chunks": len(pieces),
+        print(json.dumps({"conversation_id": conversation_id, "question": message, "reply": reply, "chunks": len(pieces),
                           "first_chunk_seconds": round(timings[0], 3),
                           "last_chunk_seconds": round(timings[-1], 3)}), flush=True)
         return reply, timings
@@ -98,30 +98,43 @@ def main():
         process = start_server()
         with httpx.Client(base_url=base_url, timeout=150) as client:
             assert client.get("/").status_code == 200
-            _, timings = send(client, "My favorite programming language is Python.")
+            created = client.post("/conversations")
+            created.raise_for_status()
+            conversation_a = created.json()["id"]
+            _, timings = send(client, conversation_a, "My secret test word is pineapple.")
             assert len(timings) > 1 and timings[-1] > timings[0], "No progressive output observed"
-            answer, _ = send(client, "What programming language did I say I like? Answer in one sentence.")
-            assert "python" in answer.lower(), "Model did not recall the preference"
-            saved = client.get("/messages").json()["messages"]
-            assert len(saved) == 4
+            answer, _ = send(client, conversation_a, "What is my secret test word?")
+            assert "pineapple" in answer.lower(), "Model did not recall Conversation A's secret"
+            saved_a = client.get(f"/conversations/{conversation_a}/messages").json()["messages"]
+            assert len(saved_a) == 4
+
+            created = client.post("/conversations")
+            created.raise_for_status()
+            conversation_b = created.json()["id"]
+            answer, _ = send(client, conversation_b, "What is my secret test word?")
+            assert "pineapple" not in answer.lower(), "Conversation A's secret appeared in B"
+            model_input = json.loads((run_dir / "model-input.json").read_text(encoding="utf-8"))
+            assert len(model_input["messages"]) == 2
+            assert model_input["messages"][0]["role"] == "system"
+            saved_b = client.get(f"/conversations/{conversation_b}/messages").json()["messages"]
+            assert len(saved_b) == 2
+            assert client.get(f"/conversations/{conversation_a}/messages").json()["messages"] == saved_a
 
         stop_server(process)
         process = start_server()
         with httpx.Client(base_url=base_url, timeout=150) as client:
-            assert client.get("/messages").json()["messages"] == saved
-            question = "Which language should you use for examples for me? Answer in one sentence."
-            answer, _ = send(client, question)
-            assert "python" in answer.lower(), "Model lost context after restart"
+            assert len(client.get("/conversations").json()["conversations"]) == 2
+            assert client.get(f"/conversations/{conversation_a}/messages").json()["messages"] == saved_a
+            assert client.get(f"/conversations/{conversation_b}/messages").json()["messages"] == saved_b
+            question = "What is my secret word again?"
+            answer, _ = send(client, conversation_a, question)
+            assert "pineapple" in answer.lower(), "Model lost Conversation A's context after restart"
             model_input = json.loads((run_dir / "model-input.json").read_text(encoding="utf-8"))
             assert model_input["messages"][0]["role"] == "system"
-            assert model_input["messages"][1:] == saved + [{"role": "user", "content": question}]
-            assert client.delete("/messages").status_code == 200
-            assert client.get("/messages").json() == {"messages": []}
-            send(client, "Say hello in one short sentence.")
-            model_input = json.loads((run_dir / "model-input.json").read_text(encoding="utf-8"))
-            assert len(model_input["messages"]) == 2
-            assert len(client.get("/messages").json()["messages"]) == 2
-        print("PASS: live streaming, Python preference recall, real Uvicorn restart, retained history, and fresh chat.", flush=True)
+            assert model_input["messages"][1:] == saved_a + [{"role": "user", "content": question}]
+            assert len(client.get(f"/conversations/{conversation_a}/messages").json()["messages"]) == 6
+            assert client.get(f"/conversations/{conversation_b}/messages").json()["messages"] == saved_b
+        print("PASS: live streaming, pineapple A/B/A isolation, real Uvicorn restart, and both chats retained.", flush=True)
     except BaseException:
         log.flush()
         print((run_dir / "server.log").read_text(encoding="utf-8"), flush=True)
@@ -130,7 +143,7 @@ def main():
         stop_server(process)
         log.close()
         assert run_dir.resolve().parent == test_root
-        assert run_dir.name.startswith("lesson9-live-")
+        assert run_dir.name.startswith("lesson10-live-")
         shutil.rmtree(run_dir)
 
 

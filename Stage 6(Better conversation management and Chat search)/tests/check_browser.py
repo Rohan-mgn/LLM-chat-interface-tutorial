@@ -1,4 +1,4 @@
-"""Check Lesson 9 in Edge against real FastAPI/SQLite and a mocked Ollama.
+"""Check Lesson 10 in Edge against real FastAPI/SQLite and a mocked Ollama.
 
 All test databases and browser artifacts stay in an isolated directory under
 the project's data folder. The production database is never opened or changed.
@@ -77,7 +77,7 @@ def main():
     lessons = load(ROOT / "tests/check_lessons.py", "lesson_helpers")
     module = load(STAGE / "main.py", "stage5_browser_app")
     test_root = (ROOT / "data").resolve()
-    run_dir = test_root / ("lesson9-browser-" + uuid.uuid4().hex)
+    run_dir = test_root / ("lesson10-browser-" + uuid.uuid4().hex)
     artifacts = run_dir / "artifacts"
     artifacts.mkdir(parents=True)
     module.DATA_DIR = run_dir / "database"
@@ -99,33 +99,46 @@ def main():
                 raise RuntimeError("The browser did not release the test stream.")
             for offset in range(len(PREFIX), len(SAMPLE), 17):
                 yield {"message": {"content": SAMPLE[offset:offset + 17]}}
-        elif "programming language" in newest:
-            yield {"message": {"content": "You said **Python**."}}
+        elif "secret" in newest.lower():
+            knows_secret = any("pineapple" in item["content"].lower()
+                               for item in kwargs["messages"] if item["role"] == "user")
+            reply = "Your secret word is **pineapple**." if knows_secret else "You have not told me a secret word in this conversation."
+            yield {"message": {"content": reply}}
         else:
             yield {"message": {"content": "# Fresh\n\nA fresh conversation."}}
 
-    @module.app.get("/__lesson9", response_class=HTMLResponse)
+    class TitleClient:
+        def chat(self, **kwargs):
+            if "User: Title test" in kwargs["messages"][1]["content"]:
+                time.sleep(.3)
+                return {"message": {"content": "Planning a Garden"}}
+            raise RuntimeError("Controlled title failure: keep the fallback")
+
+    @module.app.get("/__lesson10", response_class=HTMLResponse)
     def harness():
         return """<!doctype html><html><head><meta charset="utf-8"></head>
         <body style="margin:0;background:#fcfcfa">
-        <iframe id="appFrame" title="Lesson 9 application"
+        <iframe id="appFrame" title="Lesson 10 application"
             style="display:block;border:0;height:900px"></iframe>
-        <script src="/__lesson9_checks.js"></script></body></html>"""
+        <script src="/__lesson10_checks.js"></script></body></html>"""
 
-    @module.app.get("/__lesson9_checks.js")
+    @module.app.get("/__lesson10_checks.js")
     def browser_script():
         return FileResponse(TESTS / "browser_checks.js", media_type="text/javascript")
 
-    @module.app.get("/__lesson9_state")
+    @module.app.get("/__lesson10_state")
     def test_state():
-        return {"messages": module.load_messages(), "model_calls": model_calls, "sample": SAMPLE}
+        conversations = module.load_conversations()
+        return {"conversations": conversations,
+                "messages": {str(item["id"]): module.load_messages(item["id"]) for item in conversations},
+                "model_calls": model_calls, "sample": SAMPLE}
 
-    @module.app.post("/__lesson9_release")
+    @module.app.post("/__lesson10_release")
     def finish_generation():
         release_stream.set()
         return {"released": True}
 
-    @module.app.post("/__lesson9_result")
+    @module.app.post("/__lesson10_result")
     def browser_result(result: dict):
         browser_results.append(result)
         browser_finished.set()
@@ -165,28 +178,28 @@ def main():
                     process.wait(timeout=10)
 
     try:
-        with patch.object(module.ollama, "chat", side_effect=model_reply):
+        with patch.object(module.ollama, "chat", side_effect=model_reply), patch.object(module.ollama, "Client", return_value=TitleClient()):
             with lessons.serve(module.app) as base_url:
                 for name, path, size in (
-                    ("desktop", "/__lesson9", "1440,1000"),
-                    ("mobile", "/__lesson9?mobile=1", "500,1000"),
+                    ("desktop", "/__lesson10", "1440,1000"),
+                    ("mobile", "/__lesson10?mobile=1", "500,1000"),
                 ):
-                    module.clear_messages()
-                    module.save_message("user", "My favorite programming language is Python.")
-                    module.save_message("assistant", "## Saved reply\n\nYou like **Python**.")
+                    from contextlib import closing
+                    with closing(module.get_connection()) as connection, connection:
+                        connection.execute("DELETE FROM conversations")
                     model_calls.clear()
                     release_stream.clear()
                     check_browser(base_url, name, path, size)
-                    assert len(module.load_messages()) == 2
+                    assert len(module.load_conversations()) == 0
                     assert len(model_calls[-1]["messages"]) == 2
-        print("PASS: Lesson 9 browser/API/SQLite integration on desktop and mobile.")
+        print("PASS: Lesson 10 multi-chat browser/API/SQLite integration on desktop and mobile.")
     finally:
         release_stream.set()
         if options.keep_artifacts:
             print("ARTIFACTS=" + str(run_dir))
         else:
             assert run_dir.resolve().parent == test_root
-            assert run_dir.name.startswith("lesson9-browser-")
+            assert run_dir.name.startswith("lesson10-browser-")
             # Windows may release browser-profile handles just after exit.
             for attempt in range(10):
                 try:

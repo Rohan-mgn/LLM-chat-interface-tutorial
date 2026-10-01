@@ -21,6 +21,20 @@ let savedConversations = [];
 let isSending = false;
 let isBusy = true;
 let followOutput = true;
+const searchInput = document.getElementById("chatSearch");
+const clearSearchButton = document.getElementById("clearSearch");
+const searchPanel = document.getElementById("searchPanel");
+const searchResults = document.getElementById("searchResults");
+const searchStatus = document.getElementById("searchStatus");
+const actionDialog = document.getElementById("conversationDialog");
+const renameInput = document.getElementById("renameInput");
+let dialogAction = null;
+let searchTimer;
+let searchController;
+let searchVersion = 0;
+let lastSearchResults = [];
+let titleTimer;
+let titlePolls = 0;
 
 function showStorageNotice(text) {
     storageNotice.textContent = text;
@@ -63,7 +77,18 @@ async function getConversations() {
 
 function renderConversationList(conversations = savedConversations) {
     conversationList.replaceChildren();
-    for (const item of conversations) {
+    let previousGroup;
+    for (const item of new Map(conversations.map(item => [item.id, item])).values()) {
+        const group = dateGroup(item.updated_at);
+        if (group !== previousGroup) {
+            const heading = document.createElement("h3");
+            heading.className = "date-group";
+            heading.textContent = group;
+            conversationList.appendChild(heading);
+            previousGroup = group;
+        }
+        const row = document.createElement("div");
+        row.className = "conversation-row";
         const itemButton = document.createElement("button");
         itemButton.type = "button";
         itemButton.className = "conversation-item";
@@ -73,7 +98,31 @@ function renderConversationList(conversations = savedConversations) {
         itemButton.disabled = isBusy;
         if (item.id === currentConversationId) itemButton.setAttribute("aria-current", "page");
         itemButton.addEventListener("click", () => openConversation(item.id));
-        conversationList.appendChild(itemButton);
+        const menu = document.createElement("details");
+        menu.className = "conversation-menu";
+        const toggle = document.createElement("summary");
+        toggle.textContent = "⋯";
+        toggle.setAttribute("aria-label", "Actions for " + item.title);
+        toggle.title = "Conversation actions";
+        toggle.addEventListener("click", event => {
+            if (isBusy) { event.preventDefault(); return; }
+            conversationList.querySelectorAll("details").forEach(other => {
+                if (other !== menu) other.open = false;
+            });
+        });
+        const actions = document.createElement("div");
+        actions.className = "conversation-actions";
+        for (const action of ["Rename", "Delete"]) {
+            const control = document.createElement("button");
+            control.type = "button";
+            control.textContent = action;
+            control.disabled = isBusy;
+            control.addEventListener("click", () => showConversationAction(action, item));
+            actions.appendChild(control);
+        }
+        menu.append(toggle, actions);
+        row.append(itemButton, menu);
+        conversationList.appendChild(row);
     }
     if (!conversations.length) {
         const empty = document.createElement("p");
@@ -88,8 +137,187 @@ async function refreshSidebar() {
     renderConversationList();
     const selected = savedConversations.find(item => item.id === currentConversationId);
     if (selected) conversationTitle.textContent = selected.title;
+    scheduleTitleRefresh();
     return savedConversations;
 }
+
+function dateGroup(timestamp, now = new Date()) {
+    // SQLite timestamps are UTC; group by calendar dates in the browser's zone.
+    const date = new Date(timestamp.replace(" ", "T") + "Z");
+    const day = value => Date.UTC(value.getFullYear(), value.getMonth(), value.getDate());
+    const age = Math.round((day(now) - day(date)) / 86400000);
+    if (age <= 0) return "Today";
+    if (age === 1) return "Yesterday";
+    if (age <= 7) return "Previous 7 Days";
+    if (age <= 30) return "Previous 30 Days";
+    return "Older";
+}
+
+function scheduleTitleRefresh() {
+    clearTimeout(titleTimer);
+    if (titlePolls >= 30 || !savedConversations.some(item => ["pending", "generating"].includes(item.title_source))) return;
+    titleTimer = setTimeout(async () => {
+        titlePolls++;
+        // Do not replace focused menu controls or an open dialog.
+        if (isBusy || actionDialog.open || conversationList.querySelector("details[open]") ||
+            conversationList.contains(document.activeElement)) {
+            scheduleTitleRefresh();
+            return;
+        }
+        try { await refreshSidebar(); } catch { /* Optional title will appear on next refresh. */ }
+    }, 1000);
+}
+
+function showConversationAction(action, item) {
+    if (isBusy) return;
+    dialogAction = { action, item };
+    conversationList.querySelectorAll("details").forEach(menu => { menu.open = false; });
+    const deleting = action === "Delete";
+    document.getElementById("dialogTitle").textContent = deleting ? "Delete this chat?" : "Rename chat";
+    document.getElementById("dialogDescription").textContent = deleting
+        ? 'Delete “' + item.title + '” and all its messages? This cannot be undone.'
+        : "Choose a short title (up to 60 characters).";
+    document.getElementById("renameLabel").hidden = deleting;
+    renameInput.hidden = deleting;
+    renameInput.required = !deleting;
+    renameInput.value = item.title;
+    document.getElementById("dialogError").textContent = "";
+    document.getElementById("confirmAction").textContent = deleting ? "Delete chat" : "Save title";
+    actionDialog.showModal();
+    if (deleting) document.getElementById("cancelAction").focus();
+    else { renameInput.focus(); renameInput.select(); }
+}
+
+document.getElementById("cancelAction").addEventListener("click", () => actionDialog.close());
+actionDialog.addEventListener("cancel", event => { if (isBusy) event.preventDefault(); });
+document.getElementById("conversationActionForm").addEventListener("submit", async event => {
+    event.preventDefault();
+    if (isBusy || !dialogAction) return;
+    const { action, item } = dialogAction;
+    const deleting = action === "Delete";
+    const title = renameInput.value.trim().replace(/\s+/g, " ");
+    if (!deleting && !title) {
+        document.getElementById("dialogError").textContent = "Enter a title.";
+        return;
+    }
+    setBusy("updating");
+    const controls = actionDialog.querySelectorAll("button, input");
+    controls.forEach(control => { control.disabled = true; });
+    try {
+        const response = await fetch("/conversations/" + item.id, deleting ? { method: "DELETE" } : {
+            method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title })
+        });
+        await requireSuccess(response, deleting ? "Couldn't delete the chat" : "Couldn't rename the chat");
+        const deletedActive = deleting && currentConversationId === item.id;
+        if (deleting) savedConversations = savedConversations.filter(saved => saved.id !== item.id);
+        else savedConversations = savedConversations.map(saved => saved.id === item.id ? { ...saved, title, title_source: "manual" } : saved);
+        if (deletedActive) { currentConversationId = null; clearConversationView(); input.value = ""; }
+        renderConversationList();
+        // The mutation succeeded even if a subsequent refresh fails.
+        actionDialog.close();
+        await refreshSidebar();
+        if (deletedActive && savedConversations.length) {
+            const nextId = savedConversations[0].id;
+            const messages = await getConversationMessages(nextId);
+            currentConversationId = nextId;
+            redrawMessages(messages);
+            renderConversationList();
+        }
+        if (searchInput.value.trim()) await runSearch();
+    } catch (error) {
+        if (actionDialog.open) document.getElementById("dialogError").textContent = error.message;
+        else showStorageNotice(error.message + " Refresh to load the latest chat list.");
+    } finally {
+        controls.forEach(control => { control.disabled = false; });
+        setBusy();
+        if (!actionDialog.open) { setSidebar(false); input.focus({ preventScroll: true }); }
+    }
+});
+
+function highlightText(element, value, query) {
+    // Build literal text and <mark> nodes; never interpret search content as HTML.
+    const text = value || "";
+    const needle = query.toLocaleLowerCase();
+    const folded = text.toLocaleLowerCase();
+    let position = 0;
+    let match;
+    while (needle && (match = folded.indexOf(needle, position)) !== -1) {
+        element.append(document.createTextNode(text.slice(position, match)));
+        const mark = document.createElement("mark");
+        mark.textContent = text.slice(match, match + query.length);
+        element.append(mark);
+        position = match + query.length;
+    }
+    element.append(document.createTextNode(text.slice(position)));
+}
+
+function renderSearchResults(results = lastSearchResults) {
+    lastSearchResults = results;
+    searchResults.replaceChildren();
+    for (const item of results) {
+        const hit = document.createElement("button");
+        hit.type = "button";
+        hit.className = "search-hit";
+        hit.dataset.conversationId = String(item.conversation_id);
+        hit.disabled = isBusy;
+        if (item.conversation_id === currentConversationId) hit.setAttribute("aria-current", "page");
+        const title = document.createElement("strong");
+        title.title = item.title;
+        highlightText(title, item.title, searchInput.value.trim());
+        const source = document.createElement("span");
+        source.className = "search-source";
+        source.textContent = item.message_id ? (item.role === "user" ? "You" : "Assistant") + " · message #" + item.message_id : "Title match";
+        const snippet = document.createElement("span");
+        highlightText(snippet, item.snippet, searchInput.value.trim());
+        hit.append(title, source, snippet);
+        hit.addEventListener("click", () => openConversation(item.conversation_id));
+        searchResults.appendChild(hit);
+    }
+}
+
+async function runSearch() {
+    clearTimeout(searchTimer);
+    searchController?.abort();
+    const version = ++searchVersion;
+    const query = searchInput.value.trim();
+    clearSearchButton.hidden = !query;
+    searchPanel.hidden = !query;
+    conversationList.hidden = Boolean(query);
+    if (!query) { lastSearchResults = []; searchResults.replaceChildren(); return; }
+    searchStatus.textContent = "Searching…";
+    searchResults.replaceChildren();
+    searchController = new AbortController();
+    try {
+        const response = await fetch("/search?q=" + encodeURIComponent(query), {
+            signal: searchController.signal, cache: "no-store"
+        });
+        await requireSuccess(response, "Search failed");
+        const data = await response.json();
+        if (version !== searchVersion) return;
+        renderSearchResults(data.results);
+        searchStatus.textContent = data.has_more ? "Showing the first 100 matches. Refine your search."
+            : data.results.length ? data.results.length + " matching chats" : "No chats found. Try different words.";
+    } catch (error) {
+        if (version === searchVersion && error.name !== "AbortError") searchStatus.textContent = error.message;
+    }
+}
+
+searchInput.addEventListener("input", () => {
+    clearTimeout(searchTimer);
+    searchController?.abort();
+    ++searchVersion;
+    if (!searchInput.value.trim()) { runSearch(); return; }
+    searchPanel.hidden = false;
+    conversationList.hidden = true;
+    clearSearchButton.hidden = false;
+    searchResults.replaceChildren();
+    searchStatus.textContent = "Searching…";
+    searchTimer = setTimeout(runSearch, 300);
+});
+clearSearchButton.addEventListener("click", () => { searchInput.value = ""; runSearch(); searchInput.focus(); });
+searchInput.addEventListener("keydown", event => {
+    if (event.key === "Escape") { event.stopPropagation(); clearSearchButton.click(); }
+});
 
 async function getConversationMessages(conversationId) {
     const response = await fetch("/conversations/" + conversationId + "/messages", { cache: "no-store" });
@@ -131,6 +359,7 @@ async function openConversation(conversationId) {
         currentConversationId = conversationId;
         redrawMessages(messages);
         renderConversationList();
+        renderSearchResults();
         input.value = "";
         setSidebar(false);
     } catch (error) {
@@ -203,6 +432,9 @@ function setBusy(operation = "") {
     input.disabled = isBusy;
     newChatButton.disabled = isBusy;
     conversationList.querySelectorAll("button").forEach(item => { item.disabled = isBusy; });
+    searchResults.querySelectorAll("button").forEach(item => { item.disabled = isBusy; });
+    searchInput.disabled = isBusy;
+    clearSearchButton.disabled = isBusy;
     button.disabled = isBusy || input.value.trim() === "";
     sendLabel.textContent = isSending ? "Generating…" : "Send";
     statusText.textContent = isSending ? "Replying…"
@@ -281,11 +513,20 @@ async function sendMessage() {
 
     let reader;
     let reply = "";
+    let conversationId = currentConversationId;
+    let postStarted = false;
+    titlePolls = 0;
     try {
+        // New chat is only a draft until its first message is sent.
+        if (conversationId === null) {
+            const created = await createConversation();
+            conversationId = created.id;
+        }
+        postStarted = true;
         const response = await fetch("/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: message })
+            body: JSON.stringify({ conversation_id: conversationId, message: message })
         });
         await requireSuccess(response, "Couldn't generate a reply");
         if (!response.body) throw new Error("Your browser did not provide a response stream.");
@@ -311,10 +552,19 @@ async function sendMessage() {
         // The user message may already be saved. Do not duplicate it as a retry draft.
         assistantText.classList.remove("waiting");
         if (!reply) assistantText.textContent = "No reply received.";
-        await showRequestError(error);
+        if (!postStarted) {
+            clearConversationView();
+            input.value = message;
+        }
+        await showRequestError(error, conversationId);
     } finally {
         if (reader) reader.releaseLock();
         assistantText.classList.remove("waiting");
+        try {
+            await refreshSidebar();
+        } catch {
+            showStorageNotice("The chat list couldn't be refreshed. Your saved chats will load when you refresh the page.");
+        }
         setBusy();
         resizeInput();
         scrollToBottom();
@@ -322,26 +572,19 @@ async function sendMessage() {
     }
 }
 
-// Lesson 9 has one conversation: New chat deletes its rows from SQLite.
-newChatButton.addEventListener("click", async () => {
+// New chat opens a draft. It neither deletes history nor creates an empty row.
+newChatButton.addEventListener("click", () => {
     if (isBusy) return;
-    setBusy("clearing");
-    try {
-        const response = await fetch("/messages", { method: "DELETE" });
-        await requireSuccess(response, "Couldn't clear the saved conversation");
-        clearConversationView();
-        input.value = "";
-        showStorageNotice("");
-        followOutput = true;
-        conversation.scrollTop = 0;
-        setSidebar(false);
-    } catch (error) {
-        await showRequestError(error);
-    } finally {
-        setBusy();
-        resizeInput();
-        input.focus({ preventScroll: true });
-    }
+    currentConversationId = null;
+    clearConversationView();
+    renderConversationList();
+    input.value = "";
+    showStorageNotice("");
+    followOutput = true;
+    conversation.scrollTop = 0;
+    setSidebar(false);
+    resizeInput();
+    input.focus({ preventScroll: true });
 });
 document.querySelectorAll(".suggestion").forEach((suggestion) => {
     suggestion.addEventListener("click", () => {
@@ -367,10 +610,6 @@ function closeSidebar() {
 menuButton.addEventListener("click", () => setSidebar(true));
 document.getElementById("closeSidebar").addEventListener("click", closeSidebar);
 document.getElementById("sidebarBackdrop").addEventListener("click", closeSidebar);
-document.getElementById("currentChatButton").addEventListener("click", () => {
-    closeSidebar();
-    scrollToBottom(true);
-});
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && document.body.classList.contains("sidebar-open")) closeSidebar();
 });
@@ -378,10 +617,20 @@ mobileLayout.addEventListener("change", () => setSidebar(false));
 setSidebar(false);
 resizeInput();
 
-async function initializeConversation() {
+async function initializeApp() {
     setBusy("loading");
     try {
-        await loadConversation();
+        const conversations = await refreshSidebar();
+        if (conversations.length) {
+            const selectedId = conversations[0].id;
+            const messages = await getConversationMessages(selectedId);
+            currentConversationId = selectedId;
+            redrawMessages(messages);
+        } else {
+            currentConversationId = null;
+            clearConversationView();
+        }
+        renderConversationList();
     } catch (error) {
         showStorageNotice(error.message + " Refresh to load your saved chat.");
     } finally {
@@ -390,4 +639,4 @@ async function initializeConversation() {
     }
 }
 
-initializeConversation();
+initializeApp();

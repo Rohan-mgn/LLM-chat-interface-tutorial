@@ -1,7 +1,10 @@
 # Lesson 9 — SQLite persistence implementation prompt
 
-This records the Lesson 9 implementation requirements with the database path
-and model confirmed during development. Stage 5 already implements this brief.
+This records the original Lesson 9 implementation requirements with the database
+path and model confirmed during development. Stage 5 now extends this foundation
+with Lesson 10: multiple conversations, a selectable sidebar, and New chat that
+preserves history. The single-conversation API and deletion behavior below are
+historical; see the current Lesson 10 section in the project's README.md.
 
 Inspect the existing Stage 5 project before editing. Modify the existing
 implementation without an unnecessary rewrite. Preserve its UI, system prompt,
