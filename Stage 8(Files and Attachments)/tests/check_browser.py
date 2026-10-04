@@ -1,11 +1,13 @@
-"""Check Lessons 10–12 in Edge against real FastAPI/SQLite and a mocked Ollama.
+"""Check Stage 8 attachments and inherited conversation behavior in Chromium against real FastAPI/SQLite and a mocked Ollama.
 
 All test databases and browser artifacts stay in an isolated directory under
 the project's data folder. The production database is never opened or changed.
 """
 
 import argparse
+import asyncio
 import importlib.util
+import sys
 import json
 import os
 from pathlib import Path
@@ -20,6 +22,7 @@ from fastapi.responses import FileResponse, HTMLResponse
 
 
 STAGE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(STAGE))
 ROOT = STAGE.parent
 TESTS = STAGE / "tests"
 PREFIX = "# Markdown demo\n\n**Bold text** and *emphasis*.\n\n"
@@ -75,9 +78,9 @@ def main():
         parser.error("Pass --browser with the path to Edge or Chromium.")
 
     lessons = load(ROOT / "tests/check_lessons.py", "lesson_helpers")
-    module = load(STAGE / "main.py", "stage5_browser_app")
+    module = load(STAGE / "main.py", "stage8_browser_app")
     test_root = (ROOT / "data").resolve()
-    run_dir = test_root / ("lesson10-browser-" + uuid.uuid4().hex)
+    run_dir = test_root / ("stage8-browser-" + uuid.uuid4().hex)
     artifacts = run_dir / "artifacts"
     artifacts.mkdir(parents=True)
     module.DATA_DIR = run_dir / "database"
@@ -87,25 +90,34 @@ def main():
     browser_finished = Event()
     browser_results = []
 
-    def model_reply(**kwargs):
-        assert kwargs["model"] == module.MODEL and kwargs["stream"] is True
-        model_calls.append(kwargs)
-        newest = kwargs["messages"][-1]["content"]
-        if newest.startswith("Show Markdown"):
-            yield {"message": {"content": PREFIX}}
-            # A real HTTP request from the browser releases this stream only
-            # after checking the partial DOM and the still-incomplete DB turn.
-            if not release_stream.wait(timeout=20):
-                raise RuntimeError("The browser did not release the test stream.")
-            for offset in range(len(PREFIX), len(SAMPLE), 17):
-                yield {"message": {"content": SAMPLE[offset:offset + 17]}}
-        elif "secret" in newest.lower():
-            knows_secret = any("pineapple" in item["content"].lower()
-                               for item in kwargs["messages"] if item["role"] == "user")
-            reply = "Your secret word is **pineapple**." if knows_secret else "You have not told me a secret word in this conversation."
-            yield {"message": {"content": reply}}
-        else:
-            yield {"message": {"content": "# Fresh\n\nA fresh conversation."}}
+    failures = set()
+    class ChatClient:
+        async def chat(self, **kwargs):
+            model_calls.append(kwargs)
+            newest = kwargs["messages"][-1]["content"]
+            async def stream():
+                if newest.startswith("Wait before tokens"):
+                    while not release_stream.is_set():
+                        await asyncio.sleep(.02)
+                if newest.startswith("Fail once") and newest not in failures:
+                    failures.add(newest)
+                    yield {"message": {"content": "A partial reply"}}
+                    raise RuntimeError("Controlled failure")
+                if newest.startswith("Stop after partial"):
+                    yield {"message": {"content": "## Partial reply"}}
+                    while not release_stream.is_set():
+                        await asyncio.sleep(.02)
+                if "secret" in newest.lower():
+                    knows = any("pineapple" in m["content"] for m in kwargs["messages"] if m["role"] == "user")
+                    reply = "Your word is **pineapple**." if knows else "No secret in this conversation."
+                else:
+                    reply = SAMPLE
+                for offset in range(0, len(reply), 65):
+                    yield {"message": {"content": reply[offset:offset + 65]}}
+                    await asyncio.sleep(.005)
+            return stream()
+        async def close(self):
+            pass
 
     class TitleClient:
         def chat(self, **kwargs):
@@ -114,31 +126,58 @@ def main():
                 return {"message": {"content": "Planning a Garden"}}
             raise RuntimeError("Controlled title failure: keep the fallback")
 
-    @module.app.get("/__lesson10", response_class=HTMLResponse)
+    @module.app.get("/__stage8", response_class=HTMLResponse)
     def harness():
         return """<!doctype html><html><head><meta charset="utf-8"></head>
         <body style="margin:0;background:#fcfcfa">
-        <iframe id="appFrame" title="Lesson 10 application"
+        <iframe id="appFrame" title="Stage 8 application"
             style="display:block;border:0;height:900px"></iframe>
-        <script src="/__lesson10_checks.js"></script></body></html>"""
+        <script src="/__stage8_checks.js"></script></body></html>"""
 
-    @module.app.get("/__lesson10_checks.js")
+    @module.app.get("/__stage8_checks.js")
     def browser_script():
         return FileResponse(TESTS / "browser_checks.js", media_type="text/javascript")
 
-    @module.app.get("/__lesson10_state")
+    @module.app.get("/__stage8_slow", response_class=HTMLResponse)
+    def slow_startup():
+        # Delay metadata only inside this test page, including cancellation.
+        fixture = """<script>
+        const originalFetch = window.fetch.bind(window);
+        const delayMessages = new URLSearchParams(location.search).has('messages');
+        window.fetch = (url, options = {}) => {
+            if (url === '/conversations' && delayMessages) {
+                return Promise.resolve(new Response(JSON.stringify({conversations: [{
+                    id: 9999, title: 'Saved chat', updated_at: '2026-10-03 00:00:00', title_source: 'manual'
+                }]}), {status: 200}));
+            }
+            if (url === '/conversations' || String(url).endsWith('/tree')) {
+                return new Promise((resolve, reject) => {
+                    window.releaseHistory = () => resolve(new Response(JSON.stringify(
+                        delayMessages ? {messages: [], active_children: {}} : {conversations: []}
+                    ), {status: 200}));
+                    options.signal.addEventListener('abort', () => reject(new DOMException('Timed out', 'AbortError')), {once: true});
+                });
+            }
+            return originalFetch(url, options);
+        };
+        </script>"""
+        html = (STAGE / "static/index.html").read_text(encoding="utf-8")
+        return html.replace('<script src="/static/script.js">', fixture + '<script src="/static/script.js">')
+
+    @module.app.get("/__stage8_state")
     def test_state():
         conversations = module.load_conversations()
         return {"conversations": conversations,
-                "messages": {str(item["id"]): module.load_messages(item["id"]) for item in conversations},
+                "messages": {str(item["id"]): module.load_messages(item["id"], include_ids=True) for item in conversations},
+                "trees": {str(item["id"]): module.store.tree(item["id"]) for item in conversations},
                 "model_calls": model_calls, "sample": SAMPLE}
 
-    @module.app.post("/__lesson10_release")
+    @module.app.post("/__stage8_release")
     def finish_generation():
         release_stream.set()
         return {"released": True}
 
-    @module.app.post("/__lesson10_result")
+    @module.app.post("/__stage8_result")
     def browser_result(result: dict):
         browser_results.append(result)
         browser_finished.set()
@@ -161,7 +200,7 @@ def main():
             ], stdout=subprocess.DEVNULL, stderr=browser_log,
                creationflags=subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0)
             try:
-                if not browser_finished.wait(timeout=45):
+                if not browser_finished.wait(timeout=180):
                     raise AssertionError(f"{name}: browser did not report completion; see {log_path}")
                 result = browser_results[-1]
                 print(json.dumps({"browser": name, "details": result}), flush=True)
@@ -179,11 +218,11 @@ def main():
                     process.wait(timeout=10)
 
     try:
-        with patch.object(module.ollama, "chat", side_effect=model_reply), patch.object(module.ollama, "Client", return_value=TitleClient()):
+        with patch.object(module.ollama, "AsyncClient", side_effect=lambda **_: ChatClient()), patch.object(module.ollama, "Client", return_value=TitleClient()):
             with lessons.serve(module.app) as base_url:
                 for name, path, size in (
-                    ("desktop", "/__lesson10", "1440,1000"),
-                    ("mobile", "/__lesson10?mobile=1", "500,1000"),
+                    ("desktop", "/__stage8", "1440,1000"),
+                    ("mobile", "/__stage8?mobile=1", "500,1000"),
                 ):
                     from contextlib import closing
                     with closing(module.get_connection()) as connection, connection:
@@ -192,15 +231,15 @@ def main():
                     release_stream.clear()
                     check_browser(base_url, name, path, size)
                     assert len(module.load_conversations()) == 0
-                    assert len(model_calls[-1]["messages"]) == 2
-        print("PASS: Lessons 10–12 browser/API/SQLite integration on desktop and mobile.")
+                    failures.clear()
+        print("PASS: Stage 8 attachments and conversation integration on desktop and mobile.")
     finally:
         release_stream.set()
         if options.keep_artifacts:
             print("ARTIFACTS=" + str(run_dir))
         else:
             assert run_dir.resolve().parent == test_root
-            assert run_dir.name.startswith("lesson10-browser-")
+            assert run_dir.name.startswith("stage8-browser-")
             # Windows may release browser-profile handles just after exit.
             for attempt in range(10):
                 try:

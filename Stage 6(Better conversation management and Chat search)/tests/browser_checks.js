@@ -143,7 +143,7 @@
                 return realFetch(url, options);
             };
         };
-        failNext(`/conversations/${b}/messages`, "GET");
+        failNext(`/conversations/${b}/messages?include_ids=true`, "GET");
         await page.openConversation(b);
         assert(ready() && activeId() === a && users().length === 4, "Failed switch corrupted selection");
         assert(!doc.getElementById("storageNotice").hidden, "Failed switch did not show an error");
@@ -174,10 +174,10 @@
         assert(activeButton.textContent === titleText.replace(/\s+/g, " ").slice(0, 60) && !activeButton.children.length, "Title is unsafe or unbounded");
         assert(doc.documentElement.scrollWidth <= page.innerWidth + 1, "Responsive layout overflow");
         const c = activeId();
-        const search = doc.getElementById("chatSearch");
         const showSidebar = () => { if (mobile) doc.getElementById("menuButton").click(); };
         const typeSearch = value => {
             showSidebar();
+            const search = doc.getElementById("chatSearch");
             search.value = value;
             search.dispatchEvent(new page.Event("input", { bubbles: true }));
         };
@@ -195,6 +195,8 @@
         doc.querySelector(".search-hit").click();
         await waitFor(() => ready() && activeId() === a, "search result opens A");
         assert(users().length === 4, "Search opened incorrect history");
+        assert(doc.activeElement.matches(".message.search-target") &&
+            doc.activeElement.textContent.includes("pineapple"), "Search did not focus its matching message");
         typeSearch("<img");
         await waitFor(() => doc.querySelectorAll(".search-hit").length === 2, "literal HTML search");
         assert(!doc.getElementById("searchResults").querySelector("img, script"), "Search injected HTML");
@@ -229,6 +231,18 @@
         assert(doc.querySelector(".date-group").textContent === "Today", "Sidebar date heading absent");
         await page.refreshSidebar(); await page.refreshSidebar();
         assert(doc.querySelectorAll(".conversation-item").length === 3 && activeId() === a, "Sidebar refresh duplicated or lost selection");
+
+        const sidebarFetch = page.fetch;
+        let resolveSidebar;
+        page.fetch = (url, options) => url === "/conversations"
+            ? new Promise(resolve => { resolveSidebar = resolve; }) : sidebarFetch(url, options);
+        const staleSidebar = page.refreshSidebar();
+        page.fetch = sidebarFetch;
+        await page.refreshSidebar();
+        resolveSidebar(new page.Response(JSON.stringify({ conversations: [] }), { status: 200 }));
+        await staleSidebar;
+        assert(doc.querySelectorAll(".conversation-item").length === 3 && activeId() === a,
+            "Late sidebar refresh overwrote newer state");
 
         const action = (id, label) => {
             showSidebar();
@@ -279,6 +293,16 @@
         assert((await state()).conversations.find(item => item.id === automaticId).title_source === "auto", "Automatic title not saved");
         await openPage();
         assert(activeId() === automaticId && doc.getElementById("conversationTitle").textContent === "Planning a Garden", "Automatic title or selection lost on refresh");
+        newChat();
+        await send("ß".repeat(300) + " 😀 Straße <img>");
+        typeSearch("STRASSE");
+        await waitFor(() => doc.querySelector(".search-hit mark"), "Unicode search highlight");
+        assert(doc.querySelector(".search-hit mark").textContent === "Straße", "Unicode highlight does not match original characters");
+        assert(doc.querySelector(".search-hit").textContent.includes("😀 Straße <img>"), "Unicode snippet lost matching context");
+        assert(!doc.querySelector(".search-hit img"), "Unicode result interpreted HTML");
+        newChat();
+        assert(!doc.querySelector('#searchResults [aria-current="page"]'), "New chat retained a stale search selection");
+        doc.getElementById("clearSearch").click();
         for (const item of (await state()).conversations) {
             action(item.id, "Delete");
             doc.getElementById("conversationActionForm").requestSubmit();

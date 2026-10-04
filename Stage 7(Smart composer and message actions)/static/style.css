@@ -103,6 +103,25 @@ h1 { margin: 0; font-size: clamp(28px, 3.2vw, 42px); font-weight: 500; letter-sp
 
 .chat { max-width: 800px; margin: 0 auto; padding: 32px 28px 24px; }
 .message { margin-bottom: 30px; }
+.message-actions { display: flex; flex-wrap: wrap; gap: 6px; min-height: 36px; margin-top: 10px; }
+.message-actions button, .composer-tools button, #cancelEdit { border: 1px solid var(--border); border-radius: 7px; padding: 7px 10px; background: transparent; color: #526458; font-size: 12px; }
+.message-actions button:hover, .message-actions button[aria-pressed="true"] { background: #e2e9de; color: var(--accent); }
+.message-state { display: block; margin-top: 8px; color: var(--muted); font-size: 12px; }
+.branch-position { align-self: center; min-width: 42px; text-align: center; font-size: 12px; color: var(--muted); }
+.message-edit { width: 100%; padding: 16px; border: 1px solid var(--accent); border-radius: 14px; background: #f6f8f3; }
+.message-edit textarea { min-height: 100px; max-height: 280px; overflow-y: auto; resize: vertical; }
+.message-edit textarea:focus-visible { outline: 2px solid #90b19a; outline-offset: 4px; }
+.edit-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.edit-actions button { min-height: 44px; padding: 8px 14px; border: 1px solid #c9d7c7; border-radius: 8px; background: white; color: var(--accent); }
+.composer-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.composer-tools span { font-size: 10px; color: var(--muted); }
+.edit-banner { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 12px; color: var(--accent); }
+.stop-button { border: 1px solid #ae6052; border-radius: 10px; padding: 10px 18px; background: #fff5ef; color: #904629; }
+.branch-notice { font-size: 12px; color: var(--muted); }
+.branch-notice button { background: transparent; border: 0; padding: 8px; color: var(--accent); text-decoration: underline; }
+@media (pointer: coarse) {
+    .message-actions button, .composer-tools button, #cancelEdit, .stop-button { min-height: 44px; }
+}
 .message.search-target { outline: 2px solid var(--accent); outline-offset: 8px; border-radius: 8px; }
 .message-label { display: block; margin-bottom: 9px; color: var(--muted); font-size: 12px; font-weight: 600; }
 .message-content { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 15px; line-height: 1.8; }

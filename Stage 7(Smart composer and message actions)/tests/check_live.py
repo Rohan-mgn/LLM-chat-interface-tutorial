@@ -23,24 +23,25 @@ import importlib.util, json, sys
 from pathlib import Path
 import ollama, uvicorn
 stage, run_dir = Path(sys.argv[1]), Path(sys.argv[2])
-spec = importlib.util.spec_from_file_location('live_stage5', stage / 'main.py')
+sys.path.insert(0, str(stage))
+spec = importlib.util.spec_from_file_location('live_stage7', stage / 'main.py')
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
-assert module.DATABASE == stage.parent / 'data' / 'stage6' / 'chat.db'
+assert module.DATABASE == stage.parent / 'data' / 'stage7' / 'chat.db'
 module.DATA_DIR = run_dir / 'database'
 module.DATABASE = module.DATA_DIR / 'chat.db'
-client = ollama.Client(timeout=120)
-def recorded_chat(**kwargs):
-    (run_dir / 'model-input.json').write_text(json.dumps(kwargs), encoding='utf-8')
-    return client.chat(**kwargs)
-module.ollama.chat = recorded_chat
+class RecordingClient(ollama.AsyncClient):
+    async def chat(self, **kwargs):
+        (run_dir / 'model-input.json').write_text(json.dumps(kwargs), encoding='utf-8')
+        return await super().chat(**kwargs)
+module.ollama.AsyncClient = RecordingClient
 uvicorn.run(module.app, host='127.0.0.1', port=int(sys.argv[3]), log_level='warning')
 """
 
 
 def main():
     test_root = (ROOT / "data").resolve()
-    run_dir = test_root / ("stage6-live-" + uuid.uuid4().hex)
+    run_dir = test_root / ("stage7-live-" + uuid.uuid4().hex)
     run_dir.mkdir(parents=True)
     with socket.socket() as sock:
         sock.bind(("127.0.0.1", 0))
@@ -91,11 +92,19 @@ def main():
         started = time.monotonic()
         pieces = []
         timings = []
-        with client.stream("POST", "/chat", json={"conversation_id": conversation_id, "message": message}) as response:
+        with client.stream("POST", "/chat", json={"conversation_id": conversation_id, "message": message, "generation_id": str(uuid.uuid4())}) as response:
             response.raise_for_status()
-            for piece in response.iter_text():
-                pieces.append(piece)
-                timings.append(time.monotonic() - started)
+            complete = False
+            for line in response.iter_lines():
+                if not line.startswith("data: "):
+                    continue
+                event = json.loads(line[6:])
+                if event["type"] == "delta":
+                    pieces.append(event["content"])
+                    timings.append(time.monotonic() - started)
+                elif event["type"] == "done":
+                    complete = event["status"] == "completed"
+            assert complete, "Response was not marked complete"
         reply = "".join(pieces)
         assert reply.strip(), "Ollama returned an empty reply"
         print(json.dumps({"conversation_id": conversation_id, "question": message, "reply": reply, "chunks": len(pieces),
@@ -152,7 +161,7 @@ def main():
         stop_server(process)
         log.close()
         assert run_dir.resolve().parent == test_root
-        assert run_dir.name.startswith("stage6-live-")
+        assert run_dir.name.startswith("stage7-live-")
         shutil.rmtree(run_dir)
 
 

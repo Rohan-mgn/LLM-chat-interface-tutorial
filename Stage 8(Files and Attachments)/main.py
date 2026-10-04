@@ -1,7 +1,11 @@
 from contextlib import asynccontextmanager, closing
 from pathlib import Path
+import asyncio
+import json
 import sqlite3
 from threading import Lock
+from typing import Literal
+from uuid import UUID
 
 import anyio
 from fastapi import FastAPI, HTTPException, Query
@@ -9,12 +13,14 @@ from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from starlette.concurrency import run_in_threadpool
-from starlette.background import BackgroundTask
 import ollama
+from tree_store import TreeStore, TreeError, migrate, active_path
+import attachments
+from upload_routes import register as register_upload_routes
 
 BASE_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = BASE_DIR.parent
-DATA_DIR = PROJECT_DIR / "data" / "stage6"
+DATA_DIR = PROJECT_DIR / "data" / "stage8"
 DATABASE = DATA_DIR / "chat.db"
 MODEL = "llama3.2:3b"
 
@@ -22,6 +28,9 @@ SYSTEM_PROMPT = """
 You are a helpful conversational AI assistant.
 
 Carefully use the entire conversation history when responding.
+Files may be attached to the chat, but their contents are NOT available to you.
+Never claim to have read or analyzed an attached file. Explain this limitation
+when asked about file contents; text extraction and retrieval are not implemented.
 
 When the user provides information earlier in the conversation,
 remember and use that information when it becomes relevant later.
@@ -51,6 +60,10 @@ def get_connection():
     # SQLite requires this for each new connection, not just at initialization.
     connection.execute("PRAGMA foreign_keys = ON")
     return connection
+
+
+store = TreeStore(get_connection)
+files = attachments.FileStore(get_connection, lambda: DATA_DIR / "uploads")
 
 
 def init_db():
@@ -111,8 +124,41 @@ def init_db():
         connection.execute(
             "CREATE INDEX IF NOT EXISTS idx_messages_conversation_id ON messages(conversation_id, id)"
         )
+        for name, definition in (
+            ("parent_conversation_id", "INTEGER REFERENCES conversations(id) ON DELETE SET NULL"),
+            ("branch_message_id", "INTEGER REFERENCES messages(id) ON DELETE SET NULL"),
+        ):
+            if name not in conversation_columns:
+                connection.execute(f"ALTER TABLE conversations ADD COLUMN {name} {definition}")
+        message_columns = {row["name"] for row in connection.execute("PRAGMA table_info(messages)")}
+        for name, definition in (
+            ("status", "TEXT NOT NULL DEFAULT 'completed'"),
+            ("reply_to_message_id", "INTEGER REFERENCES messages(id) ON DELETE SET NULL"),
+            ("generation_id", "TEXT"),
+            ("feedback", "INTEGER CHECK (feedback IN (-1, 1))"),
+        ):
+            if name not in message_columns:
+                connection.execute(f"ALTER TABLE messages ADD COLUMN {name} {definition}")
+        connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS idx_generation ON messages(generation_id) WHERE generation_id IS NOT NULL")
+        connection.execute("""CREATE TABLE IF NOT EXISTS generation_requests (
+            id TEXT PRIMARY KEY,
+            assistant_message_id INTEGER NOT NULL REFERENCES messages(id) ON DELETE CASCADE
+        )""")
+        connection.execute("INSERT OR IGNORE INTO generation_requests SELECT generation_id, id FROM messages WHERE generation_id IS NOT NULL")
+        connection.execute("""
+            UPDATE messages SET reply_to_message_id = (
+                SELECT u.id FROM messages u WHERE u.conversation_id = messages.conversation_id
+                AND u.role = 'user' AND u.id < messages.id ORDER BY u.id DESC LIMIT 1
+            ) WHERE role = 'assistant' AND reply_to_message_id IS NULL
+        """)
+        # A crash/restart must never leave a permanently generating message.
+        connection.execute("UPDATE messages SET status = 'stopped' WHERE status = 'generating'")
+        migrate(connection)
+        attachments.migrate(connection)
         if connection.execute("PRAGMA foreign_key_check").fetchone() is not None:
             raise RuntimeError("Invalid conversation reference; database initialization rolled back.")
+
+    files.cleanup(startup=True)
 
 
 def create_conversation(title="New chat"):
@@ -129,7 +175,7 @@ def create_conversation(title="New chat"):
 def load_conversations():
     with closing(get_connection()) as connection:
         return [dict(row) for row in connection.execute("""
-            SELECT id, title, created_at, updated_at, title_source FROM conversations
+            SELECT id, title, created_at, updated_at, title_source, parent_conversation_id, branch_message_id FROM conversations
             ORDER BY updated_at DESC, id DESC
         """)]
 
@@ -142,24 +188,15 @@ def conversation_exists(conversation_id):
 
 
 def save_message(conversation_id, role, content):
-    with closing(get_connection()) as connection, connection:
-        connection.execute(
-            "INSERT INTO messages (conversation_id, role, content) VALUES (?, ?, ?)",
-            (conversation_id, role, content),
-        )
-        connection.execute("""
-            UPDATE conversations SET updated_at = STRFTIME('%Y-%m-%d %H:%M:%f', 'now')
-            WHERE id = ?
-        """, (conversation_id,))
+    return store.append(conversation_id, role, content)
 
 
 def load_messages(conversation_id, include_ids=False):
-    with closing(get_connection()) as connection:
-        return [dict(row) for row in connection.execute(
-            "SELECT " + ("id, " if include_ids else "") +
-            "role, content FROM messages WHERE conversation_id = ? ORDER BY id ASC",
-            (conversation_id,),
-        )]
+    tree = store.tree(conversation_id)
+    path = active_path(tree["messages"], tree["active_children"])
+    if include_ids:
+        return files.decorate(path)
+    return [{"role": m["role"], "content": m["content"]} for m in path if m["status"] == "completed"]
 
 
 def set_initial_title(conversation_id, message):
@@ -286,10 +323,26 @@ def search_conversations(query):
 async def lifespan(app):
     init_db()
     print(f"SQLite database: {DATABASE.resolve()}", flush=True)
-    yield
+    async def sweep():
+        while True:
+            await asyncio.sleep(60)
+            try:
+                await run_in_threadpool(files.cleanup)
+            except (OSError, sqlite3.Error):
+                pass  # Durable deletion records are retried on the next sweep.
+    cleanup_task = asyncio.create_task(sweep())
+    try:
+        yield
+    finally:
+        cleanup_task.cancel()
+        try:
+            await cleanup_task
+        except asyncio.CancelledError:
+            pass
 
 
 app = FastAPI(lifespan=lifespan)
+register_upload_routes(app, files, conversation_exists)
 # Use one Uvicorn worker. Serialize generations so overlapping sends cannot
 # interleave turns; every database read/write still explicitly selects its chat.
 conversation_lock = Lock()
@@ -298,15 +351,12 @@ conversation_lock = Lock()
 class ChatRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     conversation_id: int = Field(gt=0, strict=True)
-    message: str
-
-    @field_validator("message")
-    @classmethod
-    def nonempty_message(cls, value):
-        value = value.strip()
-        if not value:
-            raise ValueError("Message must not be blank.")
-        return value
+    generation_id: UUID
+    action: Literal["send", "edit", "regenerate", "retry"] = "send"
+    message: str = ""
+    message_id: int | None = Field(default=None, gt=0, strict=True)
+    parent_id: int | None = Field(default=None, gt=0, strict=True)
+    attachment_ids: list[UUID] = Field(default_factory=list, max_length=attachments.MAX_FILES)
 
 
 class RenameRequest(BaseModel):
@@ -322,98 +372,179 @@ class RenameRequest(BaseModel):
         return value
 
 
-class ChatStreamingResponse(StreamingResponse):
-    """Release the conversation even if the browser disconnects mid-stream."""
+# One active generation per worker, matching the single-worker launcher.
+# Each request owns a cancellable async Ollama connection, not a blocked thread.
+active_generations = {}
 
-    def __init__(self, content, model_stream, title_job=None):
-        super().__init__(content, media_type="text/plain", headers={"Cache-Control": "no-store"})
-        self.content_generator = content
-        self.model_stream = model_stream
-        self.closed = False
-        self.title_job = title_job
 
-    def close(self):
-        if self.closed:
-            return
-        self.closed = True
-        try:
-            self.content_generator.close()
-        finally:
+def prepare_generation(request):
+    try:
+        for file_id in request.attachment_ids:
+            row = files.find(request.conversation_id, str(file_id))
+            if not files.path(row['storage_key']).is_file():
+                raise TreeError(404, 'Attachment is unavailable. Remove it and upload the file again.')
+        return store.reserve(request)
+    except TreeError as error:
+        raise HTTPException(error.status, str(error)) from error
+
+
+def save_generation(message_id, content, status):
+    with closing(get_connection()) as connection, connection:
+        connection.execute("UPDATE messages SET content = ?, status = ? WHERE id = ?", (content, status, message_id))
+        connection.execute("""UPDATE conversations SET updated_at = STRFTIME('%Y-%m-%d %H:%M:%f', 'now')
+            WHERE id = (SELECT conversation_id FROM messages WHERE id = ?)""", (message_id,))
+
+
+def generation_state(generation_id):
+    with closing(get_connection()) as connection:
+        row = connection.execute("""SELECT r.id AS generation_id, m.conversation_id, m.id AS assistant_message_id,
+            m.reply_to_message_id AS user_message_id, m.status FROM generation_requests r
+            JOIN messages m ON m.id = r.assistant_message_id WHERE r.id = ?""", (str(generation_id),)).fetchone()
+        if row is None:
+            raise HTTPException(404, "Generation not found.")
+        return dict(row)
+
+
+async def produce_reply(job, messages):
+    job["started"].set()
+    parts, final_status, client, stream = [], "stopped", None, None
+    last_save = 0
+    try:
+        if job.get("attachment_only"):
+            content = "Files attached and saved. I cannot read their contents yet; document understanding will be added in a later lesson."
+            parts.append(content)
+            await job["queue"].put({"type": "delta", "content": content})
+        else:
+            client = ollama.AsyncClient(timeout=120)
+            stream = await client.chat(model=MODEL, messages=[{"role": "system", "content": SYSTEM_PROMPT}] + messages, stream=True)
+            async for chunk in stream:
+                content = chunk["message"]["content"]
+                if content:
+                    parts.append(content)
+                    # Persist before exposing each checkpoint; a crash keeps the last checkpoint.
+                    now = asyncio.get_running_loop().time()
+                    if now - last_save > .25:
+                        await run_in_threadpool(save_generation, job["assistant_message_id"], "".join(parts), "generating")
+                        last_save = now
+                    await job["queue"].put({"type": "delta", "content": content})
+        if not "".join(parts).strip():
+            raise ValueError("Empty response")
+        final_status = "completed"
+    except asyncio.CancelledError:
+        final_status = "stopped"
+    except Exception:
+        final_status = "error"
+        job["queue"].put_nowait({"type": "error", "message": "The reply failed. Check Ollama, then retry this response."})
+    finally:
+        job["finishing"] = True
+        with anyio.CancelScope(shield=True):
             try:
-                close_stream = getattr(self.model_stream, "close", None)
-                if close_stream:
-                    close_stream()
+                try:
+                    if stream is not None:
+                        await stream.aclose()
+                finally:
+                    if client is not None:
+                        await client.close()
             finally:
-                conversation_lock.release()
+                try:
+                    await run_in_threadpool(save_generation, job["assistant_message_id"], "".join(parts), final_status)
+                except Exception:
+                    final_status = "error"
+                    job["queue"].put_nowait({"type": "error", "message": "The response could not be saved. Refresh to check the saved checkpoint before retrying."})
+                finally:
+                    active_generations.pop(job["generation_id"], None)
+                    conversation_lock.release()
+                    job["queue"].put_nowait({"type": "done", "status": final_status})
+    return final_status
+
+
+class ChatStreamingResponse(StreamingResponse):
+    def __init__(self, job):
+        self.job = job
+        async def events():
+            yield "data: " + json.dumps({"type": "start", **job["metadata"]}) + "\n\n"
+            while True:
+                event = await job["queue"].get()
+                yield "data: " + json.dumps({**event, "generation_id": job["generation_id"]}) + "\n\n"
+                if event["type"] == "done":
+                    break
+        super().__init__(events(), media_type="text/event-stream", headers={"Cache-Control": "no-store", "X-Accel-Buffering": "no"})
 
     async def __call__(self, scope, receive, send):
         try:
             await super().__call__(scope, receive, send)
         finally:
-            # Cancellation must not skip closing Ollama's connection/the lock.
+            # Both AbortController and network disconnects close the Ollama stream.
             with anyio.CancelScope(shield=True):
-                await run_in_threadpool(self.close)
-        # EOF and cleanup happen first. Title generation cannot delay chunks or
-        # hold the generation lock, and is skipped if streaming raised an error.
-        if self.title_job is not None:
-            await self.title_job()
+                task = self.job["task"]
+                if not task.done() and not self.job.get("cancelling") and not self.job.get("finishing"):
+                    self.job["cancelling"] = True
+                    task.cancel()
+                result = await task
+        if result == "completed" and not self.job.get("attachment_only"):
+            await run_in_threadpool(generate_conversation_title, self.job["conversation_id"])
 
 
 @app.post("/chat")
-def chat(request: ChatRequest):
+async def chat(request: ChatRequest):
     if not conversation_lock.acquire(blocking=False):
         raise HTTPException(409, "A reply is still being generated. Please wait.")
-    if not conversation_exists(request.conversation_id):
-        conversation_lock.release()
-        raise HTTPException(404, "Conversation not found.")
-
-    stream = None
     try:
-        save_message(request.conversation_id, "user", request.message)
-        set_initial_title(request.conversation_id, request.message)
-        messages = [{"role": "system", "content": SYSTEM_PROMPT}] + load_messages(request.conversation_id)
-        stream = iter(ollama.chat(model=MODEL, messages=messages, stream=True))
+        # No await between reservation and task registration, so Stop cannot
+        # race with the creation of a generation on this worker.
+        metadata, messages = prepare_generation(request)
+        job = {**metadata, "metadata": metadata, "queue": asyncio.Queue(), "started": asyncio.Event()}
+        active_generations[job["generation_id"]] = job
+        job["task"] = asyncio.create_task(produce_reply(job, messages))
+    except BaseException:
+        conversation_lock.release()
+        raise
+    await job["started"].wait()
+    return ChatStreamingResponse(job)
 
-        # Read only the first text chunk before returning HTTP 200, allowing
-        # connection/model errors to become a useful HTTP error for the UI.
-        first_content = ""
-        for chunk in stream:
-            first_content = chunk["message"]["content"]
-            if first_content:
-                break
-        else:
-            raise ValueError("The model returned an empty reply.")
-    except Exception as error:
-        try:
-            if stream is not None and hasattr(stream, "close"):
-                stream.close()
-        finally:
-            conversation_lock.release()
-        if isinstance(error, sqlite3.Error):
-            raise HTTPException(503, "Could not save or load this conversation. Please try again.") from error
-        raise HTTPException(
-            502,
-            f"Could not start a reply. Check that Ollama is running with {MODEL}. "
-            "If your message was saved, it will remain in the conversation.",
-        ) from error
 
-    def generate():
-        parts = [first_content]
-        yield first_content
-        for chunk in stream:
-            content = chunk["message"]["content"]
-            if content:
-                parts.append(content)
-                yield content
+@app.get("/generations/{generation_id}")
+def get_generation(generation_id: UUID):
+    return generation_state(generation_id)
 
-        reply = "".join(parts)
-        if not reply.strip():
-            raise ValueError("The model returned an empty reply.")
-        # Reaching here means generation finished successfully. An exception or
-        # disconnect skips this save, so partial text never becomes a DB row.
-        save_message(request.conversation_id, "assistant", reply)
 
-    return ChatStreamingResponse(generate(), stream, BackgroundTask(generate_conversation_title, request.conversation_id))
+@app.post("/generations/{generation_id}/stop")
+async def stop_generation(generation_id: UUID):
+    with closing(get_connection()) as connection, connection:
+        connection.execute('INSERT OR IGNORE INTO generation_cancellations(id) VALUES (?)', (str(generation_id),))
+    job = active_generations.get(str(generation_id))
+    if job:
+        # Cancelling an asyncio Task before its coroutine starts skips its
+        # finally block. Wait until the producer owns cleanup before cancelling,
+        # otherwise a rapid Stop could strand the reservation and lock forever.
+        await job["started"].wait()
+        if not job.get("cancelling") and not job.get("finishing"):
+            job["cancelling"] = True
+            job["task"].cancel()
+        with anyio.CancelScope(shield=True):
+            await job["task"]
+    try:
+        return generation_state(generation_id)
+    except HTTPException as error:
+        if error.status_code != 404:
+            raise
+        return {"generation_id": str(generation_id), "status": "stopped", "assistant_message_id": None}
+
+
+class FeedbackRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    value: Literal[-1, 1] | None
+
+
+@app.patch("/conversations/{conversation_id}/messages/{message_id}/feedback")
+def set_feedback(conversation_id: int, message_id: int, request: FeedbackRequest):
+    with closing(get_connection()) as connection, connection:
+        changed = connection.execute("""UPDATE messages SET feedback = ?
+            WHERE id = ? AND conversation_id = ? AND role = 'assistant' AND status = 'completed'""",
+            (request.value, message_id, conversation_id)).rowcount
+        if not changed:
+            raise HTTPException(404, "Completed assistant message not found.")
+    return {"feedback": request.value}
 
 
 @app.post("/conversations", status_code=201)
@@ -431,6 +562,35 @@ def get_messages(conversation_id: int, include_ids: bool = Query(default=False))
     if not conversation_exists(conversation_id):
         raise HTTPException(404, "Conversation not found.")
     return {"messages": load_messages(conversation_id, include_ids=include_ids)}
+
+
+class BranchRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    message_id: int = Field(gt=0, strict=True)
+
+
+@app.get("/conversations/{conversation_id}/tree")
+def get_tree(conversation_id: int):
+    try:
+        tree = store.tree(conversation_id)
+        files.decorate(tree["messages"])
+        return tree
+    except TreeError as error:
+        raise HTTPException(error.status, str(error)) from error
+
+
+@app.put("/conversations/{conversation_id}/branch")
+def select_branch(conversation_id: int, request: BranchRequest):
+    if not conversation_lock.acquire(blocking=False):
+        raise HTTPException(409, "Stop the active generation before switching branches.")
+    try:
+        tree = store.tree(conversation_id, select_id=request.message_id)
+        files.decorate(tree["messages"])
+        return tree
+    except TreeError as error:
+        raise HTTPException(error.status, str(error)) from error
+    finally:
+        conversation_lock.release()
 
 
 @app.patch("/conversations/{conversation_id}")
@@ -454,6 +614,7 @@ def delete_conversation(conversation_id: int):
             changed = connection.execute("DELETE FROM conversations WHERE id = ?", (conversation_id,)).rowcount
             if not changed:
                 raise HTTPException(404, "Conversation not found.")
+        files.cleanup()
         return {"deleted": conversation_id}
     finally:
         conversation_lock.release()

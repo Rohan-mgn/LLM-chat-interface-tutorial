@@ -1,4 +1,4 @@
-r"""Check Lessons 10?12 using isolated SQLite files and deterministic Ollama streams.
+r"""Check Lessons 10–12 using isolated SQLite files and deterministic Ollama streams.
 
 Run from the project root:
     .\.venv\Scripts\python.exe -B "Stage 6(Better conversation management and Chat search)/tests/check_database.py"
@@ -659,6 +659,36 @@ class DatabaseChecks(unittest.TestCase):
         self.assertTrue(result["has_more"])
         self.assertIsNone(result["results"][0]["message_id"])
         self.assertEqual(result["results"][0]["snippet"], "")
+
+    def test_unicode_snippet_offsets_and_highlights_match_original_text(self):
+        chat_id = self.create()
+        self.client.patch(f"/conversations/{chat_id}", json={"title": "😀 Straße notes"})
+        content = "ß" * 300 + " 😀 Straße <img> " + "z" * 300
+        self.module.save_message(chat_id, "user", content)
+        hit = self.client.get("/search", params={"q": "STRASSE"}).json()["results"][0]
+        for key in ("title", "snippet"):
+            self.assertEqual([hit[key][start:end] for start, end in hit[key + "_matches"]], ["Straße"])
+        self.assertIn("😀 Straße <img>", hit["snippet"])
+        self.assertLess(len(hit["snippet"]), 220)
+        messages = self.client.get(f"/conversations/{chat_id}/messages", params={"include_ids": True}).json()["messages"]
+        self.assertEqual(messages[0]["id"], hit["message_id"])
+        self.assertEqual(messages[0]["content"], content)
+        # Storage metadata must never become part of the Ollama chat payload.
+        self.assertEqual(set(self.module.load_messages(chat_id)[0]), {"role", "content"})
+
+    def test_title_retry_still_uses_original_first_user_message(self):
+        chat_id = self.create()
+        with patch.object(self.module.ollama, "chat", side_effect=RuntimeError("Offline")):
+            self.assertEqual(self.send(chat_id, "My first question").status_code, 502)
+        title_client = Mock()
+        title_client.chat.return_value = {"message": {"content": "First Question Answered"}}
+        with patch.object(self.module.ollama, "Client", return_value=title_client), patch.object(
+            self.module.ollama, "chat", return_value=chunks("Here is an answer")
+        ):
+            self.assertEqual(self.send(chat_id, "Please try again").status_code, 200)
+        prompt = title_client.chat.call_args.kwargs["messages"][1]["content"]
+        self.assertIn("My first question", prompt)
+        self.assertNotIn("Please try again", prompt)
 
     def test_stage5_schema_upgrade_preserves_named_chats(self):
         path = self.test_root / "old.db"
