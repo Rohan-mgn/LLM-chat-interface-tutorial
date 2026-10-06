@@ -11,7 +11,6 @@ Each stage is a separate FastAPI app. The feature audit covers the following les
 | Stage 5 | Lessons 9–10 — SQLite persistence and multiple conversations | Complete |
 | [Stage 6](<Stage 6(Better conversation management and Chat search)/README.md>) | Lessons 11–12 — Conversation management and chat search | Complete |
 | [Stage 7](<Stage 7(Smart composer and message actions)/README.md>) | Lessons 13–14 — Smart composer and message actions | Complete |
-| [Stage 8](<Stage 8(Files and Attachments)/README.md>) | Lesson 17 - Files and attachments | Complete |
 
 Stage 7 includes persistent message-tree branches: inline user editing, assistant
 regeneration, sibling navigation with separate follow-up histories, and automatic
@@ -707,8 +706,3 @@ The full suite passed checks for:
 - Stage 4 Markdown formats, sanitization, raw Markdown history, and interrupted streams.
 - Stage 4 immediate saves, completed replies, actual page reloads, restored Markdown,
   New chat clearing, invalid/blocked/full storage, and interrupted-request recovery.
-
-Stage 8 copies Stage 7 and adds stored attachments, safe previews/downloads, and
-message/file associations. It does not add RAG or claim dedicated Lessons 15
-and 16 are complete. Its default port is 8002; see the Stage 8 README for limits,
-cleanup policy, supported formats, and tests.

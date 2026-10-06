@@ -3,6 +3,6 @@
 __pycache__/
 *.py[cod]
 
-# Local chat databases, uploads, backups, and temporary test artifacts.
+# Local chat databases, backups, and temporary test artifacts.
 # Files already tracked by Git remain tracked.
 data/
