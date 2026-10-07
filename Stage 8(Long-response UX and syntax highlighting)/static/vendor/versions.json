@@ -1,0 +1,39 @@
+[
+  {
+    "name": "marked",
+    "version": "18.0.14",
+    "file": "marked-18.0.14.umd.js",
+    "source": "https://registry.npmjs.org/marked/-/marked-18.0.14.tgz",
+    "package_integrity": "sha512-mBHK6FBHuBAlhgRe88w9F0O1AbwwXJUcQibUbC/QcdTbVGAD7aWza+xt3N6oT/jCZx3/OMeS+8rnuiHZcQ9s7A==",
+    "sha256": "21568877a938d2c4e7d74e27f18e60da96bb73a68809610ca39216e1efebae62",
+    "license": "MIT"
+  },
+  {
+    "name": "dompurify",
+    "version": "3.4.16",
+    "file": "dompurify-3.4.16.min.js",
+    "source": "https://registry.npmjs.org/dompurify/-/dompurify-3.4.16.tgz",
+    "package_integrity": "sha512-sqo+pNp3qRhCIpbgRi1y8Tgk27Bo2Ry7w0dC1NBeNTdZChWjz9Xb/KOoZbRP/R6pQZ80Qw8YhXw13hWWBbMRnQ==",
+    "sha256": "2c90a9b46d6463f26038a29b686e82bc91de01fdac9d5229e7cfe3b360134ea2",
+    "license": "(MPL-2.0 OR Apache-2.0)"
+  },
+  {
+    "name": "prism",
+    "version": "1.30.0",
+    "file": "prism-1.30.0.js",
+    "source": "https://raw.githubusercontent.com/PrismJS/prism/v1.30.0/",
+    "components": [
+      "components/prism-core.js",
+      "components/prism-markup.js",
+      "components/prism-css.js",
+      "components/prism-clike.js",
+      "components/prism-javascript.js",
+      "components/prism-python.js",
+      "components/prism-json.js",
+      "components/prism-bash.js",
+      "components/prism-sql.js"
+    ],
+    "sha256": "b8c3ec70e015260558f6d99a3c287f366843ca10510befc505cf94252ae852f5",
+    "license": "MIT"
+  }
+]

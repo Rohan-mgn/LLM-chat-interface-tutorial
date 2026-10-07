@@ -11,6 +11,7 @@ Each stage is a separate FastAPI app. The feature audit covers the following les
 | Stage 5 | Lessons 9–10 — SQLite persistence and multiple conversations | Complete |
 | [Stage 6](<Stage 6(Better conversation management and Chat search)/README.md>) | Lessons 11–12 — Conversation management and chat search | Complete |
 | [Stage 7](<Stage 7(Smart composer and message actions)/README.md>) | Lessons 13–14 — Smart composer and message actions | Complete |
+| [Stage 8](<Stage 8(Long-response UX and syntax highlighting)/README.md>) | Lessons 15–16 — Long-response UX and syntax highlighting | Complete |
 
 Stage 7 includes persistent message-tree branches: inline user editing, assistant
 regeneration, sibling navigation with separate follow-up histories, and automatic
@@ -706,3 +707,37 @@ The full suite passed checks for:
 - Stage 4 Markdown formats, sanitization, raw Markdown history, and interrupted streams.
 - Stage 4 immediate saves, completed replies, actual page reloads, restored Markdown,
   New chat clearing, invalid/blocked/full storage, and interrupted-request recovery.
+
+## Stage 8 — Long-response UX and syntax highlighting
+
+Stage 8 builds on Stage 7 with 400px-capped long replies, delayed inner scrolling,
+a latest-response control, and locally bundled Prism code highlighting with copy
+buttons. Streaming, Markdown, message branches, search and SQLite persistence
+remain available. It uses its own data/stage8/chat.db.
+
+See the [Stage 8 README](<Stage 8(Long-response UX and syntax highlighting)/README.md>)
+for Lessons 15–16, configuration, design choices and tests.
+
+~~~powershell
+.\.venv\Scripts\python.exe "Stage 8(Long-response UX and syntax highlighting)/run.py"
+~~~
+
+
+## Stage 9 — Files, attachments and RAG
+
+Stage 9 extends Stage 8 with file uploads, document indexing, scoped retrieval,
+multi-turn search-query rewriting, source previews and persistent citations.
+It uses llama3.2:3b for chat and embeddinggemma:latest for embeddings.
+Its SQLite database and uploads live under data/stage9/, derived from the project path.
+
+See the [Stage 9 README](<Stage 9(Files attachments and RAG)/README.md>)
+for the Lessons 17–18 implementation, supported formats, limits, architecture,
+API, tests and retrieval-evaluation instructions.
+
+~~~powershell
+.\.venv\Scripts\python.exe -m pip install -r "Stage 9(Files attachments and RAG)/requirements-dev.txt"
+.\.venv\Scripts\python.exe "Stage 9(Files attachments and RAG)/run.py"
+~~~
+
+Use **Attach files**, wait for indexing, and select documents under **Files in this chat**.
+Images support preview/download; scanned PDFs require OCR, which is not included.

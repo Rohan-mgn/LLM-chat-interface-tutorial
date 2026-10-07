@@ -1,0 +1,49 @@
+
+/* Lesson 15: the outer conversation is the default scroll surface. */
+:root {
+    --response-max-height: 400px;
+    --code-bg: #172820;
+    --code-fg: #edf5ee;
+    --code-bar: #263d32;
+    --code-border: #496454;
+    --syntax-comment: #a8b8ab;
+    --syntax-keyword: #d9afff;
+    --syntax-string: #b2e89d;
+    --syntax-number: #ffcc89;
+    --syntax-function: #95d8ff;
+    --syntax-punctuation: #d1ded5;
+}
+.response-body { max-height: var(--response-max-height); overflow-y: hidden; overflow-x: hidden; overflow-anchor: none; scrollbar-width: thin; scrollbar-color: #91a797 transparent; padding: 3px; }
+.response-body.inner-scroll-active { overflow-y: auto; overscroll-behavior-y: contain; box-shadow: inset 3px 0 #90b19a; }
+.response-body:focus-visible, .code-block pre:focus-visible { outline: 3px solid #85bda4; outline-offset: 3px; }
+.response-scroll-hint { display: block; border: 0; background: transparent; color: var(--muted); padding: 8px 3px; text-align: left; font-size: 11px; }
+.response-scroll-hint:hover { color: var(--accent); text-decoration: underline; }
+@media (hover: none), (pointer: coarse) {
+    .response-body.response-overflow { overflow-y: auto; overscroll-behavior-y: contain; -webkit-overflow-scrolling: touch; }
+    .copy-code, .response-scroll-hint { min-height: 44px; }
+}
+.composer-area { position: relative; }
+.scroll-to-bottom { display: block; margin: 0 auto 10px; padding: 8px 16px; border: 1px solid var(--border); border-radius: 20px; color: var(--accent); background: #f0f4ed; font-size: 12px; box-shadow: 0 2px 8px #172b2314; }
+.scroll-to-bottom[data-unread="true"] { font-weight: 650; border-color: var(--accent); }
+/* Lesson 16: unwrapped source, no line numbers; horizontal scrolling only. */
+.code-block { min-width: 0; max-width: 100%; margin: 1em 0; border: 1px solid var(--code-border); border-radius: 10px; background: var(--code-bg); color: var(--code-fg); overflow: hidden; }
+.code-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 7px 12px; background: var(--code-bar); font: 12px "Segoe UI", system-ui, sans-serif; }
+.copy-code { border: 1px solid var(--code-border); border-radius: 6px; padding: 5px 9px; color: var(--code-fg); background: transparent; }
+.copy-code:hover { background: #ffffff12; }
+.markdown-content .code-block pre { margin: 0; border-radius: 0; padding: 14px; background: var(--code-bg); color: var(--code-fg); overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; }
+.markdown-content .code-block code { display: block; width: max-content; min-width: 100%; font-family: Consolas, "Cascadia Code", "Courier New", monospace; white-space: pre; tab-size: 4; overflow-wrap: normal; word-break: normal; }
+.token.comment, .token.prolog, .token.doctype, .token.cdata { color: var(--syntax-comment); }
+.token.keyword, .token.tag, .token.boolean, .token.atrule { color: var(--syntax-keyword); }
+.token.string, .token.char, .token.attr-value, .token.selector { color: var(--syntax-string); }
+.token.number, .token.constant, .token.regex { color: var(--syntax-number); }
+.token.function, .token.class-name, .token.property, .token.attr-name { color: var(--syntax-function); }
+.token.punctuation, .token.operator { color: var(--syntax-punctuation); }
+/* Code colors work independently of the page theme. Hosts can opt into light code. */
+[data-code-theme="light"] {
+    --code-bg: #f5f7f5; --code-fg: #243b2d; --code-bar: #e8eee8; --code-border: #bac9bb;
+    --syntax-comment: #596c60; --syntax-keyword: #71369a; --syntax-string: #286532;
+    --syntax-number: #854815; --syntax-function: #125581; --syntax-punctuation: #3d5445;
+}
+@media (prefers-reduced-motion: reduce) {
+    .response-body, .code-block pre, .conversation { scroll-behavior: auto !important; }
+}

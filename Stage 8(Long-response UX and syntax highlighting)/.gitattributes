@@ -1,0 +1,2 @@
+# Preserve pinned vendor bytes and their recorded SHA-256 hashes.
+static/vendor/*.js -text

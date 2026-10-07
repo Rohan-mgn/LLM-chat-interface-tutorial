@@ -1,0 +1,28 @@
+.main { grid-template-rows: auto auto minmax(0,1fr) auto; }
+.files-panel { padding: .35rem .8rem; border-bottom: 1px solid var(--border, #34343c); font-size: .85rem; }
+.files-panel summary { cursor: pointer; padding: .4rem 0; }
+.files-panel[open] { max-height: 28vh; overflow-y: auto; }
+.files-panel label { display: flex; align-items: center; gap: .5rem; overflow-wrap: anywhere; }
+.files-panel input[type=checkbox] { width: auto; }
+#filesStatus { color: var(--muted, #aaa); margin: .4rem 0; }
+.document-row { padding: .65rem 0; border-top: 1px solid var(--border, #34343c); }
+.document-row small { display:block; opacity:.75; margin:.3rem 0; }
+.file-actions, .attachment-chips, .source-list, .historical-files { display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; }
+.file-actions button, .source-list button, .attachment-chip button, #attachButton { background:transparent; color:inherit; border:1px solid var(--border,#666); border-radius:6px; padding:.25rem .5rem; cursor:pointer; font:inherit; }
+.file-actions a, .historical-files a { color:var(--accent,#b7cfff); overflow-wrap:anywhere; }
+.file-error { color:#f1a4a4; font-size:.8rem; }
+.attachment-chip { display:flex; flex-wrap:wrap; align-items:center; gap:.4rem; border:1px solid #555; border-radius:8px; padding:.4rem; max-width:100%; overflow-wrap:anywhere; }
+.attachment-chip small { flex-basis:100%; }
+.attachment-chips:empty { display:none; }
+.file-drag { outline:2px dashed var(--accent,#b7cfff); outline-offset:3px; }
+.historical-files, .source-list { margin:.6rem 0; font-size:.8rem; }
+.historical-files img { max-width:140px; max-height:100px; object-fit:contain; border-radius:6px; }
+#filePreviewDialog { width:min(760px,92vw); max-height:85vh; overflow:auto; background:var(--surface,#fcfcfa); color:inherit; }
+#filePreviewBody pre { white-space:pre-wrap; overflow-wrap:anywhere; font:inherit; }
+#filePreviewBody img { max-width:100%; max-height:65vh; object-fit:contain; }
+#filePreviewDialog::backdrop { background:#0009; }
+#closeFilePreview { float:right; }
+.files-panel :focus-visible, .source-list :focus-visible { outline:2px solid #9abfff; outline-offset:3px; }
+@media(max-width:760px){ .files-panel[open]{max-height:24vh;} .attachment-chip{font-size:.8rem;} }
+
+.inline-citation { background:transparent; color:var(--accent,#365d4c); border:0; cursor:pointer; padding:0 .2em; font:inherit; }

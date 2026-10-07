@@ -1,0 +1,7 @@
+fastapi==0.142.2
+uvicorn==0.54.0
+ollama==0.6.3
+
+python-multipart==0.0.32
+Pillow==12.3.0
+pypdf==6.19.0

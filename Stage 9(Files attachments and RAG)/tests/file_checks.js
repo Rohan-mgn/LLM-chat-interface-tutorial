@@ -1,0 +1,63 @@
+(async () => {
+    const assert=(v,m)=>{if(!v)throw new Error(m);};
+    const wait=async(fn,label)=>{for(let i=0;i<700;i++){if(fn())return;await new Promise(r=>setTimeout(r,20));}throw new Error("Timeout: "+label);};
+    const mobile=new URLSearchParams(location.search).has("mobile"), frame=document.getElementById("appFrame");
+    frame.style.width=mobile?"390px":"100%";
+    let page,doc;
+    const load=async()=>{
+        const loaded=new Promise(r=>frame.addEventListener("load",r,{once:true}));
+        frame.src="/?files-test="+Date.now();await loaded;page=frame.contentWindow;doc=frame.contentDocument;
+        await wait(()=>!doc.getElementById("newChatButton").disabled,"startup");
+    };
+    const report=data=>fetch("/__stage9_result",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+    try{
+        await load();
+        const file=new page.File(["# Project\n\nThe project codename is Blue Falcon.\n"],"facts.md",{type:"text/markdown"});
+        await page.FileUI.addFiles([file]);
+        await wait(()=>!page.FileUI.blocked(),"index ready");
+        assert(doc.querySelectorAll(".attachment-chip").length===1,"Composer attachment missing");
+        assert(doc.getElementById("useFiles").checked,"Use files not selected after upload");
+        assert(doc.querySelector(".document-row").textContent.includes("ready"),"Index status missing");
+        const id=Number(doc.querySelector('[aria-current="page"]').dataset.conversationId);
+        doc.getElementById("messageInput").value="What is the project codename?";
+        await page.sendMessage();
+        assert(doc.querySelector(".historical-files").textContent.includes("facts.md"),"Saved attachment missing");
+        assert(doc.querySelector(".source-list button"),"Citation button missing");
+        doc.querySelector(".source-list button").click();
+        await wait(()=>doc.getElementById("filePreviewBody").textContent.includes("Blue Falcon"),"citation preview");
+        assert(!doc.getElementById("filePreviewBody").querySelector("script,img"),"Unsafe source rendering");
+        doc.getElementById("closeFilePreview").click();
+        await load();
+        assert(doc.querySelector(".historical-files")&&doc.querySelector(".source-list"),"Refresh lost attachment/source");
+        await page.FileUI.refresh();
+        const check=doc.querySelector(".document-row input");check.click();
+        doc.getElementById("useFiles").click();
+        assert(!page.FileUI.blocked(),"Ready source selection blocked");
+        // Drag-and-drop and paste use the same bounded upload path.
+        const drop=new page.DataTransfer();
+        drop.items.add(new page.File(["Quarter,Revenue\nQ4,42"],"sales.csv",{type:"text/csv"}));
+        doc.getElementById("messageForm").dispatchEvent(new page.DragEvent("drop",{bubbles:true,cancelable:true,dataTransfer:drop}));
+        await wait(()=>doc.querySelectorAll(".document-row").length===2&&!page.FileUI.blocked(),"drop upload");
+        const paste=new page.DataTransfer();
+        paste.items.add(new page.File(["Safe <img src=x onerror=alert(1)> text"],"pasted.txt",{type:"text/plain"}));
+        doc.getElementById("messageInput").dispatchEvent(new page.ClipboardEvent("paste",{bubbles:true,cancelable:true,clipboardData:paste}));
+        await wait(()=>doc.querySelectorAll(".document-row").length===3&&!page.FileUI.blocked(),"paste upload");
+        assert(!doc.querySelector(".document-row img"),"Filename/content interpreted as markup");
+        assert(doc.documentElement.scrollWidth<=page.innerWidth+1,"Mobile horizontal overflow");
+        const before=doc.querySelectorAll(".attachment-chip").length;
+        doc.querySelector(".attachment-chip button").click();
+        await wait(()=>doc.querySelectorAll(".attachment-chip").length===before-1,"remove chip");
+        page.confirm=()=>true;
+        const first=doc.querySelector(".document-row");
+        [...first.querySelectorAll("button")].find(b=>b.textContent==="Delete").click();
+        await wait(()=>doc.querySelectorAll(".document-row").length===2,"delete file");
+        const files=(await (await fetch("/conversations/"+id+"/files")).json()).files;
+        assert(files.length===2,"Deletion did not persist");
+        if(mobile)doc.getElementById("menuButton").click();
+        doc.getElementById("newChatButton").click();
+        await wait(()=>doc.querySelectorAll(".document-row").length===0,"new chat file isolation");
+        assert(!doc.getElementById("useFiles").checked,"New chat borrowed source selection");
+        await fetch("/conversations/"+id,{method:"DELETE"});
+        await report({result:"PASS",viewport:[page.innerWidth,page.innerHeight],checks:"Upload chips; background indexing; source selection; streamed citation; source preview; reload; drag/drop; clipboard files; safe text; remove chip; deletion; new-chat isolation; mobile layout"});
+    }catch(error){await report({result:"FAIL",error:error.stack});}
+})();
