@@ -1,7 +1,7 @@
 /* Files are owned by SQLite. This module keeps only pending upload UI state. */
 window.FileUI = (() => {
     let hooks, cid = null, files = [], pending = [], selected = new Set(), enabled = false;
-    let generation = 0, timer, loading = false, busy = false, debug = false;
+    let generation = 0, timer, loading = false, busy = false, debug = false, visionModel = null;
     const panel = document.getElementById("filesPanel");
     const list = document.getElementById("documentList");
     const chips = document.getElementById("attachmentChips");
@@ -45,7 +45,7 @@ window.FileUI = (() => {
     }
     function blocked() {
         return loading || pending.some(p => p.state === "uploading" || p.state === "failed") ||
-            (enabled && (!selected.size || [...selected].some(id => files.find(f => f.id === id)?.state !== "ready")));
+            (enabled && (!selected.size || [...selected].some(id => !files.find(f => f.id === id)?.capabilities?.tools)));
     }
     function render() {
         list.replaceChildren();
@@ -54,8 +54,8 @@ window.FileUI = (() => {
         useFiles.disabled = busy || loading;
         document.getElementById("attachButton").disabled = busy || loading || pending.some(p => p.state === "uploading");
         picker.disabled = busy || loading;
-        message.textContent = loading ? "Loading files..." : !files.length ? "Attach a document to search it. Images support preview/download only." :
-            "Select ready documents, then enable Use files. This searches only this chat.";
+        message.textContent = loading ? "Loading files..." : !files.length ? "Attach a document to search it. Images can be read when an optional vision model is configured." :
+            "Select extracted documents, then enable Use files. Tools and search use only this chat.";
         for (const item of pending) {
             const chip = node("div", undefined, "attachment-chip");
             chip.append(node("span", item.name + " · " + sizes(item.size)));
@@ -84,7 +84,7 @@ window.FileUI = (() => {
             const label = node("label");
             const check = node("input"); check.type = "checkbox";
             check.checked = selected.has(file.id);
-            check.disabled = busy || file.state !== "ready" || !file.available;
+            check.disabled = busy || !file.capabilities?.tools || !file.available;
             check.addEventListener("change", () => {
                 if (check.checked) selected.add(file.id); else selected.delete(file.id);
                 render();
@@ -97,7 +97,7 @@ window.FileUI = (() => {
             const download = node("a", "Download");
             download.href = url() + "/" + file.id + "/download"; download.download = file.original_filename;
             actions.append(download);
-            if (!file.mime_type.startsWith("image/")) actions.append(control("Re-index", async () => {
+            if (!file.mime_type.startsWith("image/") || visionModel) actions.append(control("Re-index", async () => {
                 await api(url()+"/"+file.id+"/reindex", {method:"POST"});
                 hooks.notice("Indexing requested. Unchanged files with a compatible index can be reused.");
                 await refresh();
@@ -134,7 +134,7 @@ window.FileUI = (() => {
             if (mine === generation) hooks.notice(error.message);
         } finally {
             if (mine === generation && cid !== null) timer = setTimeout(refresh,
-                files.some(f => ["uploaded","extracting","chunking","embedding"].includes(f.state)) ? 1200 : 6000);
+                files.some(f => ["uploaded","extracting","chunking","embedding","vision"].includes(f.state)) ? 1200 : 6000);
         }
     }
     async function sync() {
@@ -159,8 +159,8 @@ window.FileUI = (() => {
         if (pending.length + items.length > 4 || pending.reduce((n,p)=>n+p.size,0)+items.reduce((n,f)=>n+f.size,0)>20*1048576) {
             hooks.notice("Choose at most four files, totaling at most 20 MiB."); return;
         }
-        if (items.some(f => f.size > 10*1048576 || !/\.(txt|md|csv|pdf|docx|png|jpe?g|webp)$/i.test(f.name))) {
-            hooks.notice("Use TXT, MD, CSV, PDF, DOCX, PNG, JPEG or WebP, up to 10 MiB per file."); return;
+        if (items.some(f => f.size > 10*1048576 || !/\.(txt|md|csv|xlsx|pdf|docx|png|jpe?g|webp)$/i.test(f.name))) {
+            hooks.notice("Use TXT, MD, CSV, XLSX, PDF, DOCX, PNG, JPEG or WebP, up to 10 MiB per file."); return;
         }
         loading = true; render();
         try {
@@ -193,7 +193,7 @@ window.FileUI = (() => {
             });
             item.id = data.file.id; item.state = "uploaded";
             if (item.replaceId) selected.delete(item.replaceId);
-            if (data.file.state !== "preview") {
+            if (data.file.state !== "preview" || visionModel) {
                 selected.add(item.id); enabled = true;
             }
             if (item.cid === cid) await refresh();
@@ -288,6 +288,22 @@ window.FileUI = (() => {
             }
             article.append(container);
         }
+        if (msg.tool_evidence?.length) {
+            const container=node("div",undefined,"source-list");
+            for (const evidence of msg.tool_evidence) {
+                const button=node("button","Tool evidence "+String(evidence.ordinal+1));
+                button.type="button";
+                button.addEventListener("click",async()=>{
+                    const body=openPreview("Deterministic tool evidence");
+                    try {
+                        const data=await api("/conversations/"+target+"/tool-evidence/"+evidence.id);
+                        body.append(node("h3",data.filename),node("pre",JSON.stringify(data,null,2)));
+                    } catch(error) { body.append(node("p",error.message)); }
+                });
+                container.append(button);
+            }
+            article.append(container);
+        }
         if (debug && msg.role === "assistant") {
             const button=node("button","Retrieval details","source-list"); button.type="button";
             button.addEventListener("click",async()=>{
@@ -300,7 +316,7 @@ window.FileUI = (() => {
     }
     function init(options) {
         hooks=options;
-        api("/files/config").then(config=>{debug=config.debug;}).catch(error=>hooks.notice(error.message));
+        api("/files/config").then(config=>{debug=config.debug;visionModel=config.vision_model;render();}).catch(error=>hooks.notice(error.message));
         document.getElementById("attachButton").addEventListener("click",()=>{delete picker.dataset.replace;picker.multiple=true;picker.click();});
         picker.addEventListener("change",()=>{addFiles(picker.files,picker.dataset.replace || null);picker.value="";delete picker.dataset.replace;});
         useFiles.addEventListener("change",()=>{enabled=useFiles.checked;render();});

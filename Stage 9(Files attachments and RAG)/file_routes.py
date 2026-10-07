@@ -45,7 +45,7 @@ def router_for(app_module):
     @router.get("/files/config")
     def config():
         return {"max_file_size":MAX_FILE,"max_files":4,"max_total_size":20*1024*1024,
-                "debug":rag.debug,"embedding_model":"embeddinggemma:latest"}
+                "debug":rag.debug,"embedding_model":rag.provider.embed_model,"vision_model":rag.provider.vision_model or None}
 
     @router.get("/conversations/{cid}/files")
     def files(cid:int):
@@ -62,13 +62,13 @@ def router_for(app_module):
             raise HTTPException(422,str(error)) from error
         finally:
             await upload.close()
-        if result["state"] == "uploaded":
+        if result["state"] == "uploaded" or (result["state"]=="preview" and rag.provider.vision_model):
             rag.schedule(cid,result["id"])
         return {"file":result,"duplicate":not created}
 
     @router.put("/conversations/{cid}/files/{fid}")
     async def replace(cid:int,fid:str,upload:UploadFile=File(...)):
-        if not app_module.conversation_lock.acquire(blocking=False):
+        if not app_module.conversation_lock.acquire(cid):
             await upload.close()
             raise HTTPException(409,"Stop the response before replacing a file.")
         try:
@@ -79,27 +79,27 @@ def router_for(app_module):
                 await asyncio.gather(task,return_exceptions=True)
             data = await upload.read(MAX_FILE+1)
             result,created = await run_in_threadpool(docs.replace,cid,fid,upload.filename,upload.content_type,data)
-            if result["state"] in ("uploaded","failed"):
+            if result["state"] in ("uploaded","failed") or (result["state"]=="preview" and rag.provider.vision_model):
                 rag.schedule(cid,result["id"])
             return {"file":result,"duplicate":not created}
         except ValueError as error:
             raise HTTPException(422,str(error)) from error
         finally:
             await upload.close()
-            app_module.conversation_lock.release()
+            app_module.conversation_lock.release(cid)
 
     @router.post("/conversations/{cid}/files/{fid}/reindex",status_code=202)
     async def reindex(cid:int,fid:str):
         row = file(cid,fid)
-        if app_module.conversation_lock.locked():
+        if app_module.conversation_lock.locked(cid):
             raise HTTPException(409,"Wait for the response to finish before re-indexing.")
-        if row["mime_type"].startswith("image/"):
-            raise HTTPException(422,"Images support previews only. OCR/vision is not enabled.")
+        if row["mime_type"].startswith("image/") and not rag.provider.vision_model:
+            raise HTTPException(422,"Configure VISION_MODEL to index images. Preview/download remain available.")
         return {"scheduled":rag.schedule(cid,fid)}
 
     @router.delete("/conversations/{cid}/files/{fid}")
     async def delete(cid:int,fid:str):
-        if not app_module.conversation_lock.acquire(blocking=False):
+        if not app_module.conversation_lock.acquire(cid):
             raise HTTPException(409,"Stop the response before deleting a source file.")
         try:
             file(cid,fid)
@@ -113,7 +113,7 @@ def router_for(app_module):
                 db.execute("DELETE FROM rag_runs WHERE message_id IN (SELECT id FROM messages WHERE conversation_id=?)",(cid,))
             await run_in_threadpool(docs.cleanup)
         finally:
-            app_module.conversation_lock.release()
+            app_module.conversation_lock.release(cid)
         return {"deleted":fid}
 
     @router.get("/conversations/{cid}/files/{fid}/download")
@@ -141,6 +141,15 @@ def router_for(app_module):
         with closing(docs.connect()) as db:
             row = db.execute("""SELECT c.id,c.text,c.metadata,f.id file_id,f.original_filename FROM chunks c
                 JOIN files f ON f.id=c.file_id WHERE c.id=? AND f.conversation_id=?""",(source_id,cid)).fetchone()
+        if not row and source_id.startswith("SOURCE_"):
+            with closing(docs.connect()) as db:
+                block=db.execute("""SELECT b.id,b.data,b.file_id,f.original_filename FROM document_blocks b
+                    JOIN files f ON f.id=b.file_id WHERE b.id=? AND f.conversation_id=?""",
+                    (source_id.replace("SOURCE_","BLOCK_"),cid)).fetchone()
+            if block:
+                data=json.loads(block["data"])
+                return {"id":source_id,"file_id":block["file_id"],"original_filename":block["original_filename"],
+                    "text":data["text"],"metadata":{k:v for k,v in data.items() if k!="text"}}
         if not row:
             raise HTTPException(404,"Source is no longer available; it may have been deleted or updated.")
         return dict(row) | {"metadata":json.loads(row["metadata"])}
@@ -154,5 +163,12 @@ def router_for(app_module):
                 WHERE m.id=? AND m.conversation_id=?""",(mid,cid)).fetchone()
         if not row:
             raise HTTPException(404,"No retrieval diagnostics for this message.")
+        return json.loads(row[0])
+    @router.get("/conversations/{cid}/tool-evidence/{tool_id}")
+    def tool_evidence(cid:int,tool_id:str):
+        with closing(docs.connect()) as db:
+            row=db.execute("SELECT data FROM tool_runs WHERE id=? AND conversation_id=?",(tool_id,cid)).fetchone()
+        if not row:
+            raise HTTPException(404,"Tool evidence is unavailable; its source may have been deleted or changed.")
         return json.loads(row[0])
     return router

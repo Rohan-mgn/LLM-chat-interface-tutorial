@@ -14,8 +14,13 @@ BASE_DIR = Path(__file__).resolve().parent
 # to the application, then restart this launcher to pick up the changed list.
 RUNTIME_FILES = (
     "main.py",
+    "model_provider.py",
+    "context_budget.py",
     "tree_store.py",
     "documents.py",
+    "document_parsers.py",
+    "document_tools.py", "document_agent.py", "summarizer.py",
+    "table_tools.py",
     "rag.py",
     "file_routes.py",
     "static/files.js",
@@ -57,7 +62,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", type=int, default=8000)
     options = parser.parse_args()
-    dependencies = ("uvicorn", "watchfiles", "fastapi", "ollama", "multipart", "PIL", "pypdf")
+    dependencies = ("uvicorn", "watchfiles", "fastapi", "ollama", "multipart", "PIL", "pypdf", "openpyxl", "defusedxml")
     missing = [name for name in dependencies if find_spec(name) is None]
     if missing:
         # IDE Run buttons may select system Python rather than the project's

@@ -116,7 +116,7 @@ class Checks(unittest.TestCase):
         events=self.send("What is the weather on the moon?",use_files=True,file_ids=[f["id"]])
         self.assertEqual(events[-1]["status"],"completed")
         self.assertIn("couldn't find relevant evidence",self.rows()[-1]["content"])
-        self.assertFalse(self.calls)
+        self.assertFalse([call for call in self.calls if call.get("stream")])
     def test_query_rewrite_and_fallback_use_selected_history(self):
         f=self.upload("sales.csv",b"quarter,revenue\nQ3,12\nQ4,42","text/csv")
         self.send("What was Q3 sales?",use_files=True,file_ids=[f["id"]])

@@ -1,6 +1,8 @@
 """Scoped file storage and extraction. Uploaded bytes are never executable assets."""
 from contextlib import closing
 from pathlib import Path
+import os
+import sqlite3
 import csv
 import hashlib
 import io
@@ -19,9 +21,10 @@ MAX_FILES = 4
 MAX_CONVERSATION = 50 * 1024 * 1024
 MAX_TEXT = 500_000
 MIMES = {".txt": "text/plain", ".md": "text/markdown", ".csv": "text/csv",
+         ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
          ".pdf": "application/pdf", ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
          ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp"}
-PARSER_VERSION = "extract-v1"
+from document_parsers import native_sections, VERSION as PARSER_VERSION
 
 def clean_name(value):
     value = unicodedata.normalize("NFC", (value or "file").replace("\\", "/").split("/")[-1])
@@ -40,68 +43,8 @@ def decode_text(data):
     return normalize(text)
 
 def extract(path, extension):
-    """Return bounded sections with real page/row provenance; never invent pages."""
-    data = path.read_bytes()
-    sections = []
-    if extension in (".txt", ".md"):
-        text = decode_text(data)
-        heading = ""
-        for part in re.split(r"(?m)(?=^#{1,6} )", text) if extension == ".md" else [text]:
-            if part.startswith("#"):
-                heading = part.split("\n", 1)[0].lstrip("# ").strip()[:200]
-            if part.strip():
-                sections.append({"text": part.strip(), "section": heading})
-    elif extension == ".csv":
-        rows = csv.reader(io.StringIO(decode_text(data)), strict=True)
-        headers = next(rows, None)
-        if not headers or len(headers) > 100:
-            raise ValueError("CSV needs a header and at most 100 columns.")
-        for number, row in enumerate(rows, 2):
-            if not row:
-                continue
-            if len(row) != len(headers):
-                raise ValueError(f"CSV row {number} does not match its header.")
-            text = " | ".join(f"{key}: {value}" for key, value in zip(headers, row))
-            if len(text) > 1600:
-                raise ValueError(f"CSV row {number} is too large; shorten its cells.")
-            sections.append({"text": text, "section": f"CSV row {number}", "row": number})
-    elif extension == ".pdf":
-        reader = PdfReader(io.BytesIO(data), strict=True)
-        if reader.is_encrypted:
-            raise ValueError("Password-protected PDFs are not supported.")
-        if len(reader.pages) > 200:
-            raise ValueError("PDFs are limited to 200 pages.")
-        for number, page in enumerate(reader.pages, 1):
-            contents = page.get_contents()
-            if contents and len(contents.get_data()) > 8 * 1024 * 1024:
-                raise ValueError(f"PDF page {number} is too complex to process.")
-            text = normalize(page.extract_text() or "")
-            if text:
-                sections.append({"text": text, "page": number, "section": f"Page {number}"})
-            if sum(len(s["text"]) for s in sections) > MAX_TEXT:
-                raise ValueError("Document exceeds the extracted-text limit.")
-        if not sections:
-            raise ValueError("No readable text found. Scanned PDFs need OCR, which this lesson does not implement.")
-    elif extension == ".docx":
-        with zipfile.ZipFile(io.BytesIO(data)) as archive:
-            if sum(x.file_size for x in archive.infolist()) > 20 * 1024 * 1024:
-                raise ValueError("DOCX expands beyond the extraction limit.")
-            if any("vbaProject" in x.filename for x in archive.infolist()):
-                raise ValueError("Macro-enabled documents are not supported.")
-            raw = archive.read("word/document.xml")
-            if b"<!DOCTYPE" in raw or b"<!ENTITY" in raw:
-                raise ValueError("DOCX contains unsupported XML declarations.")
-            root = ET.fromstring(raw)
-            ns = {"w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
-            for number, paragraph in enumerate(root.findall(".//w:p", ns), 1):
-                text = "".join(n.text or "" for n in paragraph.findall(".//w:t", ns))
-                if text.strip():
-                    sections.append({"text": normalize(text), "section": f"Paragraph {number}"})
-    if not sections or not any(s["text"].strip() for s in sections):
-        raise ValueError("The document contains no extractable text.")
-    if sum(len(s["text"]) for s in sections) > MAX_TEXT:
-        raise ValueError("Document exceeds 500,000 extracted characters.")
-    return sections
+    return native_sections(path, extension, decode_text, normalize)
+
 
 class Documents:
     def __init__(self, connect, data_dir):
@@ -154,7 +97,8 @@ class Documents:
               BEGIN SELECT RAISE(ABORT, 'Attachment belongs to another conversation'); END;
             """)
             db.execute("""UPDATE files SET state='failed', error='Indexing was interrupted. Choose Re-index.'
-                          WHERE state IN ('uploaded','extracting','chunking','embedding')""")
+                          WHERE state IN ('uploaded','extracting','chunking','embedding','vision')""")
+        self.upgrade()
         self.cleanup()
 
     def cleanup(self):
@@ -186,6 +130,10 @@ class Documents:
         keys = ("id", "conversation_id", "original_filename", "mime_type", "size", "state", "error",
                 "created_at", "indexed_at", "indexing_ms")
         item = {k: row[k] for k in keys}
+        item["parse_state"] = row.get("parse_state","pending")
+        item["coverage"] = json.loads(row.get("coverage") or "{}")
+        item["capabilities"] = {"tools":item["parse_state"] in ("ready","partial") and bool(row.get("extracted")),
+            "dense":row["state"]=="ready","vision":row["mime_type"].startswith("image/")}
         item["available"] = self.path(row["stored_filename"]).is_file()
         return item
 
@@ -197,7 +145,7 @@ class Documents:
         name = clean_name(name)
         ext = Path(name).suffix.lower()
         if ext not in MIMES:
-            raise ValueError("Supported files: TXT, MD, CSV, PDF, DOCX, PNG, JPEG and WebP.")
+            raise ValueError("Supported files: TXT, MD, CSV, XLSX, PDF, DOCX, PNG, JPEG and WebP.")
         if not data or len(data) > MAX_FILE:
             raise ValueError("Each file must be nonempty and at most 10 MiB.")
         mime = MIMES[ext]
@@ -210,13 +158,13 @@ class Documents:
             decode_text(data)
         elif ext == ".pdf" and not data.startswith(b"%PDF-"):
             raise ValueError("The uploaded file is not a PDF.")
-        elif ext == ".docx":
+        elif ext in (".docx", ".xlsx"):
             try:
                 with zipfile.ZipFile(io.BytesIO(data)) as archive:
-                    if "word/document.xml" not in archive.namelist():
-                        raise ValueError("The uploaded file is not a DOCX document.")
+                    if ("word/document.xml" if ext==".docx" else "xl/workbook.xml") not in archive.namelist():
+                        raise ValueError("The uploaded file is not a valid Office document.")
             except zipfile.BadZipFile as error:
-                raise ValueError("The uploaded file is not a DOCX document.") from error
+                raise ValueError("The uploaded file is not a valid Office document.") from error
         elif mime.startswith("image/"):
             try:
                 with Image.open(io.BytesIO(data)) as im:
@@ -315,11 +263,11 @@ class Documents:
             if old:
                 selected, enabled = json.loads(old["file_ids"]), bool(old["use_files"])
         for fid in selected:
-            row = db.execute("SELECT state FROM files WHERE id=? AND conversation_id=?", (fid,cid)).fetchone()
+            row = db.execute("SELECT state,parse_state FROM files WHERE id=? AND conversation_id=?", (fid,cid)).fetchone()
             if not row:
                 raise TreeError(404,"Selected source not found in this conversation.")
-            if enabled and row["state"] != "ready":
-                raise TreeError(409,"Wait for the selected files to finish indexing, or turn off Use files.")
+            if enabled and row["parse_state"] not in ("ready","partial"):
+                raise TreeError(409,"Wait for extraction or re-index the selected files, or turn off Use files.")
         if enabled and not selected:
             raise TreeError(422,"Select at least one ready document or turn off Use files.")
         db.execute("INSERT INTO rag_turns VALUES (?,?,?)", (user_id,int(enabled),json.dumps(selected)))
@@ -330,7 +278,147 @@ class Documents:
                 files = db.execute("""SELECT f.* FROM files f JOIN message_files m ON m.file_id=f.id
                     WHERE m.message_id=? AND f.conversation_id=?""",(msg["id"],tree["conversation_id"])).fetchall()
                 msg["attachments"] = [self.public(dict(f)) for f in files]
-                msg["sources"] = [dict(r) for r in db.execute("""SELECT c.id, f.id file_id, f.original_filename, c.metadata
+                msg["sources"] = [dict(r) for r in db.execute("""SELECT c.id, f.id file_id, f.original_filename, c.metadata, s.ordinal
                     FROM citations s JOIN chunks c ON c.id=s.chunk_id JOIN files f ON f.id=c.file_id
-                    WHERE s.message_id=? AND f.conversation_id=?""",(msg["id"],tree["conversation_id"]))]
+                    WHERE s.message_id=? AND f.conversation_id=? ORDER BY s.ordinal,c.id""",(msg["id"],tree["conversation_id"]))]
+                for row in db.execute("""SELECT b.id,b.file_id,b.data,s.ordinal,f.original_filename FROM block_citations s
+                    JOIN document_blocks b ON b.id=s.block_id JOIN files f ON f.id=b.file_id
+                    WHERE s.message_id=? AND f.conversation_id=? ORDER BY s.ordinal,b.id""",(msg["id"],tree["conversation_id"])):
+                    block=json.loads(row["data"])
+                    msg["sources"].append({"id":row["id"].replace("BLOCK_","SOURCE_"),"file_id":row["file_id"],
+                        "original_filename":row["original_filename"],"metadata":json.dumps({k:v for k,v in block.items() if k!="text"}),"ordinal":row["ordinal"]})
+                msg["sources"].sort(key=lambda source:(source["ordinal"],source["id"]))
+                msg["tool_evidence"]=[dict(r) for r in db.execute("SELECT id,ordinal FROM tool_runs WHERE message_id=? AND conversation_id=? ORDER BY ordinal",
+                    (msg["id"],tree["conversation_id"]))]
         return tree
+
+    def backup_if_needed(self):
+        database=self.data_dir()/"chat.db"
+        if not database.is_file():
+            return
+        with closing(sqlite3.connect(database)) as db:
+            exists=db.execute("SELECT 1 FROM sqlite_master WHERE name='document_schema'").fetchone()
+            if exists and db.execute("SELECT 1 FROM document_schema WHERE version=2").fetchone():
+                return
+            backup=self.data_dir()/"chat.pre-document-intelligence.db"
+            if not backup.exists():
+                with closing(sqlite3.connect(backup)) as copy:
+                    db.backup(copy)
+
+    def upgrade(self):
+        statements=[
+            "CREATE TABLE IF NOT EXISTS document_schema(version INTEGER PRIMARY KEY)",
+            """CREATE TABLE IF NOT EXISTS document_blocks(id TEXT PRIMARY KEY,
+                file_id TEXT NOT NULL REFERENCES files(id) ON DELETE CASCADE,
+                ordinal INTEGER NOT NULL, data TEXT NOT NULL)""",
+            "CREATE INDEX IF NOT EXISTS idx_blocks_file ON document_blocks(file_id,ordinal)",
+            """CREATE TABLE IF NOT EXISTS document_cache(file_id TEXT NOT NULL REFERENCES files(id) ON DELETE CASCADE,
+                cache_key TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(file_id,cache_key))""",
+            """CREATE TABLE IF NOT EXISTS history_summaries(conversation_id INTEGER NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
+                digest TEXT NOT NULL, summary TEXT NOT NULL, PRIMARY KEY(conversation_id,digest))""",
+            """CREATE TABLE IF NOT EXISTS tool_runs(id TEXT PRIMARY KEY, message_id INTEGER NOT NULL REFERENCES messages(id) ON DELETE CASCADE,
+                conversation_id INTEGER NOT NULL REFERENCES conversations(id) ON DELETE CASCADE, ordinal INTEGER NOT NULL, data TEXT NOT NULL)""",
+            """CREATE TABLE IF NOT EXISTS tool_run_files(run_id TEXT NOT NULL REFERENCES tool_runs(id) ON DELETE CASCADE,
+                file_id TEXT NOT NULL REFERENCES files(id) ON DELETE CASCADE, PRIMARY KEY(run_id,file_id))""",
+            """CREATE TRIGGER IF NOT EXISTS invalidate_file_tools BEFORE DELETE ON files BEGIN
+                DELETE FROM tool_runs WHERE id IN (SELECT run_id FROM tool_run_files WHERE file_id=OLD.id); END""",
+            """CREATE TABLE IF NOT EXISTS block_citations(message_id INTEGER NOT NULL REFERENCES messages(id) ON DELETE CASCADE,
+                block_id TEXT NOT NULL REFERENCES document_blocks(id) ON DELETE CASCADE, ordinal INTEGER NOT NULL,
+                PRIMARY KEY(message_id,block_id))""",
+        ]
+        with closing(self.connect()) as db,db:
+            db.execute("BEGIN IMMEDIATE")
+            for statement in statements:db.execute(statement)
+            fields={r["name"] for r in db.execute("PRAGMA table_info(files)")}
+            for name,definition in (("parse_state","TEXT NOT NULL DEFAULT 'pending'"),
+                                    ("coverage","TEXT NOT NULL DEFAULT '{}'"),("parser_config","TEXT")):
+                if name not in fields:db.execute(f"ALTER TABLE files ADD COLUMN {name} {definition}")
+            fields={r["name"] for r in db.execute("PRAGMA table_info(citations)")}
+            if "ordinal" not in fields:
+                db.execute("ALTER TABLE citations ADD COLUMN ordinal INTEGER NOT NULL DEFAULT 0")
+                mids=[r[0] for r in db.execute("SELECT DISTINCT message_id FROM citations")]
+                for mid in mids:
+                    text=db.execute("SELECT content FROM messages WHERE id=?",(mid,)).fetchone()[0]
+                    rows=[r[0] for r in db.execute("SELECT chunk_id FROM citations WHERE message_id=?",(mid,))]
+                    rows.sort(key=lambda cid:(text.find("["+cid+"]") if "["+cid+"]" in text else len(text),cid))
+                    for i,cid in enumerate(rows):
+                        db.execute("UPDATE citations SET ordinal=? WHERE message_id=? AND chunk_id=?",(i,mid,cid))
+            # Old sources remain available for historical citations, but cannot be retrieved by the new pipeline.
+            db.execute("""UPDATE files SET state='reindex_required',parse_state='legacy'
+                WHERE state='ready' AND (parser_config IS NULL OR parser_config!=?)""",(PARSER_VERSION,))
+            if not os.getenv("RAG_DEBUG","0")=="1":
+                for row in db.execute("SELECT message_id,details FROM rag_runs").fetchall():
+                    data=json.loads(row["details"]);data.pop("context",None)
+                    db.execute("UPDATE rag_runs SET details=? WHERE message_id=?",(json.dumps(data),row["message_id"]))
+            db.execute("INSERT OR IGNORE INTO document_schema VALUES(2)")
+            if db.execute("PRAGMA foreign_key_check").fetchone():
+                raise RuntimeError("Document migration foreign-key check failed.")
+        self.fts_available=False
+        try:
+            with closing(self.connect()) as db,db:
+                db.execute("CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts USING fts5(id UNINDEXED,text)")
+                for statement in (
+                    """CREATE TRIGGER IF NOT EXISTS chunks_fts_insert AFTER INSERT ON chunks BEGIN
+                       INSERT INTO chunks_fts(id,text) VALUES(NEW.id,NEW.text); END""",
+                    """CREATE TRIGGER IF NOT EXISTS chunks_fts_delete AFTER DELETE ON chunks BEGIN
+                       DELETE FROM chunks_fts WHERE id=OLD.id; END""",
+                    """CREATE TRIGGER IF NOT EXISTS chunks_fts_update AFTER UPDATE OF text ON chunks BEGIN
+                       DELETE FROM chunks_fts WHERE id=OLD.id; INSERT INTO chunks_fts(id,text) VALUES(NEW.id,NEW.text); END"""):
+                    db.execute(statement)
+                db.execute("INSERT INTO chunks_fts(id,text) SELECT id,text FROM chunks WHERE id NOT IN (SELECT id FROM chunks_fts)")
+            self.fts_available=True
+        except sqlite3.OperationalError:
+            # FTS is optional; retrieval has a bounded corpus-scoped lexical fallback.
+            self.fts_available=False
+
+    def store_extracted(self,cid,fid,sections,warning=""):
+        from document_tools import stable_blocks
+        blocks=stable_blocks(fid,sections)
+        missing=[b.get("page",b.get("section")) for b in blocks if b["type"]=="unreadable"]
+        coverage={"complete":not missing,"unreadable":missing,"vision":any(b.get("origin")=="vision" for b in blocks),"warning":warning}
+        with closing(self.connect()) as db,db:
+            db.execute("BEGIN IMMEDIATE")
+            if not db.execute("SELECT 1 FROM files WHERE id=? AND conversation_id=?",(fid,cid)).fetchone():return
+            old_ids={r[0] for r in db.execute("SELECT id FROM document_blocks WHERE file_id=?",(fid,))}
+            ids={b["id"] for b in blocks}
+            if old_ids and old_ids != ids:
+                # Invalidate obsolete passage previews immediately, even if the
+                # subsequent embedding call fails. Unchanged blocks survive.
+                stale=[r["id"] for r in db.execute("SELECT id,metadata FROM chunks WHERE file_id=?",(fid,))
+                    if json.loads(r["metadata"]).get("id") not in ids]
+                db.executemany("DELETE FROM chunks WHERE id=?",((sid,) for sid in stale))
+                db.execute("UPDATE files SET config=NULL WHERE id=?",(fid,))
+                db.execute("DELETE FROM tool_runs WHERE id IN (SELECT run_id FROM tool_run_files WHERE file_id=?)",(fid,))
+                db.execute("DELETE FROM document_cache WHERE file_id=? AND cache_key LIKE 'summary-%'",(fid,))
+            for b in blocks:
+                db.execute("""INSERT INTO document_blocks VALUES(?,?,?,?) ON CONFLICT(id)
+                    DO UPDATE SET ordinal=excluded.ordinal,data=excluded.data""",(b["id"],fid,b["block_index"],json.dumps(b)))
+            db.executemany("DELETE FROM document_blocks WHERE id=?",((bid,) for bid in old_ids-ids))
+            db.execute("UPDATE files SET extracted=?,parse_state=?,coverage=?,parser_config=? WHERE id=?",
+                (json.dumps(sections),"ready" if not missing else "partial",json.dumps(coverage),PARSER_VERSION,fid))
+        return blocks
+
+    def blocks(self,cid,fid):
+        if not self.row(cid,fid):raise ValueError("File not found in this conversation.")
+        with closing(self.connect()) as db:
+            return [json.loads(r[0]) for r in db.execute("SELECT data FROM document_blocks WHERE file_id=? ORDER BY ordinal",(fid,))]
+
+    def cache_get(self,fid,key):
+        with closing(self.connect()) as db:
+            row=db.execute("SELECT data FROM document_cache WHERE file_id=? AND cache_key=?",(fid,key)).fetchone()
+            return json.loads(row[0]) if row else None
+
+    def cache_put(self,fid,key,data):
+        with closing(self.connect()) as db,db:
+            if db.execute("SELECT 1 FROM files WHERE id=?",(fid,)).fetchone():
+                db.execute("INSERT OR REPLACE INTO document_cache VALUES(?,?,?)",(fid,key,json.dumps(data)))
+
+    def persist_tools(self,mid,cid,records):
+        with closing(self.connect()) as db,db:
+            for ordinal,record in enumerate(records):
+                tid="TOOL_"+hashlib.sha256((str(mid)+json.dumps(record,sort_keys=True)).encode()).hexdigest()[:24]
+                db.execute("INSERT OR REPLACE INTO tool_runs VALUES(?,?,?,?,?)",(tid,mid,cid,ordinal,json.dumps(record)))
+                for fid in record["files"]:
+                    if not db.execute("SELECT 1 FROM files WHERE id=? AND conversation_id=?",(fid,cid)).fetchone():
+                        raise ValueError("Tool evidence file is outside this conversation.")
+                    db.execute("INSERT OR IGNORE INTO tool_run_files VALUES(?,?)",(tid,fid))

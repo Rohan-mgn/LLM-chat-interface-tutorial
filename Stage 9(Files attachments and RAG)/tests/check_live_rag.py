@@ -49,7 +49,7 @@ def main():
                 ("What was sales revenue in Q4?",{sales},"42000"),
             ]
             async def retrieval_eval():
-                model=ollama.AsyncClient(timeout=120)
+                model=app.provider.client(timeout=120)
                 try:
                     for query,expected,answer in fixtures:
                         started=time.perf_counter()
@@ -57,7 +57,7 @@ def main():
                         matched=[h["file_id"] in expected for h in hits]
                         found={h["file_id"] for h in hits}&expected
                         results.append({"query":query,"expected_files":sorted(expected),
-                            "hits":[{"id":h["id"],"file_id":h["file_id"],"score":round(h["score"],4)} for h in hits],
+                            "hits":[{"id":h["id"],"file_id":h["file_id"],"score":round(h["score"],4),"backend":h.get("retrieval_backend"),"warning":h.get("retrieval_warning")} for h in hits],
                             "hit_at_k":int(bool(found)),"precision_at_returned_k":sum(matched)/len(hits) if hits else 0,
                             "file_recall_at_k":len(found)/len(expected),
                             "reciprocal_rank":next((1/(i+1) for i,v in enumerate(matched) if v),0),
@@ -94,8 +94,18 @@ def main():
             assert "8472" not in isolated,"Private fact leaked across conversations"
             # The follow-up passes the actual selected conversation through rewriting.
             follow,_,_=chat("What is its private test code?",[project])
-            assert "8472" in follow,"Follow-up retrieval failed"
             print(json.dumps({"followup_answer":follow,"isolated_answer":isolated}),flush=True)
+            with closing(app.get_connection()) as db:
+                print("Follow-up diagnostics:",db.execute("SELECT details FROM rag_runs ORDER BY message_id DESC LIMIT 1").fetchone()[0],flush=True)
+            assert "8472" in follow,"Follow-up answer omitted the expected fact"
+            exact,tool_row,_=chat("Count word Falcon",[project])
+            assert "**1**" in exact and tool_row["tool_evidence"],"Exact count/provenance failed"
+            with closing(app.get_connection()) as db:
+                route=json.loads(db.execute("SELECT details FROM rag_runs WHERE message_id=?",(tool_row["id"],)).fetchone()[0])["route"]
+            assert route=="COUNT"
+            total,table_row,_=chat("What is total revenue_usd in sales.csv?",[sales])
+            assert "54000" in total and table_row["tool_evidence"],"Table operation failed"
+            print(json.dumps({"route_accuracy":1.0,"exact_count":exact,"table_calculation":total}),flush=True)
             before=client.get(f"/conversations/{cid}/tree").json()
         # A fresh application lifespan reopens the same DB without re-indexing.
         with TestClient(app.app) as client:

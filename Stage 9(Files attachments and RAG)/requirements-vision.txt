@@ -1,0 +1,2 @@
+# Optional scanned-PDF rendering; no model is installed by this file.
+pypdfium2==5.14.0
