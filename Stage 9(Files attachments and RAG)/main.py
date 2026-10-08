@@ -430,32 +430,33 @@ async def produce_reply(job, messages):
         messages, retrieval = await document_agent.prepare(job, messages)
         prompt = SYSTEM_PROMPT + (retrieval["instructions"] if retrieval else "")
         check([{"role":"system","content":prompt}]+messages)
-        citation_filter = CitationFilter([s["id"] for s in retrieval["sources"]]) if retrieval else None
-        if retrieval and "direct" in retrieval:
-            async def deterministic_response():
-                for offset in range(0,len(retrieval["direct"]),256):
-                    yield {"message":{"content":retrieval["direct"][offset:offset+256]}}
-                    await asyncio.sleep(0)
-            stream=deterministic_response()
-        elif retrieval and not retrieval["sources"]:
-            async def no_evidence():
-                yield {"message": {"content": "I couldn't find relevant evidence in the selected documents. Try a more specific question or select another file."}}
-            stream = no_evidence()
-        else:
-            stream = await client.chat(model=MODEL, messages=[{"role": "system", "content": prompt}] + messages,
-                                       stream=True, options={"num_predict": 2048, "temperature":0 if retrieval else .7})
-        async for chunk in stream:
-            content = chunk["message"]["content"]
-            if citation_filter:
-                content = citation_filter.feed(content)
-            if content:
-                parts.append(content)
-                # Persist before exposing each checkpoint; a crash keeps the last checkpoint.
-                now = asyncio.get_running_loop().time()
-                if now - last_save > .25:
-                    await run_in_threadpool(save_generation, job["assistant_message_id"], "".join(parts), "generating")
-                    last_save = now
-                await job["queue"].put({"type": "delta", "content": content})
+        citation_filter = CitationFilter([s["id"] for s in retrieval["sources"]]) if retrieval and "direct" not in retrieval else None
+        async with asyncio.timeout_at(job.get("document_deadline")):
+            if retrieval and "direct" in retrieval:
+                async def deterministic_response():
+                    for offset in range(0,len(retrieval["direct"]),256):
+                        yield {"message":{"content":retrieval["direct"][offset:offset+256]}}
+                        await asyncio.sleep(0)
+                stream=deterministic_response()
+            elif retrieval and not retrieval["sources"]:
+                async def no_evidence():
+                    yield {"message": {"content": "I couldn't find relevant evidence in the selected documents. Try a more specific question or select another file."}}
+                stream = no_evidence()
+            else:
+                stream = await client.chat(model=MODEL, messages=[{"role": "system", "content": prompt}] + messages,
+                                           stream=True, options={"num_predict": 2048, "temperature":0 if retrieval else .7})
+            async for chunk in stream:
+                content = chunk["message"]["content"]
+                if citation_filter:
+                    content = citation_filter.feed(content)
+                if content:
+                    parts.append(content)
+                    # Persist before exposing each checkpoint; a crash keeps the last checkpoint.
+                    now = asyncio.get_running_loop().time()
+                    if now - last_save > .25:
+                        await run_in_threadpool(save_generation, job["assistant_message_id"], "".join(parts), "generating")
+                        last_save = now
+                    await job["queue"].put({"type": "delta", "content": content})
         if citation_filter:
             tail = citation_filter.feed("", final=True)
             if tail:
@@ -470,7 +471,7 @@ async def produce_reply(job, messages):
         final_status = "stopped"
     except Exception as error:
         final_status = "error"
-        job["queue"].put_nowait({"type": "error", "message": str(error) if isinstance(error, ValueError) else "The reply failed. Check Ollama, then retry this response."})
+        job["queue"].put_nowait({"type": "error", "message": str(error) if isinstance(error, ValueError) else "The document operation reached its time limit. Select a smaller section." if isinstance(error, TimeoutError) else "The reply failed. Check Ollama, then retry this response."})
     finally:
         job["finishing"] = True
         with anyio.CancelScope(shield=True):

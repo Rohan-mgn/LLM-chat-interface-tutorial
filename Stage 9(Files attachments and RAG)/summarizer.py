@@ -16,7 +16,7 @@ def pack(items,budget):
             if current:batches.append(current);current=[];used=0
             piece=[];size=0
             for char in item:
-                weight=estimate(char)
+                weight=.5 if ord(char)<128 else len(char.encode("utf-8"))
                 if size+weight+8>budget and piece:
                     batches.append(["".join(piece)]);piece=[];size=0
                 piece.append(char);size+=weight
@@ -32,24 +32,26 @@ class Summarizer:
     def __init__(self,docs,provider):
         self.docs,self.provider=docs,provider
 
-    async def summarize(self,cid,files,progress,section=None):
-        started=time.monotonic();calls=0;sources=[];documents=[]
+    async def summarize(self,cid,files,progress,section=None,deadline=None,prior_calls=0):
+        started=time.monotonic();calls=prior_calls;sources=[];documents=[]
+        deadline=min(deadline or started+MAX_SECONDS,started+MAX_SECONDS)
         budget=max(512,min(7000,input_limit(900)-1200))
         async def model_summary(fid,text,stage):
             nonlocal calls
             await asyncio.sleep(.001)
-            if time.monotonic()-started>=MAX_SECONDS:
+            if time.monotonic()>=deadline:
                 raise ValueError("Summary reached its 15-minute safety ceiling; select a smaller section.")
             key="summary-v2:"+self.provider.chat_model+":"+hashlib.sha256((stage+text).encode()).hexdigest()
             cached=self.docs.cache_get(fid,key)
             if cached is not None:return cached["summary"]
-            if calls>=MAX_CALLS:
+            # Reserve one call for the final streamed synthesis.
+            if calls>=MAX_CALLS-1:
                 raise ValueError("Summary reached its 64-call safety ceiling; select a smaller section.")
             calls+=1
             progress(f"Summarizing source material (model call {calls})...")
             client=self.provider.client(120)
             try:
-                async with asyncio.timeout(min(120,MAX_SECONDS-(time.monotonic()-started))):
+                async with asyncio.timeout(min(120,deadline-time.monotonic())):
                     response=await client.chat(model=self.provider.chat_model,stream=False,
                         messages=[{"role":"system","content":
                             "Summarize ALL supplied material faithfully, preserving qualifications and disagreements. "
@@ -62,7 +64,7 @@ class Summarizer:
                 self.docs.cache_put(fid,key,{"summary":summary})
                 return summary
             finally:await client.close()
-        async with asyncio.timeout(MAX_SECONDS):
+        async with asyncio.timeout_at(deadline):
             for file in files:
                 blocks=self.docs.blocks(cid,file["id"])
                 if section:blocks=get_section(blocks,section)

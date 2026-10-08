@@ -29,6 +29,7 @@ def logical_texts(blocks):
         previous=groups[-1] if groups else None
         can_join=(previous is not None and previous["group"]==group and
                   block.get("continues_previous") and block.get("type") not in ("heading","row","table_header") and
+                  previous["blocks"][-1].get("type") not in ("heading","row","table_header") and
                   all(previous["blocks"][-1].get(k)==block.get(k) for k in ("page","section","sheet","row")))
         if can_join:
             previous["text"]+="\n"+block["text"]

@@ -23,6 +23,20 @@ sys.path.insert(0,str(STAGE))
 def main():
     spec=importlib.util.spec_from_file_location("stage9_live",STAGE/"main.py")
     app=importlib.util.module_from_spec(spec);spec.loader.exec_module(app)
+    # Report missing local prerequisites separately from pipeline regressions.
+    model_client=ollama.Client(timeout=5)
+    try:
+        available={m["model"] for m in model_client.list()["models"]}
+    except (ConnectionError, OSError) as error:
+        print("LIVE TEST NOT RUN: Ollama is unavailable. Start Ollama and rerun this test.",flush=True)
+        raise SystemExit(2) from error
+    finally:
+        if hasattr(model_client,"close"):model_client.close()
+    needed=(app.provider.chat_model,app.provider.embed_model)
+    missing=[name for name in needed if name not in available and name+":latest" not in available]
+    if missing:
+        print("LIVE TEST NOT RUN: required local models are missing: "+", ".join(missing),flush=True)
+        raise SystemExit(2)
     root=STAGE.parent/"data"/("stage9-live-"+uuid4().hex)
     app.DATA_DIR=root;app.DATABASE=root/"chat.db"
     results=[]
@@ -53,7 +67,14 @@ def main():
                 try:
                     for query,expected,answer in fixtures:
                         started=time.perf_counter()
-                        hits,_=await app.rag.retrieve(model,cid,[project,sales,irrelevant],query)
+                        try:
+                            hits,_=await app.rag.retrieve(model,cid,[project,sales,irrelevant],query)
+                        except ValueError:
+                            current=await app.rag.descriptor(model)
+                            with closing(app.get_connection()) as db:
+                                indexed=[dict(row) for row in db.execute("SELECT original_filename,config,state FROM files")]
+                            print(json.dumps({"current_embedding_config":current,"indexed_files":indexed}),flush=True)
+                            raise
                         matched=[h["file_id"] in expected for h in hits]
                         found={h["file_id"] for h in hits}&expected
                         results.append({"query":query,"expected_files":sorted(expected),

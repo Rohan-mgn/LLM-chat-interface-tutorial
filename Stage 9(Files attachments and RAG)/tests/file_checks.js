@@ -27,6 +27,14 @@
         await wait(()=>doc.getElementById("filePreviewBody").textContent.includes("Blue Falcon"),"citation preview");
         assert(!doc.getElementById("filePreviewBody").querySelector("script,img"),"Unsafe source rendering");
         doc.getElementById("closeFilePreview").click();
+        doc.getElementById("messageInput").value="Count word Falcon";
+        await page.sendMessage();
+        const toolButton=[...doc.querySelectorAll(".source-list button")].find(button=>button.textContent.startsWith("Tool evidence"));
+        assert(toolButton,"Deterministic tool evidence button missing");
+        toolButton.click();
+        await wait(()=>doc.getElementById("filePreviewBody").textContent.includes('"count": 1'),"tool evidence preview");
+        assert(doc.getElementById("filePreviewBody").textContent.includes("fingerprint"),"Tool provenance missing fingerprint");
+        doc.getElementById("closeFilePreview").click();
         await load();
         assert(doc.querySelector(".historical-files")&&doc.querySelector(".source-list"),"Refresh lost attachment/source");
         await page.FileUI.refresh();
@@ -53,11 +61,12 @@
         await wait(()=>doc.querySelectorAll(".document-row").length===2,"delete file");
         const files=(await (await fetch("/conversations/"+id+"/files")).json()).files;
         assert(files.length===2,"Deletion did not persist");
+        await wait(()=>[...doc.querySelectorAll(".inline-citation")].some(button=>button.textContent.includes("unavailable")),"deleted citation is explicitly unavailable");
         if(mobile)doc.getElementById("menuButton").click();
         doc.getElementById("newChatButton").click();
         await wait(()=>doc.querySelectorAll(".document-row").length===0,"new chat file isolation");
         assert(!doc.getElementById("useFiles").checked,"New chat borrowed source selection");
         await fetch("/conversations/"+id,{method:"DELETE"});
-        await report({result:"PASS",viewport:[page.innerWidth,page.innerHeight],checks:"Upload chips; background indexing; source selection; streamed citation; source preview; reload; drag/drop; clipboard files; safe text; remove chip; deletion; new-chat isolation; mobile layout"});
+        await report({result:"PASS",viewport:[page.innerWidth,page.innerHeight],checks:"Upload chips; background indexing; source selection; streamed citation; source preview; tool evidence; unavailable old citation; reload; drag/drop; clipboard files; safe text; remove chip; deletion; new-chat isolation; mobile layout"});
     }catch(error){await report({result:"FAIL",error:error.stack});}
 })();

@@ -100,6 +100,8 @@ class WorkbookTests(unittest.TestCase):
                 dest.writestr(name,data)
         result=analyze(workbook_sections(output.getvalue()),self.spec())
         self.assertEqual(result["results"][0]["values"][0]["result"],"1009")
+        self.assertEqual(result["formula_examples"][0]["expression"],"=B2*2")
+        self.assertEqual(result["formula_examples"][0]["cached_value"],999)
     def test_useful_cell_and_merge_limits(self):
         with patch("table_tools.MAX_CELLS",4):
             with self.assertRaisesRegex(ValueError,"useful cells"):workbook_sections(self.workbook())
@@ -264,6 +266,8 @@ class Integration(unittest.TestCase):
                 with patch("summarizer.MAX_CALLS",0):
                     with self.assertRaisesRegex(ValueError,"64-call"):
                         await self.app.document_agent.summarizer.summarize(self.cid,[file],lambda _:None,section="First")
+                with self.assertRaisesRegex(ValueError,"64-call"):
+                    await self.app.document_agent.summarizer.summarize(self.cid,[file],lambda _:None,section="First",prior_calls=63)
         asyncio.run(run())
     def test_second_retrieval_round_cannot_loop(self):
         file=self.upload()
@@ -366,7 +370,74 @@ class Integration(unittest.TestCase):
                 self.assertGreater(len(calls),count)
         asyncio.run(run())
 
+    def test_filter_phrase_is_not_silently_ignored(self):
+        file=self.upload("sales.csv",b"region,revenue\nEast,10\nWest,90\n","text/csv")
+        spec={"table":"CSV","group_by":[],"filters":[{"column":"region","op":"eq","value":"East"}],"aggregates":[{"op":"sum","column":"revenue"}]}
+        with patch.object(self.app.provider,"structured",AsyncMock(return_value=spec)) as interpret:
+            events=self.send("What is total revenue for East?",use_files=True,file_ids=[file["id"]])
+        self.assertEqual(events[-1]["status"],"completed",events)
+        interpret.assert_awaited_once()
+        evidence=self.rows()[-1]["tool_evidence"][0]["id"]
+        result=self.client.get(f"/conversations/{self.cid}/tool-evidence/{evidence}").json()["exact_result"]
+        self.assertEqual(result["results"][0]["values"][0]["result"],"10")
+
+    def test_exact_extract_preserves_citation_like_source_text(self):
+        from document_agent import Route
+        file=self.upload(data=b"Literal [SOURCE_0123456789abcdef01234567] and [S1] are document text.")
+        with patch.object(self.app.document_agent,"route",AsyncMock(return_value=Route(route="EXTRACT",operation="get_section",section="Paragraph 1"))):
+            events=self.send("Extract this section",use_files=True,file_ids=[file["id"]])
+        self.assertEqual(events[-1]["status"],"completed",events)
+        self.assertIn("[SOURCE_0123456789abcdef01234567]",self.rows()[-1]["content"])
+        self.assertIn("[S1]",self.rows()[-1]["content"])
+
+    def test_summary_deadline_applies_to_final_stream(self):
+        original=self.app.document_agent.prepare
+        async def prepare(job,messages):
+            result=await original(job,messages)
+            job["document_deadline"]=asyncio.get_running_loop().time()+.03
+            return result
+        async def chat(inner,**kwargs):
+            async def chunks():
+                await asyncio.sleep(1)
+                yield {"message":{"content":"too late"}}
+            return chunks()
+        with patch.object(self.app.document_agent,"prepare",side_effect=prepare),patch.object(FakeModel,"chat",chat):
+            events=self.send("Hello")
+        self.assertEqual(events[-1]["status"],"error")
+        self.assertTrue(any("time limit" in e.get("message","") for e in events),events)
+        self.assertFalse(self.app.conversation_lock.locked())
+
+    def test_changed_parse_invalidates_obsolete_source_before_embedding(self):
+        file=self.upload(data=b"Old Blue Falcon content.")
+        self.send(use_files=True,file_ids=[file["id"]])
+        source=self.rows()[-1]["sources"][0]["id"]
+        old_text=self.rows()[-1]["content"]
+        self.app.documents.store_extracted(self.cid,file["id"],[{"text":"New unrelated text","section":"Paragraph 1","type":"paragraph"}])
+        self.assertEqual(self.client.get(f"/conversations/{self.cid}/sources/{source}").status_code,404)
+        self.assertEqual(self.rows()[-1]["content"],old_text)
+        self.assertEqual(self.rows()[-1]["sources"],[])
+
 class ProviderTests(unittest.TestCase):
+    def test_same_model_name_still_separates_text_and_image_slots(self):
+        class Raw:
+            async def chat(self,**kwargs):return {"message":{"content":"ok"}}
+            async def close(self):pass
+        async def run():
+            provider=ModelProvider();provider.vision_model=provider.chat_model
+            for images,slot in (([],provider.text_slots),([b"image"],provider.vision_slots)):
+                slot.acquire()
+                with patch("model_provider.ollama.AsyncClient",return_value=Raw()):
+                    client=provider.client()
+                    task=asyncio.create_task(client.chat(model=provider.chat_model,stream=False,
+                        messages=[{"role":"user","content":"hello","images":images}]))
+                    await asyncio.sleep(.03)
+                    waiting=not task.done()
+                    slot.release()
+                    await asyncio.wait_for(task,1)
+                    await client.close()
+                self.assertTrue(waiting)
+        asyncio.run(run())
+
     def test_default_one_configurable_two_and_cancelled_waiter(self):
         async def run(limit):
             with patch.dict("os.environ",{"TEXT_MODEL_CONCURRENCY":str(limit)}):

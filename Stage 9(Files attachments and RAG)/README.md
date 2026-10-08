@@ -1,6 +1,6 @@
-# Stage 9 — Files, attachments and RAG
+# Stage 9: Files, attachments and document intelligence
 
-This stage copies Stage 8 and adds Lessons 17–18. Earlier stages and their databases are unchanged.
+This stage preserves the Stage 8 chat UI, streaming, Markdown, syntax highlighting, branches, cancellation and SQLite history. It adds scoped uploads, hybrid retrieval, exact document tools, complete-document summaries, CSV/XLSX calculations and optional vision.
 
 ## Run
 
@@ -8,201 +8,257 @@ From the project root in PowerShell:
 
 ~~~powershell
 .\.venv\Scripts\python.exe -m pip install -r "Stage 9(Files attachments and RAG)/requirements-dev.txt"
-ollama pull llama3.2:3b
-ollama pull embeddinggemma
 .\.venv\Scripts\python.exe "Stage 9(Files attachments and RAG)/run.py"
 ~~~
 
-The models are already installed on the development machine. Pull commands are only needed if a model is missing. Keep Ollama running; open http://127.0.0.1:8000. If another stage uses that port, stop it or add --port 8009.
+Keep Ollama running with your installed models. Defaults are **llama3.2:3b** and **embeddinggemma:latest**. The app never pulls models. Open http://127.0.0.1:8000; use --port 8009 if another stage uses 8000.
 
-run.py restarts the server when an application Python, HTML, CSS, JavaScript or vendor file changes. It does not watch uploaded documents, SQLite writes, tests or documentation. Refresh the browser after frontend changes.
-
-All persistent locations are derived from main.py, not the terminal's working directory:
+All paths derive from main.py, not the terminal directory:
 
 ~~~text
-<project root>/data/stage9/
+D:\Projects\LLM-chat-interface-tutorial\data\stage9\
   chat.db
-  uploads/
-    <generated ID>.<extension>
-    .tmp/                       multipart upload spooling
+  chat.pre-document-intelligence.db    created once before upgrading an older database
+  uploads\
+    <generated file ID>.<extension>
+    .tmp\
 ~~~
 
-With this checkout, that is D:\Projects\LLM-chat-interface-tutorial\data\stage9. The startup log prints the resolved database and upload paths. A separate Stage 9 database avoids modifying Stage 8's saved chats. data/ is ignored by Git.
+Startup prints these paths. Earlier stages and their databases are unchanged. run.py watches an explicit list of application Python/HTML/CSS/JavaScript/vendor files, including the new modules. Data, tests, documentation and other stages do not trigger restarts. Refresh the browser after frontend changes.
 
-## Try it
+## Using files
 
-1. Click **Attach files**, drop files onto the composer, or paste supported files/images into the textarea.
-2. The composer shows upload progress, success or a retryable failure. Each message allows four files, totaling 20 MiB, with a 10 MiB individual limit.
-3. Open **Files in this chat** to see extraction/indexing status. Text documents uploaded from the composer are selected automatically and enable **Use files to answer**. Sending waits for selected sources to become ready. Turn the toggle off to chat normally.
-4. Ask a document question. The status shows **Searching your files...** before the streamed answer.
-5. Click a citation or a source button to inspect the exact retrieved passage and its page, section or CSV row. Download retrieves the uploaded file.
-6. On refresh, SQLite restores messages, attachments and citations. Select the desired ready documents and enable Use files again; that toggle resets on a full reload so document use remains explicit.
-7. New chat keeps existing conversations and starts with no selected files.
+Attach files, drop them onto the composer, or paste supported files/images. Open **Files in this chat**, select sources and enable **Use files to answer**. Upload progress, retry, removal, preview, replacement and deletion remain available.
 
-Remove on a composer chip detaches that file from the upcoming message and source selection. The uploaded document remains in this chat's Files panel, where it can be deleted. This avoids silently destroying an upload that may be used by another message.
+Parsed documents can support exact tools and lexical search even when embedding generation fails. Status messages show the active operation. Stop cancels generation, model waits and summary stages.
 
-## What RAG does
+**Use files off applies to answer-time document access for that turn.** It bypasses document routing, retrieval, tools and vision during response generation. It does not prevent or cancel upload-time background extraction/indexing. Prior assistant messages remain history, not fresh document evidence.
 
-Uploading stores bytes; it does not teach the model those bytes. RAG extracts readable text, splits it into passages, embeds those passages, retrieves a few relevant passages for each question, and supplies them as evidence to the chat model.
-
-| Concept | What is stored or sent |
+| Example request | Execution |
 | --- | --- |
-| Conversation history | User/assistant turns from the selected message branch |
-| Attachment | File bytes, metadata and its message associations |
-| RAG index | Extracted passages and numerical vectors persisted in SQLite |
-| Retrieval | Only relevant passages from explicitly selected files in the current conversation |
-| Fine-tuning/training | Not performed; model weights never change |
+| How many times does the word transformer occur? | Deterministic whole-document count |
+| Which pages contain neural network? | Exact full-document page search |
+| Find the exact phrase "termination clause" | Exact search with block offsets |
+| List headings / extract emails / show page 2 | Deterministic extraction |
+| Why did the authors select transformer architecture? | Hybrid retrieval, reranking and grounded answer |
+| Summarize this document / summarize section Introduction | All readable source blocks, bounded map/reduce |
+| Compare old_contract.pdf with new_contract.pdf | Summary preparation covering every selected document |
+| What is total revenue and average revenue by region? | Validated complete CSV/XLSX calculation |
+| What about Q4? | Conversation-aware retrieval using selected-branch history |
+
+Click passage citations to preview sources. Click **Tool evidence** to inspect exact operations, file fingerprints, validated arguments, coverage, rows/cells examined, exclusions and results. Counts/calculations never manufacture fake passage citations.
+
+Refreshing restores messages, attachments and evidence from SQLite. A full reload resets the Use files toggle so source use remains explicit. New chat and branch operations retain conversation isolation.
+
+## Implementation
 
 ~~~mermaid
-flowchart LR
-  A[Upload] --> B[Validate and store]
-  B --> C[Extract and normalize]
-  C --> D[Chunk]
-  D --> E[EmbeddingGemma]
-  E --> F[SQLite chunks and vectors]
-  Q[User question + recent selected history] --> R[Standalone search query]
-  R --> S[Scoped cosine retrieval]
-  F --> S
-  S --> T[Untrusted excerpts + original question]
-  T --> U[llama3.2 streaming answer]
-  U --> V[Validated citations and saved response]
+flowchart TD
+  U[Upload] --> P[Validate and extract structured blocks]
+  P --> V[Optional vision for unreadable pages/images]
+  P --> B[SQLite canonical blocks and parsed caches]
+  V --> B
+  B --> I[Child chunks, embeddings and FTS5]
+  Q[Question and selected-branch history] --> R{Use files?}
+  R -->|No| N[Ordinary chat]
+  R -->|Yes| A[Document task router]
+  A --> T[Exact tools and table calculations]
+  A --> H[Hybrid retrieval]
+  A --> S[Full-document summaries and comparison]
+  B --> T
+  B --> S
+  I --> H
+  H --> G[Grounded streamed response and passage citations]
+  S --> G
+  T --> D[Deterministic response and tool provenance]
 ~~~
 
-## Lesson 17 implementation
+| Module | Responsibility |
+| --- | --- |
+| model_provider.py | Ollama chat, streaming, embeddings, structured output, optional images and resource slots |
+| context_budget.py | Shared input estimates, framing and output reservations |
+| document_parsers.py | Native extraction, workbook integration, lazy optional PDF rendering and vision |
+| documents.py | Scoped files, canonical storage, caches, migration and evidence relationships |
+| document_tools.py | Deterministic search/count/extraction and stable block IDs |
+| table_tools.py | Bounded XLSX parsing and validated Decimal calculations |
+| rag.py | Background indexing, FTS/dense retrieval, fusion, reranking and diversity |
+| summarizer.py | Coverage-first summaries and cached intermediate reductions |
+| document_agent.py | Task routing, selected-file tools, history compression and orchestration |
+| main.py / file_routes.py | Existing chat lifecycle plus scoped file/evidence APIs |
 
-- Native multi-file picker, drag/drop, clipboard files, filename/type/size, removable chips, upload progress and retry.
-- FastAPI UploadFile and multipart parsing; bounded request bodies and server-side size/count/total limits.
-- TXT, Markdown and CSV require valid UTF-8/UTF-16 text; PDFs require a PDF signature and successful parsing; DOCX is checked as an Office ZIP/XML document.
-- PNG/JPEG/WebP are decoded, dimension-limited and re-encoded before serving. Filenames are sanitized for display; storage uses generated IDs. No user filename is treated as a trusted path.
-- files stores conversation ID, name, MIME type, size, fingerprint, state and timestamps. message_files associates several files with a user message, including edited branches. Both have foreign keys; an additional trigger rejects cross-conversation associations.
-- Historical attachments, image thumbnails, safe downloads, document previews, unavailable-file errors and accessible controls.
-- Deleting a conversation cascades to its files and chunks. A transactional pending_unlinks outbox removes physical files and retries failed removals on startup. Unreferenced physical files older than a day are cleaned up.
-- Deleting a message association does not destroy a shared conversation document. This stage has no individual-message deletion action.
-- All files stay in this project on D:. Upload content is never mounted as static executable web content. Downloads use nosniff and attachment disposition; only validated images can be served inline.
+tree_store.py is unchanged.
 
-Images are attachment previews/downloads, not vision-model or OCR inputs. Scanned PDFs without text fail with an OCR explanation. DOCX supports paragraph/table-cell text but does not preserve full Word layout.
+### Routing and evidence
 
-## Lesson 18 implementation
+Obvious tasks use deterministic rules. Ambiguous requests can use one bounded structured classification call. Unsupported or unclear exact/numeric operations fail explicitly instead of falling through to fabricated arithmetic.
 
-### Extraction, chunking and persistence
+Simple aggregates matching a complete grammar can run without model interpretation. More complex table questions use schema-constrained interpretation followed by Python validation. Document text never becomes Python, SQL, tool instructions or system instructions.
 
-documents.py extracts text in bounded sections and normalizes Unicode/newlines. PDFs preserve real page numbers; Markdown preserves heading labels; CSV repeats column names for every complete row and retains row numbers. DOCX retains paragraph numbers.
+Document QA uses supplied excerpts. If evidence is insufficient, the server returns an explicit no-evidence response. Unknown citation IDs are removed. Valid IDs prove that a source was supplied, not that every generated claim follows from it; model grounding still requires evaluation.
 
-rag.py uses paragraph/newline boundaries where available, 1,400-character chunks and 180-character overlap. CSV rows stay intact. Defaults are constants near the top of the module; changing chunk/parser settings changes the index compatibility fingerprint.
+### Canonical extraction and exact matching
 
-EmbeddingGemma is separate from the chat model. Documents use its title/text prefix, queries use its search-query prefix. Embeddings are batched in groups of 12, normalized and stored as JSON vectors in SQLite. This intentionally uses a bounded local cosine scan, not a new vector database.
+Supported formats: TXT, Markdown, PDF, DOCX, CSV, XLSX, PNG, JPEG and WebP.
 
-SHA-256 detects identical file content within a conversation. Re-uploading identical content reuses the file and index. Re-index skips unchanged content with a matching configuration. Model name, model digest, vector dimension, extraction/chunk versions, prompt conventions and cosine metric are checked before retrieval. Changed/incompatible settings require Re-index; incompatible vectors are never silently mixed.
+Blocks retain available page, heading/level, paragraph, sheet/table, row, origin and offsets. IDs hash stable file identity, logical location, block order and normalized content. Unchanged content/structure keeps IDs across compatible re-indexing.
 
-Jobs expose uploaded, extracting, chunking, embedding, ready and failed states. One indexing job runs at a time; duplicate jobs for a file are ignored. Failed/interrupted jobs can be retried. Startup marks interrupted jobs as failed rather than embedding everything again.
+Exact operations inspect complete extracted canonical text, not retrieval top-K:
 
-### Retrieval and follow-up questions
+- Unicode NFC normalization, Unicode casefold by default, and word boundaries with internal apostrophes.
+- Phrase matching collapses whitespace and counts non-overlapping occurrences.
+- Cross-block matches require explicit continuous logical text. Pages, headings, table rows and sheets are not blindly concatenated.
+- Matches preserve source locations and character offsets.
+- Character counts describe normalized canonical text, not original file bytes.
+- Image descriptions are excluded from exact counts. Vision transcriptions are labeled; counts inherit any transcription errors.
+- Partial extraction reports unreadable coverage rather than claiming all pages were examined.
 
-Use files sends explicit file IDs with the latest user message. Both attachment binding and retrieval validate conversation ownership. File lists are also a precise way to limit retrieval by document type.
+PDF extraction tries normal pypdf extraction and falls back to layout mode for poor/failed extraction. Layout mode is not a table parser. Native page text is preserved when other pages need vision. PDF typography cannot reliably establish semantic headings or reconstruct arbitrary tables. DOCX preserves headings, paragraphs and table-row text, not full Word layout.
 
-For follow-up questions, a separate bounded model call rewrites the search query using only recent selected-branch history. The answer still receives the original question. A failed rewrite falls back to the original question, with that fallback recorded in diagnostics.
+### CSV/XLSX calculations
 
-Retrieval uses a cosine threshold of 0.35, up to five chunks, exact/near-duplicate suppression and an 8,500-character passage budget. If nothing meets the threshold, a deterministic no-evidence reply is streamed without asking the model to guess. Scores are similarity values, not probabilities.
+Python performs sum, average, min/max, count, filtering and grouping with Decimal arithmetic. Multiple aggregates are supported. Recurring averages have bounded precision. Missing/nonnumeric aggregate values are reported; invalid arguments and ambiguous numeric input fail safely.
 
-History, retrieved context and output each have bounds. The final prompt is capped conservatively at 14,000 UTF-8 bytes plus framing/output reservations for a 16,384-token model context. Older turns are dropped first. If the current question and evidence still do not fit, the UI explains the budget failure. Diagnostics provide an approximate token count, not a tokenizer-exact count.
+CSV requires unique headers. XLSX uses each sheet's first useful row as headers. Exact table analysis does not infer reliable tables from PDF layout.
 
-### Boundaries and citations
+Workbook preflight traverses actual serialized cells, validates worksheet relationships and bounds ZIP expansion, merged ranges and useful/physical cell counts. Styled empty regions and declared max_row/max_column dimensions do not cause rectangular traversal.
 
-The system prompt is preserved and extended with evidence-grounding rules. Documents are explicitly lower-priority data. Their text cannot create tools, change the system role, or authorize actions.
+Paired workbooks are opened with data_only=False and data_only=True, both keep_links=False. Formula expressions are retained separately from cached calculated values. Formulas and external references are never executed or fetched. Missing formula caches produce an explicit error, not zero; recalculate/save in a spreadsheet application.
 
-The model uses short labels such as [S1]. The server maps those labels to stable chunk IDs derived from file ID, chunk position and text. Unknown source IDs are removed even when split across streamed chunks. Only actually cited, actually retrieved passages become persisted citations. The UI inserts source text using textContent; Markdown still passes through Marked and DOMPurify.
+### Retrieval and context
 
-Clicking a citation opens the passage from the current conversation's source endpoint. Unchanged text retains its source ID across re-embedding. Replacing/removing a document invalidates obsolete sources; earlier generated answer text remains as historical conversation text.
+Approximately 350-token children preserve structural metadata; table rows stay intact. Small parent-block context can replace a child, using an accurate parent source preview.
 
-Prompt boundaries reduce injection risk; they cannot prove model obedience or factual correctness. No-citation answers show a verification notice. A valid source ID proves the source was retrieved, not that the generated claim logically follows from it.
+Up to 30 dense and 30 lexical candidates are fused with reciprocal-rank fusion (constant 60). FTS5 is feature-detected; a bounded scoped lexical fallback supports missing FTS5 or unavailable embeddings. Model digest, dimensions, parser/chunk pipeline and embedding input conventions guard compatibility.
 
-### Updating files
+At most 12 candidates are reranked through the existing chat model with a 15-second timeout. Invalid output/timeouts fall back to fused ranking. Duplicate suppression and an MMR-style relevance/diversity score reduce repetition. Evidence budgets are task-dependent: normally 4, broad 8, balanced retrieval up to 12, with an additional context cap.
 
-**Replace** uploads a new version, validates it, moves message associations/source selections to it, removes the old vectors/citations and stored file, then indexes the replacement. Identical content is reused. **Re-index** retries failure or rebuilds after a parser/embedding configuration change. Do not edit generated upload files directly.
+Confidence combines lexical/dense support and reranking rather than only the old cosine cutoff. Complex questions can trigger one additional retrieval: **two rounds maximum**.
 
-CSV support is row-based retrieval, not an analytics engine. A few retrieved rows cannot justify full-dataset totals. The prompt makes that limitation explicit; SQL/dataframe tools can be added in a later lesson.
+Every provider chat call checks a shared conservative estimate: about two ASCII characters/token, UTF-8 bytes for non-ASCII, message/image overhead, output reservation and a safety margin. This is not tokenizer-exact. Excessive inputs fail explicitly.
 
-### Diagnostics and limits
+### Summaries, history and concurrency
 
-Set RAG_DEBUG=1 before starting to expose scoped retrieval diagnostics:
+Small documents fit one summary call; larger ones pack all readable blocks efficiently into map/reduce batches. Section summaries restrict scope explicitly. Comparisons prepare every selected file, not just whichever document dominates retrieval.
+
+**64 model calls and 15 minutes are absolute summary safety ceilings, not target budgets.** History-compression calls count toward this limit. One call is reserved for final synthesis, whose streaming also obeys the deadline. Cancellation/progress checks run between calls and reductions. Cache entries hold parsed representations and summary intermediates, not broad natural-language answer caches.
+
+Old branch history can be compressed into a labeled unverified recap plus recent raw turns. Recap caches are keyed by branch content. Prior assistant assertions are not authoritative document evidence.
+
+Generation locks are per conversation: one mutation-generating operation per chat, while unrelated chats progress or queue independently. Text-model concurrency defaults to **1**, configurable after hardware testing. Async model waiters queue fairly; slots are held per call/stream rather than for an entire summary.
+
+Native extraction, embeddings and vision have separate bounded controls. A long scanned-PDF workflow does not hold the native-text extraction gate for its entire duration. The supported launcher uses one worker.
+
+## Optional vision
+
+Vision is disabled unless you explicitly configure an already-installed compatible model. No model is chosen or downloaded automatically. Images still support safe preview/download without vision.
 
 ~~~powershell
-$env:RAG_DEBUG = "1"
+# Optional, needed for scanned-PDF rendering:
+.\.venv\Scripts\python.exe -m pip install -r "Stage 9(Files attachments and RAG)/requirements-vision.txt"
+$env:VISION_MODEL = "your-installed-vision-model"
 .\.venv\Scripts\python.exe "Stage 9(Files attachments and RAG)/run.py"
 ~~~
 
-The assistant's **Retrieval details** button shows original/re-written queries, source IDs/scores, context, timing and approximate usage. The endpoint is disabled by default. Remove the environment variable to disable it:
+The adapter checks advertised vision capability, sends bounded image bytes, and separates transcription, description and uncertainty. Page results are cached. pypdfium2 is lazy-loaded and its operations serialized; ordinary startup/text workflows require neither it nor a vision model.
 
-~~~powershell
-Remove-Item Env:RAG_DEBUG
-~~~
+Bounds: one vision inference, image edge at most 2,048 pixels, 120 seconds per call, 200 PDF pages, and 30 minutes per vision indexing workflow. Native/vision origins remain distinct. Offline tests use deterministic vision doubles; no live OCR-accuracy claim is made without a configured model.
 
-| Bound | Default |
+## Configuration and limits
+
+| Environment variable | Default |
 | --- | --- |
-| Per file / per message | 10 MiB / four files and 20 MiB |
-| Per conversation | 40 files, 50 MiB stored files, 4,000 chunks |
-| Per document | 500,000 extracted characters, 600 chunks |
-| PDF / images | 200 pages / 20 megapixels |
-| DOCX expanded size | 20 MiB |
-| Model output | 2,048 tokens |
-| Embedding job concurrency | One |
+| CHAT_MODEL | llama3.2:3b |
+| EMBED_MODEL | embeddinggemma:latest |
+| VISION_MODEL | unset |
+| TEXT_MODEL_CONCURRENCY | 1 |
+| MODEL_CONTEXT_TOKENS | 16384; minimum 4096 |
+| RAG_DEBUG | 0 |
+| EMBED_DOCUMENT_PREFIX / EMBED_QUERY_PREFIX | EmbeddingGemma conventions for that family; otherwise generic input |
 
-This is a local, single-user tutorial app bound to 127.0.0.1, with one worker. Conversation IDs enforce data scoping but are not user authentication. Do not expose it publicly without authentication/authorization, hardened parser isolation and deployment controls. Production-grade OCR, vision, distributed jobs, FTS/vector acceleration, rerankers, exact tabular analytics and project/user permissions remain later extensions.
-
-## API additions
-
-| Method and path | Purpose |
+| Resource | Bound |
 | --- | --- |
-| GET /files/config | Limits and diagnostic availability |
-| GET /conversations/{id}/files | Scoped document metadata/status |
-| POST /conversations/{id}/files | Upload one multipart field named upload |
-| PUT /conversations/{id}/files/{file_id} | Replace a document |
-| DELETE /conversations/{id}/files/{file_id} | Remove bytes, vectors and source relationships |
-| POST /conversations/{id}/files/{file_id}/reindex | Retry/rebuild index |
-| GET /conversations/{id}/files/{file_id}/download | Safe download; preview=true only inlines images |
-| GET /conversations/{id}/files/{file_id}/preview | Bounded extracted-text preview |
-| GET /conversations/{id}/sources/{source_id} | Exact passage and provenance |
-| GET /conversations/{id}/messages/{message_id}/retrieval | Opt-in diagnostics |
+| Upload | 10 MiB each; four files and 20 MiB per message |
+| Conversation | 40 files / 50 MiB |
+| Extracted text | 500,000 characters per document |
+| Retrieval index | 2,000 chunks/document; 4,000/conversation |
+| PDF / image | 200 pages / 20 megapixels before resizing |
+| Expanded DOCX/XLSX | 20 MiB |
+| Workbook | 100,000 useful cells; 200,000 physical cells; 20 sheets; 100 useful columns |
+| Table results | 200 groups; 8 aggregates; 10 filters |
+| Final generation | 2,048 reserved output tokens |
 
-POST /chat retains Stage 8's generation ID/action/branch fields and adds attachment_ids, use_files and file_ids. The browser still sends only the newest user message. Edit/retry/regenerate reuse the original user turn's attachment/retrieval configuration. API routes precede the static mount.
+This remains a local single-user tutorial app bound to 127.0.0.1, not an authenticated public service or multi-worker deployment.
 
-## Tests and evaluation
+## Migration and evidence lifecycle
 
-Run from the project root:
+SQLite's backup API creates chat.pre-document-intelligence.db once before upgrading an older database. Document migrations are repeatable and check foreign keys. Existing messages, branches, file associations and valid citation relationships are preserved.
+
+New tables: document_schema, document_blocks, document_cache, history_summaries, block_citations, tool_runs, tool_run_files, plus chunks_fts when available. files gains parse_state, coverage and parser_config. citations gains a first-appearance ordinal.
+
+Old incompatible files show reindex_required. Use **Re-index**. Unchanged compatible passages keep source IDs. Changed/replaced/deleted sources invalidate obsolete previews, even if re-embedding fails. Old assistant text remains; missing passage citations show **source unavailable** and never redirect to new content.
+
+Deterministic provenance is separate from passage evidence. Removing a source removes its inspectable tool records and file-owned caches. Physical deletion uses the existing transactional pending_unlinks outbox. Migration backups remain separate snapshots; manage them explicitly if erasing historical data later.
+
+With RAG_DEBUG=0, diagnostics do not duplicate full retrieved context; startup removes legacy diagnostic context. Necessary previews and tool provenance remain. RAG_DEBUG=1 permits scoped full diagnostics. Replacing/deleting files clears corresponding conversation diagnostics.
+
+## Dependencies and API
+
+Core additions: **openpyxl==3.1.5**, **defusedxml==0.7.1**. Optional scanned-PDF renderer: **pypdfium2==5.14.0** in requirements-vision.txt only.
+
+**ollama==0.6.3 is retained.** Its local client types support every used image, JSON-schema structured-output, streaming and embedding API; a client upgrade was unnecessary.
+
+The existing chat/generation/branch API and SSE start/status/delta/error/done events remain. The frontend sends the newest message, attachment_ids, use_files and file_ids; backend SQLite owns history. Edit/retry/regenerate retain original turn scope.
+
+| Route | Purpose |
+| --- | --- |
+| GET /files/config | Limits, model configuration and debug availability |
+| GET/POST /conversations/{id}/files | List or upload multipart field upload |
+| PUT/DELETE .../files/{file_id} | Replace/delete |
+| POST .../files/{file_id}/reindex | Retry/rebuild |
+| GET .../files/{file_id}/download | Safe attachment; only validated images support inline preview |
+| GET .../files/{file_id}/preview | Bounded extracted-text preview |
+| GET /conversations/{id}/sources/{source_id} | Passage/block preview |
+| GET /conversations/{id}/tool-evidence/{tool_id} | Deterministic provenance |
+| GET /conversations/{id}/messages/{message_id}/retrieval | Debug-only diagnostics |
+
+## Verification
+
+From the Stage 9 directory:
 
 ~~~powershell
-.\.venv\Scripts\python.exe -B "Stage 9(Files attachments and RAG)/tests/check_database.py"
-.\.venv\Scripts\python.exe -B "Stage 9(Files attachments and RAG)/tests/check_rag.py"
-.\.venv\Scripts\python.exe -B "Stage 9(Files attachments and RAG)/tests/check_browser.py"
-.\.venv\Scripts\python.exe -B "Stage 9(Files attachments and RAG)/tests/check_browser.py" --files
-.\.venv\Scripts\python.exe -B "Stage 9(Files attachments and RAG)/tests/check_browser.py" --responses
-.\.venv\Scripts\python.exe -B "Stage 9(Files attachments and RAG)/tests/check_reload.py"
+..\.venv\Scripts\python.exe -B tests/check_database.py
+..\.venv\Scripts\python.exe -B tests/check_rag.py
+..\.venv\Scripts\python.exe -B tests/check_document_intelligence.py
+..\.venv\Scripts\python.exe -B tests/check_browser.py
+..\.venv\Scripts\python.exe -B tests/check_browser.py --files
+..\.venv\Scripts\python.exe -B tests/check_browser.py --responses
+..\.venv\Scripts\python.exe -B tests/check_reload.py
 ~~~
 
-These use isolated databases/browser profiles under project data/. The ordinary regression tests use deterministic model doubles, so they do not require Ollama. Edge is used for real desktop/mobile DOM, event, upload and streaming tests.
+These use disposable databases, deterministic model doubles and local Edge. No model download or internet is required. They cover scope/isolation, conflicts, independent native indexing during vision, exact tools, formula caches, summaries, lexical fallback, migration, citation invalidation, context limits and cancellation.
 
-With Ollama running, execute the live evaluation:
+Live evaluation is separate:
 
 ~~~powershell
-.\.venv\Scripts\python.exe -B "Stage 9(Files attachments and RAG)/tests/check_live_rag.py"
+..\.venv\Scripts\python.exe -B tests/check_live_rag.py
 ~~~
 
-It indexes Markdown, text and CSV, ranks known sources, checks a cited Blue Falcon answer and a follow-up, verifies the secret code 8472 is absent in a different conversation, and reopens the database in a fresh application lifespan. It never modifies saved user chats.
+It reports Hit@K, expected-file recall, MRR, retrieval/answer latency and citation-ID validity; it checks follow-ups, isolation, exact counts/table totals and restart persistence. Inspect answers for factual accuracy, citation entailment and coverage. Valid source IDs alone do not prove those qualities.
 
-The live fixture reports Hit@K, precision over returned hits, expected-file recall, reciprocal rank/MRR, retrieval latency, total answer latency and valid-citation-ID precision. These source-level metrics are deliberately distinguished from human evaluation:
 
-- Correctness: does the answer state the expected fact without adding conflicting facts?
-- Groundedness: is each document claim supported by an excerpt?
-- Relevance: does it answer the original question rather than the retrieval rewrite?
-- Citation precision: does each cited passage support the claim it accompanies?
-- Citation coverage: what fraction of externally checkable document claims have supporting citations?
+## Upgrade change inventory and verification record
 
-Score those five dimensions against the printed answers and source passages; a keyword match or valid source ID is not a substitute for that review. Expand the fixtures with empty/no-answer documents, paraphrases, conflicting versions, unusual PDF layouts and your actual use cases before changing thresholds.
+Created: context_budget.py, document_agent.py, document_parsers.py, document_tools.py, model_provider.py, summarizer.py, table_tools.py, requirements-vision.txt and tests/check_document_intelligence.py.
 
-The development live run retrieved the expected source first for all three fixture queries (Hit@K=1 and MRR=1 on this small fixture). This is a smoke-test result, not a general retrieval-quality guarantee. The deterministic suite separately checks rejection, deletion/replacement, indexing failure/recovery, model incompatibility, split citation filtering, context budgets, branch scope, CSV rows and PDF page provenance.
+Updated: main.py, documents.py, rag.py, file_routes.py, run.py, requirements.txt, static/index.html, static/files.js, README.md, tests/check_rag.py, tests/check_live_rag.py and tests/file_checks.js. The parser/context-budget modules are focused additions beyond the initial suggested file list. No tree_store.py or earlier-stage changes were needed.
 
-## References
+Verification through 8 October 2026:
 
-- [Ollama embedding API](https://docs.ollama.com/api/embed): batched inputs and truncate=false.
-- [EmbeddingGemma model card](https://ai.google.dev/gemma/docs/embeddinggemma/model_card): retrieval query/document prefixes and model limits.
-- [pypdf text extraction](https://pypdf.readthedocs.io/en/stable/user/extract-text.html): text extraction, page complexity and OCR limitations.
+- 26 database/conversation tests and 22 existing file/RAG tests passed.
+- 33 document-intelligence tests passed across the full suite and targeted final-fix runs (81 distinct offline tests total).
+- Desktop/mobile file tests passed, including deterministic evidence inspection and unavailable deleted citations.
+- Desktop/mobile general chat and long-response/code-rendering suites passed; runtime reload inclusion/exclusion tests passed.
+- The final live run passed retrieval, cited answering, follow-up isolation, exact count, table total and restart checks. Its three-question retrieval fixture achieved Hit@K=1.0, file recall=1.0 and MRR=1.0; citation-ID validity was 1.0. This small fixture does not establish general model accuracy.
+- Initial live attempts encountered unavailable Ollama and an embedding fingerprint change during its update. Once Ollama was stable, a fresh isolated run passed. The harness reports missing local prerequisites separately and prints index compatibility diagnostics on mismatch. Existing documents indexed with an older model fingerprint need Re-index.
+- Optional vision paths were tested with deterministic doubles, not a downloaded/configured live vision model.
+- git diff --check passed; final edits are limited to Stage 9.

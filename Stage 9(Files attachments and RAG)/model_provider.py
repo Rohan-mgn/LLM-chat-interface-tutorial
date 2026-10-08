@@ -34,7 +34,7 @@ class ProviderClient:
         check(kwargs.get("messages", []), output)
         options.update(num_ctx=CONTEXT_TOKENS, num_predict=output)
         kwargs["options"] = options
-        slot = self.provider.vision_slots if kwargs.get("model") == self.provider.vision_model and self.provider.vision_model else self.provider.text_slots
+        slot = self.provider.vision_slots if any(m.get("images") for m in kwargs.get("messages", [])) else self.provider.text_slots
         await self._take(slot)
         try:
             response = await self.raw.chat(**kwargs)
@@ -125,8 +125,10 @@ class ModelProvider:
             client=ollama.Client(timeout=12)
             return client.chat(**kwargs)
         finally:
-            if client is not None and hasattr(client,"close"):client.close()
-            self.text_slots.release()
+            try:
+                if client is not None and hasattr(client,"close"):client.close()
+            finally:
+                self.text_slots.release()
 
     async def structured(self, messages, schema, *, timeout=20, output=768, model=None, images=None):
         client = self.client(timeout=timeout)

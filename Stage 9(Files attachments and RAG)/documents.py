@@ -3,23 +3,19 @@ from contextlib import closing
 from pathlib import Path
 import os
 import sqlite3
-import csv
 import hashlib
 import io
 import json
 import re
 import unicodedata
 import zipfile
-import xml.etree.ElementTree as ET
 from uuid import uuid4
 from PIL import Image
-from pypdf import PdfReader
 
 MAX_FILE = 10 * 1024 * 1024
 MAX_TOTAL = 20 * 1024 * 1024
 MAX_FILES = 4
 MAX_CONVERSATION = 50 * 1024 * 1024
-MAX_TEXT = 500_000
 MIMES = {".txt": "text/plain", ".md": "text/markdown", ".csv": "text/csv",
          ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
          ".pdf": "application/pdf", ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",

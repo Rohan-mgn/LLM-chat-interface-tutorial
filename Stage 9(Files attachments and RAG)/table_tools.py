@@ -190,12 +190,19 @@ def _analyze(blocks, spec):
         elif a.get("op")!="count":
             raise ValueError("An aggregate column is required.")
     selected = []
+    formula_examples=[];formula_count=0
     missing = excluded = 0
     relevant = set(groups)|{f["column"] for f in filters}|{a["column"] for a in aggregates if a.get("column")}
     for row in table["rows"]:
         absent = [c for c in relevant if c in row.get("formulas",{}) and row["cells"].get(c) is None]
         if absent:
             raise ValueError(f"Formula has no cached value in {name}, row {row['row']}, columns {', '.join(absent)}. Recalculate and save it in your spreadsheet application.")
+        for name_in_row in sorted(relevant):
+            if name_in_row in row.get("formulas",{}):
+                formula_count+=1
+                if len(formula_examples)<200:
+                    formula_examples.append({"sheet":name,"row":row["row"],"column":name_in_row,
+                        "expression":row["formulas"][name_in_row],"cached_value":row["cells"].get(name_in_row)})
         keep = True
         for f in filters:
             value = row["cells"].get(f["column"])
@@ -246,6 +253,7 @@ def _analyze(blocks, spec):
             output["values"].append({"operation":op,"column":c,"result":result})
         results.append(output)
     return {"table":name,"arguments":spec,"rows_examined":len(table["rows"]),
-            "cells_examined":sum(len(r["cells"]) for r in table["rows"]),
+            "cells_examined":len(table["rows"])*len(relevant),
+            "columns_examined":sorted(relevant),"formula_cells":formula_count,"formula_examples":formula_examples,
             "matched_rows":len(selected),"missing_values":missing,"excluded_values":excluded,
             "coverage":"complete","results":results}
