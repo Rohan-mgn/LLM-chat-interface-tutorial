@@ -262,3 +262,146 @@ Verification through 8 October 2026:
 - Initial live attempts encountered unavailable Ollama and an embedding fingerprint change during its update. Once Ollama was stable, a fresh isolated run passed. The harness reports missing local prerequisites separately and prints index compatibility diagnostics on mismatch. Existing documents indexed with an older model fingerprint need Re-index.
 - Optional vision paths were tested with deterministic doubles, not a downloaded/configured live vision model.
 - git diff --check passed; final edits are limited to Stage 9.
+
+## RAG quality and performance upgrade
+
+The backend document modules now live in **RAG/**. The FastAPI entry point is still
+main.py; launch with `..\.venv\Scripts\python.exe run.py` from this stage.
+The launcher watches the package's actual runtime files. Frontend URLs, model
+defaults, data paths and tree_store.py are unchanged. The package move itself
+does not invalidate indexes or migrate their contents.
+
+### Retrieval decisions and call savings
+
+Retrieval keeps bounded dense/FTS candidates, reciprocal rank fusion, duplicate
+suppression and MMR diversity. Ranking and evidence acceptance are separate:
+a validated useful/direct reranker result can retain a passage even below the
+old lexical/cosine cutoffs. A high rank alone is insufficient. When reranking is
+unavailable, conservative informative-term/identifier evidence is required.
+Pure semantic matches may therefore abstain during a reranker failure.
+
+Internal modes require no UI change:
+
+- **FAST:** standalone question, complete informative-term coverage, agreement
+  between the leading dense and lexical results, and no competing fully matching
+  passage. Skip rewriting, reranking and extra search planning.
+- **STANDARD:** conversational/ambiguous questions or uncertain initial evidence.
+  Resolve references and rerank when useful.
+- **DEEP:** comparative or complex questions. Balance document evidence and allow
+  one additional targeted search only when evidence is missing. At most two
+  retrieval rounds; all searches retain the selected-file scope.
+
+These are conservative heuristics, not calibrated probabilities or a guarantee
+of answerability. No universal cosine threshold is imposed. Lexical-only operation
+continues when embeddings are unavailable. Exact tools never fall back to
+approximate document QA after a failed calculation.
+
+The actual prompt, question, necessary history, citation metadata and output
+reservation share the context_budget.py calculation. Standalone document
+questions omit unrelated past exchanges. Section follow-ups restrict retrieval
+to that section before ranking. Parent expansion retains canonical block IDs.
+Comparisons disclose missing evidence rather than inventing the missing position.
+
+### Completed operations and persistence
+
+A completed assistant reply stores versioned operation intent with its evidence:
+route, file identity/fingerprint, table arguments, section and original question.
+Follow-ups read completed ancestors on the active branch, not sibling answers.
+An unambiguous Q3 ? Q4 follow-up updates the validated quarter filter and
+recalculates from the table. Counts can repeat against another explicitly named,
+currently selected document. Section and comparison follow-ups retain scope.
+
+Ambiguous or invalidated operations require clarification. Stopped/error replies
+are not reusable operations. Older replies without sufficient operation metadata
+also require a restated request rather than guessing.
+
+Final response text/status, citations, tool records and required operation
+metadata commit in one SQLite transaction. Streaming checkpoints remain.
+A failed completion transaction reports an error and preserves recoverable text;
+it cannot leave a successful reply with missing required operation context.
+
+### Caches and compatibility
+
+`RAG_VECTOR_CACHE_MIB` defaults to **32**; **0** disables the packed-vector cache.
+Entries use float32 arrays, not lists of Python floats. The LRU accounts for keys,
+containers and arrays. Keys include conversation/file scope, embedding
+fingerprint, representation version, index generation and the filtered chunk set.
+SQLite triggers update generation counters in the same transaction as mutations.
+Retrieval revalidates scope/generation before consuming a cache and before returning
+evidence. A stale in-flight load cannot publish; changes cause a retry message.
+Replacement/deletion evicts affected entries.
+
+Model metadata is shared within a request, with fresh compatibility checks around
+embedding and summary work. There is no cross-request stale tag-to-digest cache.
+Identical query embeddings are reused within the request.
+
+Summary caches include document identity/content, scope, parser representation,
+resolved chat-model digest, prompt version and settings. Unknown digests disable
+reuse. Complete-document map/reduce coverage is retained, and a further reduction
+fits the final synthesis budget when necessary. The **64-call / 15-minute**
+limits remain absolute ceilings, not targets. No general answer cache was added.
+
+### Grounding and optional review
+
+Deterministic checks validate applicable source IDs, explicitly attributed
+quotations, page references and tool provenance. Arithmetic answers are rendered
+from validated tool results rather than LLM calculations. These checks do not
+prove arbitrary natural-language claims.
+
+```powershell
+$env:RAG_CLAIM_REVIEW = "off"  # off | auto | always; default off
+$env:RAG_CLAIM_REVIEW_TIMEOUT_SECONDS = "15"
+```
+
+- **off:** deterministic checks only.
+- **auto:** one bounded advisory call for complex synthesis/comparisons.
+- **always:** one bounded advisory call for document-grounded LLM answers;
+  ordinary chat and deterministic calculations are excluded.
+
+Review uses the existing configured chat model after its generation slot is
+released. A checking status is displayed while review runs. Justified warnings
+are appended and persisted exactly as streamed; earlier text is never rewritten.
+Timeout/failure records an unavailable review, not a factual verdict. Stop and
+disconnect remain cancellable during review. Review latency is recorded separately.
+
+### Evaluation and reproducible measurements
+
+```powershell
+..\.venv\Scripts\python.exe -B -m unittest discover -s tests -p "check_*.py"
+..\.venv\Scripts\python.exe -B tests/benchmark_vectors.py --output tests/results/vector-scans.json
+..\.venv\Scripts\python.exe -B tests/evaluate_rag.py --split development --output tests/results/development-offline.json
+..\.venv\Scripts\python.exe -B tests/evaluate_rag.py --live --split development --output tests/results/development-live.json
+..\.venv\Scripts\python.exe -B tests/evaluate_rag.py --split held_out --output tests/results/held-out-offline.json
+..\.venv\Scripts\python.exe -B tests/evaluate_rag.py --live --split held_out --output tests/results/held-out-live.json
+```
+
+The corpus contains **80 fictional cases**, split into 40 development and 40
+held-out cases by document/scenario family. Do not tune against held-out results.
+Offline runs exercise lexical fallback, routing, exact tools and API contracts.
+Their fixture-generated prose is deliberately **not** scored as model quality.
+Live runs require already-installed models and never download them.
+
+Reports distinguish file-level Hit@K/Recall@K/MRR/binary nDCG, route accuracy,
+tool-result checks, reference-term presence, citation-ID validity, abstention,
+call counts and latency. Reference-term presence is not entailment or complete
+answer correctness. See tests/EVALUATION.md for manual quality rubrics.
+Unmeasured fields remain null, not passes.
+
+Measured 20-repetition CPU scan results on this machine:
+
+| Vectors ? dimensions | JSON scan median / p95 | Cold packed build + scan median | Warm scan median / p95 | Cache including overhead |
+| --- | --- | --- | --- | --- |
+| 100 ? 768 | 38.1 / 54.0 ms | 40.3 ms | 6.0 / 8.2 ms | 322,818 bytes |
+| 1,000 ? 768 | 357.4 / 403.1 ms | 383.7 ms | 58.2 / 73.9 ms | 3,221,922 bytes |
+| 4,000 ? 768 | 1,454.6 / 1,569.5 ms | 1,540.6 ms | 228.4 / 299.8 ms | 12,890,746 bytes |
+
+The top-30 order was identical after float32 conversion in these samples; maximum
+score difference was approximately 3.15e-9. This does not guarantee identical
+ordering for near-ties in every corpus. Cold caching costs more than scanning
+once. These CPU measurements exclude SQLite and Ollama and do not establish an
+end-to-end speedup. Raw results are in tests/results/vector-scans.json.
+
+Request diagnostics separately record rewrite, embedding, lexical/dense search,
+reranking, generation, review, model queue/inference time, total latency and first
+visible answer token. Optional title generation happens afterward and is excluded
+from answer-call counts. Normal diagnostics do not retain retrieved document text.

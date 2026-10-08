@@ -2,10 +2,12 @@
 import asyncio
 import json
 import os
+import time
+from .request_state import current, purpose
 from threading import BoundedSemaphore, Lock
 from collections import deque
 import ollama
-from context_budget import check, CONTEXT_TOKENS, OUTPUT_TOKENS
+from .context_budget import check, CONTEXT_TOKENS, OUTPUT_TOKENS
 
 CHAT_MODEL = os.getenv("CHAT_MODEL", "llama3.2:3b")
 EMBED_MODEL = os.getenv("EMBED_MODEL", "embeddinggemma:latest")
@@ -20,7 +22,9 @@ class ProviderClient:
     async def _take(self, slot):
         # A threading semaphore also bounds legacy synchronous title calls and
         # works across TestClient/event-loop lifetimes. Waiting is cancellable.
+        started=time.perf_counter()
         await self.provider.acquire(slot)
+        if current.get(): current.get().add_time("model_queue",time.perf_counter()-started)
         self.held = slot
 
     def _release(self):
@@ -37,8 +41,12 @@ class ProviderClient:
         slot = self.provider.vision_slots if any(m.get("images") for m in kwargs.get("messages", [])) else self.provider.text_slots
         await self._take(slot)
         try:
+            state=current.get()
+            if state: state.call(purpose.get())
+            model_started=time.perf_counter()
             response = await self.raw.chat(**kwargs)
             if not kwargs.get("stream"):
+                if state: state.add_time("model_inference",time.perf_counter()-model_started)
                 self._release()
                 return response
             async def stream():
@@ -47,17 +55,25 @@ class ProviderClient:
                         yield part
                 finally:
                     await response.aclose()
+                    if state: state.add_time("model_inference",time.perf_counter()-model_started)
                     self._release()
             return stream()
         except BaseException:
+            if current.get() and "model_started" in locals():
+                current.get().add_time("model_inference",time.perf_counter()-model_started)
             self._release()
             raise
 
     async def embed(self, **kwargs):
         async with self.provider.slot(self.provider.embedding_slots):
-            return await self.raw.embed(**kwargs)
+            state=current.get(); started=time.perf_counter()
+            if state: state.call("embedding")
+            try: return await self.raw.embed(**kwargs)
+            finally:
+                if state: state.add_time("embedding",time.perf_counter()-started)
 
     async def list(self):
+        if current.get(): current.get().call("metadata")
         return await self.raw.list()
 
     async def show(self, model):

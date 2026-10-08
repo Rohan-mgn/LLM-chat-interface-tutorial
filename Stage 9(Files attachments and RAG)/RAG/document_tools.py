@@ -112,7 +112,8 @@ def list_headings(blocks):
             for b in blocks if b.get("type")=="heading"]
 
 def get_section(blocks,section):
-    exact=[b for b in blocks if b.get("section","").casefold()==section.casefold() or b.get("heading","").casefold()==section.casefold()]
+    normalize=lambda value:re.sub(r"^section\s+", "", value.strip().casefold())
+    exact=[b for b in blocks if normalize(b.get("section",""))==normalize(section) or normalize(b.get("heading",""))==normalize(section)]
     if not exact:raise ValueError("Section not found. Available sections: "+", ".join(list_sections(blocks)[:30]))
     return exact
 

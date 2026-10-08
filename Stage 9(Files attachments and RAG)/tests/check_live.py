@@ -40,7 +40,7 @@ uvicorn.run(module.app, host='127.0.0.1', port=int(sys.argv[3]), log_level='warn
 
 
 def main():
-    test_root = (ROOT / "data").resolve()
+    test_root = (STAGE / "tests" / ".artifacts").resolve()
     run_dir = test_root / ("stage9-live-" + uuid.uuid4().hex)
     run_dir.mkdir(parents=True)
     with socket.socket() as sock:

@@ -71,7 +71,7 @@ def main():
         os.chdir(previous_cwd)
     print("PASS: only actual runtime files match; launch directory does not affect the scope.", flush=True)
 
-    run_dir = ROOT / "data" / ("reload-check-" + uuid.uuid4().hex)
+    run_dir = STAGE / "tests" / ".artifacts" / ("reload-check-" + uuid.uuid4().hex)
     app_dir = run_dir / STAGE.name
     app_dir.mkdir(parents=True)
     shutil.copy2(STAGE / "run.py", app_dir / "run.py")
@@ -155,7 +155,7 @@ def main():
         print("\n".join(lines)[-6000:], flush=True)
         raise
     finally:
-        assert run_dir.resolve().parent == (ROOT / "data").resolve()
+        assert run_dir.resolve().parent == (STAGE / "tests" / ".artifacts").resolve()
         assert run_dir.name.startswith("reload-check-")
         shutil.rmtree(run_dir)
 

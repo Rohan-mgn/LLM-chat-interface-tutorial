@@ -1,0 +1,1027 @@
+{
+  "live": true,
+  "settings_fingerprint": "73e9af415efc02c1bb10d85bce4a2f156e33d0b3f7de19a6d5316c9637ac3946",
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "duration_seconds": 212.13,
+  "limitations": "Synthetic cases. Offline: lexical/route/tool contracts only. Term presence is not entailment. Missing scores are unmeasured, not passes.",
+  "overall": {
+    "cases": 13,
+    "hit_at_k": {
+      "mean": 0.5,
+      "measured_cases": 8
+    },
+    "recall_at_k": {
+      "mean": 0.5,
+      "measured_cases": 8
+    },
+    "mrr": {
+      "mean": 0.5,
+      "measured_cases": 8
+    },
+    "ndcg": {
+      "mean": 0.5,
+      "measured_cases": 8
+    },
+    "route_correct": {
+      "mean": 0.7692307692307693,
+      "measured_cases": 13
+    },
+    "tool_correct": {
+      "mean": 1.0,
+      "measured_cases": 4
+    },
+    "answer_fact_terms": {
+      "mean": 0.6666666666666666,
+      "measured_cases": 12
+    },
+    "citation_validity": {
+      "mean": 1.0,
+      "measured_cases": 6
+    },
+    "abstention_correct": {
+      "mean": 0.0,
+      "measured_cases": 1
+    },
+    "total_ms": {
+      "median": 15255.39,
+      "p95": null
+    },
+    "ttft_ms": {
+      "median": 12682.485,
+      "p95": null
+    },
+    "retrieval_ms": {
+      "median": 91.50999999999999,
+      "p95": null
+    },
+    "model_ms": {
+      "median": 24847.74,
+      "p95": null
+    },
+    "model_calls": {
+      "median": 2.0,
+      "p95": null
+    }
+  },
+  "categories": {
+    "direct": {
+      "cases": 2,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 24973.405,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 19618.655,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 123.06500000000001,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 23757.64,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2.0,
+        "p95": null
+      }
+    },
+    "paraphrase": {
+      "cases": 2,
+      "hit_at_k": {
+        "mean": 0.5,
+        "measured_cases": 2
+      },
+      "recall_at_k": {
+        "mean": 0.5,
+        "measured_cases": 2
+      },
+      "mrr": {
+        "mean": 0.5,
+        "measured_cases": 2
+      },
+      "ndcg": {
+        "mean": 0.5,
+        "measured_cases": 2
+      },
+      "route_correct": {
+        "mean": 0.5,
+        "measured_cases": 2
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 0.5,
+        "measured_cases": 2
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 27451.285,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 24969.149999999998,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 14661.565,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 36739.49,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3.0,
+        "p95": null
+      }
+    },
+    "hybrid": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 26649.11,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 21853.62,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 5603.71,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 24944.31,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 4,
+        "p95": null
+      }
+    },
+    "absent_similar": {
+      "cases": 2,
+      "hit_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "total_ms": {
+        "median": 20689.095,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 17580.9,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 7774.469999999999,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 11770.369999999999,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2.5,
+        "p95": null
+      }
+    },
+    "qa_followup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 443.62,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": null,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": null,
+        "p95": null
+      }
+    },
+    "table": {
+      "cases": 3,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "answer_fact_terms": {
+        "mean": 0.6666666666666666,
+        "measured_cases": 3
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 476.59,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 395.11,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "table_followup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 485.02,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 410.91,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "section": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 26469.34,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 17823.51,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 24847.74,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "turbine-1",
+      "family": "turbine",
+      "split": "development",
+      "category": "direct",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "turbine.txt"
+      ],
+      "ranked_files": [
+        "turbine.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 38217.21,
+      "ttft_ms": 31627.33,
+      "retrieval_ms": 112.37,
+      "model_ms": 37031.79,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.02,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.83,
+        "embedding": 109.86,
+        "dense_search": 110.54,
+        "model_queue": 0.01,
+        "model_inference": 37031.79,
+        "answer_generation": 37032.18
+      },
+      "answer": "According to the untrusted document excerpt [SOURCE_4366426cefd313b110087934], the VX-71 turbine inspection interval is 18 days.",
+      "errors": []
+    },
+    {
+      "id": "turbine-2",
+      "family": "turbine",
+      "split": "development",
+      "category": "paraphrase",
+      "status": "completed",
+      "route": "NORMAL_CHAT",
+      "route_correct": 0,
+      "expected_files": [
+        "turbine.txt"
+      ],
+      "ranked_files": [
+        "turbine.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 38564.94,
+      "ttft_ms": 33698.63,
+      "retrieval_ms": 13983.19,
+      "model_ms": 36739.49,
+      "model_calls": 4,
+      "metrics": {
+        "model_queue": 0.06,
+        "model_inference": 36739.49,
+        "routing": 11846.61,
+        "history_compression": 0.04,
+        "query_rewrite": 0.02,
+        "lexical_search": 4.58,
+        "embedding": 73.32,
+        "dense_search": 73.86,
+        "reranking": 13904.75,
+        "answer_generation": 11822.23
+      },
+      "answer": "According to the untrusted document excerpt [SOURCE_4366426cefd313b110087934], the VX-71 turbine casing is made of ceramic material.",
+      "errors": []
+    },
+    {
+      "id": "turbine-3",
+      "family": "turbine",
+      "split": "development",
+      "category": "hybrid",
+      "status": "completed",
+      "route": "NORMAL_CHAT",
+      "route_correct": 0,
+      "expected_files": [
+        "turbine.txt"
+      ],
+      "ranked_files": [
+        "turbine.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 26649.11,
+      "ttft_ms": 21853.62,
+      "retrieval_ms": 5603.71,
+      "model_ms": 24944.31,
+      "model_calls": 4,
+      "metrics": {
+        "model_queue": 0.09,
+        "model_inference": 24944.31,
+        "routing": 7291.83,
+        "history_compression": 0.08,
+        "query_rewrite": 0.03,
+        "lexical_search": 2.73,
+        "embedding": 80.48,
+        "dense_search": 81.15,
+        "reranking": 5519.83,
+        "answer_generation": 12841.02
+      },
+      "answer": "According to the untrusted document excerpt [SOURCE_4366426cefd313b110087934], a coolant leak requires immediate shutdown.",
+      "errors": []
+    },
+    {
+      "id": "turbine-4",
+      "family": "turbine",
+      "split": "development",
+      "category": "absent_similar",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "turbine.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": 1.0,
+      "abstention_correct": 0,
+      "evidence_abstained": false,
+      "total_ms": 15255.39,
+      "ttft_ms": 9125.3,
+      "retrieval_ms": 91.50999999999999,
+      "model_ms": 14178.25,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.13,
+        "query_rewrite": 0.09,
+        "lexical_search": 3.96,
+        "embedding": 87.16,
+        "dense_search": 87.55,
+        "model_queue": 0.01,
+        "model_inference": 14178.25,
+        "answer_generation": 14178.7
+      },
+      "answer": "The untrusted document excerpt [SOURCE_4366426cefd313b110087934] does not specify the VX-71 turbine inspection cost.",
+      "errors": []
+    },
+    {
+      "id": "remote_policy-1",
+      "family": "remote_policy",
+      "split": "development",
+      "category": "direct",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "work.md"
+      ],
+      "ranked_files": [
+        "work.md"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 11729.6,
+      "ttft_ms": 7609.98,
+      "retrieval_ms": 133.76000000000002,
+      "model_ms": 10483.49,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.02,
+        "query_rewrite": 0.01,
+        "lexical_search": 2.05,
+        "embedding": 130.73,
+        "dense_search": 131.71,
+        "model_queue": 0.02,
+        "model_inference": 10483.49,
+        "answer_generation": 10484.33
+      },
+      "answer": "According to the document excerpt [SOURCE_4833fa74c42a992f88b8cbe5], employees may work away from the office on Tuesday and Thursday.",
+      "errors": []
+    },
+    {
+      "id": "remote_policy-2",
+      "family": "remote_policy",
+      "split": "development",
+      "category": "paraphrase",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "work.md"
+      ],
+      "ranked_files": [],
+      "hit_at_k": 0,
+      "recall_at_k": 0.0,
+      "mrr": 0,
+      "ndcg": 0,
+      "tool_correct": null,
+      "answer_fact_terms": 0,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 16337.63,
+      "ttft_ms": 16239.67,
+      "retrieval_ms": 15339.94,
+      "model_ms": null,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.04,
+        "query_rewrite": 0.03,
+        "lexical_search": 2.87,
+        "embedding": 71.61,
+        "dense_search": 72.17,
+        "model_queue": 0.02,
+        "reranking": 15264.9,
+        "answer_generation": 30.69
+      },
+      "answer": "I couldn't find relevant evidence in the selected documents. Try a more specific question or select another file.",
+      "errors": []
+    },
+    {
+      "id": "remote_policy-3",
+      "family": "remote_policy",
+      "split": "development",
+      "category": "qa_followup",
+      "status": "error",
+      "route": null,
+      "route_correct": 0,
+      "expected_files": [
+        "work.md"
+      ],
+      "ranked_files": [],
+      "hit_at_k": 0,
+      "recall_at_k": 0.0,
+      "mrr": 0,
+      "ndcg": 0,
+      "tool_correct": null,
+      "answer_fact_terms": 0,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 443.62,
+      "ttft_ms": null,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": null,
+      "metrics": {},
+      "answer": "",
+      "errors": [
+        "Please restate the document question or calculation; there is no completed operation on this branch to reuse."
+      ]
+    },
+    {
+      "id": "remote_policy-4",
+      "family": "remote_policy",
+      "split": "development",
+      "category": "absent_similar",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "work.md"
+      ],
+      "ranked_files": [],
+      "hit_at_k": 0,
+      "recall_at_k": 0.0,
+      "mrr": 0,
+      "ndcg": 0,
+      "tool_correct": null,
+      "answer_fact_terms": 0,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 26122.8,
+      "ttft_ms": 26036.5,
+      "retrieval_ms": 15457.429999999998,
+      "model_ms": 9362.49,
+      "model_calls": 3,
+      "metrics": {
+        "model_queue": 0.03,
+        "model_inference": 9362.49,
+        "routing": 9712.76,
+        "history_compression": 0.05,
+        "query_rewrite": 0.07,
+        "lexical_search": 3.68,
+        "embedding": 84.38,
+        "dense_search": 85.04,
+        "reranking": 15368.71,
+        "answer_generation": 24.63
+      },
+      "answer": "I couldn't find relevant evidence in the selected documents. Try a more specific question or select another file.",
+      "errors": []
+    },
+    {
+      "id": "sales_ledger-1",
+      "family": "sales_ledger",
+      "split": "development",
+      "category": "table",
+      "status": "completed",
+      "route": "TABLE_ANALYSIS",
+      "route_correct": 1,
+      "expected_files": [
+        "sales.csv"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 1,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 518.43,
+      "ttft_ms": 405.29,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 15.63
+      },
+      "answer": "### sales\\.csv\n\nOperation: table\\_analysis\n\n- sum Revenue: 12\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "sales_ledger-2",
+      "family": "sales_ledger",
+      "split": "development",
+      "category": "table_followup",
+      "status": "completed",
+      "route": "TABLE_ANALYSIS",
+      "route_correct": 1,
+      "expected_files": [
+        "sales.csv"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 1,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 485.02,
+      "ttft_ms": 410.91,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 19.58
+      },
+      "answer": "### sales\\.csv\n\nOperation: table\\_analysis\n\n- sum Revenue: 50\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "sales_ledger-3",
+      "family": "sales_ledger",
+      "split": "development",
+      "category": "table",
+      "status": "completed",
+      "route": "TABLE_ANALYSIS",
+      "route_correct": 1,
+      "expected_files": [
+        "sales.csv"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 0,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 476.59,
+      "ttft_ms": 395.11,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 24.78
+      },
+      "answer": "### sales\\.csv\n\nOperation: table\\_analysis\n\n- average Revenue: 20\\.66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666667\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "sales_ledger-4",
+      "family": "sales_ledger",
+      "split": "development",
+      "category": "table",
+      "status": "completed",
+      "route": "TABLE_ANALYSIS",
+      "route_correct": 1,
+      "expected_files": [
+        "sales.csv"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 1,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 386.44,
+      "ttft_ms": 320.58,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 18.92
+      },
+      "answer": "### sales\\.csv\n\nOperation: table\\_analysis\n\n- max Revenue: 42\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "pump_handbook-1",
+      "family": "pump_handbook",
+      "split": "development",
+      "category": "section",
+      "status": "completed",
+      "route": "SUMMARIZE_SECTION",
+      "route_correct": 1,
+      "expected_files": [
+        "pump.md"
+      ],
+      "ranked_files": [],
+      "hit_at_k": 0,
+      "recall_at_k": 0.0,
+      "mrr": 0,
+      "ndcg": 0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 26469.34,
+      "ttft_ms": 17823.51,
+      "retrieval_ms": 0,
+      "model_ms": 24847.74,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.02,
+        "model_queue": 0.04,
+        "model_inference": 24847.74,
+        "summarization": 13130.22,
+        "answer_generation": 11718.67
+      },
+      "answer": "There is no section 3 mentioned in the provided untrusted document summary. The summary only mentions the pump's magnetic bearings [SOURCE_30142450e9fa9a7e4d0c4f64] and reduced efficiency below freezing [SOURCE_943fa652aa7a2c1e38f54dcf].",
+      "errors": []
+    }
+  ],
+  "status": "Interrupted development trial; superseded by final run after routing fixes"
+}

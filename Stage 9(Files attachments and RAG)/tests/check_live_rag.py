@@ -19,6 +19,7 @@ from fastapi.testclient import TestClient
 
 STAGE=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(STAGE))
+from RAG.evidence import choose_mode
 
 def main():
     spec=importlib.util.spec_from_file_location("stage9_live",STAGE/"main.py")
@@ -37,7 +38,7 @@ def main():
     if missing:
         print("LIVE TEST NOT RUN: required local models are missing: "+", ".join(missing),flush=True)
         raise SystemExit(2)
-    root=STAGE.parent/"data"/("stage9-live-"+uuid4().hex)
+    root=STAGE / "tests" / ".artifacts"/("stage9-live-"+uuid4().hex)
     app.DATA_DIR=root;app.DATABASE=root/"chat.db"
     results=[]
     try:
@@ -68,7 +69,7 @@ def main():
                     for query,expected,answer in fixtures:
                         started=time.perf_counter()
                         try:
-                            hits,_=await app.rag.retrieve(model,cid,[project,sales,irrelevant],query)
+                            hits,_=await app.rag.retrieve(model,cid,[project,sales,irrelevant],query,mode=choose_mode(query))
                         except ValueError:
                             current=await app.rag.descriptor(model)
                             with closing(app.get_connection()) as db:
@@ -96,13 +97,15 @@ def main():
                 rows=client.get(f"/conversations/{conversation}/tree").json()["messages"]
                 return text,rows[-1],round(1000*(time.perf_counter()-started),1)
             answer,row,latency=chat(fixtures[0][0],[project])
+            with closing(app.get_connection()) as db:
+                answer_diagnostics=json.loads(db.execute("SELECT details FROM rag_runs WHERE message_id=?",(row["id"],)).fetchone()[0])
             sources=row["sources"]
             valid_ids={s["id"] for s in sources}
             references=re.findall(r"\[(SOURCE_[^\]]+)\]",answer)
             summary={"retrieval":results,
                 "mean_hit_at_k":sum(x["hit_at_k"] for x in results)/len(results),
                 "mrr":sum(x["reciprocal_rank"] for x in results)/len(results),
-                "answer":answer,"answer_latency_ms":latency,
+                "answer":answer,"answer_latency_ms":latency,"answer_diagnostics":answer_diagnostics,
                 "expected_fact_present":"blue falcon" in answer.casefold(),
                 "citation_id_precision":sum(s in valid_ids for s in references)/len(references) if references else 0,
                 "has_citation":bool(sources),
@@ -134,7 +137,7 @@ def main():
             assert app.documents.row(cid,project)["state"]=="ready"
         print("PASS: real EmbeddingGemma retrieval, cited llama3.2 reply, follow-up, isolation, and restart persistence.",flush=True)
     finally:
-        assert root.resolve().parent==(STAGE.parent/"data").resolve() and root.name.startswith("stage9-live-")
+        assert root.resolve().parent==(STAGE / "tests" / ".artifacts").resolve() and root.name.startswith("stage9-live-")
         if root.exists():shutil.rmtree(root)
 
 if __name__=="__main__":main()

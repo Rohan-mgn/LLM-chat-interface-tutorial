@@ -5,7 +5,7 @@ import json
 from fastapi import APIRouter, File, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from starlette.concurrency import run_in_threadpool
-from documents import MAX_FILE
+from .documents import MAX_FILE
 
 class UploadBodyLimit:
     """Bound the multipart body before Starlette can spool an oversized upload."""
@@ -111,6 +111,7 @@ def router_for(app_module):
                 db.execute("DELETE FROM files WHERE id=? AND conversation_id=?",(fid,cid))
                 # Stored debug contexts can contain deleted document text; erase them too.
                 db.execute("DELETE FROM rag_runs WHERE message_id IN (SELECT id FROM messages WHERE conversation_id=?)",(cid,))
+            rag.vector_cache.invalidate(cid,fid)
             await run_in_threadpool(docs.cleanup)
         finally:
             app_module.conversation_lock.release(cid)

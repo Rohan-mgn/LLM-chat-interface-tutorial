@@ -1,0 +1,3249 @@
+{
+  "live": false,
+  "model_digests_at_start": {},
+  "implementation_fingerprint": "16da19bf23e65bbf06c4274de7f0b22f1a21ca4663442bba3d746f9800423209",
+  "corpus_fingerprint": "594802b8ea2ae63cc7185fdf00585d52cb8aa25cc359b66a22fa89cba9be727a",
+  "context_tokens": 16384,
+  "claim_review_mode": "off",
+  "processor": "Intel64 Family 6 Model 165 Stepping 3, GenuineIntel",
+  "settings_fingerprint": "7f081f9ce7f711e52a25691767f5c19375b1d5880b39da91b632e327a4d2d669",
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "duration_seconds": 8.69,
+  "limitations": "Synthetic cases. Offline: lexical/route/tool contracts only. Term presence is not entailment. Missing scores are unmeasured, not passes.",
+  "overall": {
+    "cases": 40,
+    "hit_at_k": {
+      "mean": 0.7619047619047619,
+      "measured_cases": 21
+    },
+    "recall_at_k": {
+      "mean": 0.7619047619047619,
+      "measured_cases": 21
+    },
+    "mrr": {
+      "mean": 0.7619047619047619,
+      "measured_cases": 21
+    },
+    "ndcg": {
+      "mean": 0.7619047619047619,
+      "measured_cases": 21
+    },
+    "route_correct": {
+      "mean": 1.0,
+      "measured_cases": 40
+    },
+    "tool_correct": {
+      "mean": 1.0,
+      "measured_cases": 10
+    },
+    "answer_fact_terms": {
+      "mean": null,
+      "measured_cases": 0
+    },
+    "citation_validity": {
+      "mean": null,
+      "measured_cases": 0
+    },
+    "abstention_correct": {
+      "mean": null,
+      "measured_cases": 0
+    },
+    "total_ms": {
+      "median": 70.4,
+      "p95": 105.17
+    },
+    "ttft_ms": {
+      "median": 12.165,
+      "p95": 18.52
+    },
+    "retrieval_ms": {
+      "median": 1.53,
+      "p95": 2.6300000000000003
+    },
+    "model_ms": {
+      "median": 14.49,
+      "p95": 18.3
+    },
+    "model_calls": {
+      "median": 2.0,
+      "p95": 2
+    }
+  },
+  "categories": {
+    "direct": {
+      "cases": 2,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 88.13499999999999,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 15.22,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.605,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 13.335,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2.0,
+        "p95": null
+      }
+    },
+    "paraphrase": {
+      "cases": 2,
+      "hit_at_k": {
+        "mean": 0.5,
+        "measured_cases": 2
+      },
+      "recall_at_k": {
+        "mean": 0.5,
+        "measured_cases": 2
+      },
+      "mrr": {
+        "mean": 0.5,
+        "measured_cases": 2
+      },
+      "ndcg": {
+        "mean": 0.5,
+        "measured_cases": 2
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 60.480000000000004,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 10.665,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.47,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 7.5,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 1.5,
+        "p95": null
+      }
+    },
+    "hybrid": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 62.37,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 12.27,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.3699999999999999,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 14.17,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "absent_similar": {
+      "cases": 4,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 4
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 64.845,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 12.510000000000002,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.765,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 14.055,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2.0,
+        "p95": null
+      }
+    },
+    "qa_followup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 64.14,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 11.08,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.57,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 0.01,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 1,
+        "p95": null
+      }
+    },
+    "table": {
+      "cases": 3,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 56.88,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 4.86,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "table_followup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 61.21,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 7.15,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "section": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 112.34,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 28.22,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 15.43,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "section_followup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 70.09,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 12.26,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.53,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 0.0,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 1,
+        "p95": null
+      }
+    },
+    "section_lookup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 74.05,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 12.87,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.53,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 18.75,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "absent": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 70.71,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 9.2,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.58,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 0.0,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 1,
+        "p95": null
+      }
+    },
+    "comparison": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 96.33,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 18.52,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.59,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 13.78,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "comparison_followup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 74.46,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 17.7,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.57,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 16.54,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "multi_document": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 71.17,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 18.14,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.7,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 14.38,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "conflict": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 109.74,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 20.91,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 2.6300000000000003,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 0.02,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3,
+        "p95": null
+      }
+    },
+    "exact_count": {
+      "cases": 2,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 76.69,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 11.195,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0.0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0.0,
+        "p95": null
+      }
+    },
+    "count_followup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 59.54,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 6.72,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "exact_phrase": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 62.09,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 7.56,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "zero_count": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 67.02,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 8.59,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "identifier": {
+      "cases": 3,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 92.84,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 13.06,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.57,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 17.46,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "lexical": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 70.02,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 10.39,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.33,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 16.77,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "absent_identifier": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 71.41,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 8.98,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.47,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 0.01,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 1,
+        "p95": null
+      }
+    },
+    "long_document": {
+      "cases": 2,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 86.265,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 14.120000000000001,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 2.01,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 15.120000000000001,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2.0,
+        "p95": null
+      }
+    },
+    "injection": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 102.97,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 10.85,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.38,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 17.22,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "injection_absent": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 97.14,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 17.36,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 2.81,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 0.01,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 1,
+        "p95": null
+      }
+    },
+    "exact_search": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 66.62,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 4.53,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "partial": {
+      "cases": 2,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 70.225,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 11.6,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.48,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 16.78,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2.0,
+        "p95": null
+      }
+    },
+    "ambiguous": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 67.35,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 13.28,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 1.58,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 0.0,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 1,
+        "p95": null
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "turbine-1",
+      "family": "turbine",
+      "split": "development",
+      "category": "direct",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "turbine.txt"
+      ],
+      "ranked_files": [
+        "turbine.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 92.07,
+      "ttft_ms": 18.37,
+      "retrieval_ms": 1.58,
+      "model_ms": 13.95,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.27,
+        "dense_search": 0.06,
+        "model_queue": 0.02,
+        "model_inference": 13.95,
+        "reranking": 0.25,
+        "answer_generation": 14.31
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "turbine-2",
+      "family": "turbine",
+      "split": "development",
+      "category": "paraphrase",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "turbine.txt"
+      ],
+      "ranked_files": [
+        "turbine.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 67.15,
+      "ttft_ms": 13.51,
+      "retrieval_ms": 1.54,
+      "model_ms": 15.0,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.27,
+        "dense_search": 0.05,
+        "model_queue": 0.02,
+        "model_inference": 15.0,
+        "reranking": 0.22,
+        "answer_generation": 15.37
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "turbine-3",
+      "family": "turbine",
+      "split": "development",
+      "category": "hybrid",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "turbine.txt"
+      ],
+      "ranked_files": [
+        "turbine.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 62.37,
+      "ttft_ms": 12.27,
+      "retrieval_ms": 1.3699999999999999,
+      "model_ms": 14.17,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.14,
+        "dense_search": 0.05,
+        "model_queue": 0.02,
+        "model_inference": 14.17,
+        "reranking": 0.18,
+        "answer_generation": 14.53
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "turbine-4",
+      "family": "turbine",
+      "split": "development",
+      "category": "absent_similar",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "turbine.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": false,
+      "total_ms": 63.81,
+      "ttft_ms": 15.29,
+      "retrieval_ms": 2.03,
+      "model_ms": 13.22,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.74,
+        "dense_search": 0.11,
+        "model_queue": 0.02,
+        "model_inference": 13.22,
+        "reranking": 0.18,
+        "answer_generation": 13.58
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "remote_policy-1",
+      "family": "remote_policy",
+      "split": "development",
+      "category": "direct",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "work.md"
+      ],
+      "ranked_files": [
+        "work.md"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 84.2,
+      "ttft_ms": 12.07,
+      "retrieval_ms": 1.63,
+      "model_ms": 12.72,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.39,
+        "dense_search": 0.05,
+        "model_queue": 0.02,
+        "model_inference": 12.72,
+        "reranking": 0.19,
+        "answer_generation": 13.1
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "remote_policy-2",
+      "family": "remote_policy",
+      "split": "development",
+      "category": "paraphrase",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "work.md"
+      ],
+      "ranked_files": [],
+      "hit_at_k": 0,
+      "recall_at_k": 0.0,
+      "mrr": 0,
+      "ndcg": 0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 53.81,
+      "ttft_ms": 7.82,
+      "retrieval_ms": 1.4,
+      "model_ms": 0.0,
+      "model_calls": 1,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.15,
+        "dense_search": 0.05,
+        "model_queue": 0.01,
+        "model_inference": 0.0,
+        "reranking": 0.2,
+        "answer_generation": 12.69
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "remote_policy-3",
+      "family": "remote_policy",
+      "split": "development",
+      "category": "qa_followup",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "work.md"
+      ],
+      "ranked_files": [],
+      "hit_at_k": 0,
+      "recall_at_k": 0.0,
+      "mrr": 0,
+      "ndcg": 0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 64.14,
+      "ttft_ms": 11.08,
+      "retrieval_ms": 1.57,
+      "model_ms": 0.01,
+      "model_calls": 1,
+      "metrics": {
+        "history_compression": 0.04,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.34,
+        "dense_search": 0.05,
+        "model_queue": 0.01,
+        "model_inference": 0.01,
+        "reranking": 0.18,
+        "answer_generation": 16.1
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "remote_policy-4",
+      "family": "remote_policy",
+      "split": "development",
+      "category": "absent_similar",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "work.md"
+      ],
+      "ranked_files": [
+        "work.md"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 64.04,
+      "ttft_ms": 10.4,
+      "retrieval_ms": 1.3599999999999999,
+      "model_ms": 13.51,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.14,
+        "dense_search": 0.05,
+        "model_queue": 0.02,
+        "model_inference": 13.51,
+        "reranking": 0.17,
+        "answer_generation": 13.84
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "sales_ledger-1",
+      "family": "sales_ledger",
+      "split": "development",
+      "category": "table",
+      "status": "completed",
+      "route": "TABLE_ANALYSIS",
+      "route_correct": 1,
+      "expected_files": [
+        "sales.csv"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 96.58,
+      "ttft_ms": 7.36,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 18.07
+      },
+      "answer": "### sales\\.csv\n\nOperation: table\\_analysis\n\n- sum Revenue: 12\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "sales_ledger-2",
+      "family": "sales_ledger",
+      "split": "development",
+      "category": "table_followup",
+      "status": "completed",
+      "route": "TABLE_ANALYSIS",
+      "route_correct": 1,
+      "expected_files": [
+        "sales.csv"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 61.21,
+      "ttft_ms": 7.15,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 14.3
+      },
+      "answer": "### sales\\.csv\n\nOperation: table\\_analysis\n\n- sum Revenue: 50\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "sales_ledger-3",
+      "family": "sales_ledger",
+      "split": "development",
+      "category": "table",
+      "status": "completed",
+      "route": "TABLE_ANALYSIS",
+      "route_correct": 1,
+      "expected_files": [
+        "sales.csv"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 56.88,
+      "ttft_ms": 4.58,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 12.59
+      },
+      "answer": "### sales\\.csv\n\nOperation: table\\_analysis\n\n- average Revenue: 20\\.66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666667\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "sales_ledger-4",
+      "family": "sales_ledger",
+      "split": "development",
+      "category": "table",
+      "status": "completed",
+      "route": "TABLE_ANALYSIS",
+      "route_correct": 1,
+      "expected_files": [
+        "sales.csv"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 54.74,
+      "ttft_ms": 4.86,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 13.34
+      },
+      "answer": "### sales\\.csv\n\nOperation: table\\_analysis\n\n- max Revenue: 42\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "pump_handbook-1",
+      "family": "pump_handbook",
+      "split": "development",
+      "category": "section",
+      "status": "completed",
+      "route": "SUMMARIZE_SECTION",
+      "route_correct": 1,
+      "expected_files": [
+        "pump.md"
+      ],
+      "ranked_files": [],
+      "hit_at_k": 0,
+      "recall_at_k": 0.0,
+      "mrr": 0,
+      "ndcg": 0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 112.34,
+      "ttft_ms": 28.22,
+      "retrieval_ms": 0,
+      "model_ms": 15.43,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.02,
+        "model_queue": 0.03,
+        "model_inference": 15.43,
+        "summarization": 0.13,
+        "answer_generation": 15.87
+      },
+      "answer": null,
+      "errors": [
+        "The model did not cite a retrieved passage. Open Files to verify the answer."
+      ]
+    },
+    {
+      "id": "pump_handbook-2",
+      "family": "pump_handbook",
+      "split": "development",
+      "category": "section_followup",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "pump.md"
+      ],
+      "ranked_files": [],
+      "hit_at_k": 0,
+      "recall_at_k": 0.0,
+      "mrr": 0,
+      "ndcg": 0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 70.09,
+      "ttft_ms": 12.26,
+      "retrieval_ms": 1.53,
+      "model_ms": 0.0,
+      "model_calls": 1,
+      "metrics": {
+        "history_compression": 0.02,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.3,
+        "dense_search": 0.05,
+        "model_queue": 0.01,
+        "model_inference": 0.0,
+        "reranking": 0.18,
+        "answer_generation": 17.18
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "pump_handbook-3",
+      "family": "pump_handbook",
+      "split": "development",
+      "category": "section_lookup",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "pump.md"
+      ],
+      "ranked_files": [
+        "pump.md"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 74.05,
+      "ttft_ms": 12.87,
+      "retrieval_ms": 1.53,
+      "model_ms": 18.75,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.32,
+        "dense_search": 0.05,
+        "model_queue": 0.02,
+        "model_inference": 18.75,
+        "reranking": 0.16,
+        "answer_generation": 19.12
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "pump_handbook-4",
+      "family": "pump_handbook",
+      "split": "development",
+      "category": "absent",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": true,
+      "total_ms": 70.71,
+      "ttft_ms": 9.2,
+      "retrieval_ms": 1.58,
+      "model_ms": 0.0,
+      "model_calls": 1,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.37,
+        "dense_search": 0.04,
+        "model_queue": 0.01,
+        "model_inference": 0.0,
+        "reranking": 0.17,
+        "answer_generation": 17.93
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "service_contracts-1",
+      "family": "service_contracts",
+      "split": "development",
+      "category": "comparison",
+      "status": "completed",
+      "route": "COMPARE_DOCUMENTS",
+      "route_correct": 1,
+      "expected_files": [
+        "blue.txt",
+        "red.txt"
+      ],
+      "ranked_files": [
+        "red.txt",
+        "blue.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 96.33,
+      "ttft_ms": 18.52,
+      "retrieval_ms": 1.59,
+      "model_ms": 13.78,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.06,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.32,
+        "dense_search": 0.06,
+        "model_queue": 0.02,
+        "model_inference": 13.78,
+        "reranking": 0.21,
+        "answer_generation": 14.23
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "service_contracts-2",
+      "family": "service_contracts",
+      "split": "development",
+      "category": "comparison_followup",
+      "status": "completed",
+      "route": "COMPARE_DOCUMENTS",
+      "route_correct": 1,
+      "expected_files": [
+        "blue.txt",
+        "red.txt"
+      ],
+      "ranked_files": [
+        "red.txt",
+        "blue.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 74.46,
+      "ttft_ms": 17.7,
+      "retrieval_ms": 1.57,
+      "model_ms": 16.54,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.03,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.33,
+        "dense_search": 0.06,
+        "model_queue": 0.03,
+        "model_inference": 16.54,
+        "reranking": 0.18,
+        "answer_generation": 17.18
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "service_contracts-3",
+      "family": "service_contracts",
+      "split": "development",
+      "category": "multi_document",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "red.txt"
+      ],
+      "ranked_files": [
+        "red.txt",
+        "blue.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 71.17,
+      "ttft_ms": 18.14,
+      "retrieval_ms": 1.7,
+      "model_ms": 14.38,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.43,
+        "dense_search": 0.06,
+        "model_queue": 0.03,
+        "model_inference": 14.38,
+        "reranking": 0.21,
+        "answer_generation": 14.79
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "service_contracts-4",
+      "family": "service_contracts",
+      "split": "development",
+      "category": "conflict",
+      "status": "completed",
+      "route": "COMPARE_DOCUMENTS",
+      "route_correct": 1,
+      "expected_files": [
+        "blue.txt",
+        "red.txt"
+      ],
+      "ranked_files": [],
+      "hit_at_k": 0,
+      "recall_at_k": 0.0,
+      "mrr": 0,
+      "ndcg": 0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 109.74,
+      "ttft_ms": 20.91,
+      "retrieval_ms": 2.6300000000000003,
+      "model_ms": 0.02,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.11,
+        "model_queue": 0.06,
+        "model_inference": 0.02,
+        "query_rewrite": 0.42,
+        "lexical_search": 2.22,
+        "dense_search": 0.08,
+        "reranking": 0.33,
+        "answer_generation": 20.46
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "transformer_counts-1",
+      "family": "transformer_counts",
+      "split": "development",
+      "category": "exact_count",
+      "status": "completed",
+      "route": "COUNT",
+      "route_correct": 1,
+      "expected_files": [
+        "A.txt"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 83.96,
+      "ttft_ms": 5.45,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 13.95
+      },
+      "answer": "### A\\.txt\n\nOperation: count\\_word\n\nCount: **2**\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "transformer_counts-2",
+      "family": "transformer_counts",
+      "split": "development",
+      "category": "count_followup",
+      "status": "completed",
+      "route": "COUNT",
+      "route_correct": 1,
+      "expected_files": [
+        "B.txt"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 59.54,
+      "ttft_ms": 6.72,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 13.17
+      },
+      "answer": "### B\\.txt\n\nOperation: count\\_word\n\nCount: **2**\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "transformer_counts-3",
+      "family": "transformer_counts",
+      "split": "development",
+      "category": "exact_phrase",
+      "status": "completed",
+      "route": "COUNT",
+      "route_correct": 1,
+      "expected_files": [
+        "A.txt"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 62.09,
+      "ttft_ms": 7.56,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 13.19
+      },
+      "answer": "### A\\.txt\n\nOperation: count\\_phrase\n\nCount: **1**\n\n### B\\.txt\n\nOperation: count\\_phrase\n\nCount: **0**\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "transformer_counts-4",
+      "family": "transformer_counts",
+      "split": "development",
+      "category": "zero_count",
+      "status": "completed",
+      "route": "COUNT",
+      "route_correct": 1,
+      "expected_files": [
+        "A.txt",
+        "B.txt"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 67.02,
+      "ttft_ms": 8.59,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 16.13
+      },
+      "answer": "### A\\.txt\n\nOperation: count\\_word\n\nCount: **0**\n\n### B\\.txt\n\nOperation: count\\_word\n\nCount: **0**\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "gateway_codes-1",
+      "family": "gateway_codes",
+      "split": "development",
+      "category": "identifier",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "errors.txt"
+      ],
+      "ranked_files": [
+        "errors.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 105.17,
+      "ttft_ms": 13.06,
+      "retrieval_ms": 1.57,
+      "model_ms": 17.46,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.32,
+        "dense_search": 0.06,
+        "model_queue": 0.02,
+        "model_inference": 17.46,
+        "reranking": 0.19,
+        "answer_generation": 17.86
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "gateway_codes-2",
+      "family": "gateway_codes",
+      "split": "development",
+      "category": "identifier",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "errors.txt"
+      ],
+      "ranked_files": [
+        "errors.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 74.6,
+      "ttft_ms": 12.37,
+      "retrieval_ms": 1.56,
+      "model_ms": 17.77,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.29,
+        "dense_search": 0.05,
+        "model_queue": 0.02,
+        "model_inference": 17.77,
+        "reranking": 0.22,
+        "answer_generation": 18.11
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "gateway_codes-3",
+      "family": "gateway_codes",
+      "split": "development",
+      "category": "lexical",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "errors.txt"
+      ],
+      "ranked_files": [
+        "errors.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 70.02,
+      "ttft_ms": 10.39,
+      "retrieval_ms": 1.33,
+      "model_ms": 16.77,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.07,
+        "dense_search": 0.06,
+        "model_queue": 0.02,
+        "model_inference": 16.77,
+        "reranking": 0.2,
+        "answer_generation": 17.1
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "gateway_codes-4",
+      "family": "gateway_codes",
+      "split": "development",
+      "category": "absent_identifier",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": true,
+      "total_ms": 71.41,
+      "ttft_ms": 8.98,
+      "retrieval_ms": 1.47,
+      "model_ms": 0.01,
+      "model_calls": 1,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.16,
+        "dense_search": 0.05,
+        "model_queue": 0.01,
+        "model_inference": 0.01,
+        "reranking": 0.26,
+        "answer_generation": 18.27
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "long_valve_manual-1",
+      "family": "long_valve_manual",
+      "split": "development",
+      "category": "long_document",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "manual.txt"
+      ],
+      "ranked_files": [
+        "manual.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 103.39,
+      "ttft_ms": 15.19,
+      "retrieval_ms": 2.16,
+      "model_ms": 14.97,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.94,
+        "dense_search": 0.05,
+        "model_queue": 0.02,
+        "model_inference": 14.97,
+        "reranking": 0.17,
+        "answer_generation": 15.3
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "long_valve_manual-2",
+      "family": "long_valve_manual",
+      "split": "development",
+      "category": "long_document",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "manual.txt"
+      ],
+      "ranked_files": [
+        "manual.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 69.14,
+      "ttft_ms": 13.05,
+      "retrieval_ms": 1.8599999999999999,
+      "model_ms": 15.27,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.64,
+        "dense_search": 0.06,
+        "model_queue": 0.02,
+        "model_inference": 15.27,
+        "reranking": 0.16,
+        "answer_generation": 15.67
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "long_valve_manual-3",
+      "family": "long_valve_manual",
+      "split": "development",
+      "category": "absent_similar",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "manual.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": false,
+      "total_ms": 65.65,
+      "ttft_ms": 14.05,
+      "retrieval_ms": 2.72,
+      "model_ms": 14.6,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 2.47,
+        "dense_search": 0.05,
+        "model_queue": 0.05,
+        "model_inference": 14.6,
+        "reranking": 0.2,
+        "answer_generation": 14.99
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "long_valve_manual-4",
+      "family": "long_valve_manual",
+      "split": "development",
+      "category": "exact_count",
+      "status": "completed",
+      "route": "COUNT",
+      "route_correct": 1,
+      "expected_files": [
+        "manual.txt"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 69.42,
+      "ttft_ms": 16.94,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 13.95
+      },
+      "answer": "### manual\\.txt\n\nOperation: count\\_word\n\nCount: **1**\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "poisoned_memo-1",
+      "family": "poisoned_memo",
+      "split": "development",
+      "category": "injection",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "memo.txt"
+      ],
+      "ranked_files": [
+        "memo.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 102.97,
+      "ttft_ms": 10.85,
+      "retrieval_ms": 1.38,
+      "model_ms": 17.22,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.18,
+        "dense_search": 0.04,
+        "model_queue": 0.02,
+        "model_inference": 17.22,
+        "reranking": 0.16,
+        "answer_generation": 17.56
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "poisoned_memo-2",
+      "family": "poisoned_memo",
+      "split": "development",
+      "category": "injection_absent",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": true,
+      "total_ms": 97.14,
+      "ttft_ms": 17.36,
+      "retrieval_ms": 2.81,
+      "model_ms": 0.01,
+      "model_calls": 1,
+      "metrics": {
+        "history_compression": 0.03,
+        "query_rewrite": 0.01,
+        "lexical_search": 2.38,
+        "dense_search": 0.09,
+        "model_queue": 0.02,
+        "model_inference": 0.01,
+        "reranking": 0.34,
+        "answer_generation": 19.13
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "poisoned_memo-3",
+      "family": "poisoned_memo",
+      "split": "development",
+      "category": "exact_search",
+      "status": "completed",
+      "route": "EXACT_SEARCH",
+      "route_correct": 1,
+      "expected_files": [
+        "memo.txt"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 66.62,
+      "ttft_ms": 4.53,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 17.75
+      },
+      "answer": "### memo\\.txt\n\nOperation: find\\_exact\\_phrase\n\nCount: **1**\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "poisoned_memo-4",
+      "family": "poisoned_memo",
+      "split": "development",
+      "category": "absent_similar",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "memo.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": false,
+      "total_ms": 89.2,
+      "ttft_ms": 10.97,
+      "retrieval_ms": 1.5,
+      "model_ms": 18.3,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.29,
+        "dense_search": 0.04,
+        "model_queue": 0.02,
+        "model_inference": 18.3,
+        "reranking": 0.17,
+        "answer_generation": 18.81
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "archive_ids-1",
+      "family": "archive_ids",
+      "split": "development",
+      "category": "identifier",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "archive.txt"
+      ],
+      "ranked_files": [
+        "archive.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 92.84,
+      "ttft_ms": 17.51,
+      "retrieval_ms": 1.8800000000000001,
+      "model_ms": 15.06,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.59,
+        "dense_search": 0.06,
+        "model_queue": 0.03,
+        "model_inference": 15.06,
+        "reranking": 0.23,
+        "answer_generation": 15.68
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "archive_ids-2",
+      "family": "archive_ids",
+      "split": "development",
+      "category": "partial",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "archive.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": false,
+      "total_ms": 66.2,
+      "ttft_ms": 11.43,
+      "retrieval_ms": 1.41,
+      "model_ms": 17.56,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.2,
+        "dense_search": 0.05,
+        "model_queue": 0.02,
+        "model_inference": 17.56,
+        "reranking": 0.16,
+        "answer_generation": 17.92
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "archive_ids-3",
+      "family": "archive_ids",
+      "split": "development",
+      "category": "partial",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "archive.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": false,
+      "total_ms": 74.25,
+      "ttft_ms": 11.77,
+      "retrieval_ms": 1.55,
+      "model_ms": 16.0,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.32,
+        "dense_search": 0.05,
+        "model_queue": 0.02,
+        "model_inference": 16.0,
+        "reranking": 0.18,
+        "answer_generation": 16.36
+      },
+      "answer": null,
+      "errors": []
+    },
+    {
+      "id": "archive_ids-4",
+      "family": "archive_ids",
+      "split": "development",
+      "category": "ambiguous",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": true,
+      "total_ms": 67.35,
+      "ttft_ms": 13.28,
+      "retrieval_ms": 1.58,
+      "model_ms": 0.0,
+      "model_calls": 1,
+      "metrics": {
+        "history_compression": 0.06,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.36,
+        "dense_search": 0.05,
+        "model_queue": 0.01,
+        "model_inference": 0.0,
+        "reranking": 0.17,
+        "answer_generation": 16.07
+      },
+      "answer": null,
+      "errors": []
+    }
+  ]
+}

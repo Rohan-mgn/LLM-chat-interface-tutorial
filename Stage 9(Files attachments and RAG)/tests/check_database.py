@@ -46,7 +46,7 @@ class Checks(unittest.TestCase):
         spec = importlib.util.spec_from_file_location("stage9_" + uuid4().hex, STAGE / "main.py")
         self.app = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(self.app)
-        self.root = STAGE.parent / "data" / ("stage9-check-" + uuid4().hex)
+        self.root = STAGE / "tests" / ".artifacts" / ("stage9-check-" + uuid4().hex)
         self.app.DATA_DIR, self.app.DATABASE = self.root, self.root / "chat.db"
         self.calls, self.clients, self.mode = [], [], "normal"
         def model(**kwargs):
@@ -63,7 +63,7 @@ class Checks(unittest.TestCase):
 
     def tearDown(self):
         self.client.__exit__(None, None, None)
-        assert self.root.resolve().parent == (STAGE.parent / "data").resolve()
+        assert self.root.resolve().parent == (STAGE / "tests" / ".artifacts").resolve()
         assert self.root.name.startswith("stage9-check-")
         shutil.rmtree(self.root)
 
@@ -433,12 +433,12 @@ class Checks(unittest.TestCase):
 
     def test_failed_final_save_never_reports_success(self):
         cid = self.create()
-        real_save = self.app.save_generation
-        def fail_completed(message_id, content, status):
+        real_save = self.app.complete_generation
+        def fail_completed(message_id, content, status, result):
             if status == "completed":
                 raise sqlite3.OperationalError("Disk full")
-            return real_save(message_id, content, status)
-        with patch.object(self.app, "save_generation", side_effect=fail_completed):
+            return real_save(message_id, content, status, result)
+        with patch.object(self.app, "complete_generation", side_effect=fail_completed):
             events = self.events(self.send(cid))
         self.assertEqual(events[-1]["status"], "error")
         self.assertTrue(all(e["generation_id"] == events[0]["generation_id"] for e in events))

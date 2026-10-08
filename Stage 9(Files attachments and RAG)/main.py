@@ -2,7 +2,11 @@ from contextlib import asynccontextmanager, closing
 from pathlib import Path
 import asyncio
 import json
+import os
 import sqlite3
+import time
+from RAG.request_state import RequestState, current, phase
+from RAG.grounding import review
 from threading import Lock
 from typing import Literal
 from uuid import UUID
@@ -14,12 +18,12 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from starlette.concurrency import run_in_threadpool
 import ollama
-from model_provider import ModelProvider, CHAT_MODEL
-from context_budget import check, message_tokens
-from document_agent import DocumentAgent
-from documents import Documents
-from rag import Rag, CitationFilter
-from file_routes import router_for, UploadBodyLimit
+from RAG.model_provider import ModelProvider, CHAT_MODEL
+from RAG.context_budget import check, message_tokens
+from RAG.document_agent import DocumentAgent
+from RAG.documents import Documents
+from RAG.rag import Rag, CitationFilter
+from RAG.file_routes import router_for, UploadBodyLimit
 from tree_store import TreeStore, TreeError, migrate, active_path
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -264,7 +268,7 @@ def generate_conversation_title(conversation_id):
 def matching_ranges(text, query, first_only=False):
     """Map Unicode casefold matches back to original character offsets.
 
-    Casefold can expand characters (StraÃŸe -> strasse), so folded offsets
+    Casefold can expand characters (Straße -> strasse), so folded offsets
     cannot be used directly to slice original text or highlight browser text.
     """
     folded = text.casefold()
@@ -312,7 +316,7 @@ def search_conversations(query):
             match_start, match_end = matching_ranges(content, query, first_only=True)[0]
             offset = max(0, match_start - 65)
             end = max(offset + 200, match_end + 65)
-            item["snippet"] = ("â€¦" if offset else "") + content[offset:end] + ("â€¦" if end < len(content) else "")
+            item["snippet"] = ("…" if offset else "") + content[offset:end] + ("…" if end < len(content) else "")
         else:
             item["snippet"] = ""
         item["title_match"] = bool(item["title_match"])
@@ -408,6 +412,15 @@ def save_generation(message_id, content, status):
             WHERE id = (SELECT conversation_id FROM messages WHERE id = ?)""", (message_id,))
 
 
+def complete_generation(message_id, content, status, result):
+    # Required operation context, evidence, text and completion status commit together.
+    with closing(get_connection()) as connection, connection:
+        connection.execute("BEGIN IMMEDIATE")
+        rag.persist(message_id, content, result, db=connection)
+        connection.execute("UPDATE messages SET content=?,status=? WHERE id=?",(content,status,message_id))
+        connection.execute("UPDATE conversations SET updated_at=STRFTIME('%Y-%m-%d %H:%M:%f','now') WHERE id=(SELECT conversation_id FROM messages WHERE id=?)",(message_id,))
+
+
 def generation_state(generation_id):
     with closing(get_connection()) as connection:
         row = connection.execute("""SELECT r.id AS generation_id, m.conversation_id, m.id AS assistant_message_id,
@@ -420,6 +433,8 @@ def generation_state(generation_id):
 
 async def produce_reply(job, messages):
     job["started"].set()
+    request_state=RequestState()
+    request_token=current.set(request_state)
     parts, final_status, client, stream = [], "stopped", None, None
     last_save = 0
     generation_started = asyncio.get_running_loop().time()
@@ -427,10 +442,12 @@ async def produce_reply(job, messages):
     citation_filter = None
     try:
         client = provider.client(timeout=120)
+        job["system_prompt"]=SYSTEM_PROMPT
         messages, retrieval = await document_agent.prepare(job, messages)
         prompt = SYSTEM_PROMPT + (retrieval["instructions"] if retrieval else "")
         check([{"role":"system","content":prompt}]+messages)
         citation_filter = CitationFilter([s["id"] for s in retrieval["sources"]]) if retrieval and "direct" not in retrieval else None
+        answer_started=time.perf_counter()
         async with asyncio.timeout_at(job.get("document_deadline")):
             if retrieval and "direct" in retrieval:
                 async def deterministic_response():
@@ -450,6 +467,8 @@ async def produce_reply(job, messages):
                 if citation_filter:
                     content = citation_filter.feed(content)
                 if content:
+                    if request_state.first_token_ms is None:
+                        request_state.first_token_ms=round((time.perf_counter()-request_state.started)*1000,2)
                     parts.append(content)
                     # Persist before exposing each checkpoint; a crash keeps the last checkpoint.
                     now = asyncio.get_running_loop().time()
@@ -462,6 +481,23 @@ async def produce_reply(job, messages):
             if tail:
                 parts.append(tail)
                 await job["queue"].put({"type":"delta","content":tail})
+        request_state.add_time("answer_generation",time.perf_counter()-answer_started)
+        # With no optional review left, Stop waits for completion cleanup as before.
+        if retrieval is None or os.getenv("RAG_CLAIM_REVIEW","off").lower()=="off":
+            job["finishing"]=True
+        # Close the stream and release its semaphore before optional verification.
+        if stream is not None:
+            await stream.aclose()
+            stream=None
+        if client is not None:
+            await client.close()
+            client=None
+        if retrieval:
+            retrieval["debug"].update(request_state.retrieval)
+            notice=await review(provider,documents,job,"".join(parts),retrieval)
+            if notice:
+                parts.append(notice)
+                await job["queue"].put({"type":"delta","content":notice})
         if not "".join(parts).strip():
             raise ValueError("Empty response")
         if retrieval and retrieval["sources"] and not any("["+s["id"]+"]" in "".join(parts) for s in retrieval["sources"]):
@@ -484,18 +520,23 @@ async def produce_reply(job, messages):
                         await client.close()
             finally:
                 try:
-                    await run_in_threadpool(save_generation, job["assistant_message_id"], "".join(parts), final_status)
                     if retrieval:
                         retrieval["debug"]["generation_ms"] = round(1000*(asyncio.get_running_loop().time()-generation_started),1)
                         retrieval["debug"]["estimated_input_tokens"] = message_tokens(messages)
-                    await run_in_threadpool(rag.persist, job["assistant_message_id"], "".join(parts), retrieval)
+                        retrieval["debug"].update(request_state.report())
+                    await run_in_threadpool(complete_generation, job["assistant_message_id"], "".join(parts), final_status, retrieval)
                 except Exception:
                     final_status = "error"
+                    try:
+                        await run_in_threadpool(save_generation,job["assistant_message_id"],"".join(parts),"error")
+                    except Exception:
+                        pass  # Startup recovery changes any remaining generating checkpoint to stopped.
                     job["queue"].put_nowait({"type": "error", "message": "The response could not be saved. Refresh to check the saved checkpoint before retrying."})
                 finally:
                     active_generations.pop(job["generation_id"], None)
                     conversation_lock.release(job["conversation_id"])
                     job["queue"].put_nowait({"type": "done", "status": final_status})
+    current.reset(request_token)
     return final_status
 
 
@@ -644,6 +685,7 @@ def rename_conversation(conversation_id: int, request: RenameRequest):
 
 @app.delete("/conversations/{conversation_id}")
 def delete_conversation(conversation_id: int):
+    rag.vector_cache.invalidate(conversation_id)
     if not conversation_lock.acquire(conversation_id):
         raise HTTPException(409, "Wait for the reply to finish before deleting a conversation.")
     try:

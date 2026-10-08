@@ -1,0 +1,68 @@
+{
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 165 Stepping 3, GenuineIntel",
+  "scope": "Synthetic CPU scans; excludes SQLite IO and model inference. No end-to-end speedup implied.",
+  "results": [
+    {
+      "vectors": 100,
+      "dimensions": 768,
+      "repetitions": 20,
+      "json_scan": {
+        "median_ms": 38.121,
+        "p95_ms": 54.037
+      },
+      "cold_build_and_scan": {
+        "median_ms": 40.294,
+        "p95_ms": 51.988
+      },
+      "warm_scan": {
+        "median_ms": 6.039,
+        "p95_ms": 8.246
+      },
+      "cache_bytes_including_container_overhead": 322818,
+      "top30_order_identical": true,
+      "max_float32_score_error": 2.1882571726861144e-09
+    },
+    {
+      "vectors": 1000,
+      "dimensions": 768,
+      "repetitions": 20,
+      "json_scan": {
+        "median_ms": 357.422,
+        "p95_ms": 403.064
+      },
+      "cold_build_and_scan": {
+        "median_ms": 383.688,
+        "p95_ms": 438.704
+      },
+      "warm_scan": {
+        "median_ms": 58.17,
+        "p95_ms": 73.918
+      },
+      "cache_bytes_including_container_overhead": 3221922,
+      "top30_order_identical": true,
+      "max_float32_score_error": 2.8348408065426156e-09
+    },
+    {
+      "vectors": 4000,
+      "dimensions": 768,
+      "repetitions": 20,
+      "json_scan": {
+        "median_ms": 1454.578,
+        "p95_ms": 1569.457
+      },
+      "cold_build_and_scan": {
+        "median_ms": 1540.63,
+        "p95_ms": 1612.659
+      },
+      "warm_scan": {
+        "median_ms": 228.403,
+        "p95_ms": 299.767
+      },
+      "cache_bytes_including_container_overhead": 12890746,
+      "top30_order_identical": true,
+      "max_float32_score_error": 3.145270086046814e-09
+    }
+  ]
+}

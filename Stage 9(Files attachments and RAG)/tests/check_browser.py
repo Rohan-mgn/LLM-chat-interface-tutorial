@@ -82,7 +82,7 @@ def main():
 
     lessons = load(ROOT / "tests/check_lessons.py", "lesson_helpers")
     module = load(STAGE / "main.py", "stage9_browser_app")
-    test_root = (ROOT / "data").resolve()
+    test_root = (STAGE / "tests" / ".artifacts").resolve()
     run_dir = test_root / ("stage9-browser-" + uuid.uuid4().hex)
     artifacts = run_dir / "artifacts"
     artifacts.mkdir(parents=True)

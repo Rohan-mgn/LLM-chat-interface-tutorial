@@ -15,14 +15,14 @@ STAGE=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(STAGE));sys.path.insert(0,str(STAGE/"tests"))
 import check_rag as fixtures
 from check_rag import FakeModel
-from document_tools import *
-from table_tools import workbook_sections, analyze
-from documents import extract
-from document_agent import rules
-from summarizer import Summarizer
-from model_provider import ModelProvider
-from context_budget import check, estimate
-from rag import Rag
+from RAG.document_tools import *
+from RAG.table_tools import workbook_sections, analyze
+from RAG.documents import extract
+from RAG.document_agent import rules
+from RAG.summarizer import Summarizer
+from RAG.model_provider import ModelProvider
+from RAG.context_budget import check, estimate
+from RAG.rag import Rag
 
 class ExactTests(unittest.TestCase):
     def blocks(self,sections):return stable_blocks("fixture",sections)
@@ -103,7 +103,7 @@ class WorkbookTests(unittest.TestCase):
         self.assertEqual(result["formula_examples"][0]["expression"],"=B2*2")
         self.assertEqual(result["formula_examples"][0]["cached_value"],999)
     def test_useful_cell_and_merge_limits(self):
-        with patch("table_tools.MAX_CELLS",4):
+        with patch("RAG.table_tools.MAX_CELLS",4):
             with self.assertRaisesRegex(ValueError,"useful cells"):workbook_sections(self.workbook())
         import openpyxl
         book=openpyxl.Workbook();book.active.merge_cells("A1:ZZ1000")
@@ -238,7 +238,7 @@ class Integration(unittest.TestCase):
             async def vision(path,sections,*args):
                 entered.set();await release.wait()
                 return sections,"Vision unavailable"
-            with patch("rag.vision_sections",side_effect=vision):
+            with patch("RAG.rag.vision_sections",side_effect=vision):
                 slow=asyncio.create_task(self.app.rag.index(self.cid,scanned["id"]))
                 await asyncio.wait_for(entered.wait(),2)
                 await asyncio.wait_for(self.app.rag.index(self.cid,ordinary["id"]),2)
@@ -249,6 +249,7 @@ class Integration(unittest.TestCase):
         file=self.upload("summary.md",b"# First\n\nAlpha text.\n\n# Last\n\nOmega final fact.","text/markdown")
         calls=[]
         class Client:
+            async def list(inner):return {"models":[{"model":"llama3.2:3b","digest":"chat-fixture-v1"}]}
             async def chat(inner,**kwargs):
                 calls.append(kwargs)
                 ids=re.findall(r'SOURCE_[a-f0-9]+',str(kwargs["messages"]))
@@ -263,25 +264,26 @@ class Integration(unittest.TestCase):
                 calls.clear()
                 await self.app.document_agent.summarizer.summarize(self.cid,[file],lambda _:None,section="Last")
                 self.assertIn("Omega",str(calls));self.assertNotIn("Alpha",str(calls))
-                with patch("summarizer.MAX_CALLS",0):
+                with patch("RAG.summarizer.MAX_CALLS",0):
                     with self.assertRaisesRegex(ValueError,"64-call"):
                         await self.app.document_agent.summarizer.summarize(self.cid,[file],lambda _:None,section="First")
                 with self.assertRaisesRegex(ValueError,"64-call"):
                     await self.app.document_agent.summarizer.summarize(self.cid,[file],lambda _:None,section="First",prior_calls=63)
         asyncio.run(run())
-    def test_second_retrieval_round_cannot_loop(self):
+    def test_no_planning_round_without_deep_information_gap(self):
         file=self.upload()
         async def structure(messages,schema,**kwargs):
             if "query" in schema.get("properties",{}):return {"query":"project falcon missing reasoning"}
             raise ValueError("fallback rerank")
         with patch.object(self.app.provider,"structured",side_effect=structure),patch.object(self.app.rag,"retrieve",wraps=self.app.rag.retrieve) as retrieve:
             events=self.send("Why did the project choose Falcon?",use_files=True,file_ids=[file["id"]])
-            self.assertEqual(events[-1]["status"],"completed",events);self.assertEqual(retrieve.call_count,2)
+            self.assertEqual(events[-1]["status"],"completed",events);self.assertEqual(retrieve.call_count,1)  # No planning call without an actual DEEP evidence gap.
 
     def test_vision_cache_native_preservation_and_no_vision_dependency(self):
-        from document_parsers import vision_sections
+        from RAG.document_parsers import vision_sections
         cache={};requests=[]
         class Client:
+            async def list(inner):return {"models":[{"model":"llama3.2:3b","digest":"chat-fixture-v1"}]}
             async def show(self,model):return {"capabilities":["vision"],"model_info":{"version":"fixture"}}
             async def close(self):pass
         class Provider:
@@ -294,7 +296,7 @@ class Integration(unittest.TestCase):
         async def run():
             sections=[{"text":"Native text stays","page":1,"type":"page_text"},
                 {"text":"","page":2,"type":"unreadable"}]
-            with patch("document_parsers.render_page",return_value=b"PNG-fixture"):
+            with patch("RAG.document_parsers.render_page",return_value=b"PNG-fixture"):
                 result,warning=await vision_sections(Path("unused.pdf"),sections,Provider(),cache.get,lambda k,v:cache.update({k:v}))
                 self.assertEqual(result[0]["text"],"Native text stays")
                 self.assertEqual(requests[0]["images"],[b"PNG-fixture"])
@@ -311,6 +313,7 @@ class Integration(unittest.TestCase):
         self.app.documents.store_extracted(self.cid,file["id"],sections)
         calls=[]
         class Client:
+            async def list(inner):return {"models":[{"model":"llama3.2:3b","digest":"chat-fixture-v1"}]}
             async def chat(inner,**kwargs):
                 calls.append(kwargs)
                 ids=re.findall(r"SOURCE_[a-f0-9]+",str(kwargs["messages"]))
@@ -339,6 +342,7 @@ class Integration(unittest.TestCase):
         b=self.upload("b.txt",b"Contract new: term 60 days.")
         seen=[]
         class Client:
+            async def list(inner):return {"models":[{"model":"llama3.2:3b","digest":"chat-fixture-v1"}]}
             async def chat(inner,**kwargs):
                 seen.append(str(kwargs["messages"]))
                 ids=re.findall(r"SOURCE_[a-f0-9]+",str(kwargs["messages"]))
@@ -355,6 +359,7 @@ class Integration(unittest.TestCase):
         messages=[{"role":"user","content":("long past context "*300)+str(i)} for i in range(3)]+[{"role":"user","content":"Recent question"}]
         calls=[]
         class Client:
+            async def list(inner):return {"models":[{"model":"llama3.2:3b","digest":"chat-fixture-v1"}]}
             async def chat(inner,**kwargs):
                 calls.append(kwargs);return {"message":{"content":"Unverified past user facts"}}
             async def close(inner):pass
@@ -382,7 +387,7 @@ class Integration(unittest.TestCase):
         self.assertEqual(result["results"][0]["values"][0]["result"],"10")
 
     def test_exact_extract_preserves_citation_like_source_text(self):
-        from document_agent import Route
+        from RAG.document_agent import Route
         file=self.upload(data=b"Literal [SOURCE_0123456789abcdef01234567] and [S1] are document text.")
         with patch.object(self.app.document_agent,"route",AsyncMock(return_value=Route(route="EXTRACT",operation="get_section",section="Paragraph 1"))):
             events=self.send("Extract this section",use_files=True,file_ids=[file["id"]])
@@ -408,7 +413,7 @@ class Integration(unittest.TestCase):
         self.assertFalse(self.app.conversation_lock.locked())
 
     def test_changed_parse_invalidates_obsolete_source_before_embedding(self):
-        file=self.upload(data=b"Old Blue Falcon content.")
+        file=self.upload(data=b"Old project codename: Blue Falcon.")
         self.send(use_files=True,file_ids=[file["id"]])
         source=self.rows()[-1]["sources"][0]["id"]
         old_text=self.rows()[-1]["content"]
@@ -426,7 +431,7 @@ class ProviderTests(unittest.TestCase):
             provider=ModelProvider();provider.vision_model=provider.chat_model
             for images,slot in (([],provider.text_slots),([b"image"],provider.vision_slots)):
                 slot.acquire()
-                with patch("model_provider.ollama.AsyncClient",return_value=Raw()):
+                with patch("RAG.model_provider.ollama.AsyncClient",return_value=Raw()):
                     client=provider.client()
                     task=asyncio.create_task(client.chat(model=provider.chat_model,stream=False,
                         messages=[{"role":"user","content":"hello","images":images}]))

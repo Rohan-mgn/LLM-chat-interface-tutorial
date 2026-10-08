@@ -10,7 +10,7 @@ import zipfile
 from defusedxml import ElementTree as ET
 from pypdf import PdfReader
 from PIL import Image
-from table_tools import workbook_sections
+from .table_tools import workbook_sections
 
 PDFIUM_LOCK=Lock()
 MAX_TEXT=500_000

@@ -1,5 +1,5 @@
 """Scoped file storage and extraction. Uploaded bytes are never executable assets."""
-from contextlib import closing
+from contextlib import closing, nullcontext
 from pathlib import Path
 import os
 import sqlite3
@@ -20,7 +20,7 @@ MIMES = {".txt": "text/plain", ".md": "text/markdown", ".csv": "text/csv",
          ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
          ".pdf": "application/pdf", ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
          ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp"}
-from document_parsers import native_sections, VERSION as PARSER_VERSION
+from .document_parsers import native_sections, VERSION as PARSER_VERSION
 
 def clean_name(value):
     value = unicodedata.normalize("NFC", (value or "file").replace("\\", "/").split("/")[-1])
@@ -227,6 +227,7 @@ class Documents:
                     db.execute("DELETE FROM files WHERE id=?", (result["id"],))
             self.cleanup()
             raise
+        if hasattr(self,"vector_cache"):self.vector_cache.invalidate(cid,old_id)
         self.cleanup()
         return result, created
 
@@ -327,8 +328,15 @@ class Documents:
             for statement in statements:db.execute(statement)
             fields={r["name"] for r in db.execute("PRAGMA table_info(files)")}
             for name,definition in (("parse_state","TEXT NOT NULL DEFAULT 'pending'"),
-                                    ("coverage","TEXT NOT NULL DEFAULT '{}'"),("parser_config","TEXT")):
+                                    ("coverage","TEXT NOT NULL DEFAULT '{}'"),("parser_config","TEXT"),("index_generation","INTEGER NOT NULL DEFAULT 0")):
                 if name not in fields:db.execute(f"ALTER TABLE files ADD COLUMN {name} {definition}")
+            # Counters change in the same transaction as every indexed representation mutation.
+            for table in ("chunks","document_blocks"):
+                for event,ref in (("INSERT","NEW"),("UPDATE","NEW"),("DELETE","OLD")):
+                    db.execute(f"CREATE TRIGGER IF NOT EXISTS {table}_generation_{event.lower()} AFTER {event} ON {table} BEGIN UPDATE files SET index_generation=index_generation+1 WHERE id={ref}.file_id; END")
+            db.execute("""CREATE TRIGGER IF NOT EXISTS file_generation_config AFTER UPDATE OF config,parser_config,sha256 ON files
+                WHEN NEW.config IS NOT OLD.config OR NEW.parser_config IS NOT OLD.parser_config OR NEW.sha256 IS NOT OLD.sha256
+                BEGIN UPDATE files SET index_generation=index_generation+1 WHERE id=NEW.id; END""")
             fields={r["name"] for r in db.execute("PRAGMA table_info(citations)")}
             if "ordinal" not in fields:
                 db.execute("ALTER TABLE citations ADD COLUMN ordinal INTEGER NOT NULL DEFAULT 0")
@@ -368,7 +376,7 @@ class Documents:
             self.fts_available=False
 
     def store_extracted(self,cid,fid,sections,warning=""):
-        from document_tools import stable_blocks
+        from .document_tools import stable_blocks
         blocks=stable_blocks(fid,sections)
         missing=[b.get("page",b.get("section")) for b in blocks if b["type"]=="unreadable"]
         coverage={"complete":not missing,"unreadable":missing,"vision":any(b.get("origin")=="vision" for b in blocks),"warning":warning}
@@ -409,8 +417,9 @@ class Documents:
             if db.execute("SELECT 1 FROM files WHERE id=?",(fid,)).fetchone():
                 db.execute("INSERT OR REPLACE INTO document_cache VALUES(?,?,?)",(fid,key,json.dumps(data)))
 
-    def persist_tools(self,mid,cid,records):
-        with closing(self.connect()) as db,db:
+    def persist_tools(self,mid,cid,records,db=None):
+        owned=db is None
+        with closing(self.connect()) if owned else nullcontext(db) as db, db if owned else nullcontext():
             for ordinal,record in enumerate(records):
                 tid="TOOL_"+hashlib.sha256((str(mid)+json.dumps(record,sort_keys=True)).encode()).hexdigest()[:24]
                 db.execute("INSERT OR REPLACE INTO tool_runs VALUES(?,?,?,?,?)",(tid,mid,cid,ordinal,json.dumps(record)))
