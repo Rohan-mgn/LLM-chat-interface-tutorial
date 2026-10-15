@@ -17,6 +17,7 @@ class RequestState:
     retrieval: dict = field(default_factory=dict)
     first_token_ms: float | None = None
     evidence_check: object = None
+    token_usage: list = field(default_factory=list)
 
     def call(self, kind):
         self.calls[kind] = self.calls.get(kind, 0) + 1
@@ -24,8 +25,15 @@ class RequestState:
     def add_time(self, key, seconds):
         self.timings[key] = self.timings.get(key, 0) + seconds * 1000
 
+    def record_usage(self,kind,response):
+        item={"purpose":kind}
+        for key in ("prompt_eval_count","eval_count","prompt_eval_duration","eval_duration"):
+            value=response.get(key)
+            if type(value) is int and value>=0:item[key]=value
+        if len(item)>1 and len(self.token_usage)<80:self.token_usage.append(item)
+
     def report(self):
-        return {"model_calls": dict(self.calls), "model_call_count": sum(v for k,v in self.calls.items() if k != "metadata"),
+        return {"model_token_usage":list(self.token_usage), "token_usage_scope":"Reported Ollama call counts only; missing counts are unknown", "model_calls": dict(self.calls), "model_call_count": sum(v for k,v in self.calls.items() if k != "metadata"),
                 "timings_ms": {k:round(v,2) for k,v in self.timings.items()},
                 "total_ms": round((time.perf_counter()-self.started)*1000,2),
                 "time_to_first_token_ms": self.first_token_ms, **self.retrieval}

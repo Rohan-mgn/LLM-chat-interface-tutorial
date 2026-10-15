@@ -1,0 +1,519 @@
+{
+  "kind": "two development smoke scenarios, not full acceptance",
+  "timing_limitations": "One run per case/strategy; regression work may overlap. Not a percentage speedup or model-quality proof.",
+  "ingestion": "Isolated fixture ingestion; real configured Ollama chat model during timed answering.",
+  "models": [
+    {
+      "model": "embeddinggemma:latest",
+      "digest": "82f094e4c0e19bc4208c692996d4f1ecf14e82a8dee579ee1d2ca1175260058e"
+    },
+    {
+      "model": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72"
+    },
+    {
+      "model": "qwen3:4b",
+      "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+    }
+  ],
+  "rows": [
+    {
+      "case": "water-cycle-child",
+      "strategy": "forced_hierarchical_control",
+      "question": "Summarize this whole lesson for an eight-year-old, with one short section for each stage and a simple analogy. Keep the stages in order.",
+      "document_sha256": "85572ed0e246d055e9559ebd5d6b51e48c86d6d661a536bc05e80a79d578b981",
+      "status": {
+        "type": "done",
+        "status": "error",
+        "generation_id": "ddb62e3c-d737-4be7-9bb4-b655ffb9e675"
+      },
+      "seconds": 0.302,
+      "answer": "",
+      "required_terms_present": {
+        "evaporation": false,
+        "condensation": false,
+        "precipitation": false
+      },
+      "details": {}
+    },
+    {
+      "case": "water-cycle-child",
+      "strategy": "direct",
+      "question": "Summarize this whole lesson for an eight-year-old, with one short section for each stage and a simple analogy. Keep the stages in order.",
+      "document_sha256": "85572ed0e246d055e9559ebd5d6b51e48c86d6d661a536bc05e80a79d578b981",
+      "status": {
+        "type": "done",
+        "status": "error",
+        "generation_id": "f2e62691-f94f-4dd4-bbfa-99f78f7511d7"
+      },
+      "seconds": 0.278,
+      "answer": "",
+      "required_terms_present": {
+        "evaporation": false,
+        "condensation": false,
+        "precipitation": false
+      },
+      "details": {}
+    },
+    {
+      "case": "maintenance-study",
+      "strategy": "forced_hierarchical_control",
+      "question": "Summarize this complete procedure as a three-part study guide. Include the stop condition, one practice question per part, and a short answer key.",
+      "document_sha256": "94d1be6a8092a380f48860ca1b8f26461e46f0efefa12152f21e28a93ce4ce26",
+      "status": {
+        "type": "done",
+        "status": "completed",
+        "generation_id": "5316a4a8-a740-45f2-9a86-6e21beb6bdfd"
+      },
+      "seconds": 138.22,
+      "answer": "**Three-Part Study Guide**\n\n### **Part 1: Inspection**\n\n* Before starting the pump, inspect the inlet for debris and check that the pressure gauge reads zero.\n* Practice Question: What is the purpose of inspecting the inlet before starting the pump?\n\n### **Part 2: Operation**\n\n* Open the inlet valve before starting the pump.\n* Stop the pump if pressure exceeds 90 kPa.\n* Practice Question: What is the maximum allowed pressure during operation?\n\n### **Part 3: Shutdown**\n\n* Turn the motor off, close the inlet valve, and record the final pressure.\n* Do not open the casing while the pump is pressurized.\n* Practice Question: What should be done before opening the casing during shutdown?\n\n### **Short Answer Key**\n\n* Inspection: Check for debris and ensure the pressure gauge reads zero.\n* Operation: Open the inlet valve and monitor pressure; stop the pump if pressure exceeds 90 kPa.\n* Shutdown: Turn off the motor, close the inlet valve, and record the final pressure; do not open the casing while pressurized.\n\n> Coverage check: 3 of 3 source sections have no linked substantive passage in this answer. The response may be incomplete; full coverage is not verified.",
+      "required_terms_present": {
+        "90": true,
+        "inspect": true,
+        "off": true
+      },
+      "details": {
+        "route": "SUMMARIZE_DOCUMENT",
+        "original_query": "Summarize this complete procedure as a three-part study guide. Include the stop condition, one practice question per part, and a short answer key.",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "SUMMARIZE_DOCUMENT",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "Summarize this complete procedure as a three-part study guide. Include the stop condition, one practice question per part, and a short answer key.",
+          "files": [
+            {
+              "id": "3a3ecfbd89f040dc8253d35c7f94c1df",
+              "fingerprint": "94d1be6a8092a380f48860ca1b8f26461e46f0efefa12152f21e28a93ce4ce26",
+              "name": "lesson.md"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "Summarize this complete procedure as a three-part study guide. Include the stop condition, one practice question per part, and a short answer key.",
+          "authorized_files": [
+            "3a3ecfbd89f040dc8253d35c7f94c1df"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v1",
+        "coverage_manifest": {
+          "version": 1,
+          "required_sections": [
+            {
+              "id": "88e55502a942b6406606547d",
+              "file_id": "3a3ecfbd89f040dc8253d35c7f94c1df",
+              "location": {
+                "section": "Inspection"
+              },
+              "source_ids": [
+                "SOURCE_841eb6926dd49973c3e8dd45",
+                "SOURCE_99d233df5626b15df56497d8"
+              ]
+            },
+            {
+              "id": "087b0c375a91dda42fe11e87",
+              "file_id": "3a3ecfbd89f040dc8253d35c7f94c1df",
+              "location": {
+                "section": "Operation"
+              },
+              "source_ids": [
+                "SOURCE_14a36240f27afa9959db3781",
+                "SOURCE_df0ba028518d5a1fc76acc0a"
+              ]
+            },
+            {
+              "id": "aff741d98e553525fd4f99f3",
+              "file_id": "3a3ecfbd89f040dc8253d35c7f94c1df",
+              "location": {
+                "section": "Shutdown"
+              },
+              "source_ids": [
+                "SOURCE_2aa7b418e4ed43794ff6ccab",
+                "SOURCE_13e75b7a74a19d3070812f74"
+              ]
+            }
+          ],
+          "extraction": [
+            {
+              "file_id": "3a3ecfbd89f040dc8253d35c7f94c1df",
+              "coverage": {
+                "complete": true,
+                "unreadable": [],
+                "vision": false,
+                "warning": null
+              }
+            }
+          ],
+          "answer_checked": true
+        },
+        "calls": 1,
+        "elapsed_seconds": 67.26,
+        "coverage": "all readable blocks",
+        "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+        "summary_prompt_version": "summary-v4-task-aware",
+        "final_reductions": 0,
+        "summary_cache_writes": 1,
+        "acquisition": "hierarchical_complete",
+        "evidence_bundle": {
+          "version": 1,
+          "strategy": "hierarchical_complete",
+          "documents": [
+            {
+              "file_id": "3a3ecfbd89f040dc8253d35c7f94c1df",
+              "fingerprint": "94d1be6a8092a380f48860ca1b8f26461e46f0efefa12152f21e28a93ce4ce26",
+              "generation": 14,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_841eb6926dd49973c3e8dd45",
+              "file_id": "3a3ecfbd89f040dc8253d35c7f94c1df",
+              "text_fingerprint": "e1215111b7f1ac28d3dbd844a82fc9bfadec9840f79ccfc811418ce95adbc9f1",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_99d233df5626b15df56497d8",
+              "file_id": "3a3ecfbd89f040dc8253d35c7f94c1df",
+              "text_fingerprint": "b623fae9d4ecf314bf33b85386b5369b421ee2eebd8d8868cecb8b9aefe196fd",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_14a36240f27afa9959db3781",
+              "file_id": "3a3ecfbd89f040dc8253d35c7f94c1df",
+              "text_fingerprint": "4b2ff1f085c392a17ffb71b13d53d14d870f8995f8caeb8125307b96fecaafcc",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_df0ba028518d5a1fc76acc0a",
+              "file_id": "3a3ecfbd89f040dc8253d35c7f94c1df",
+              "text_fingerprint": "d8dd36da474ec8dba9bde2bc0ee02a1c6dd1ecaaaa64b6379c4c8a5921c241f0",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_2aa7b418e4ed43794ff6ccab",
+              "file_id": "3a3ecfbd89f040dc8253d35c7f94c1df",
+              "text_fingerprint": "615492e6a5e9c2496a11180af6862d8919f4e4cfbc02a7f62ea8ce2e0ab526a6",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_13e75b7a74a19d3070812f74",
+              "file_id": "3a3ecfbd89f040dc8253d35c7f94c1df",
+              "text_fingerprint": "a36357d07c50c7c53524c27803b4544a00d338115cbff2f4a52d2f3608fc94ac",
+              "origin": "native"
+            }
+          ]
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "81a098355426837810d1438dce1a6cfe9f00fbd243bd505cd1705558f4343975",
+          "files": [
+            {
+              "file_id": "3a3ecfbd89f040dc8253d35c7f94c1df",
+              "fingerprint": "94d1be6a8092a380f48860ca1b8f26461e46f0efefa12152f21e28a93ce4ce26",
+              "generation": 14,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "answer_coverage": {
+          "version": 1,
+          "method": "substantive cited output spans; semantic completeness unverified",
+          "required": 3,
+          "linked": 0,
+          "missing": [
+            "88e55502a942b6406606547d",
+            "087b0c375a91dda42fe11e87",
+            "aff741d98e553525fd4f99f3"
+          ],
+          "map": [
+            {
+              "section_id": "88e55502a942b6406606547d",
+              "portions": []
+            },
+            {
+              "section_id": "087b0c375a91dda42fe11e87",
+              "portions": []
+            },
+            {
+              "section_id": "aff741d98e553525fd4f99f3",
+              "portions": []
+            }
+          ],
+          "semantic_complete": null
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 138151.8,
+        "estimated_input_tokens": 799,
+        "model_calls": {
+          "metadata": 2,
+          "summarization": 1,
+          "generation": 1
+        },
+        "model_call_count": 2,
+        "timings_ms": {
+          "history_compression": 0.03,
+          "model_queue": 0.04,
+          "model_inference": 137030.29,
+          "summarization": 66369.14,
+          "answer_generation": 70665.73
+        },
+        "total_ms": 138152.16,
+        "time_to_first_token_ms": 90313.46,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "case": "maintenance-study",
+      "strategy": "direct",
+      "question": "Summarize this complete procedure as a three-part study guide. Include the stop condition, one practice question per part, and a short answer key.",
+      "document_sha256": "94d1be6a8092a380f48860ca1b8f26461e46f0efefa12152f21e28a93ce4ce26",
+      "status": {
+        "type": "done",
+        "status": "completed",
+        "generation_id": "fbf0d178-0646-4567-bc50-2995365af156"
+      },
+      "seconds": 100.301,
+      "answer": "**Three-Part Study Guide: Pump Operation Procedure**\n=====================================================\n\n### Part 1: Inspection\n\nBefore starting the pump, inspect the inlet for debris and check that the pressure gauge reads zero.\n\n**Practice Question:** What is the first step to take before starting the pump?\n\n### Part 2: Operation\n\n1. Open the inlet valve before starting the pump.\n2. Stop the pump if pressure exceeds 90 kPa.\n\n**Practice Question:** What is the maximum pressure allowed before stopping the pump?\n\n### Part 3: Shutdown\n\n1. Turn the motor off.\n2. Close the inlet valve.\n3. Record the final pressure.\n4. Do not open the casing while the pump is pressurized.\n\n**Practice Question:** What should not be done while the pump is pressurized?\n\n### Short Answer Key\n\n1. What is the purpose of inspecting the inlet before starting the pump?\nAnswer: To ensure the inlet is clear of debris and the pressure gauge reads zero.\n2. What is the maximum pressure allowed before stopping the pump?\nAnswer: 90 kPa.\n3. What should not be done while the pump is pressurized?\nAnswer: Open the casing.\n\n> Coverage check: 3 of 3 source sections have no linked substantive passage in this answer. The response may be incomplete; full coverage is not verified.",
+      "required_terms_present": {
+        "90": true,
+        "inspect": true,
+        "off": true
+      },
+      "details": {
+        "route": "SUMMARIZE_DOCUMENT",
+        "original_query": "Summarize this complete procedure as a three-part study guide. Include the stop condition, one practice question per part, and a short answer key.",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "SUMMARIZE_DOCUMENT",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "Summarize this complete procedure as a three-part study guide. Include the stop condition, one practice question per part, and a short answer key.",
+          "files": [
+            {
+              "id": "3c75928ec0154b07b84f0cb1361b8442",
+              "fingerprint": "94d1be6a8092a380f48860ca1b8f26461e46f0efefa12152f21e28a93ce4ce26",
+              "name": "lesson.md"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "Summarize this complete procedure as a three-part study guide. Include the stop condition, one practice question per part, and a short answer key.",
+          "authorized_files": [
+            "3c75928ec0154b07b84f0cb1361b8442"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v1",
+        "coverage_manifest": {
+          "version": 1,
+          "required_sections": [
+            {
+              "id": "ad6c8051cef9e0f153778031",
+              "file_id": "3c75928ec0154b07b84f0cb1361b8442",
+              "location": {
+                "section": "Inspection"
+              },
+              "source_ids": [
+                "SOURCE_8d8f14f0731cdfda06f0677c",
+                "SOURCE_0791af36f1b6492527b120da"
+              ]
+            },
+            {
+              "id": "36372b2d2ee260a2f5bff31e",
+              "file_id": "3c75928ec0154b07b84f0cb1361b8442",
+              "location": {
+                "section": "Operation"
+              },
+              "source_ids": [
+                "SOURCE_1c3701d98eb0980d2a0f2eed",
+                "SOURCE_a542215caa56bc513e7f93c9"
+              ]
+            },
+            {
+              "id": "d521055fd99c34827bd6e34c",
+              "file_id": "3c75928ec0154b07b84f0cb1361b8442",
+              "location": {
+                "section": "Shutdown"
+              },
+              "source_ids": [
+                "SOURCE_67fabeec589432f10646fa72",
+                "SOURCE_2354dbd7a750164a14309938"
+              ]
+            }
+          ],
+          "extraction": [
+            {
+              "file_id": "3c75928ec0154b07b84f0cb1361b8442",
+              "coverage": {
+                "complete": true,
+                "unreadable": [],
+                "vision": false,
+                "warning": null
+              }
+            }
+          ],
+          "answer_checked": true
+        },
+        "acquisition": "direct_complete",
+        "evidence_bundle": {
+          "version": 1,
+          "strategy": "direct_complete",
+          "documents": [
+            {
+              "file_id": "3c75928ec0154b07b84f0cb1361b8442",
+              "fingerprint": "94d1be6a8092a380f48860ca1b8f26461e46f0efefa12152f21e28a93ce4ce26",
+              "generation": 14,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_8d8f14f0731cdfda06f0677c",
+              "file_id": "3c75928ec0154b07b84f0cb1361b8442",
+              "text_fingerprint": "e1215111b7f1ac28d3dbd844a82fc9bfadec9840f79ccfc811418ce95adbc9f1",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_0791af36f1b6492527b120da",
+              "file_id": "3c75928ec0154b07b84f0cb1361b8442",
+              "text_fingerprint": "b623fae9d4ecf314bf33b85386b5369b421ee2eebd8d8868cecb8b9aefe196fd",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_1c3701d98eb0980d2a0f2eed",
+              "file_id": "3c75928ec0154b07b84f0cb1361b8442",
+              "text_fingerprint": "4b2ff1f085c392a17ffb71b13d53d14d870f8995f8caeb8125307b96fecaafcc",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_a542215caa56bc513e7f93c9",
+              "file_id": "3c75928ec0154b07b84f0cb1361b8442",
+              "text_fingerprint": "d8dd36da474ec8dba9bde2bc0ee02a1c6dd1ecaaaa64b6379c4c8a5921c241f0",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_67fabeec589432f10646fa72",
+              "file_id": "3c75928ec0154b07b84f0cb1361b8442",
+              "text_fingerprint": "615492e6a5e9c2496a11180af6862d8919f4e4cfbc02a7f62ea8ce2e0ab526a6",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_2354dbd7a750164a14309938",
+              "file_id": "3c75928ec0154b07b84f0cb1361b8442",
+              "text_fingerprint": "a36357d07c50c7c53524c27803b4544a00d338115cbff2f4a52d2f3608fc94ac",
+              "origin": "native"
+            }
+          ]
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "47a7fe199c3e47cdf051781b75b220ca5dc188c164b0b7c2d0f218c4e306f37b",
+          "files": [
+            {
+              "file_id": "3c75928ec0154b07b84f0cb1361b8442",
+              "fingerprint": "94d1be6a8092a380f48860ca1b8f26461e46f0efefa12152f21e28a93ce4ce26",
+              "generation": 14,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "answer_coverage": {
+          "version": 1,
+          "method": "substantive cited output spans; semantic completeness unverified",
+          "required": 3,
+          "linked": 0,
+          "missing": [
+            "ad6c8051cef9e0f153778031",
+            "36372b2d2ee260a2f5bff31e",
+            "d521055fd99c34827bd6e34c"
+          ],
+          "map": [
+            {
+              "section_id": "ad6c8051cef9e0f153778031",
+              "portions": []
+            },
+            {
+              "section_id": "36372b2d2ee260a2f5bff31e",
+              "portions": []
+            },
+            {
+              "section_id": "d521055fd99c34827bd6e34c",
+              "portions": []
+            }
+          ],
+          "semantic_complete": null
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 100215.0,
+        "estimated_input_tokens": 1530,
+        "model_calls": {
+          "generation": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "history_compression": 0.06,
+          "model_queue": 0.01,
+          "model_inference": 99941.89,
+          "answer_generation": 99943.68
+        },
+        "total_ms": 100215.34,
+        "time_to_first_token_ms": 31374.98,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    }
+  ]
+}

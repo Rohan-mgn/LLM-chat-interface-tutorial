@@ -97,6 +97,7 @@ def parse_local(path,extension):
 def extract_isolated(path,extension,timeout=30):
     """Terminable parser process; only a bounded JSON representation crosses back."""
     specification(extension)
+    if not 0<timeout<=30:raise ValueError("Parser timeout must be between 0 and 30 seconds.")
     from .parser_limits import ParserLimit
     root=Path(__file__).resolve().parents[1]
     flags=getattr(subprocess,"CREATE_NO_WINDOW",0)
@@ -123,7 +124,7 @@ def extract_isolated(path,extension,timeout=30):
         return result["sections"]
     except subprocess.TimeoutExpired as error:
         process.kill();process.communicate()
-        raise ValueError("Document parsing exceeded its 30-second limit.") from error
+        raise ValueError(f"Document parsing exceeded its {timeout:g}-second time limit.") from error
     finally:
         if process.poll() is None:
             process.kill();process.communicate()

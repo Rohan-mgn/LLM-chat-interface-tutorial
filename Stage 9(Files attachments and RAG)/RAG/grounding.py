@@ -7,6 +7,7 @@ import time
 from contextlib import closing
 from .context_budget import estimate, input_limit
 from .request_state import phase
+from .answering import answer_coverage
 
 def normalize(text):
     return " ".join(text.split())
@@ -25,7 +26,7 @@ def deterministic(docs,cid,text,result):
                 or db.execute("SELECT 1 FROM document_blocks WHERE id=? AND file_id=?",(sid.replace("SOURCE_","BLOCK_"),fid)).fetchone())
         if not valid:findings.append({"kind":"unavailable_source","source_id":sid,"message":"A cited source is no longer available."})
     # Check only explicitly attributed quotations; ordinary emphasis is not a quote.
-    for match in re.finditer(r'["?]([^"?\n]{4,1000})["?]\s*\[(SOURCE_[a-f0-9]{24})\]',text):
+    for match in re.finditer(r'["\u201c]([^"\u201d\n]{4,1000})["\u201d]\s*\[(SOURCE_[a-f0-9]{24})\]',text):
         source=sources.get(match[2])
         if source and normalize(match[1]) not in normalize(source["text"]):
             findings.append({"kind":"quotation","source_id":match[2],"message":"An attributed quotation was not found in its supplied source."})
@@ -45,6 +46,15 @@ async def review(provider,docs,job,text,result):
     debug=result["debug"]
     debug["deterministic_grounding"]={"findings":findings,"scope":"Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."}
     warnings=[]
+    manifest=debug.get("coverage_manifest")
+    if manifest:
+        coverage=answer_coverage(text,manifest)
+        debug["answer_coverage"]=coverage
+        manifest["answer_checked"]=True
+        if coverage["missing"]:
+            warnings.append(f"Coverage check: {len(coverage['missing'])} of {coverage['required']} source sections have no linked substantive passage in this answer. The response may be incomplete; full coverage is not verified.")
+        if any(not f["coverage"].get("complete",True) for f in manifest["extraction"]):
+            warnings.append("Source extraction is partial. Unreadable or uninterpreted content is not covered by this answer.")
     if findings:warnings.append("Evidence check found a citation, quotation, or provenance issue. Verify the affected claims against the source evidence.")
     mode=os.getenv("RAG_CLAIM_REVIEW","off").lower()
     if mode not in ("off","auto","always"):mode="off"

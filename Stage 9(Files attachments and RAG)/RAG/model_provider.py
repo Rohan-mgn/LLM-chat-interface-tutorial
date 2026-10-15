@@ -47,6 +47,7 @@ class ProviderClient:
             model_started=time.perf_counter()
             response = await self.raw.chat(**kwargs)
             if not kwargs.get("stream"):
+                if state: state.record_usage(purpose.get(),response)
                 if state and state.evidence_check:state.evidence_check()
                 if state: state.add_time("model_inference",time.perf_counter()-model_started)
                 self._release()
@@ -54,6 +55,7 @@ class ProviderClient:
             async def stream():
                 try:
                     async for part in response:
+                        if state and part.get("done"):state.record_usage(purpose.get(),part)
                         yield part
                 finally:
                     await response.aclose()

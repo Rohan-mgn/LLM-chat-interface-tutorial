@@ -1,57 +1,55 @@
 # Stage 9 implementation status
 
-This is an implementation checkpoint, not a completion claim. Only Stage 9 files are being changed.
+This is an implementation checkpoint, not a completion claim. Changes are confined to Stage 9.
 
-## Baseline and current live state
+## Live storage and baseline
 
-- Original regression baseline: 104 tests, no failures/errors, 52.752 seconds.
+- Original regression baseline: 104 tests passed in 52.752 seconds.
+- Pre-cutover storage regression: 157 tests passed in 219.732 seconds, with unchanged source hashes during the run.
 - Native environment: Windows 11, Python 3.14.3, LanceDB 0.40.0.
-- Model defaults and 16,384-token allocation are unchanged. No models were downloaded.
-- Latest live status inspection: SQLite, PRE_ACTIVATION, epoch 0. No live cutover or cleanup has been performed.
-- Tests and evaluations use isolated databases under tests/.artifacts.
+- Live backend is **LanceDB, CUTOVER_ACTIVE, epoch 1**. The verified cutover transferred 63 sources across four files without re-embedding. One conversation and 11 messages, document records, branches and citations matched the verified backup. SQLite integrity and foreign-key checks passed.
+- `tests/results/live-cutover.json` and `storage-cutover-acceptance.json` record the actual transition and its acceptance evidence.
+- Model defaults and 16,384-token allocation remain unchanged. No models were downloaded.
 
-## Milestone 1 - storage
+## Milestone 1 - validated cutover; live cleanup pending
 
-Implemented and exercised:
+LanceDB is the sole active semantic retrieval engine. SQLite remains authoritative for application data, documents, source records and citations. SQLite FTS5 remains the lexical backend: a 13-query compatibility fixture matched 12 queries; Lance did not reproduce SQLite accent folding on the remaining query.
 
-- Dedicated Lance adapter with externally supplied float32 vectors, exact cosine search and authorization prefilters.
-- SQLite-authoritative passage hydration, durable epochs/leases, source generations and publication manifests.
-- Idempotent native writes, crash/acknowledgment recovery, deletion outbox and bounded reconciliation.
-- Upload source records and pending build intent committed before embedding inference.
-- Explicit compatible-digest repair from authoritative sources, with cancellation and source-change checks.
-- Preparation, activation guards, current-data rollback, fixture finalization and retention-guarded artifact retirement.
-- Recovery backups record the backend epoch, embedding spaces and authoritative generation-manifest identity.
-- CLI status, prepare, validate, reconcile, activate, rollback, finalize, rebuild, maintenance and retire commands.
-- Native runtime, populated migration, recovery, authorization and concurrency tests.
-- Numeric search benchmarks: 100, 1,000, 4,000 and selective 4,000/40,000 chunks; 30 cold and 30 warm repetitions.
-- Paired 40-case development evaluations with the existing local models.
+Implemented and exercised: filtered exact vector search, authoritative hydration, epochs and OS-backed leases, generation manifests, idempotent writes, crash recovery, deletion reconciliation, exact-digest rebuilding, current-data rollback, coordinated recovery metadata, maintenance and explicit retention-guarded finalization/retirement commands.
 
-Still pending:
+Legacy SQLite vector data is retained for rollback and receives no new active-backend embeddings. **Live finalization and backup retirement have not occurred.** They require at least 14 days of stabilization/retention and separate explicit decisions. Passing cleanup tests on fixtures does not complete this live milestone.
 
-- Final combined regression result after the latest reconciliation change.
-- Completed paired held-out comparison and complete frozen acceptance review.
-- Ingestion peak-memory qualification and remaining deployment/maintenance acceptance checks.
-- Supported-worker rollout and validated live cutover.
-- A real stabilization period of at least 14 days, explicit live finalization, schema verification and later explicit backup retirement.
+## Milestone 2 - incremental implementation
 
-SQLite FTS5 remains the lexical backend. A corrected 13-query Unicode/identifier/phrase fixture matched on 12 queries; Lance did not reproduce SQLite's accent folding for cafe/cafe-with-accent.
+Implemented:
 
-The full regression run before the last race fix passed 152 tests. The newest full run is in progress; tests/results/storage-full-regression.json records the last completed run. Do not interpret an in-progress evaluation JSON as a complete 40-case run.
+- Source-revision capture before document tools/model work, per-conversation cross-process release gates shared with source mutations, bounded output queues and five-second ASGI send deadlines.
+- Revocation cancels generation and discards unsent text. Only successfully server-emitted text is checkpointed and persisted; stopped responses cannot become completed reusable operations. ASGI send completion does not prove browser display.
+- Eleven release/revocation tests passed, including a separate process deleting a source during an in-flight send, queued-output invalidation, permission changes, disconnects, replacement and finalization races.
+- A versioned parser registry; native parsing runs in terminable workers. Windows workers have 512 MiB memory, 25-second CPU, 30-second wall, one-process and bounded-output limits.
+- Existing PDF/DOCX/XLSX/CSV/text/image paths preserved. New PPTX extraction includes slide order, text, notes, tables, cached chart data and image metadata; visual interpretation is not inferred from these.
+- A full 179-test parser/release/storage regression passed in 283.650 seconds with unchanged runtime sources.
+- New source formats preserve lines and whitespace. Python uses AST inspection without execution; JSON/XML use safe structural parsing. JavaScript/TypeScript/CSS and YAML currently expose source text, not full semantic parsing.
+- Direct slide/line/code-inspection tools and additive file capability metadata.
 
-## Milestone 2 - adaptive attachment assistant
+- Complete-document tasks now try all-or-nothing direct context first, using authoritative canonical blocks and the unchanged context budget. This works for parsed content even if semantic indexing is unavailable. Targeted QA still uses the existing retrieval path.
+- Shared final-answer instructions preserve the original task, audience and format. Hierarchical notes carry the exact objective through each reduction, and summary cache keys include that task. Nine focused tests passed before the final regression.
+- Versioned evidence diagnostics record source identity/fingerprint; a structural coverage map links source sections to substantive cited answer spans and explicitly leaves semantic completeness unverified. Missing links and partial extraction produce advisory text that is streamed and persisted identically.
 
-The existing document tools, summaries and optional vision behavior remain. The newly requested parser registry, advanced planning/task state, shared evidence bundle, final-answer coverage mapping and cross-process source-aware SSE release are **not complete**.
+Pending: bounded semantic planner/executor, full adaptive direct-context selection beyond current complete-document routes, complete shared tool/evidence contract, independent OCR and optional format processors, richer branch-aware answer references, and end-to-end attachment quality acceptance. Existing keyword routing remains until the validated replacement is integrated.
 
-This milestone has not been represented as finished based on retrieval benchmarks. New assistant capability development follows validated storage cutover.
+A new two-scenario live development smoke comparison is being recorded separately. It is not the full attachment evaluation or a frontier comparison. Its initial water-cycle request exposed an overbroad section selector; failed attempts are retained and do not count as model-quality passes.
 
-## Measured limitations
+The passing parser/release regression is in `tests/results/attachment-regression.json`. The later answering integration run is recorded separately in `tests/results/answering-regression.json`. Do not interpret partial logs as passing runs.
 
-- Development retrieval Hit@K/Recall@K/MRR/nDCG: 0.95238 for both backends (21 measured retrieval cases).
-- Development median end-to-end latency: SQLite 13.340 seconds; Lance 16.351 seconds.
-- Median model calls: 2 for both. No measured answer-latency improvement is claimed.
-- Existing answer-term and abstention checks are heuristics, not semantic correctness proofs. Development abstention heuristic: 5/9 for each backend.
-- Native Windows latest-version-hint rename warnings occurred despite passing manifest/visibility tests; this remains documented.
-- Numerical benchmark search RSS excludes ingestion peak memory. The original cache_bytes field was measured after cache clearing and is invalid; the corrected script records SQLite cache memory before clearing.
-- No proprietary-model equivalence claim or frontier-reference comparison: no reference outputs have been supplied.
+## Measurements and limitations
 
-See [VECTOR_STORAGE.md](VECTOR_STORAGE.md) for architecture, commands, measurements and safety boundaries.
+- Development retrieval Hit@K/Recall@K/MRR/nDCG: 0.95238 for both storage backends (21 retrieval cases). Held-out: 0.85 (20 cases).
+- Development median end-to-end latency: SQLite 13.340 s; Lance 16.351 s. Held-out: 10.926 s versus 12.219 s. Median model calls stayed at two. No answer-latency improvement is claimed.
+- Numeric search benchmarks used 30 process-cold and 30 warm repetitions at 100, 1,000, 4,000 and selectively filtered 40,000 chunks. Top-30 rankings agreed. See VECTOR_STORAGE.md for latency/memory tradeoffs.
+- Arrow-batched ingestion measured 289.926 MiB at 4,000 chunks and 335.418 MiB at 40,000, below the unchanged 512 MiB acceptance limit.
+- Live answer-term/abstention checks are heuristics, not faithfulness proofs. Development abstention passed 5/9; held-out 6/10 for each backend.
+- Windows native latest-version-hint rename warnings occurred despite passing manifest/visibility tests.
+- No frontier-assistant reference outputs have been supplied; no equivalence or completed attachment-quality claim is made.
+
+See [VECTOR_STORAGE.md](VECTOR_STORAGE.md) for commands and measured storage boundaries.

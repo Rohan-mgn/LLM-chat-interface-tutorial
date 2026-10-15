@@ -418,5 +418,91 @@ end-to-end speedup. Raw results are in tests/results/vector-scans.json.
 
 Request diagnostics separately record rewrite, embedding, lexical/dense search,
 reranking, generation, review, model queue/inference time, total latency and first
-visible answer token. Optional title generation happens afterward and is excluded
+server-emitted answer token (not confirmed browser display). Optional title generation happens afterward and is excluded
 from answer-call counts. Normal diagnostics do not retain retrieved document text.
+
+
+## Current storage and attachment milestone
+
+The live semantic backend is now LanceDB (`CUTOVER_ACTIVE`, epoch 1), with
+SQLite authoritative document records and FTS5 lexical retrieval. The CPU vector
+cache measurements above describe the legacy baseline, not the active semantic
+engine. See [VECTOR_STORAGE.md](VECTOR_STORAGE.md) for the validated cutover,
+paired benchmarks, repair commands and pending live finalization requirements.
+
+Native parsing uses `RAG/parser_registry.py` and an isolated worker. Existing
+PDF, DOCX, XLSX, CSV, Markdown, text and image workflows retain their representation
+versions. Added formats are PPTX and common source/structured text files
+(`.py`, `.js`, `.jsx`, `.ts`, `.tsx`, `.css`, `.json`, `.xml`, `.yaml`, `.yml`).
+PPTX includes ordered slide text, notes, tables, cached chart values and image
+references. Python AST inspection does not execute or import uploaded code.
+YAML/JavaScript/TypeScript/CSS currently provide line-preserving text, not full
+semantic interpretation. Image references and OCR/transcription are not visual
+understanding. Optional OCR/XLS/PDF-table processors are still pending.
+
+On Windows, parsing is capped at 512 MiB process memory, 25 seconds CPU,
+30 seconds wall time and one process using a Job Object. The venv's base
+interpreter is launched with its existing package directory because the Windows
+venv executable itself creates a redirector child. No packages or processors are
+downloaded by parsing. New parser files are included in the existing reload list.
+
+### Source changes during streaming
+
+Each document-dependent response captures selected source fingerprints and
+generations before tools run. Supported source mutations and actual ASGI body
+sends share a per-conversation OS-backed gate across processes. A send reservation
+is bounded to five seconds; no SQLite write transaction is held during network I/O.
+Queued text uses backpressure and is acknowledged only after the ASGI send succeeds.
+A source change, deletion or selection revocation cancels work, discards unreleased
+text and records an incomplete response. Previously sent text cannot be retracted.
+
+The accounting boundary is successful server ASGI emission, **not browser receipt
+or display**. A client acknowledgment protocol is not implemented. Source checks
+are conservative over the whole selected-file revision: a background reindex that
+changes that revision can interrupt the response even when one cited passage is
+unchanged. Identical extraction does not itself invalidate a response.
+
+Current capability and unfinished-work details are in
+[IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md). New attachment-quality
+acceptance criteria are in `tests/attachment_acceptance.json`; these thresholds
+are not claims of passing end-to-end quality evaluation.
+
+
+### Complete-document answering and coverage
+
+For existing complete-document/section routes, the backend first tries the entire
+requested canonical scope against the same context budget used by the model
+provider. It includes every required readable block or falls back to hierarchical
+processing; it never calls a truncated selection a complete document. Small parsed
+documents do not need a healthy semantic index for this path. Targeted factual QA
+retains hybrid retrieval and deterministic no-evidence handling.
+
+The shared answering instructions live in `RAG/answering.py` (`ANSWER_INSTRUCTIONS`).
+They preserve the original request, audience and format while separating document
+facts, interpretations, examples and verified numerical results. Intermediate
+hierarchical processing receives the exact user objective on every pass. Its v4
+cache key includes that objective as well as source identity, parser version,
+resolved model digest, prompt version and reduction settings. This deliberately
+trades some cache reuse for task correctness; it is not general chat-answer caching.
+
+Coverage diagnostics group required source sections and map them to substantive
+cited answer spans. Unlinked sections trigger a bounded advisory message. Reading
+all blocks is not proof of answering all sections, and citation links do not prove
+semantic support. `semantic_complete` remains unknown rather than being guessed.
+The advisory text is appended through the same guarded stream and persisted exactly.
+
+Ollama-reported prompt/output token counts and evaluation durations are recorded
+per model call when supplied. Missing counters remain unknown. Request diagnostics
+also retain call counts, first server-emission latency and separate generation/review
+latency. The configured model and context allocation are unchanged.
+
+Run the opt-in local smoke comparison with already-installed models:
+
+```powershell
+..\.venv\Scripts\python.exe -B tests/smoke_complete_context.py --live --output tests/results/complete-context-check.json
+```
+
+This compares direct acquisition with a forced hierarchical control on two new
+development scenarios, using real answer-model inference after isolated fixture
+ingestion. One observation per strategy is not a performance benchmark or quality
+acceptance result. It does not use or tune the established held-out families.

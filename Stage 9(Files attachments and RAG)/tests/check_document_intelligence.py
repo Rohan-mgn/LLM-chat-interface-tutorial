@@ -236,7 +236,13 @@ class Integration(unittest.TestCase):
         # Background upload work finishes first; the controlled reindex uses two
         # tasks with a deliberately stalled vision call and no global index gate.
         import time
-        time.sleep(.1)
+        # Isolated parsing can take longer than a fixed 100 ms sleep. Wait for
+        # real upload work to finish before patching vision across event loops.
+        for file in (scanned, ordinary):
+            deadline=time.monotonic()+10
+            while self.app.documents.row(self.cid,file["id"])["state"] not in ("ready","failed"):
+                self.assertLess(time.monotonic(),deadline,"Upload indexing did not finish")
+                time.sleep(.02)
         async def run():
             entered=asyncio.Event();release=asyncio.Event()
             async def vision(path,sections,*args):

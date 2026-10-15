@@ -150,8 +150,11 @@ class UpgradeTests(unittest.TestCase):
     def test_generation_changes_transactionally_and_rollback_does_not(self):
         file=self.upload()
         before=self.app.documents.row(self.cid,file["id"])["index_generation"]
-        with closing(self.app.get_connection()) as db:
-            db.execute("BEGIN")
+        # This test measures trigger atomicity, not a competing unsupported
+        # writer. Use the application's mutation gate and reserve the writer
+        # before changing canonical sources; upload lease cleanup may still run.
+        with self.app.documents.mutation(self.cid),closing(self.app.get_connection()) as db:
+            db.execute("BEGIN IMMEDIATE")
             db.execute("UPDATE chunks SET text=text||' changed' WHERE file_id=?",(file["id"],))
             self.assertGreater(db.execute("SELECT index_generation FROM files WHERE id=?",(file["id"],)).fetchone()[0],before)
             db.rollback()

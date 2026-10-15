@@ -12,10 +12,12 @@ from .table_tools import analyze, tables_from_blocks
 from .summarizer import Summarizer, pack
 from .rag import RAG_INSTRUCTIONS
 from .request_state import current, phase, model_digest
-from .evidence import choose_mode, task_instructions, needs_reference
+from .evidence import choose_mode, needs_reference
 from .operations import resolve, record
 from .context_budget import evidence_messages
 from .evidence_release import EvidenceRevision
+from .answering import (ANSWER_VERSION, task_state, canonical_sources, coverage_manifest,
+    bundle_metadata, complete_context)
 from starlette.concurrency import run_in_threadpool
 
 TOOLS=("get_slide","get_lines","inspect_code","count_word","count_phrase","find_exact_phrase","find_text","find_pages_containing","get_page","get_section","list_sections","list_headings","document_word_count","document_character_count","document_statistics","extract_emails","extract_urls")
@@ -51,7 +53,7 @@ def rules(question):
     q=question.strip();lower=q.casefold()
     if re.fullmatch(r"(hi|hello|thanks|thank you|hey)[.! ]*",lower):return Route(route="NORMAL_CHAT")
     if re.search(r"\b(summarize|summarise|summary|overview)\b",lower):
-        section=re.search(r'\bsection\s+["\u201c]?(.+?)["\u201d]?[?.!]*$',q,re.I)
+        section=re.search(r'\b(?:summarize|summarise|summary of|overview of)\s+(?:the\s+)?section\s+["\u201c]?(.+?)["\u201d]?[?.!]*$',q,re.I)
         return Route(route="SUMMARIZE_SECTION",section=section[1].strip(' "\u201c\u201d?.!')) if section else Route(route="SUMMARIZE_DOCUMENT")
     if re.search(r"\b(compare|comparison|differences between)\b",lower):return Route(route="COMPARE_DOCUMENTS")
     for phrase,op in (("email","extract_emails"),("urls","extract_urls"),("hyperlinks","extract_urls")):
@@ -255,7 +257,8 @@ class DocumentAgent:
             result["debug"]["operation"]=record(route,files,question,records)
             return [],result
         result["debug"]["operation"]=record(route,files,question)
-        result["instructions"]+=task_instructions(mode,question)
+        task=task_state(question,files,route.section or None)
+        result["debug"].update(task_state=task,answer_prompt_version=ANSWER_VERSION)
         long_operation=route.route in ("SUMMARIZE_DOCUMENT","SUMMARIZE_SECTION") or (route.route=="COMPARE_DOCUMENTS" and not re.search(r"\b(requirements|clauses|security|termination|pricing|policy|policies)\b",question,re.I))
         if long_operation:
             result["instructions"]+="\nThe backend has already selected and read the requested document or section. Synthesize its supplied content; selected_scope metadata identifies the requested section even if the summary prose omits that label. Do not demand that the source repeat the section number. Preserve qualifications and coverage limitations."
@@ -266,12 +269,25 @@ class DocumentAgent:
             with phase("history_compression"):
                 history=await self.history(cid,messages,meter=history_meter) if long_operation else fit_history(messages,1800) if followup or needs_reference(question) else [messages[-1]]
         if long_operation:
+            all_sources=canonical_sources(self.docs,cid,files,route.section if route.route=="SUMMARIZE_SECTION" else None)
+            revision.validate(self.docs)
+            result["debug"]["coverage_manifest"]=coverage_manifest(files,all_sources)
+            direct=complete_context(history,question,all_sources,job.get("system_prompt",""),result["instructions"])
+            if direct is not None:
+                packed,sources,context=direct
+                result["sources"]=sources
+                result["debug"].update(context=context,acquisition="direct_complete",
+                    evidence_bundle=bundle_metadata(files,sources,"direct_complete"))
+                return packed,result
             if route.route=="COMPARE_DOCUMENTS" and len(files)<2:raise ValueError("Select at least two documents to compare.")
             summaries,sources,diagnostics=await self.summarizer.summarize(cid,files,progress,
                 route.section if route.route=="SUMMARIZE_SECTION" else None,deadline=job["document_deadline"],prior_calls=sum(v for k,v in current.get().calls.items() if k not in ("metadata","embedding")) if current.get() else history_meter["calls"],
                 final_budget=input_limit()-message_tokens([{"role":"system","content":job.get("system_prompt","")+result["instructions"]}]+history)-100,
-                reserve_calls=2 if __import__("os").getenv("RAG_CLAIM_REVIEW","off") in ("auto","always") else 1)
+                reserve_calls=2 if __import__("os").getenv("RAG_CLAIM_REVIEW","off") in ("auto","always") else 1,
+                task=task)
             result["sources"]=sources;result["debug"].update(diagnostics)
+            result["debug"].update(acquisition="hierarchical_complete",
+                evidence_bundle=bundle_metadata(files,sources,"hierarchical_complete"))
             aliases={s["id"]:f"S{i+1}" for i,s in enumerate(sources)}
             for summary in summaries:
                 summary["summary"]=re.sub(r"\[(SOURCE_[a-f0-9]{24})\]",
@@ -307,6 +323,8 @@ class DocumentAgent:
             result["instructions"]+="\nEvidence is missing for some selected documents. State that the comparison is incomplete; do not invent their positions."
         packed,sources,context=evidence_messages(history,question,sources,job.get("system_prompt",""),result["instructions"],balanced=mode=="DEEP")
         result["sources"]=sources
+        result["debug"].update(acquisition="hybrid_retrieval",
+            evidence_bundle=bundle_metadata(files,sources,"hybrid_retrieval"))
         numeric_by_file={}
         for source in sources:
             numeric_by_file.setdefault(source["file_id"],set()).update(re.findall(r"\b\d+(?:\.\d+)?\b",source["text"]))

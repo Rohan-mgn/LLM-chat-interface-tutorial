@@ -1,8 +1,11 @@
 # Dedicated vector storage: implementation and qualification
 
-This is an incremental storage milestone. The live application remains in
-PRE_ACTIVATION until all cutover gates pass. Fixture cutovers and fixture schema
-cleanup are not live migration or finalization.
+The live application has passed cutover acceptance and now uses LanceDB in
+CUTOVER_ACTIVE, epoch 1. All 63 existing sources across four files were transferred
+and validated without re-embedding. Authoritative tables matched the verified
+backup. Live finalization and retirement remain pending the minimum 14-day
+stability/retention periods and explicit decisions. Fixture cleanup is not live
+finalization. See tests/results/live-cutover.json.
 
 ## Resulting storage boundary
 
@@ -24,7 +27,7 @@ No model downloads or default database embedding functions are used.
 
 ## Candidate selection and measurements
 
-LanceDB 0.40.0 is the candidate integrated for qualification. The native Windows
+LanceDB 0.40.0 passed the frozen cutover gates and is the selected backend. The native Windows
 Python 3.14 tests exercise float32 vectors, exact filtered search, persistence,
 upserts, deletion, FTS, process coordination and crash/retry boundaries.
 
@@ -204,11 +207,14 @@ allocation and the existing launcher remain unchanged.
 
 ## Remaining acceptance work
 
-Numeric search qualification is not sufficient for cutover. Final combined
-acceptance review, full publication/recovery acceptance,
-supported-worker rollout, and final source-validity/SSE boundaries must be
-reported independently. The advanced attachment parser/planner/coverage
-milestone has not been implemented by this storage work.
+All frozen storage cutover gates passed; the live transition is recorded in
+storage-cutover-acceptance.json and live-cutover.json. The pre-cutover full suite
+passed 157 tests. Final live cleanup, restart schema verification and later
+backup retirement are still pending their retention windows and explicit decisions.
+
+The separate attachment milestone includes new parser and source-aware SSE work,
+but end-to-end assistant quality is not established by storage benchmarks.
+See IMPLEMENTATION_STATUS.md for current capabilities and unfinished work.
 
 ## Explicit operator commands
 
@@ -245,8 +251,8 @@ startup tasks. Their --decision flags do not waive stabilization or retention:
 ..\.venv\Scripts\python.exe -B manage_vectors.py retire --decision
 ~~~
 
-These commands are documented interfaces, not evidence that live migration has
-been completed. Unknown legacy schema dependencies stop finalization safely and
+Preparation and activation have been executed and validated on the live database.
+Finalization and retirement commands have not been executed on live data. Unknown legacy schema dependencies stop finalization safely and
 require an inspected migration rather than blind deletion.
 
 For paired evaluation, run evaluate_rag.py with --live, --backend sqlite or
