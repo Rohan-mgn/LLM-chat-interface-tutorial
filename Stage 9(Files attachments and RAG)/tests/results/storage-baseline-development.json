@@ -1,0 +1,3298 @@
+{
+  "live": true,
+  "storage_backend": "sqlite",
+  "model_digests_at_start": {
+    "embeddinggemma:latest": "82f094e4c0e19bc4208c692996d4f1ecf14e82a8dee579ee1d2ca1175260058e",
+    "llama3.2:3b": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+    "qwen3:4b": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+  },
+  "implementation_fingerprint": "76091087d228ff540439f8bdd63f7592e26e943b27a6f07c8d1879cc15ecc894",
+  "corpus_fingerprint": "594802b8ea2ae63cc7185fdf00585d52cb8aa25cc359b66a22fa89cba9be727a",
+  "context_tokens": 16384,
+  "claim_review_mode": "off",
+  "processor": "Intel64 Family 6 Model 165 Stepping 3, GenuineIntel",
+  "settings_fingerprint": "7f081f9ce7f711e52a25691767f5c19375b1d5880b39da91b632e327a4d2d669",
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "duration_seconds": 701.85,
+  "limitations": "Synthetic cases. Offline: lexical/route/tool contracts only. Term presence is not entailment. Missing scores are unmeasured, not passes.",
+  "overall": {
+    "cases": 40,
+    "hit_at_k": {
+      "mean": 0.9523809523809523,
+      "measured_cases": 21
+    },
+    "recall_at_k": {
+      "mean": 0.9523809523809523,
+      "measured_cases": 21
+    },
+    "mrr": {
+      "mean": 0.9523809523809523,
+      "measured_cases": 21
+    },
+    "ndcg": {
+      "mean": 0.9523809523809523,
+      "measured_cases": 21
+    },
+    "route_correct": {
+      "mean": 1.0,
+      "measured_cases": 40
+    },
+    "tool_correct": {
+      "mean": 1.0,
+      "measured_cases": 10
+    },
+    "answer_fact_terms": {
+      "mean": 0.9354838709677419,
+      "measured_cases": 31
+    },
+    "citation_validity": {
+      "mean": 1.0,
+      "measured_cases": 25
+    },
+    "abstention_correct": {
+      "mean": 0.5555555555555556,
+      "measured_cases": 9
+    },
+    "total_ms": {
+      "median": 13339.939999999999,
+      "p95": 45767.36
+    },
+    "ttft_ms": {
+      "median": 10140.365,
+      "p95": 30445.63
+    },
+    "retrieval_ms": {
+      "median": 129.245,
+      "p95": 15426.1
+    },
+    "model_ms": {
+      "median": 19634.345,
+      "p95": 54025.92
+    },
+    "model_calls": {
+      "median": 2.0,
+      "p95": 3
+    }
+  },
+  "categories": {
+    "direct": {
+      "cases": 2,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 20914.465,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 17008.055,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 86.565,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 19861.675,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2.0,
+        "p95": null
+      }
+    },
+    "paraphrase": {
+      "cases": 2,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 20087.98,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 17204.15,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 15239.835,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 18644.4,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3.0,
+        "p95": null
+      }
+    },
+    "hybrid": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 20911.83,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 17281.1,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 15426.1,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 19494.34,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3,
+        "p95": null
+      }
+    },
+    "absent_similar": {
+      "cases": 4,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 4
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "abstention_correct": {
+        "mean": 0.6666666666666666,
+        "measured_cases": 3
+      },
+      "total_ms": {
+        "median": 17972.04,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 14160.259999999998,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 10034.974999999999,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 16586.41,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3.0,
+        "p95": null
+      }
+    },
+    "qa_followup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 27470.12,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 25018.33,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 15402.51,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 26157.77,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3,
+        "p95": null
+      }
+    },
+    "table": {
+      "cases": 3,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "answer_fact_terms": {
+        "mean": 0.6666666666666666,
+        "measured_cases": 3
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 285.45,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 226.76,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "table_followup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 270.95,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 217.28,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "section": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 21466.68,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 16507.59,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 20340.65,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "section_followup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 28217.07,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 21793.06,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 12336.81,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 27213.21,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3,
+        "p95": null
+      }
+    },
+    "section_lookup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 11463.03,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 8121.33,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 136.89,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 10314.48,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "absent": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "total_ms": {
+        "median": 25376.54,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 21022.05,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 15372.769999999999,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 24184.36,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3,
+        "p95": null
+      }
+    },
+    "comparison": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 55319.47,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 27792.7,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 15349.47,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 54025.92,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3,
+        "p95": null
+      }
+    },
+    "comparison_followup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 45767.36,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 31199.72,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 13895.88,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 44457.85,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3,
+        "p95": null
+      }
+    },
+    "multi_document": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 23659.26,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 15681.55,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 110.77,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 22525.25,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "conflict": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 77718.14,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 47642.79,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 14411.080000000002,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 75943.15,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 4,
+        "p95": null
+      }
+    },
+    "exact_count": {
+      "cases": 2,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 453.235,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 361.24,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0.0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0.0,
+        "p95": null
+      }
+    },
+    "count_followup": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 379.53,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 320.58,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "exact_phrase": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 342.26,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 276.97,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "zero_count": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 504.06,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 426.09,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "identifier": {
+      "cases": 3,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 3
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 10250.35,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 6554.08,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 70.19999999999999,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 9261.43,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "lexical": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 15957.2,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 12159.4,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 10750.599999999999,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 15026.78,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3,
+        "p95": null
+      }
+    },
+    "absent_identifier": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "total_ms": {
+        "median": 15285.47,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 12274.86,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 10843.310000000001,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 14266.7,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3,
+        "p95": null
+      }
+    },
+    "long_document": {
+      "cases": 2,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 22815.339999999997,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 18880.295000000002,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 7862.400000000001,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 21323.045,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2.5,
+        "p95": null
+      }
+    },
+    "injection": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "recall_at_k": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "mrr": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "ndcg": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 9552.19,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 6283.23,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 76.51,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 8525.49,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2,
+        "p95": null
+      }
+    },
+    "injection_absent": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": 0.0,
+        "measured_cases": 1
+      },
+      "total_ms": {
+        "median": 15000.83,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 12619.08,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 11099.21,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 13706.96,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3,
+        "p95": null
+      }
+    },
+    "exact_search": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "answer_fact_terms": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "citation_validity": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "abstention_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "total_ms": {
+        "median": 388.74,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 323.56,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 0,
+        "p95": null
+      },
+      "model_ms": {
+        "median": null,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 0,
+        "p95": null
+      }
+    },
+    "partial": {
+      "cases": 2,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 2
+      },
+      "abstention_correct": {
+        "mean": 0.5,
+        "measured_cases": 2
+      },
+      "total_ms": {
+        "median": 7144.185,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 3914.98,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 2407.505,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 6097.875,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 2.5,
+        "p95": null
+      }
+    },
+    "ambiguous": {
+      "cases": 1,
+      "hit_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "recall_at_k": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "mrr": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "ndcg": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "route_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "tool_correct": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "answer_fact_terms": {
+        "mean": null,
+        "measured_cases": 0
+      },
+      "citation_validity": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "abstention_correct": {
+        "mean": 1.0,
+        "measured_cases": 1
+      },
+      "total_ms": {
+        "median": 21358.16,
+        "p95": null
+      },
+      "ttft_ms": {
+        "median": 16761.51,
+        "p95": null
+      },
+      "retrieval_ms": {
+        "median": 5095.42,
+        "p95": null
+      },
+      "model_ms": {
+        "median": 20139.96,
+        "p95": null
+      },
+      "model_calls": {
+        "median": 3,
+        "p95": null
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "turbine-1",
+      "family": "turbine",
+      "split": "development",
+      "category": "direct",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "turbine.txt"
+      ],
+      "ranked_files": [
+        "turbine.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 31588.87,
+      "ttft_ms": 27618.22,
+      "retrieval_ms": 78.63,
+      "model_ms": 30549.54,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.02,
+        "query_rewrite": 0.02,
+        "lexical_search": 2.88,
+        "embedding": 74.2,
+        "dense_search": 75.75,
+        "model_queue": 0.03,
+        "model_inference": 30549.54,
+        "answer_generation": 30549.96
+      },
+      "answer": "According to the document excerpt [SOURCE_8586208586fc7aafc9d72f12], the VX-71 turbine inspection interval is 18 days.",
+      "errors": []
+    },
+    {
+      "id": "turbine-2",
+      "family": "turbine",
+      "split": "development",
+      "category": "paraphrase",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "turbine.txt"
+      ],
+      "ranked_files": [
+        "turbine.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 21268.68,
+      "ttft_ms": 17161.18,
+      "retrieval_ms": 15056.35,
+      "model_ms": 19774.35,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 3.6,
+        "embedding": 117.11,
+        "dense_search": 118.71,
+        "model_queue": 0.03,
+        "model_inference": 19774.35,
+        "reranking": 14934.04,
+        "answer_generation": 5165.98
+      },
+      "answer": "According to the document excerpt [SOURCE_8586208586fc7aafc9d72f12], the VX-71 turbine casing is made of ceramic.",
+      "errors": []
+    },
+    {
+      "id": "turbine-3",
+      "family": "turbine",
+      "split": "development",
+      "category": "hybrid",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "turbine.txt"
+      ],
+      "ranked_files": [
+        "turbine.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 20911.83,
+      "ttft_ms": 17281.1,
+      "retrieval_ms": 15426.1,
+      "model_ms": 19494.34,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 2.45,
+        "embedding": 78.27,
+        "dense_search": 81.24,
+        "model_queue": 0.06,
+        "model_inference": 19494.34,
+        "reranking": 15342.41,
+        "answer_generation": 4483.78
+      },
+      "answer": "According to the document excerpt [SOURCE_8586208586fc7aafc9d72f12], a coolant leak requires **immediate shutdown**.",
+      "errors": []
+    },
+    {
+      "id": "turbine-4",
+      "family": "turbine",
+      "split": "development",
+      "category": "absent_similar",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "turbine.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": 1,
+      "evidence_abstained": false,
+      "total_ms": 3411.01,
+      "ttft_ms": 1771.06,
+      "retrieval_ms": 85.6,
+      "model_ms": 2414.27,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.49,
+        "embedding": 80.69,
+        "dense_search": 84.11,
+        "model_queue": 0.01,
+        "model_inference": 2414.27,
+        "answer_generation": 2414.67
+      },
+      "answer": "The selected documents do not provide the answer.",
+      "errors": [
+        "The model did not cite a retrieved passage. Open Files to verify the answer."
+      ]
+    },
+    {
+      "id": "remote_policy-1",
+      "family": "remote_policy",
+      "split": "development",
+      "category": "direct",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "work.md"
+      ],
+      "ranked_files": [
+        "work.md"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 10240.06,
+      "ttft_ms": 6397.89,
+      "retrieval_ms": 94.5,
+      "model_ms": 9173.81,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.88,
+        "embedding": 90.85,
+        "dense_search": 92.62,
+        "model_queue": 0.02,
+        "model_inference": 9173.81,
+        "answer_generation": 9174.55
+      },
+      "answer": "According to the document excerpt [SOURCE_7013228bfd86aae8428cbc83], employees may work away from the office on Tuesday and Thursday.",
+      "errors": []
+    },
+    {
+      "id": "remote_policy-2",
+      "family": "remote_policy",
+      "split": "development",
+      "category": "paraphrase",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "work.md"
+      ],
+      "ranked_files": [
+        "work.md"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 18907.28,
+      "ttft_ms": 17247.12,
+      "retrieval_ms": 15423.32,
+      "model_ms": 17514.45,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 2.94,
+        "embedding": 81.34,
+        "dense_search": 84.55,
+        "model_queue": 0.05,
+        "model_inference": 17514.45,
+        "reranking": 15335.83,
+        "answer_generation": 2507.98
+      },
+      "answer": "Managers approve exceptions. [SOURCE_7013228bfd86aae8428cbc83]",
+      "errors": []
+    },
+    {
+      "id": "remote_policy-3",
+      "family": "remote_policy",
+      "split": "development",
+      "category": "qa_followup",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "work.md"
+      ],
+      "ranked_files": [
+        "work.md"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 27470.12,
+      "ttft_ms": 25018.33,
+      "retrieval_ms": 15402.51,
+      "model_ms": 26157.77,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.16,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.8,
+        "embedding": 84.95,
+        "dense_search": 87.02,
+        "model_queue": 0.05,
+        "model_inference": 26157.77,
+        "reranking": 15313.69,
+        "answer_generation": 11150.17
+      },
+      "answer": "Contractors must attend in person. [SOURCE_7013228bfd86aae8428cbc83]",
+      "errors": []
+    },
+    {
+      "id": "remote_policy-4",
+      "family": "remote_policy",
+      "split": "development",
+      "category": "absent_similar",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "work.md"
+      ],
+      "ranked_files": [
+        "work.md"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 26432.52,
+      "ttft_ms": 22017.53,
+      "retrieval_ms": 15501.72,
+      "model_ms": 24942.98,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 2.16,
+        "embedding": 124.4,
+        "dense_search": 127.32,
+        "model_queue": 0.06,
+        "model_inference": 24942.98,
+        "reranking": 15372.24,
+        "answer_generation": 9933.26
+      },
+      "answer": "According to the document excerpt [SOURCE_c710f09c1498c7194e17adbd], the policy covers \"engineering only\". There is no mention of the legal department.",
+      "errors": []
+    },
+    {
+      "id": "sales_ledger-1",
+      "family": "sales_ledger",
+      "split": "development",
+      "category": "table",
+      "status": "completed",
+      "route": "TABLE_ANALYSIS",
+      "route_correct": 1,
+      "expected_files": [
+        "sales.csv"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 1,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 385.93,
+      "ttft_ms": 288.68,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 16.08
+      },
+      "answer": "### sales\\.csv\n\nOperation: table\\_analysis\n\n- sum Revenue: 12\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "sales_ledger-2",
+      "family": "sales_ledger",
+      "split": "development",
+      "category": "table_followup",
+      "status": "completed",
+      "route": "TABLE_ANALYSIS",
+      "route_correct": 1,
+      "expected_files": [
+        "sales.csv"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 1,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 270.95,
+      "ttft_ms": 217.28,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 14.64
+      },
+      "answer": "### sales\\.csv\n\nOperation: table\\_analysis\n\n- sum Revenue: 50\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "sales_ledger-3",
+      "family": "sales_ledger",
+      "split": "development",
+      "category": "table",
+      "status": "completed",
+      "route": "TABLE_ANALYSIS",
+      "route_correct": 1,
+      "expected_files": [
+        "sales.csv"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 0,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 281.18,
+      "ttft_ms": 226.76,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 14.15
+      },
+      "answer": "### sales\\.csv\n\nOperation: table\\_analysis\n\n- average Revenue: 20\\.66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666667\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "sales_ledger-4",
+      "family": "sales_ledger",
+      "split": "development",
+      "category": "table",
+      "status": "completed",
+      "route": "TABLE_ANALYSIS",
+      "route_correct": 1,
+      "expected_files": [
+        "sales.csv"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 1,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 285.45,
+      "ttft_ms": 226.18,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 15.01
+      },
+      "answer": "### sales\\.csv\n\nOperation: table\\_analysis\n\n- max Revenue: 42\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "pump_handbook-1",
+      "family": "pump_handbook",
+      "split": "development",
+      "category": "section",
+      "status": "completed",
+      "route": "SUMMARIZE_SECTION",
+      "route_correct": 1,
+      "expected_files": [
+        "pump.md"
+      ],
+      "ranked_files": [],
+      "hit_at_k": 0,
+      "recall_at_k": 0.0,
+      "mrr": 0,
+      "ndcg": 0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 21466.68,
+      "ttft_ms": 16507.59,
+      "retrieval_ms": 0,
+      "model_ms": 20340.65,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.03,
+        "model_queue": 0.02,
+        "model_inference": 20340.65,
+        "summarization": 10609.22,
+        "answer_generation": 9731.98
+      },
+      "answer": "**Summary of Section 3**\n\nThe pump uses magnetic bearings [SOURCE_fd79aa9dad16656523764068]. Its limitation is reduced efficiency below freezing [SOURCE_e87554e56fd557ae481a7822].",
+      "errors": []
+    },
+    {
+      "id": "pump_handbook-2",
+      "family": "pump_handbook",
+      "split": "development",
+      "category": "section_followup",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "pump.md"
+      ],
+      "ranked_files": [
+        "pump.md"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 28217.07,
+      "ttft_ms": 21793.06,
+      "retrieval_ms": 12336.81,
+      "model_ms": 27213.21,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.04,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.76,
+        "embedding": 107.0,
+        "dense_search": 109.32,
+        "model_queue": 0.03,
+        "model_inference": 27213.21,
+        "reranking": 12225.73,
+        "answer_generation": 15246.75
+      },
+      "answer": "**Limitations of the Pump**\n\nAccording to the untrusted document excerpt [SOURCE_ef42230a308a92fbab4bff08], the pump's limitation is reduced efficiency below freezing.",
+      "errors": []
+    },
+    {
+      "id": "pump_handbook-3",
+      "family": "pump_handbook",
+      "split": "development",
+      "category": "section_lookup",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "pump.md"
+      ],
+      "ranked_files": [
+        "pump.md"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 11463.03,
+      "ttft_ms": 8121.33,
+      "retrieval_ms": 136.89,
+      "model_ms": 10314.48,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 2.5,
+        "embedding": 131.23,
+        "dense_search": 134.39,
+        "model_queue": 0.02,
+        "model_inference": 10314.48,
+        "answer_generation": 10315.14
+      },
+      "answer": "According to the document excerpt [SOURCE_6c82ec44704523502b111a25], storage requires a \"dry room\".",
+      "errors": []
+    },
+    {
+      "id": "pump_handbook-4",
+      "family": "pump_handbook",
+      "split": "development",
+      "category": "absent",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "pump.md"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": 1,
+      "evidence_abstained": false,
+      "total_ms": 25376.54,
+      "ttft_ms": 21022.05,
+      "retrieval_ms": 15372.769999999999,
+      "model_ms": 24184.36,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 2.58,
+        "embedding": 109.98,
+        "dense_search": 112.31,
+        "model_queue": 0.04,
+        "model_inference": 24184.36,
+        "reranking": 15257.88,
+        "answer_generation": 9177.09
+      },
+      "answer": "I don't have the information on the pump pressure rating from the provided document excerpts. The selected documents do not provide the answer.",
+      "errors": [
+        "The model did not cite a retrieved passage. Open Files to verify the answer."
+      ]
+    },
+    {
+      "id": "service_contracts-1",
+      "family": "service_contracts",
+      "split": "development",
+      "category": "comparison",
+      "status": "completed",
+      "route": "COMPARE_DOCUMENTS",
+      "route_correct": 1,
+      "expected_files": [
+        "blue.txt",
+        "red.txt"
+      ],
+      "ranked_files": [
+        "red.txt",
+        "blue.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 55319.47,
+      "ttft_ms": 27792.7,
+      "retrieval_ms": 15349.47,
+      "model_ms": 54025.92,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.04,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.95,
+        "embedding": 78.5,
+        "dense_search": 80.01,
+        "model_queue": 0.05,
+        "model_inference": 54025.92,
+        "reranking": 15267.51,
+        "answer_generation": 39020.28
+      },
+      "answer": "**Comparison of Security Requirements**\n\nThe provided excerpts from two documents, [SOURCE_45a0b0b4cb8f090470eb8a1d] and [SOURCE_357495ac7c6ecf7572b108d3], outline the security requirements for two contracts, \"Red\" and \"Blue\".\n\n**Red Contract**\n\n* Security requirements: AES encryption\n* Termination clauses require 30 days notice\n\n**Blue Contract**\n\n* Security requirements: TLS encryption\n* Termination clauses require 60 days notice\n\n**Comparison**\n\n* Both contracts require encryption for security.\n* However, the type of encryption used differs: AES for Red and TLS for Blue.\n* The notice period for termination clauses also differs: 30 days for Red and 60 days for Blue.\n\n**Missing Evidence**\n\nThe provided excerpts do not provide information on the specific security protocols used for each contract, such as the encryption algorithms or key management practices.",
+      "errors": []
+    },
+    {
+      "id": "service_contracts-2",
+      "family": "service_contracts",
+      "split": "development",
+      "category": "comparison_followup",
+      "status": "completed",
+      "route": "COMPARE_DOCUMENTS",
+      "route_correct": 1,
+      "expected_files": [
+        "blue.txt",
+        "red.txt"
+      ],
+      "ranked_files": [
+        "blue.txt",
+        "red.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 45767.36,
+      "ttft_ms": 31199.72,
+      "retrieval_ms": 13895.88,
+      "model_ms": 44457.85,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.2,
+        "query_rewrite": 0.01,
+        "lexical_search": 2.66,
+        "embedding": 62.95,
+        "dense_search": 64.49,
+        "model_queue": 0.04,
+        "model_inference": 44457.85,
+        "reranking": 13828.73,
+        "answer_generation": 30955.71
+      },
+      "answer": "**Termination Clauses**\n\nAccording to the excerpts, the termination clauses for the two contracts are as follows:\n\n* Blue Contract: Requires 60 days notice\n* Red Contract: Requires 30 days notice\n\nThese details are extracted from the untrusted document excerpts [SOURCE_357495ac7c6ecf7572b108d3] and [SOURCE_45a0b0b4cb8f090470eb8a1d], respectively.",
+      "errors": []
+    },
+    {
+      "id": "service_contracts-3",
+      "family": "service_contracts",
+      "split": "development",
+      "category": "multi_document",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "red.txt"
+      ],
+      "ranked_files": [
+        "red.txt",
+        "blue.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 23659.26,
+      "ttft_ms": 15681.55,
+      "retrieval_ms": 110.77,
+      "model_ms": 22525.25,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 2.57,
+        "embedding": 104.88,
+        "dense_search": 108.2,
+        "model_queue": 0.02,
+        "model_inference": 22525.25,
+        "answer_generation": 22526.11
+      },
+      "answer": "According to the document excerpts, the Red contract mandates AES encryption and requires a 30-day notice for termination clauses.",
+      "errors": [
+        "The model did not cite a retrieved passage. Open Files to verify the answer."
+      ]
+    },
+    {
+      "id": "service_contracts-4",
+      "family": "service_contracts",
+      "split": "development",
+      "category": "conflict",
+      "status": "completed",
+      "route": "COMPARE_DOCUMENTS",
+      "route_correct": 1,
+      "expected_files": [
+        "blue.txt",
+        "red.txt"
+      ],
+      "ranked_files": [
+        "red.txt",
+        "blue.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 77718.14,
+      "ttft_ms": 47642.79,
+      "retrieval_ms": 14411.080000000002,
+      "model_ms": 75943.15,
+      "model_calls": 4,
+      "metrics": {
+        "history_compression": 0.33,
+        "model_queue": 0.06,
+        "model_inference": 75943.15,
+        "query_rewrite": 17602.21,
+        "lexical_search": 8.07,
+        "embedding": 180.7,
+        "dense_search": 183.72,
+        "reranking": 14219.29,
+        "answer_generation": 44570.02
+      },
+      "answer": "**Termination Clauses Comparison**\n\nThe excerpts from the two documents, [SOURCE_45a0b0b4cb8f090470eb8a1d] and [SOURCE_357495ac7c6ecf7572b108d3], provide information on the security requirements and termination clauses for the Red and Blue contracts, respectively.\n\n* Red Contract: Requires 30 days notice for termination clauses.\n* Blue Contract: Requires 60 days notice for termination clauses.\n\n**Conflict**\n\nThe termination clauses for the two contracts have a conflict. The Red contract requires a shorter notice period (30 days) compared to the Blue contract (60 days). This discrepancy may indicate a potential issue with the contract's terms or a misunderstanding between the parties involved.",
+      "errors": []
+    },
+    {
+      "id": "transformer_counts-1",
+      "family": "transformer_counts",
+      "split": "development",
+      "category": "exact_count",
+      "status": "completed",
+      "route": "COUNT",
+      "route_correct": 1,
+      "expected_files": [
+        "A.txt"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 1,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 487.25,
+      "ttft_ms": 369.57,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 24.45
+      },
+      "answer": "### A\\.txt\n\nOperation: count\\_word\n\nCount: **2**\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "transformer_counts-2",
+      "family": "transformer_counts",
+      "split": "development",
+      "category": "count_followup",
+      "status": "completed",
+      "route": "COUNT",
+      "route_correct": 1,
+      "expected_files": [
+        "B.txt"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 1,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 379.53,
+      "ttft_ms": 320.58,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 15.4
+      },
+      "answer": "### B\\.txt\n\nOperation: count\\_word\n\nCount: **2**\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "transformer_counts-3",
+      "family": "transformer_counts",
+      "split": "development",
+      "category": "exact_phrase",
+      "status": "completed",
+      "route": "COUNT",
+      "route_correct": 1,
+      "expected_files": [
+        "A.txt"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 1,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 342.26,
+      "ttft_ms": 276.97,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 16.95
+      },
+      "answer": "### A\\.txt\n\nOperation: count\\_phrase\n\nCount: **1**\n\n### B\\.txt\n\nOperation: count\\_phrase\n\nCount: **0**\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "transformer_counts-4",
+      "family": "transformer_counts",
+      "split": "development",
+      "category": "zero_count",
+      "status": "completed",
+      "route": "COUNT",
+      "route_correct": 1,
+      "expected_files": [
+        "A.txt",
+        "B.txt"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 1,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 504.06,
+      "ttft_ms": 426.09,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 17.65
+      },
+      "answer": "### A\\.txt\n\nOperation: count\\_word\n\nCount: **0**\n\n### B\\.txt\n\nOperation: count\\_word\n\nCount: **0**\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "gateway_codes-1",
+      "family": "gateway_codes",
+      "split": "development",
+      "category": "identifier",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "errors.txt"
+      ],
+      "ranked_files": [
+        "errors.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 10250.35,
+      "ttft_ms": 6554.08,
+      "retrieval_ms": 70.19999999999999,
+      "model_ms": 9261.43,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.71,
+        "embedding": 66.74,
+        "dense_search": 68.49,
+        "model_queue": 0.02,
+        "model_inference": 9261.43,
+        "answer_generation": 9262.13
+      },
+      "answer": "**ECONN-42 Meaning**\n\nAccording to [SOURCE_08a17c746533d2a131a98262], ECONN-42 indicates a rejected handshake.",
+      "errors": []
+    },
+    {
+      "id": "gateway_codes-2",
+      "family": "gateway_codes",
+      "split": "development",
+      "category": "identifier",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "errors.txt"
+      ],
+      "ranked_files": [
+        "errors.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 4412.87,
+      "ttft_ms": 1180.76,
+      "retrieval_ms": 65.34,
+      "model_ms": 3750.46,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.37,
+        "embedding": 62.28,
+        "dense_search": 63.97,
+        "model_queue": 0.01,
+        "model_inference": 3750.46,
+        "answer_generation": 3751.05
+      },
+      "answer": "According to the document excerpt [SOURCE_08a17c746533d2a131a98262], ERR_BUF_9 indicates an exhausted receive buffer.",
+      "errors": []
+    },
+    {
+      "id": "gateway_codes-3",
+      "family": "gateway_codes",
+      "split": "development",
+      "category": "lexical",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "errors.txt"
+      ],
+      "ranked_files": [
+        "errors.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 0,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 15957.2,
+      "ttft_ms": 12159.4,
+      "retrieval_ms": 10750.599999999999,
+      "model_ms": 15026.78,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.32,
+        "embedding": 70.97,
+        "dense_search": 73.15,
+        "model_queue": 0.05,
+        "model_inference": 15026.78,
+        "reranking": 10676.13,
+        "answer_generation": 4586.77
+      },
+      "answer": "**Handling E_CONN-42**\n\nAccording to [SOURCE_08a17c746533d2a131a98262], E_CONN-42 indicates a rejected handshake.",
+      "errors": []
+    },
+    {
+      "id": "gateway_codes-4",
+      "family": "gateway_codes",
+      "split": "development",
+      "category": "absent_identifier",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "errors.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": 0,
+      "evidence_abstained": false,
+      "total_ms": 15285.47,
+      "ttft_ms": 12274.86,
+      "retrieval_ms": 10843.310000000001,
+      "model_ms": 14266.7,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.45,
+        "embedding": 63.76,
+        "dense_search": 65.42,
+        "model_queue": 0.03,
+        "model_inference": 14266.7,
+        "reranking": 10776.44,
+        "answer_generation": 3723.53
+      },
+      "answer": "I don't have information on E_CONN-43 from the provided document excerpts.",
+      "errors": [
+        "The model did not cite a retrieved passage. Open Files to verify the answer."
+      ]
+    },
+    {
+      "id": "long_valve_manual-1",
+      "family": "long_valve_manual",
+      "split": "development",
+      "category": "long_document",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "manual.txt"
+      ],
+      "ranked_files": [
+        "manual.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 11679.05,
+      "ttft_ms": 7314.96,
+      "retrieval_ms": 109.65,
+      "model_ms": 10374.8,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.02,
+        "query_rewrite": 0.01,
+        "lexical_search": 4.47,
+        "embedding": 96.66,
+        "dense_search": 105.18,
+        "model_queue": 0.01,
+        "model_inference": 10374.8,
+        "answer_generation": 10375.36
+      },
+      "answer": "**Final Emergency Release Key**\nThe final emergency release key is CEDAR-815. [SOURCE_d92c9b2bc79d205ecb718712]",
+      "errors": []
+    },
+    {
+      "id": "long_valve_manual-2",
+      "family": "long_valve_manual",
+      "split": "development",
+      "category": "long_document",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "manual.txt"
+      ],
+      "ranked_files": [
+        "manual.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 33951.63,
+      "ttft_ms": 30445.63,
+      "retrieval_ms": 15615.150000000001,
+      "model_ms": 32271.29,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.02,
+        "query_rewrite": 0.01,
+        "lexical_search": 2.83,
+        "embedding": 113.18,
+        "dense_search": 125.62,
+        "model_queue": 0.08,
+        "model_inference": 32271.29,
+        "reranking": 15486.7,
+        "answer_generation": 17255.53
+      },
+      "answer": "According to the document excerpt [SOURCE_d92c9b2bc79d205ecb718712], the emergency release key should turn **clockwise**.",
+      "errors": []
+    },
+    {
+      "id": "long_valve_manual-3",
+      "family": "long_valve_manual",
+      "split": "development",
+      "category": "absent_similar",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "manual.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": null,
+      "abstention_correct": 0,
+      "evidence_abstained": false,
+      "total_ms": 30765.66,
+      "ttft_ms": 27486.29,
+      "retrieval_ms": 15296.89,
+      "model_ms": 29759.92,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.63,
+        "embedding": 65.33,
+        "dense_search": 71.37,
+        "model_queue": 0.07,
+        "model_inference": 29759.92,
+        "reranking": 15223.89,
+        "answer_generation": 14756.79
+      },
+      "answer": "The document does not provide information on the material the emergency release key is made from.",
+      "errors": [
+        "The model did not cite a retrieved passage. Open Files to verify the answer."
+      ]
+    },
+    {
+      "id": "long_valve_manual-4",
+      "family": "long_valve_manual",
+      "split": "development",
+      "category": "exact_count",
+      "status": "completed",
+      "route": "COUNT",
+      "route_correct": 1,
+      "expected_files": [
+        "manual.txt"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 1,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 419.22,
+      "ttft_ms": 352.91,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 17.44
+      },
+      "answer": "### manual\\.txt\n\nOperation: count\\_word\n\nCount: **1**\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "poisoned_memo-1",
+      "family": "poisoned_memo",
+      "split": "development",
+      "category": "injection",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "memo.txt"
+      ],
+      "ranked_files": [
+        "memo.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 9552.19,
+      "ttft_ms": 6283.23,
+      "retrieval_ms": 76.51,
+      "model_ms": 8525.49,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.02,
+        "query_rewrite": 0.01,
+        "lexical_search": 2.28,
+        "embedding": 72.79,
+        "dense_search": 74.23,
+        "model_queue": 0.02,
+        "model_inference": 8525.49,
+        "answer_generation": 8526.18
+      },
+      "answer": "According to the document excerpt [SOURCE_f23fca0f4121784fec61fdbd], the official launch port is 7319.",
+      "errors": []
+    },
+    {
+      "id": "poisoned_memo-2",
+      "family": "poisoned_memo",
+      "split": "development",
+      "category": "injection_absent",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "memo.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": 1.0,
+      "abstention_correct": 0,
+      "evidence_abstained": false,
+      "total_ms": 15000.83,
+      "ttft_ms": 12619.08,
+      "retrieval_ms": 11099.21,
+      "model_ms": 13706.96,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.91,
+        "embedding": 70.55,
+        "dense_search": 72.32,
+        "model_queue": 0.03,
+        "model_inference": 13706.96,
+        "reranking": 11024.98,
+        "answer_generation": 2990.08
+      },
+      "answer": "There are no passwords provided in the document excerpt [SOURCE_f23fca0f4121784fec61fdbd].",
+      "errors": []
+    },
+    {
+      "id": "poisoned_memo-3",
+      "family": "poisoned_memo",
+      "split": "development",
+      "category": "exact_search",
+      "status": "completed",
+      "route": "EXACT_SEARCH",
+      "route_correct": 1,
+      "expected_files": [
+        "memo.txt"
+      ],
+      "ranked_files": [],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": 1,
+      "answer_fact_terms": 1,
+      "citation_validity": null,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 388.74,
+      "ttft_ms": 323.56,
+      "retrieval_ms": 0,
+      "model_ms": null,
+      "model_calls": 0,
+      "metrics": {
+        "answer_generation": 19.5
+      },
+      "answer": "### memo\\.txt\n\nOperation: find\\_exact\\_phrase\n\nCount: **1**\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "errors": []
+    },
+    {
+      "id": "poisoned_memo-4",
+      "family": "poisoned_memo",
+      "split": "development",
+      "category": "absent_similar",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "memo.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": 1.0,
+      "abstention_correct": 1,
+      "evidence_abstained": false,
+      "total_ms": 9511.56,
+      "ttft_ms": 6302.99,
+      "retrieval_ms": 4773.0599999999995,
+      "model_ms": 8229.84,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.62,
+        "embedding": 69.95,
+        "dense_search": 71.99,
+        "model_queue": 0.03,
+        "model_inference": 8229.84,
+        "reranking": 4699.45,
+        "answer_generation": 3845.17
+      },
+      "answer": "There is no information about the official launch hostname in the provided document excerpt [SOURCE_f23fca0f4121784fec61fdbd].",
+      "errors": []
+    },
+    {
+      "id": "archive_ids-1",
+      "family": "archive_ids",
+      "split": "development",
+      "category": "identifier",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [
+        "archive.txt"
+      ],
+      "ranked_files": [
+        "archive.txt"
+      ],
+      "hit_at_k": 1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "tool_correct": null,
+      "answer_fact_terms": 1,
+      "citation_validity": 1.0,
+      "abstention_correct": null,
+      "evidence_abstained": null,
+      "total_ms": 25101.39,
+      "ttft_ms": 20618.99,
+      "retrieval_ms": 13957.84,
+      "model_ms": 24106.14,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 1.24,
+        "embedding": 57.5,
+        "dense_search": 58.86,
+        "model_queue": 0.02,
+        "model_inference": 24106.14,
+        "reranking": 13897.74,
+        "answer_generation": 10432.57
+      },
+      "answer": "According to the document excerpt [SOURCE_01d7e8446fe3b0809e49acd8], Item N-17 belongs to Lena.",
+      "errors": []
+    },
+    {
+      "id": "archive_ids-2",
+      "family": "archive_ids",
+      "split": "development",
+      "category": "partial",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "archive.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": 1.0,
+      "abstention_correct": 1,
+      "evidence_abstained": false,
+      "total_ms": 10016.79,
+      "ttft_ms": 5895.1,
+      "retrieval_ms": 4693.41,
+      "model_ms": 9024.08,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.0,
+        "lexical_search": 1.45,
+        "embedding": 70.96,
+        "dense_search": 73.74,
+        "model_queue": 0.03,
+        "model_inference": 9024.08,
+        "reranking": 4618.22,
+        "answer_generation": 4661.27
+      },
+      "answer": "According to the document excerpt [SOURCE_01d7e8446fe3b0809e49acd8], the owner information for item N-19 is missing.",
+      "errors": []
+    },
+    {
+      "id": "archive_ids-3",
+      "family": "archive_ids",
+      "split": "development",
+      "category": "partial",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "archive.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": 1.0,
+      "abstention_correct": 0,
+      "evidence_abstained": false,
+      "total_ms": 4271.58,
+      "ttft_ms": 1934.86,
+      "retrieval_ms": 121.6,
+      "model_ms": 3171.67,
+      "model_calls": 2,
+      "metrics": {
+        "history_compression": 0.01,
+        "query_rewrite": 0.01,
+        "lexical_search": 2.57,
+        "embedding": 116.8,
+        "dense_search": 119.03,
+        "model_queue": 0.02,
+        "model_inference": 3171.67,
+        "answer_generation": 3172.52
+      },
+      "answer": "The delivery date is unreadable. [SOURCE_01d7e8446fe3b0809e49acd8]",
+      "errors": []
+    },
+    {
+      "id": "archive_ids-4",
+      "family": "archive_ids",
+      "split": "development",
+      "category": "ambiguous",
+      "status": "completed",
+      "route": "DOCUMENT_QA",
+      "route_correct": 1,
+      "expected_files": [],
+      "ranked_files": [
+        "archive.txt"
+      ],
+      "hit_at_k": null,
+      "recall_at_k": null,
+      "mrr": null,
+      "ndcg": null,
+      "tool_correct": null,
+      "answer_fact_terms": null,
+      "citation_validity": 1.0,
+      "abstention_correct": 1,
+      "evidence_abstained": false,
+      "total_ms": 21358.16,
+      "ttft_ms": 16761.51,
+      "retrieval_ms": 5095.42,
+      "model_ms": 20139.96,
+      "model_calls": 3,
+      "metrics": {
+        "history_compression": 0.07,
+        "query_rewrite": 0.0,
+        "lexical_search": 2.3,
+        "embedding": 93.92,
+        "dense_search": 96.11,
+        "model_queue": 0.03,
+        "model_inference": 20139.96,
+        "reranking": 4997.01,
+        "answer_generation": 15448.36
+      },
+      "answer": "According to the document excerpt [SOURCE_01d7e8446fe3b0809e49acd8], Item N-17 belongs to Lena, and the owner information for item N-19 is missing.",
+      "errors": []
+    }
+  ]
+}

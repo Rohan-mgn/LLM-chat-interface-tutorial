@@ -1,0 +1,1379 @@
+{
+  "comparable": true,
+  "passed": true,
+  "paired_cases": 40,
+  "maximum_absolute_retrieval_regression": 0.02,
+  "regressions": [],
+  "overall": {
+    "hit_at_k": {
+      "measured_cases": 21,
+      "baseline": 0.9523809523809523,
+      "candidate": 0.9523809523809523,
+      "delta": 0
+    },
+    "recall_at_k": {
+      "measured_cases": 21,
+      "baseline": 0.9523809523809523,
+      "candidate": 0.9523809523809523,
+      "delta": 0.0
+    },
+    "mrr": {
+      "measured_cases": 21,
+      "baseline": 0.9523809523809523,
+      "candidate": 0.9523809523809523,
+      "delta": 0.0
+    },
+    "ndcg": {
+      "measured_cases": 21,
+      "baseline": 0.9523809523809523,
+      "candidate": 0.9523809523809523,
+      "delta": 0.0
+    },
+    "precision_at_returned": {
+      "measured_cases": 21,
+      "baseline": 0.9285714285714286,
+      "candidate": 0.9285714285714286,
+      "delta": 0.0
+    },
+    "total_ms": {
+      "measured_cases": 40,
+      "baseline_median": 13339.939999999999,
+      "candidate_median": 16351.23
+    },
+    "ttft_ms": {
+      "measured_cases": 40,
+      "baseline_median": 10140.365,
+      "candidate_median": 12529.235
+    },
+    "model_calls": {
+      "measured_cases": 40,
+      "baseline_median": 2.0,
+      "candidate_median": 2.0
+    }
+  },
+  "categories": {
+    "absent": {
+      "hit_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "recall_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "mrr": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "ndcg": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "precision_at_returned": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 25376.54,
+        "candidate_median": 26040.46
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 21022.05,
+        "candidate_median": 21092.97
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 3,
+        "candidate_median": 3
+      }
+    },
+    "absent_identifier": {
+      "hit_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "recall_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "mrr": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "ndcg": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "precision_at_returned": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 15285.47,
+        "candidate_median": 17891.4
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 12274.86,
+        "candidate_median": 15455.55
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 3,
+        "candidate_median": 3
+      }
+    },
+    "absent_similar": {
+      "hit_at_k": {
+        "measured_cases": 1,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 4,
+        "baseline_median": 17972.04,
+        "candidate_median": 17349.32
+      },
+      "ttft_ms": {
+        "measured_cases": 4,
+        "baseline_median": 14160.259999999998,
+        "candidate_median": 13657.630000000001
+      },
+      "model_calls": {
+        "measured_cases": 4,
+        "baseline_median": 3.0,
+        "candidate_median": 3.0
+      }
+    },
+    "ambiguous": {
+      "hit_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "recall_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "mrr": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "ndcg": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "precision_at_returned": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 21358.16,
+        "candidate_median": 32412.17
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 16761.51,
+        "candidate_median": 24853.16
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 3,
+        "candidate_median": 3
+      }
+    },
+    "comparison": {
+      "hit_at_k": {
+        "measured_cases": 1,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 55319.47,
+        "candidate_median": 61926.83
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 27792.7,
+        "candidate_median": 28407.35
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 3,
+        "candidate_median": 3
+      }
+    },
+    "comparison_followup": {
+      "hit_at_k": {
+        "measured_cases": 1,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 45767.36,
+        "candidate_median": 50102.75
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 31199.72,
+        "candidate_median": 39408.55
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 3,
+        "candidate_median": 3
+      }
+    },
+    "conflict": {
+      "hit_at_k": {
+        "measured_cases": 1,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 77718.14,
+        "candidate_median": 58250.28
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 47642.79,
+        "candidate_median": 27585.86
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 4,
+        "candidate_median": 4
+      }
+    },
+    "count_followup": {
+      "hit_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "recall_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "mrr": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "ndcg": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "precision_at_returned": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 379.53,
+        "candidate_median": 528.69
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 320.58,
+        "candidate_median": 453.72
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 0,
+        "candidate_median": 0
+      }
+    },
+    "direct": {
+      "hit_at_k": {
+        "measured_cases": 2,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 2,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 2,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 2,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 2,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 2,
+        "baseline_median": 20914.465,
+        "candidate_median": 10076.145
+      },
+      "ttft_ms": {
+        "measured_cases": 2,
+        "baseline_median": 17008.055,
+        "candidate_median": 6452.549999999999
+      },
+      "model_calls": {
+        "measured_cases": 2,
+        "baseline_median": 2.0,
+        "candidate_median": 2.0
+      }
+    },
+    "exact_count": {
+      "hit_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "recall_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "mrr": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "ndcg": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "precision_at_returned": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "total_ms": {
+        "measured_cases": 2,
+        "baseline_median": 453.235,
+        "candidate_median": 394.275
+      },
+      "ttft_ms": {
+        "measured_cases": 2,
+        "baseline_median": 361.24,
+        "candidate_median": 318.015
+      },
+      "model_calls": {
+        "measured_cases": 2,
+        "baseline_median": 0.0,
+        "candidate_median": 0.0
+      }
+    },
+    "exact_phrase": {
+      "hit_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "recall_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "mrr": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "ndcg": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "precision_at_returned": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 342.26,
+        "candidate_median": 458.77
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 276.97,
+        "candidate_median": 391.54
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 0,
+        "candidate_median": 0
+      }
+    },
+    "exact_search": {
+      "hit_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "recall_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "mrr": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "ndcg": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "precision_at_returned": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 388.74,
+        "candidate_median": 352.73
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 323.56,
+        "candidate_median": 289.74
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 0,
+        "candidate_median": 0
+      }
+    },
+    "hybrid": {
+      "hit_at_k": {
+        "measured_cases": 1,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 20911.83,
+        "candidate_median": 16935.61
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 17281.1,
+        "candidate_median": 13950.21
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 3,
+        "candidate_median": 3
+      }
+    },
+    "identifier": {
+      "hit_at_k": {
+        "measured_cases": 3,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 3,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 3,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 3,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 3,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 3,
+        "baseline_median": 10250.35,
+        "candidate_median": 10189.85
+      },
+      "ttft_ms": {
+        "measured_cases": 3,
+        "baseline_median": 6554.08,
+        "candidate_median": 6539.49
+      },
+      "model_calls": {
+        "measured_cases": 3,
+        "baseline_median": 2,
+        "candidate_median": 2
+      }
+    },
+    "injection": {
+      "hit_at_k": {
+        "measured_cases": 1,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 9552.19,
+        "candidate_median": 31107.8
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 6283.23,
+        "candidate_median": 27147.9
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 2,
+        "candidate_median": 2
+      }
+    },
+    "injection_absent": {
+      "hit_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "recall_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "mrr": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "ndcg": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "precision_at_returned": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 15000.83,
+        "candidate_median": 39953.16
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 12619.08,
+        "candidate_median": 37525.6
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 3,
+        "candidate_median": 3
+      }
+    },
+    "lexical": {
+      "hit_at_k": {
+        "measured_cases": 1,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 15957.2,
+        "candidate_median": 21676.35
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 12159.4,
+        "candidate_median": 15328.24
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 3,
+        "candidate_median": 3
+      }
+    },
+    "long_document": {
+      "hit_at_k": {
+        "measured_cases": 2,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 2,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 2,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 2,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 2,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 2,
+        "baseline_median": 22815.339999999997,
+        "candidate_median": 27632.455
+      },
+      "ttft_ms": {
+        "measured_cases": 2,
+        "baseline_median": 18880.295000000002,
+        "candidate_median": 24143.295
+      },
+      "model_calls": {
+        "measured_cases": 2,
+        "baseline_median": 2.5,
+        "candidate_median": 2.5
+      }
+    },
+    "multi_document": {
+      "hit_at_k": {
+        "measured_cases": 1,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 1,
+        "baseline": 0.5,
+        "candidate": 0.5,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 23659.26,
+        "candidate_median": 15199.75
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 15681.55,
+        "candidate_median": 11600.05
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 2,
+        "candidate_median": 2
+      }
+    },
+    "paraphrase": {
+      "hit_at_k": {
+        "measured_cases": 2,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 2,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 2,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 2,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 2,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 2,
+        "baseline_median": 20087.98,
+        "candidate_median": 18278.27
+      },
+      "ttft_ms": {
+        "measured_cases": 2,
+        "baseline_median": 17204.15,
+        "candidate_median": 15679.029999999999
+      },
+      "model_calls": {
+        "measured_cases": 2,
+        "baseline_median": 3.0,
+        "candidate_median": 3.0
+      }
+    },
+    "partial": {
+      "hit_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "recall_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "mrr": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "ndcg": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "precision_at_returned": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "total_ms": {
+        "measured_cases": 2,
+        "baseline_median": 7144.185,
+        "candidate_median": 10313.61
+      },
+      "ttft_ms": {
+        "measured_cases": 2,
+        "baseline_median": 3914.98,
+        "candidate_median": 6671.120000000001
+      },
+      "model_calls": {
+        "measured_cases": 2,
+        "baseline_median": 2.5,
+        "candidate_median": 2.5
+      }
+    },
+    "qa_followup": {
+      "hit_at_k": {
+        "measured_cases": 1,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 27470.12,
+        "candidate_median": 27171.03
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 25018.33,
+        "candidate_median": 25192.47
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 3,
+        "candidate_median": 3
+      }
+    },
+    "section": {
+      "hit_at_k": {
+        "measured_cases": 1,
+        "baseline": 0,
+        "candidate": 0,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 1,
+        "baseline": 0.0,
+        "candidate": 0.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 1,
+        "baseline": 0,
+        "candidate": 0,
+        "delta": 0
+      },
+      "ndcg": {
+        "measured_cases": 1,
+        "baseline": 0.0,
+        "candidate": 0.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 1,
+        "baseline": 0,
+        "candidate": 0,
+        "delta": 0
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 21466.68,
+        "candidate_median": 18596.31
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 16507.59,
+        "candidate_median": 13458.42
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 2,
+        "candidate_median": 2
+      }
+    },
+    "section_followup": {
+      "hit_at_k": {
+        "measured_cases": 1,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 28217.07,
+        "candidate_median": 23962.64
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 21793.06,
+        "candidate_median": 18730.03
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 3,
+        "candidate_median": 3
+      }
+    },
+    "section_lookup": {
+      "hit_at_k": {
+        "measured_cases": 1,
+        "baseline": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "recall_at_k": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "mrr": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "ndcg": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "precision_at_returned": {
+        "measured_cases": 1,
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 11463.03,
+        "candidate_median": 8763.94
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 8121.33,
+        "candidate_median": 6213.47
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 2,
+        "candidate_median": 2
+      }
+    },
+    "table": {
+      "hit_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "recall_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "mrr": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "ndcg": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "precision_at_returned": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "total_ms": {
+        "measured_cases": 3,
+        "baseline_median": 285.45,
+        "candidate_median": 443.79
+      },
+      "ttft_ms": {
+        "measured_cases": 3,
+        "baseline_median": 226.76,
+        "candidate_median": 353.61
+      },
+      "model_calls": {
+        "measured_cases": 3,
+        "baseline_median": 0,
+        "candidate_median": 0
+      }
+    },
+    "table_followup": {
+      "hit_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "recall_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "mrr": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "ndcg": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "precision_at_returned": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 270.95,
+        "candidate_median": 405.59
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 217.28,
+        "candidate_median": 342.98
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 0,
+        "candidate_median": 0
+      }
+    },
+    "zero_count": {
+      "hit_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "recall_at_k": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "mrr": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "ndcg": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "precision_at_returned": {
+        "measured_cases": 0,
+        "baseline": null,
+        "candidate": null,
+        "delta": null
+      },
+      "total_ms": {
+        "measured_cases": 1,
+        "baseline_median": 504.06,
+        "candidate_median": 385.91
+      },
+      "ttft_ms": {
+        "measured_cases": 1,
+        "baseline_median": 426.09,
+        "candidate_median": 311.59
+      },
+      "model_calls": {
+        "measured_cases": 1,
+        "baseline_median": 0,
+        "candidate_median": 0
+      }
+    }
+  },
+  "limitations": [
+    "Binary document-level relevance; not passage-level support or full answer correctness.",
+    "nDCG is recomputed against all expected relevant files, including missing returned evidence.",
+    "Only the frozen overall retrieval tolerance determines this comparison gate; categories remain visible.",
+    "A single paired run under variable system load is not proof of a latency improvement.",
+    "This report is not a complete migration acceptance attestation or assistant-quality verdict."
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "scope": "Native smoke qualification, not full production acceptance or performance benchmark",
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "versions": {
+    "annotated-types": "0.8.0",
+    "colorama": "0.4.6",
+    "deprecation": "2.1.0",
+    "lancedb": "0.40.0",
+    "lance-namespace": "0.13.0",
+    "lance-namespace-urllib3-client": "0.13.0",
+    "numpy": "2.5.3",
+    "packaging": "26.3",
+    "pip": "25.3",
+    "psutil": "7.2.2",
+    "pyarrow": "25.0.1",
+    "pydantic": "2.13.5",
+    "pydantic_core": "2.46.5",
+    "python-dateutil": "2.9.0.post0",
+    "six": "1.17.0",
+    "tqdm": "4.70.1",
+    "typing_extensions": "4.16.0",
+    "typing-inspection": "0.4.4",
+    "urllib3": "2.8.0"
+  },
+  "checks": [
+    {
+      "name": "external_float32_cosine_prefilter",
+      "passed": true,
+      "seconds": 0.099
+    },
+    {
+      "name": "100_idempotent_upserts",
+      "passed": true,
+      "seconds": 3.899
+    },
+    {
+      "name": "native_fts_and_prefilter",
+      "passed": true,
+      "seconds": 0.076
+    },
+    {
+      "name": "restart_persistence_and_process_exit",
+      "passed": true,
+      "seconds": 3.874
+    },
+    {
+      "name": "stale_handle_acknowledgment_lost_recovery",
+      "passed": true,
+      "seconds": 4.061
+    },
+    {
+      "name": "delete_and_fts_visibility",
+      "passed": true,
+      "seconds": 0.035
+    },
+    {
+      "name": "maintenance_preserves_current_rows",
+      "passed": true,
+      "seconds": 0.256
+    }
+  ],
+  "seconds": 15.883,
+  "disk_bytes": 302550
+}

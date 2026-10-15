@@ -14,6 +14,9 @@ BASE_DIR = Path(__file__).resolve().parent
 # to the application, then restart this launcher to pick up the changed list.
 RUNTIME_FILES = (
     "RAG/__init__.py",
+    "RAG/storage_gate.py", "RAG/vector_store.py", "RAG/index_lifecycle.py", "RAG/vector_migration.py",
+    "RAG/evidence_release.py",
+    "RAG/parser_registry.py", "RAG/parser_worker.py", "RAG/parser_limits.py", "RAG/structured_formats.py",
     "RAG/request_state.py", "RAG/evidence.py", "RAG/operations.py", "RAG/vector_cache.py", "RAG/grounding.py",
     "main.py",
     "RAG/model_provider.py",

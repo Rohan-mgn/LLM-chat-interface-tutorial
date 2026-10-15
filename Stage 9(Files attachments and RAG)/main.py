@@ -7,6 +7,8 @@ import sqlite3
 import time
 from RAG.request_state import RequestState, current, phase
 from RAG.grounding import review
+from RAG.evidence_release import (OutputQueue, SourceInvalidated, release_gate,
+    validate_job, queue_delta, watch_sources, discard_pending, SEND_TIMEOUT)
 from threading import Lock
 from typing import Literal
 from uuid import UUID
@@ -168,6 +170,7 @@ def init_db():
             raise RuntimeError("Invalid conversation reference; database initialization rolled back.")
 
     documents.init()
+    rag.init_storage()
 
 
 def create_conversation(title="New chat"):
@@ -435,15 +438,19 @@ async def produce_reply(job, messages):
     job["started"].set()
     request_state=RequestState()
     request_token=current.set(request_state)
-    parts, final_status, client, stream = [], "stopped", None, None
-    last_save = 0
+    final_status, client, stream = "stopped", None, None
     generation_started = asyncio.get_running_loop().time()
     retrieval = None
     citation_filter = None
+    error_message = None
+    watcher = asyncio.create_task(watch_sources(documents,job))
     try:
         client = provider.client(timeout=120)
         job["system_prompt"]=SYSTEM_PROMPT
         messages, retrieval = await document_agent.prepare(job, messages)
+        validate_job(documents,job)
+        if retrieval and job.get("evidence_revision"):
+            retrieval["debug"]["evidence_revision"]=job["evidence_revision"].public()
         prompt = SYSTEM_PROMPT + (retrieval["instructions"] if retrieval else "")
         check([{"role":"system","content":prompt}]+messages)
         citation_filter = CitationFilter([s["id"] for s in retrieval["sources"]]) if retrieval and "direct" not in retrieval else None
@@ -467,25 +474,17 @@ async def produce_reply(job, messages):
                 if citation_filter:
                     content = citation_filter.feed(content)
                 if content:
+                    await queue_delta(documents,job,content)
                     if request_state.first_token_ms is None:
                         request_state.first_token_ms=round((time.perf_counter()-request_state.started)*1000,2)
-                    parts.append(content)
-                    # Persist before exposing each checkpoint; a crash keeps the last checkpoint.
-                    now = asyncio.get_running_loop().time()
-                    if now - last_save > .25:
-                        await run_in_threadpool(save_generation, job["assistant_message_id"], "".join(parts), "generating")
-                        last_save = now
-                    await job["queue"].put({"type": "delta", "content": content})
         if citation_filter:
             tail = citation_filter.feed("", final=True)
             if tail:
-                parts.append(tail)
-                await job["queue"].put({"type":"delta","content":tail})
+                await queue_delta(documents,job,tail)
         request_state.add_time("answer_generation",time.perf_counter()-answer_started)
-        # With no optional review left, Stop waits for completion cleanup as before.
+        # All text has been server-emitted before optional review or completion.
         if retrieval is None or os.getenv("RAG_CLAIM_REVIEW","off").lower()=="off":
             job["finishing"]=True
-        # Close the stream and release its semaphore before optional verification.
         if stream is not None:
             await stream.aclose()
             stream=None
@@ -494,23 +493,28 @@ async def produce_reply(job, messages):
             client=None
         if retrieval:
             retrieval["debug"].update(request_state.retrieval)
-            notice=await review(provider,documents,job,"".join(parts),retrieval)
+            notice=await review(provider,documents,job,"".join(job["emitted"]),retrieval)
             if notice:
-                parts.append(notice)
-                await job["queue"].put({"type":"delta","content":notice})
-        if not "".join(parts).strip():
+                await queue_delta(documents,job,notice)
+        text="".join(job["emitted"])
+        if not text.strip():
             raise ValueError("Empty response")
-        if retrieval and retrieval["sources"] and not any("["+s["id"]+"]" in "".join(parts) for s in retrieval["sources"]):
-            job["queue"].put_nowait({"type":"error","message":"The model did not cite a retrieved passage. Open Files to verify the answer."})
+        if retrieval and retrieval["sources"] and not any("["+s["id"]+"]" in text for s in retrieval["sources"]):
+            error_message="The model did not cite a retrieved passage. Open Files to verify the answer."
         final_status = "completed"
     except asyncio.CancelledError:
         final_status = "stopped"
+    except SourceInvalidated:
+        job["invalidated"] = True
+        final_status = "stopped"
     except Exception as error:
         final_status = "error"
-        job["queue"].put_nowait({"type": "error", "message": str(error) if isinstance(error, ValueError) else "The document operation reached its time limit. Select a smaller section." if isinstance(error, TimeoutError) else "The reply failed. Check Ollama, then retry this response."})
+        error_message=str(error) if isinstance(error, ValueError) else "The document operation reached its time limit. Select a smaller section." if isinstance(error, TimeoutError) else "The reply failed. Check Ollama, then retry this response."
     finally:
         job["finishing"] = True
+        watcher.cancel()
         with anyio.CancelScope(shield=True):
+            await asyncio.gather(watcher,return_exceptions=True)
             try:
                 try:
                     if stream is not None:
@@ -520,51 +524,113 @@ async def produce_reply(job, messages):
                         await client.close()
             finally:
                 try:
-                    if retrieval:
-                        retrieval["debug"]["generation_ms"] = round(1000*(asyncio.get_running_loop().time()-generation_started),1)
-                        retrieval["debug"]["estimated_input_tokens"] = message_tokens(messages)
-                        retrieval["debug"].update(request_state.report())
-                    await run_in_threadpool(complete_generation, job["assistant_message_id"], "".join(parts), final_status, retrieval)
+                    # The releaser owns emitted text. Wait for any bounded send,
+                    # then validate and persist status + metadata in one transaction.
+                    async with release_gate(documents,job["conversation_id"]):
+                        try:
+                            validate_job(documents,job)
+                        except SourceInvalidated:
+                            job["invalidated"]=True
+                        if job.get("invalidated"):
+                            final_status="stopped"
+                            retrieval=None  # Never retain revoked evidence/debug text.
+                            error_message=str(SourceInvalidated())
+                        if retrieval:
+                            retrieval["debug"]["generation_ms"] = round(1000*(asyncio.get_running_loop().time()-generation_started),1)
+                            retrieval["debug"]["estimated_input_tokens"] = message_tokens(messages)
+                            retrieval["debug"].update(request_state.report())
+                            retrieval["debug"]["output_accounting"]="ASGI send completed; no client acknowledgments"
+                        await run_in_threadpool(complete_generation, job["assistant_message_id"], "".join(job["emitted"]), final_status, retrieval)
                 except Exception:
                     final_status = "error"
                     try:
-                        await run_in_threadpool(save_generation,job["assistant_message_id"],"".join(parts),"error")
+                        await run_in_threadpool(save_generation,job["assistant_message_id"],"".join(job["emitted"]),"error")
                     except Exception:
-                        pass  # Startup recovery changes any remaining generating checkpoint to stopped.
-                    job["queue"].put_nowait({"type": "error", "message": "The response could not be saved. Refresh to check the saved checkpoint before retrying."})
+                        pass  # Startup recovery keeps only the last emitted checkpoint.
+                    error_message="The response could not be saved. Refresh to check the saved checkpoint before retrying."
                 finally:
+                    discard_pending(job)
                     active_generations.pop(job["generation_id"], None)
                     conversation_lock.release(job["conversation_id"])
-                    job["queue"].put_nowait({"type": "done", "status": final_status})
-    current.reset(request_token)
+                    if not job.get("disconnected"):
+                        if error_message:
+                            job["queue"].put_nowait({"type":"error","message":error_message})
+                        job["queue"].put_nowait({"type": "done", "status": final_status})
+        current.reset(request_token)
     return final_status
 
 
 class ChatStreamingResponse(StreamingResponse):
     def __init__(self, job):
         self.job = job
-        async def events():
-            yield "data: " + json.dumps({"type": "start", **job["metadata"]}) + "\n\n"
-            while True:
-                event = await job["queue"].get()
-                yield "data: " + json.dumps({**event, "generation_id": job["generation_id"]}) + "\n\n"
-                if event["type"] == "done":
+        # Only stream_response may release events. Iterating body_iterator alone
+        # does not prove that ASGI emitted bytes and must not advance persistence.
+        async def unused_iterator():
+            if False:
+                yield b""
+        super().__init__(unused_iterator(), media_type="text/event-stream", headers={"Cache-Control": "no-store", "X-Accel-Buffering": "no"})
+
+    async def send_event(self, send, event):
+        public={k:v for k,v in event.items() if not k.startswith("_")}
+        payload=("data: "+json.dumps({**public,"generation_id":self.job["generation_id"]})+"\n\n").encode()
+        # Bound a slow client while the release gate is held. No SQLite write
+        # transaction is open during network I/O.
+        with anyio.CancelScope(shield=True):
+            async with asyncio.timeout(SEND_TIMEOUT):
+                await send({"type":"http.response.body","body":payload,"more_body":True})
+
+    async def stream_response(self, send):
+        job=self.job
+        await send({"type":"http.response.start","status":self.status_code,"headers":self.raw_headers})
+        await self.send_event(send,{"type":"start",**job["metadata"]})
+        while True:
+            event=await job["queue"].get()
+            try:
+                if event["type"] in ("delta","status"):
+                    async with release_gate(documents,job["conversation_id"]):
+                        if job.get("cancelling") or job.get("disconnected"):
+                            continue
+                        validate_job(documents,job)
+                        revision=job.get("evidence_revision")
+                        if revision and event.get("_revision")!=revision.identity:
+                            raise SourceInvalidated()
+                        await self.send_event(send,event)
+                        if event["type"]=="delta":
+                            job["emitted"].append(event["content"])
+                            now=time.monotonic()
+                            if now-job["last_checkpoint"]>.25:
+                                await run_in_threadpool(save_generation,job["assistant_message_id"],"".join(job["emitted"]),"generating")
+                                job["last_checkpoint"]=now
+                    future=event.get("_ack")
+                    if future is not None and not future.done():
+                        future.set_result(None)
+                else:
+                    await self.send_event(send,event)
+                if event["type"]=="done":
                     break
-        super().__init__(events(), media_type="text/event-stream", headers={"Cache-Control": "no-store", "X-Accel-Buffering": "no"})
+            except SourceInvalidated:
+                job["invalidated"]=True
+                job["cancelling"]=True
+                if not job["task"].done() and (not job.get("finishing") or event.get("_ack") is not None):
+                    job["task"].cancel()
+            finally:
+                job["queue"].task_done()
+        await send({"type":"http.response.body","body":b"","more_body":False})
 
     async def __call__(self, scope, receive, send):
         try:
             await super().__call__(scope, receive, send)
         finally:
-            # Both AbortController and network disconnects close the Ollama stream.
             with anyio.CancelScope(shield=True):
-                task = self.job["task"]
-                if not task.done() and not self.job.get("cancelling") and not self.job.get("finishing"):
-                    self.job["cancelling"] = True
+                self.job["disconnected"]=True
+                task=self.job["task"]
+                if not task.done() and not self.job.get("finishing"):
+                    self.job["cancelling"]=True
                     task.cancel()
-                result = await task
-        if result == "completed":
-            await run_in_threadpool(generate_conversation_title, self.job["conversation_id"])
+                result=await task
+                discard_pending(self.job)
+        if result=="completed":
+            await run_in_threadpool(generate_conversation_title,self.job["conversation_id"])
 
 
 @app.post("/chat")
@@ -575,7 +641,8 @@ async def chat(request: ChatRequest):
         # No await between reservation and task registration, so Stop cannot
         # race with the creation of a generation on this worker.
         metadata, messages = prepare_generation(request)
-        job = {**metadata, "metadata": metadata, "queue": asyncio.Queue(), "started": asyncio.Event()}
+        job = {**metadata, "metadata": metadata, "started": asyncio.Event(), "emitted": [], "last_checkpoint": 0}
+        job["queue"] = OutputQueue(job)
         active_generations[job["generation_id"]] = job
         job["task"] = asyncio.create_task(produce_reply(job, messages))
     except BaseException:
@@ -689,7 +756,7 @@ def delete_conversation(conversation_id: int):
     if not conversation_lock.acquire(conversation_id):
         raise HTTPException(409, "Wait for the reply to finish before deleting a conversation.")
     try:
-        with closing(get_connection()) as connection, connection:
+        with documents.mutation(conversation_id), closing(get_connection()) as connection, connection:
             changed = connection.execute("DELETE FROM conversations WHERE id = ?", (conversation_id,)).rowcount
             if not changed:
                 raise HTTPException(404, "Conversation not found.")

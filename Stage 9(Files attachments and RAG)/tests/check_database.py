@@ -15,6 +15,8 @@ from fastapi.testclient import TestClient
 
 STAGE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(STAGE))
+sys.path.insert(0, str(STAGE / "tests"))
+from stream_fixture import start_stream, until
 
 
 class Model:
@@ -213,11 +215,10 @@ class Checks(unittest.TestCase):
         async def scenario():
             gid = uuid4()
             response = await self.app.chat(self.app.ChatRequest(conversation_id=cid, generation_id=gid, message='Original'))
-            iterator = response.body_iterator
-            await anext(iterator)
-            await anext(iterator)
+            transport,events=start_stream(response)
+            await until(events,"delta")
             await self.app.stop_generation(gid)
-            await iterator.aclose()
+            await transport
         asyncio.run(scenario())
         old = self.messages(cid)
         self.mode = 'normal'
@@ -252,13 +253,13 @@ class Checks(unittest.TestCase):
         async def scenario():
             gid = uuid4()
             response = await self.app.chat(self.app.ChatRequest(conversation_id=cid, generation_id=gid, message="Stop me"))
-            iterator = response.body_iterator
-            self.assertIn('"start"', await anext(iterator))
+            transport,events=start_stream(response)
+            await until(events,"start")
             if mode == "slow":
-                self.assertIn('"delta"', await anext(iterator))
+                await until(events,"delta")
             result = await self.app.stop_generation(gid)
             self.assertEqual(result["status"], "stopped")
-            await iterator.aclose()
+            await transport
             self.assertEqual((await self.app.stop_generation(gid))["status"], "stopped")
         asyncio.run(scenario())
         rows = self.messages(cid)
@@ -302,12 +303,14 @@ class Checks(unittest.TestCase):
             model.close = slow_close
             with patch.object(self.app.ollama, "AsyncClient", return_value=model):
                 gid = uuid4()
-                await self.app.chat(self.app.ChatRequest(conversation_id=cid, generation_id=gid, message="Finish"))
+                response=await self.app.chat(self.app.ChatRequest(conversation_id=cid, generation_id=gid, message="Finish"))
+                transport,events=start_stream(response)
                 await closing_started.wait()
                 stopping = asyncio.create_task(self.app.stop_generation(gid))
                 await asyncio.sleep(0)
                 release_close.set()
                 self.assertEqual((await stopping)["status"], "completed")
+                await transport
                 self.assertTrue(model.closed)
         asyncio.run(scenario())
         self.assertFalse(self.app.conversation_lock.locked())

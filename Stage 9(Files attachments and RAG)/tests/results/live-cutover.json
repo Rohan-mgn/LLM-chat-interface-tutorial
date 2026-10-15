@@ -1,0 +1,150 @@
+{
+  "checked_at": 1792035935.7722437,
+  "backend": "lancedb",
+  "lifecycle": "CUTOVER_ACTIVE",
+  "epoch": 1,
+  "activated_at": 1792035870.6210084,
+  "nonvector_tables_unchanged": true,
+  "integrity": "ok",
+  "foreign_key_violations": 0,
+  "counts": {
+    "conversations": 1,
+    "messages": 11,
+    "files": 4,
+    "chunks": 63
+  },
+  "generation_validation": {
+    "files": 4,
+    "sources": 63
+  },
+  "retrieval": [
+    {
+      "file_id": "751cc09b961d4246a64588a2e0013ad4",
+      "authorized_hits": 5,
+      "self_source_found": true
+    },
+    {
+      "file_id": "7ad6566d2db94d13859d909d2d47983a",
+      "authorized_hits": 5,
+      "self_source_found": true
+    },
+    {
+      "file_id": "89e4c248ade74060bcf949efc8ad17bb",
+      "authorized_hits": 5,
+      "self_source_found": true
+    },
+    {
+      "file_id": "fbaba41006c14aee8afca715a5a1e717",
+      "authorized_hits": 5,
+      "self_source_found": true
+    }
+  ],
+  "tables": {
+    "block_citations": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "branch_selections": {
+      "rows": 8,
+      "sha256": "db5f72ab3c3f766356f91ad2efc671c0e7b2133422a091a88d1155101ccca7df"
+    },
+    "chunks": {
+      "rows": 63,
+      "sha256": "87265ff631dc08f3b41d712b59cfe75580d743a2f4fb902bf623333729e58396"
+    },
+    "chunks_fts": {
+      "rows": 63,
+      "sha256": "f1dd97a89cf4f7aeef6caa7ae514747989faebbca76d8669a5ac5804a3bac460"
+    },
+    "chunks_fts_config": {
+      "rows": 1,
+      "sha256": "afaee2b1562b04a97bf25315b158b426795a3b6f88b13fd85d546090fb141946"
+    },
+    "chunks_fts_content": {
+      "rows": 63,
+      "sha256": "488743cace858d4f4bda03d4dd52793507c93b7a5230f203748d9a71a4fa9d22"
+    },
+    "chunks_fts_data": {
+      "rows": 86,
+      "sha256": "f86302fabec7798987471d58070efaf715b23988ed1e7d5e9c5d44b1489133e7"
+    },
+    "chunks_fts_docsize": {
+      "rows": 63,
+      "sha256": "0cb090fdf588905427c17f194f74d001f2fd79cd9aa9d29270b7528050d57e56"
+    },
+    "chunks_fts_idx": {
+      "rows": 84,
+      "sha256": "6571bd96e4b08fc5f9a952f692991b14b0b7cd29c65dcd04c6a6cc8b84f972d5"
+    },
+    "citations": {
+      "rows": 7,
+      "sha256": "986c943b983e040fbe49ab7dc3ec542ba5d95f49a62d352fc2535191086f08a3"
+    },
+    "conversations": {
+      "rows": 1,
+      "sha256": "16dc3c59c66f70df62412a61e532a1a4e9f2a979305826e8d382b900a85c5a72"
+    },
+    "document_blocks": {
+      "rows": 4,
+      "sha256": "f7e9b8cd478652974797576e497e28def2b43a1445115ce0541d0aab6cfc90c1"
+    },
+    "document_cache": {
+      "rows": 4,
+      "sha256": "6a49754251b0ce125f8b06704dcdd03f79f4f1a73bcc79d14203aeb8e0007e17"
+    },
+    "document_schema": {
+      "rows": 1,
+      "sha256": "038966de9f6b9a901b20b4c6ca8b2a46009feebe031babc842d43690c0bc222b"
+    },
+    "files": {
+      "rows": 4,
+      "sha256": "be425a2be79a6decbbdb1c707312c7e1b291948d5af836a4599292753addc4c3"
+    },
+    "generation_cancellations": {
+      "rows": 2,
+      "sha256": "69fc94c0a2daa5b9c52d867a4cb68ecf1f7fe45d458b0ecd3ffd1731bff5ab23"
+    },
+    "generation_requests": {
+      "rows": 6,
+      "sha256": "edda802f96800cb87d969cea38f8189d50b2331c72fe9e65b6bba5fb0d890020"
+    },
+    "history_summaries": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "message_files": {
+      "rows": 12,
+      "sha256": "6f2d0af51792d585839e0847d035a456debc95eed2b5462af34e65fe8e35feb6"
+    },
+    "messages": {
+      "rows": 11,
+      "sha256": "32dd87f4baccbef63e3c19b85ecf4f6b33e2904a6e221872cb5ef8f949d0f5c8"
+    },
+    "pending_unlinks": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "rag_runs": {
+      "rows": 6,
+      "sha256": "52946407c5218d9a1110cffc4f9650aa73e22b9eec461b928943f0a2850d28d7"
+    },
+    "rag_turns": {
+      "rows": 5,
+      "sha256": "195f3792ad2151671d51839572308dcf568bb5d900026ae5eb1e20e8dc69b92e"
+    },
+    "sqlite_sequence": {
+      "rows": 2,
+      "sha256": "4f863317fa1fec1f1fca669f9ef6d2fd8c2e6403db4697465d7dfe1c9acb26dc"
+    },
+    "tool_run_files": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tool_runs": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "legacy_vectors_retained": true,
+  "finalization": "pending at least 14 days stabilization and explicit decision"
+}

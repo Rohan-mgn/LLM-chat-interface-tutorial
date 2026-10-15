@@ -1,0 +1,66 @@
+{
+  "scope": "Fresh-process ingestion memory qualification using the frozen numeric corpus.\n\nIncludes synthetic vector construction, SQLite migration-source creation, Lance\ningestion and compaction. No Ollama calls. This is a conservative combined-process\nmeasurement, not isolated database allocator accounting or answer latency.\n",
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "corpus_seed": 93218,
+  "dimensions": 768,
+  "frozen_version": 1,
+  "memory_limit_mib": 512,
+  "setup_sha256": "7099e28fee49bed42ec1cd78d5edace28eaefb9db184b3ed453842a4b5bdcfb0",
+  "cases": [
+    {
+      "selected": 100,
+      "total": 100,
+      "seconds": 6.796505799997249,
+      "initial_rss_bytes": 27574272,
+      "peak_rss_bytes": 144121856,
+      "incremental_peak_mib": 111.1484375,
+      "vector_disk_bytes": 337429,
+      "raw_text_float32_bytes": 314690,
+      "memory_passed": true,
+      "disk_passed": true,
+      "native_diagnostics": ""
+    },
+    {
+      "selected": 1000,
+      "total": 1000,
+      "seconds": 7.841774300002726,
+      "initial_rss_bytes": 27365376,
+      "peak_rss_bytes": 256221184,
+      "incremental_peak_mib": 218.25390625,
+      "vector_disk_bytes": 3193732,
+      "raw_text_float32_bytes": 3147890,
+      "memory_passed": true,
+      "disk_passed": true,
+      "native_diagnostics": ""
+    },
+    {
+      "selected": 4000,
+      "total": 4000,
+      "seconds": 16.98681360000046,
+      "initial_rss_bytes": 27414528,
+      "peak_rss_bytes": 630226944,
+      "incremental_peak_mib": 574.88671875,
+      "vector_disk_bytes": 12711729,
+      "raw_text_float32_bytes": 12594890,
+      "memory_passed": false,
+      "disk_passed": true,
+      "native_diagnostics": ""
+    },
+    {
+      "selected": 4000,
+      "total": 40000,
+      "seconds": 188.1362977999961,
+      "initial_rss_bytes": 27611136,
+      "peak_rss_bytes": 629522432,
+      "incremental_peak_mib": 574.02734375,
+      "vector_disk_bytes": 254808335,
+      "raw_text_float32_bytes": 125988890,
+      "memory_passed": false,
+      "disk_passed": true,
+      "native_diagnostics": ""
+    }
+  ],
+  "complete": true,
+  "passed": false,
+  "limitations": "One ingestion run per corpus in a fresh process. 5ms RSS sampling can miss short peaks; includes baseline creation. No model memory."
+}

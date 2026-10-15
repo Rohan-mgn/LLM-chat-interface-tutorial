@@ -16,10 +16,7 @@ MAX_FILE = 10 * 1024 * 1024
 MAX_TOTAL = 20 * 1024 * 1024
 MAX_FILES = 4
 MAX_CONVERSATION = 50 * 1024 * 1024
-MIMES = {".txt": "text/plain", ".md": "text/markdown", ".csv": "text/csv",
-         ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-         ".pdf": "application/pdf", ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-         ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp"}
+from .parser_registry import MIMES, specification, archive_preflight, extract_isolated
 from .document_parsers import native_sections, VERSION as PARSER_VERSION
 
 def clean_name(value):
@@ -39,18 +36,29 @@ def decode_text(data):
     return normalize(text)
 
 def extract(path, extension):
-    return native_sections(path, extension, decode_text, normalize)
+    return extract_isolated(path, extension)
 
 
 class Documents:
     def __init__(self, connect, data_dir):
         self.connect, self.data_dir = connect, data_dir
 
+    def mutation(self, cid):
+        from .evidence_release import gate_for
+        return gate_for(self,cid).hold()
+
+    def delete(self, cid, fid):
+        with self.mutation(cid), closing(self.connect()) as db, db:
+            db.execute("DELETE FROM files WHERE id=? AND conversation_id=?",(fid,cid))
+            db.execute("DELETE FROM rag_runs WHERE message_id IN (SELECT id FROM messages WHERE conversation_id=?)",(cid,))
+
     @property
     def uploads(self):
         return self.data_dir() / "uploads"
 
     def init(self):
+        if hasattr(self,"index_lifecycle"):
+            del self.index_lifecycle  # Rebind only after this database has initialized.
         self.uploads.mkdir(parents=True, exist_ok=True)
         (self.uploads / ".tmp").mkdir(exist_ok=True)
         with closing(self.connect()) as db, db:
@@ -112,6 +120,9 @@ class Documents:
             if path.is_file() and path.name not in known and time.time() - path.stat().st_mtime > 86400:
                 path.unlink(missing_ok=True)
 
+        if hasattr(self,"index_lifecycle"):
+            self.index_lifecycle.reconcile()
+
     def path(self, key):
         if not re.fullmatch(r"[a-f0-9]{32}\.[a-z0-9]+", key):
             raise ValueError("Invalid storage key.")
@@ -130,6 +141,9 @@ class Documents:
         item["coverage"] = json.loads(row.get("coverage") or "{}")
         item["capabilities"] = {"tools":item["parse_state"] in ("ready","partial") and bool(row.get("extracted")),
             "dense":row["state"]=="ready","vision":row["mime_type"].startswith("image/")}
+        spec=specification(row["extension"])
+        item["capabilities"]["formats"]=list(spec.capabilities)
+        item["capabilities"]["parser_version"]=spec.version
         item["available"] = self.path(row["stored_filename"]).is_file()
         return item
 
@@ -141,26 +155,25 @@ class Documents:
         name = clean_name(name)
         ext = Path(name).suffix.lower()
         if ext not in MIMES:
-            raise ValueError("Supported files: TXT, MD, CSV, XLSX, PDF, DOCX, PNG, JPEG and WebP.")
+            raise ValueError("Unsupported file format. Supported extensions: "+", ".join(MIMES))
         if not data or len(data) > MAX_FILE:
             raise ValueError("Each file must be nonempty and at most 10 MiB.")
+        spec=specification(ext)
         mime = MIMES[ext]
         allowed = {mime, "", "application/octet-stream"}
-        if ext in (".txt", ".md", ".csv"):
+        if spec.text:
             allowed |= {"text/plain", "text/markdown", "text/csv", "application/vnd.ms-excel"}
+            if ext in (".js",".jsx"):allowed.add("application/javascript")
+            if ext==".xml":allowed.add("text/xml")
+            if ext in (".yaml",".yml"):allowed |= {"text/yaml","application/x-yaml"}
         if (declared_mime or "").split(";")[0].lower() not in allowed:
             raise ValueError("The declared MIME type does not match this file.")
-        if ext in (".txt", ".md", ".csv"):
+        if spec.text:
             decode_text(data)
         elif ext == ".pdf" and not data.startswith(b"%PDF-"):
             raise ValueError("The uploaded file is not a PDF.")
-        elif ext in (".docx", ".xlsx"):
-            try:
-                with zipfile.ZipFile(io.BytesIO(data)) as archive:
-                    if ("word/document.xml" if ext==".docx" else "xl/workbook.xml") not in archive.namelist():
-                        raise ValueError("The uploaded file is not a valid Office document.")
-            except zipfile.BadZipFile as error:
-                raise ValueError("The uploaded file is not a valid Office document.") from error
+        elif spec.office_part:
+            archive_preflight(data,spec.office_part)
         elif mime.startswith("image/"):
             try:
                 with Image.open(io.BytesIO(data)) as im:
@@ -211,7 +224,7 @@ class Documents:
         if result["id"] == old_id:
             return result, False
         try:
-            with closing(self.connect()) as db, db:
+            with self.mutation(cid), closing(self.connect()) as db, db:
                 db.execute("BEGIN IMMEDIATE")
                 db.execute("""INSERT OR IGNORE INTO message_files SELECT message_id,? FROM message_files
                     WHERE file_id=?""", (result["id"], old_id))
@@ -223,7 +236,7 @@ class Documents:
                 db.execute("DELETE FROM rag_runs WHERE message_id IN (SELECT id FROM messages WHERE conversation_id=?)",(cid,))
         except BaseException:
             if created:
-                with closing(self.connect()) as db, db:
+                with self.mutation(cid), closing(self.connect()) as db, db:
                     db.execute("DELETE FROM files WHERE id=?", (result["id"],))
             self.cleanup()
             raise
@@ -380,9 +393,16 @@ class Documents:
         blocks=stable_blocks(fid,sections)
         missing=[b.get("page",b.get("section")) for b in blocks if b["type"]=="unreadable"]
         coverage={"complete":not missing,"unreadable":missing,"vision":any(b.get("origin")=="vision" for b in blocks),"warning":warning}
-        with closing(self.connect()) as db,db:
+        visual=[b.get("slide",b.get("page")) for b in blocks if b.get("requires_vision")]
+        if visual:
+            coverage.update(complete=False,text_complete=not missing,visual_uninterpreted=visual)
+        warnings=list(dict.fromkeys(w for b in blocks for w in b.get("warnings",[])))
+        if warnings:coverage["parser_warnings"]=warnings[:20]
+        with self.mutation(cid), closing(self.connect()) as db,db:
             db.execute("BEGIN IMMEDIATE")
-            if not db.execute("SELECT 1 FROM files WHERE id=? AND conversation_id=?",(fid,cid)).fetchone():return
+            file=db.execute("SELECT extension FROM files WHERE id=? AND conversation_id=?",(fid,cid)).fetchone()
+            if file is None:return []
+            parser_version=specification(file["extension"]).version
             old_ids={r[0] for r in db.execute("SELECT id FROM document_blocks WHERE file_id=?",(fid,))}
             ids={b["id"] for b in blocks}
             if old_ids and old_ids != ids:
@@ -396,10 +416,11 @@ class Documents:
                 db.execute("DELETE FROM document_cache WHERE file_id=? AND cache_key LIKE 'summary-%'",(fid,))
             for b in blocks:
                 db.execute("""INSERT INTO document_blocks VALUES(?,?,?,?) ON CONFLICT(id)
-                    DO UPDATE SET ordinal=excluded.ordinal,data=excluded.data""",(b["id"],fid,b["block_index"],json.dumps(b)))
+                    DO UPDATE SET ordinal=excluded.ordinal,data=excluded.data
+                    WHERE document_blocks.ordinal!=excluded.ordinal OR document_blocks.data!=excluded.data""",(b["id"],fid,b["block_index"],json.dumps(b)))
             db.executemany("DELETE FROM document_blocks WHERE id=?",((bid,) for bid in old_ids-ids))
             db.execute("UPDATE files SET extracted=?,parse_state=?,coverage=?,parser_config=? WHERE id=?",
-                (json.dumps(sections),"ready" if not missing else "partial",json.dumps(coverage),PARSER_VERSION,fid))
+                (json.dumps(sections),"ready" if not missing and not visual else "partial",json.dumps(coverage),parser_version,fid))
         return blocks
 
     def blocks(self,cid,fid):

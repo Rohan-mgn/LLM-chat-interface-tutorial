@@ -2,6 +2,21 @@
 
 This stage preserves the Stage 8 chat UI, streaming, Markdown, syntax highlighting, branches, cancellation and SQLite history. It adds scoped uploads, hybrid retrieval, exact document tools, complete-document summaries, CSV/XLSX calculations and optional vision.
 
+## Dedicated vector storage upgrade
+
+The storage adapter, generation publication, migration fixtures and native
+Windows qualification are being implemented incrementally. The live backend
+remains SQLite until all cutover checks pass; fixture migration is not live
+activation. See [VECTOR_STORAGE.md](VECTOR_STORAGE.md) for measured benchmarks,
+dependency pins, safety boundaries and current limitations, and
+[IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) for milestone status.
+
+Inspect live state without migrating:
+
+~~~powershell
+..\.venv\Scripts\python.exe -B manage_vectors.py status
+~~~
+
 ## Run
 
 From the project root in PowerShell:

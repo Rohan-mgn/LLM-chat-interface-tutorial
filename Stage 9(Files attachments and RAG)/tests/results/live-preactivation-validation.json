@@ -1,0 +1,32 @@
+{
+  "checked_at": 1792035859.5364356,
+  "tested_sources_unchanged": true,
+  "full_numeric_manifests": [
+    {
+      "file_id": "751cc09b961d4246a64588a2e0013ad4",
+      "generation": 15,
+      "count": 12,
+      "version": 5
+    },
+    {
+      "file_id": "7ad6566d2db94d13859d909d2d47983a",
+      "generation": 15,
+      "count": 12,
+      "version": 5
+    },
+    {
+      "file_id": "89e4c248ade74060bcf949efc8ad17bb",
+      "generation": 24,
+      "count": 21,
+      "version": 5
+    },
+    {
+      "file_id": "fbaba41006c14aee8afca715a5a1e717",
+      "generation": 21,
+      "count": 18,
+      "version": 5
+    }
+  ],
+  "files": 4,
+  "sources": 63
+}

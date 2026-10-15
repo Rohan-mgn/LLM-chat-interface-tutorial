@@ -16,6 +16,7 @@ class RequestState:
     embeddings: dict = field(default_factory=dict)
     retrieval: dict = field(default_factory=dict)
     first_token_ms: float | None = None
+    evidence_check: object = None
 
     def call(self, kind):
         self.calls[kind] = self.calls.get(kind, 0) + 1

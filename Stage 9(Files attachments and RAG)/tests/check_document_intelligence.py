@@ -23,6 +23,7 @@ from RAG.summarizer import Summarizer
 from RAG.model_provider import ModelProvider
 from RAG.context_budget import check, estimate
 from RAG.rag import Rag
+from stream_fixture import start_stream
 
 class ExactTests(unittest.TestCase):
     def blocks(self,sections):return stable_blocks("fixture",sections)
@@ -213,14 +214,17 @@ class Integration(unittest.TestCase):
                 return await original(job,messages)
             with patch.object(self.app.document_agent,"prepare",side_effect=prepare):
                 first=await self.app.chat(self.app.ChatRequest(conversation_id=self.cid,message="Long operation",generation_id=uuid4()))
+                first_transport,_=start_stream(first)
                 await entered.wait()
                 with self.assertRaises(Exception) as error:
                     await self.app.chat(self.app.ChatRequest(conversation_id=self.cid,message="Conflict",generation_id=uuid4()))
                 self.assertEqual(error.exception.status_code,409)
                 second=await self.app.chat(self.app.ChatRequest(conversation_id=other,message="Independent",generation_id=uuid4()))
-                self.assertEqual(await asyncio.wait_for(second.job["task"],2),"completed")
+                second_transport,_=start_stream(second)
+                await asyncio.wait_for(second_transport,3)
+                self.assertEqual(await second.job["task"],"completed")
                 self.assertFalse(first.job["task"].done())
-                release.set();await first.job["task"]
+                release.set();await first_transport
             self.assertFalse(self.app.conversation_lock.locked())
         asyncio.run(run())
     def test_vision_work_does_not_block_native_indexing(self):

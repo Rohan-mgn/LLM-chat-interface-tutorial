@@ -42,10 +42,12 @@ class ProviderClient:
         await self._take(slot)
         try:
             state=current.get()
+            if state and state.evidence_check:state.evidence_check()
             if state: state.call(purpose.get())
             model_started=time.perf_counter()
             response = await self.raw.chat(**kwargs)
             if not kwargs.get("stream"):
+                if state and state.evidence_check:state.evidence_check()
                 if state: state.add_time("model_inference",time.perf_counter()-model_started)
                 self._release()
                 return response

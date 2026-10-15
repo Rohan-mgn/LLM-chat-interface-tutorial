@@ -1,0 +1,91 @@
+{
+  "format_version": 2,
+  "scope": "Reproducible numeric-backend comparison; no model calls or live application data.\n\nCold = fresh Python process (OS page cache is NOT flushed). Warm = same process.\nMeasures SQLite JSON/packed-cache scan versus the candidate Lance adapter using\nidentical externally supplied vectors and filters. This is NOT answer-quality or\nend-to-end answering latency; those remain separate acceptance gates.\n",
+  "quick_smoke": true,
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "cases": [
+    {
+      "selected": 100,
+      "total": 100,
+      "metrics": {
+        "sqlite": {
+          "cold": {
+            "repetitions": 3,
+            "median_ms": 70.63129999733064,
+            "p95_ms": 77.13679999869782,
+            "max_incremental_peak_mib": 2.69140625,
+            "max_rss_mib": 29.07421875
+          },
+          "warm": {
+            "repetitions": 3,
+            "median_ms": 13.840900006471202,
+            "p95_ms": 84.8790000018198,
+            "max_incremental_peak_mib": 1.78515625,
+            "max_rss_mib": 136.83203125
+          }
+        },
+        "lance": {
+          "cold": {
+            "repetitions": 3,
+            "median_ms": 3019.8085000010906,
+            "p95_ms": 3373.9095000055386,
+            "max_incremental_peak_mib": 87.41015625,
+            "max_rss_mib": 113.7578125
+          },
+          "warm": {
+            "repetitions": 3,
+            "median_ms": 24.25460000813473,
+            "p95_ms": 26.375999994343147,
+            "max_incremental_peak_mib": 1.2265625,
+            "max_rss_mib": 138.1171875
+          }
+        }
+      },
+      "quality": [
+        {
+          "temperature": "warm",
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.6854836677212575e-08
+        },
+        {
+          "temperature": "warm",
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.100670138700412e-08
+        },
+        {
+          "temperature": "warm",
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.560573777483533e-08
+        },
+        {
+          "temperature": "cold",
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.6854836677212575e-08
+        },
+        {
+          "temperature": "cold",
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.100670138700412e-08
+        },
+        {
+          "temperature": "cold",
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.560573777483533e-08
+        }
+      ],
+      "sqlite_cache_bytes": 329118,
+      "sqlite_cached_vectors": 100,
+      "disk_bytes": {
+        "sqlite": 1724416,
+        "lance": 337430,
+        "raw_text_float32": 314690
+      }
+    }
+  ]
+}

@@ -1,0 +1,791 @@
+{
+  "scope": "Reproducible numeric-backend comparison; no model calls or live application data.\n\nCold = fresh Python process (OS page cache is NOT flushed). Warm = same process.\nMeasures SQLite JSON/packed-cache scan versus the candidate Lance adapter using\nidentical externally supplied vectors and filters. This is NOT answer-quality or\nend-to-end answering latency; those remain separate acceptance gates.\n",
+  "quick_smoke": false,
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "cases": [
+    {
+      "selected": 100,
+      "total": 100,
+      "metrics": {
+        "sqlite": {
+          "cold": {
+            "repetitions": 30,
+            "median_ms": 50.55615000310354,
+            "p95_ms": 95.82690001116134,
+            "max_incremental_peak_mib": 2.765625,
+            "max_rss_mib": 28.97265625
+          },
+          "warm": {
+            "repetitions": 30,
+            "median_ms": 7.87655000021914,
+            "p95_ms": 14.265300007537007,
+            "max_incremental_peak_mib": 1.3203125,
+            "max_rss_mib": 140.671875
+          }
+        },
+        "lance": {
+          "cold": {
+            "repetitions": 30,
+            "median_ms": 2342.782650011941,
+            "p95_ms": 2729.52210000949,
+            "max_incremental_peak_mib": 88.921875,
+            "max_rss_mib": 115.05078125
+          },
+          "warm": {
+            "repetitions": 30,
+            "median_ms": 26.048400002764538,
+            "p95_ms": 32.78380000847392,
+            "max_incremental_peak_mib": 1.54296875,
+            "max_rss_mib": 143.1953125
+          }
+        }
+      },
+      "quality": [
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.6854836677212575e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.100670138700412e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.560573777483533e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.7020140460086726e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.864805018377604e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.681157982604599e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.4318486663575953e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.962834575071961e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.310957751370691e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.0670427302037506e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.7917510242735375e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.722287187507556e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.9247340051506985e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.4974352268457576e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.29698652615229e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.3245565555655174e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.12539082669705e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.3721575712353236e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.390242126616316e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.5065376879916954e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.270116792630784e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.1599309120722285e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.430357546629903e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.181694653743184e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.314482510674566e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.3202305536883525e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.138409115395092e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.003796124502079e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.7930308595390816e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.6692467668408835e-08
+        }
+      ],
+      "disk_bytes": {
+        "sqlite": 1724416,
+        "lance": 337429,
+        "raw_text_float32": 314690
+      },
+      "cache_bytes": 64
+    },
+    {
+      "selected": 1000,
+      "total": 1000,
+      "metrics": {
+        "sqlite": {
+          "cold": {
+            "repetitions": 30,
+            "median_ms": 587.828849995276,
+            "p95_ms": 1437.814899996738,
+            "max_incremental_peak_mib": 21.20703125,
+            "max_rss_mib": 47.29296875
+          },
+          "warm": {
+            "repetitions": 30,
+            "median_ms": 149.60079999582376,
+            "p95_ms": 622.0500000054017,
+            "max_incremental_peak_mib": 18.87890625,
+            "max_rss_mib": 198.1015625
+          }
+        },
+        "lance": {
+          "cold": {
+            "repetitions": 30,
+            "median_ms": 2269.767600002524,
+            "p95_ms": 2847.818100010045,
+            "max_incremental_peak_mib": 90.640625,
+            "max_rss_mib": 116.85546875
+          },
+          "warm": {
+            "repetitions": 30,
+            "median_ms": 31.234900001436472,
+            "p95_ms": 36.8737999961013,
+            "max_incremental_peak_mib": 5.7890625,
+            "max_rss_mib": 186.90625
+          }
+        }
+      },
+      "quality": [
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.5970998832346446e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.7778953521083736e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.403440437283912e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.754282469625725e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.935728104531577e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.6007107087621115e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.703524140141745e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.404629569936368e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.6872353489925125e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 2.958525938123735e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 5.35908008525432e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.240185053072665e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.512090351349585e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.313492762113679e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.494627440203679e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.184197397421151e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.539417400306611e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.682253260639534e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.691184420617777e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.574580124954263e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.022130020708836e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.67253827904257e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.214937868700751e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.7339236952371735e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.451454640146512e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.7131320152216105e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.146080111178119e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.142590843108195e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.716379232132638e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.0539520435034504e-08
+        }
+      ],
+      "disk_bytes": {
+        "sqlite": 17129472,
+        "lance": 3193795,
+        "raw_text_float32": 3147890
+      },
+      "cache_bytes": 64
+    },
+    {
+      "selected": 4000,
+      "total": 4000,
+      "metrics": {
+        "sqlite": {
+          "cold": {
+            "repetitions": 30,
+            "median_ms": 2217.024350000429,
+            "p95_ms": 2857.2199000045657,
+            "max_incremental_peak_mib": 82.046875,
+            "max_rss_mib": 108.15625
+          },
+          "warm": {
+            "repetitions": 30,
+            "median_ms": 366.3218000001507,
+            "p95_ms": 575.6324999965727,
+            "max_incremental_peak_mib": 78.18359375,
+            "max_rss_mib": 313.0390625
+          }
+        },
+        "lance": {
+          "cold": {
+            "repetitions": 30,
+            "median_ms": 2356.8979499978013,
+            "p95_ms": 3067.076299994369,
+            "max_incremental_peak_mib": 108.703125,
+            "max_rss_mib": 134.984375
+          },
+          "warm": {
+            "repetitions": 30,
+            "median_ms": 42.01120000652736,
+            "p95_ms": 54.93919999571517,
+            "max_incremental_peak_mib": 23.03125,
+            "max_rss_mib": 253.0625
+          }
+        }
+      },
+      "quality": [
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.7591615570375936e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.7778953521083736e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 5.145299411535298e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.754282469625725e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.935728104531577e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.8264801924259295e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.4543376978279916e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.328682390835169e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.6872353489925125e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.118884930348621e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.403159980208681e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.2287957793530886e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.512090351349585e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 5.0054368400109794e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.4624381597958553e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.4690423242333956e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.1552052021387453e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.469378898057762e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.691184420617777e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.495454291291278e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.0849853472080255e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.048477646179105e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.214937868700751e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.126602100307242e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.890057394262403e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.1151771023862906e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.8229345794847944e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.261058743875278e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.386850754016901e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.9054935202509355e-08
+        }
+      ],
+      "disk_bytes": {
+        "sqlite": 68476928,
+        "lance": 12712113,
+        "raw_text_float32": 12594890
+      },
+      "cache_bytes": 64
+    },
+    {
+      "selected": 4000,
+      "total": 40000,
+      "metrics": {
+        "sqlite": {
+          "cold": {
+            "repetitions": 30,
+            "median_ms": 2390.084550002939,
+            "p95_ms": 3153.096699999878,
+            "max_incremental_peak_mib": 81.765625,
+            "max_rss_mib": 107.9921875
+          },
+          "warm": {
+            "repetitions": 30,
+            "median_ms": 665.7101000018883,
+            "p95_ms": 778.3937999920454,
+            "max_incremental_peak_mib": 66.3828125,
+            "max_rss_mib": 338.48046875
+          }
+        },
+        "lance": {
+          "cold": {
+            "repetitions": 30,
+            "median_ms": 3564.2115000009653,
+            "p95_ms": 5473.359600000549,
+            "max_incremental_peak_mib": 222.85546875,
+            "max_rss_mib": 249.0859375
+          },
+          "warm": {
+            "repetitions": 30,
+            "median_ms": 277.72954999818467,
+            "p95_ms": 423.2273000088753,
+            "max_incremental_peak_mib": 139.33203125,
+            "max_rss_mib": 359.09765625
+          }
+        }
+      },
+      "quality": [
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.7591615570375936e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.7778953521083736e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 5.145299411535298e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.754282469625725e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.935728104531577e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.8264801924259295e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.4543376978279916e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.328682390835169e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.6872353489925125e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.118884930348621e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.403159980208681e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.2287957793530886e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.512090351349585e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 5.0054368400109794e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.4624381597958553e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.4690423242333956e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.1552052021387453e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.469378898057762e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.691184420617777e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.495454291291278e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.0849853472080255e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.048477646179105e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.214937868700751e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.126602100307242e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.890057394262403e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.1151771023862906e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 4.8229345794847944e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.261058743875278e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.386850754016901e-08
+        },
+        {
+          "top30_overlap": 1.0,
+          "ndcg": 1.0,
+          "max_score_error": 3.9054935202509355e-08
+        }
+      ],
+      "disk_bytes": {
+        "sqlite": 684437504,
+        "lance": 254808205,
+        "raw_text_float32": 125988890
+      },
+      "cache_bytes": 64
+    }
+  ]
+}

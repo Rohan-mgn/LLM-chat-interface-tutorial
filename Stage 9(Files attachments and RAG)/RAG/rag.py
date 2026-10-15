@@ -1,4 +1,6 @@
-"""Small, persistent, conversation-scoped RAG index; no external vector database."""
+"""Conversation-scoped adaptive retrieval with an explicit storage cutover."""
+from .evidence_release import release_gate
+from .parser_registry import specification
 import asyncio
 from contextlib import closing, nullcontext
 import hashlib
@@ -10,6 +12,8 @@ import time
 from threading import BoundedSemaphore
 from .model_provider import ModelProvider, EMBED_MODEL
 from .vector_cache import VectorCache
+from .vector_store import LanceVectorStore, EmbeddingSpace, IndexUnavailable
+from .index_lifecycle import IndexLifecycle
 from .request_state import current, phase, model_metadata
 from .evidence import terms, signals, needs_reference, strong_fast, assess
 from .context_budget import estimate
@@ -69,9 +73,9 @@ def make_chunks(sections):
 def unit(vector):
     if not vector or not all(isinstance(x,(float,int)) and math.isfinite(x) for x in vector):
         raise ValueError("Embedding model returned an invalid vector.")
-    norm = math.sqrt(sum(x*x for x in vector))
-    if not norm:
-        raise ValueError("Embedding model returned a zero vector.")
+    norm = math.hypot(*vector)
+    if not norm or not math.isfinite(norm):
+        raise ValueError("Embedding model returned a zero vector or invalid vector norm.")
     return [x/norm for x in vector]
 
 class CitationFilter:
@@ -104,6 +108,22 @@ class Rag:
         documents.vector_cache=self.vector_cache
         self.debug = os.environ.get("RAG_DEBUG","0") == "1"
 
+    def init_storage(self):
+        self.vector_store=LanceVectorStore.from_data_dir(self.docs.data_dir())
+        self.lifecycle=IndexLifecycle(self.docs.connect,self.docs.data_dir(),self.vector_store)
+        self.lifecycle.init()
+        self.docs.index_lifecycle=self.lifecycle
+        self.lifecycle.reconcile()
+
+    def embedding_space(self, config, dimension):
+        prefix=PIPELINE+":"+EMBED_MODEL+":"
+        suffix=":"+self.provider.document_input("", "")+":"+self.provider.query_input("")
+        if not config or not config.startswith(prefix) or not config.endswith(suffix):
+            raise ValueError("Unknown embedding representation; re-index explicitly.")
+        model_digest=config[len(prefix):-len(suffix)]
+        return EmbeddingSpace(EMBED_MODEL,model_digest,dimension,PIPELINE,
+            self.provider.document_input("", ""),self.provider.query_input(""))
+
     async def descriptor(self, client, refresh=False):
         response = await model_metadata(client,refresh)
         for name,digest in response.items():
@@ -130,8 +150,41 @@ class Rag:
         self.tasks.clear()
 
     async def index(self, cid, fid):
+        with self.lifecycle.operation("index",ttl=1800) as lease:
+            return await self._index(cid,fid,lease)
+
+    def _write_chunks(self, db, fid, chunks, config, vectors, backend):
+        """Write authoritative sources without mutating unchanged source generations."""
+        fields={r["name"] for r in db.execute("PRAGMA table_info(chunks)")}
+        ids=[]
+        for number,chunk in enumerate(chunks):
+            source="SOURCE_"+hashlib.sha256((fid+":"+str(number)+":"+chunk["text"]).encode()).hexdigest()[:24]
+            ids.append(source)
+            db.execute("DELETE FROM chunks WHERE file_id=? AND chunk_index=? AND id!=?",(fid,number,source))
+            values=(source,fid,number,chunk["text"],json.dumps(chunk["metadata"]))
+            if "vector" in fields:
+                db.execute("""INSERT INTO chunks(id,file_id,chunk_index,text,metadata,vector,config)
+                    VALUES(?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET
+                    vector=CASE WHEN (SELECT backend FROM vector_control WHERE singleton=1)='sqlite'
+                        THEN excluded.vector ELSE chunks.vector END,
+                    config=excluded.config,metadata=excluded.metadata
+                    WHERE chunks.config IS NOT excluded.config OR chunks.metadata IS NOT excluded.metadata
+                        OR ((SELECT backend FROM vector_control WHERE singleton=1)='sqlite' AND chunks.vector IS NOT excluded.vector)""",
+                    (*values,json.dumps(vectors[number]) if backend=="sqlite" else "[]",config))
+            else:
+                if backend!="lancedb":
+                    raise IndexUnavailable("Legacy vector schema is finalized; repair the dedicated index.")
+                db.execute("""INSERT INTO chunks(id,file_id,chunk_index,text,metadata,config)
+                    VALUES(?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET config=excluded.config,metadata=excluded.metadata
+                    WHERE chunks.config IS NOT excluded.config OR chunks.metadata IS NOT excluded.metadata""",
+                    (*values,config))
+        if ids:
+            db.execute("DELETE FROM chunks WHERE file_id=? AND id NOT IN ("+",".join("?" for _ in ids)+")",[fid,*ids])
+
+    async def _index(self, cid, fid, lease):
         started, client = time.perf_counter(), None
         warning = None
+        build = build_scope = build_sources = None
         try:
             row = self.docs.row(cid,fid)
             if not row:
@@ -144,7 +197,7 @@ class Rag:
                 if actual != row["sha256"]:
                     raise ValueError("Stored file changed outside the app. Replace the file.")
                 self.state(fid,"extracting")
-                native_key="native:"+PARSER_VERSION+":"+actual
+                native_key="native:"+specification(row["extension"]).version+":"+actual
                 sections=self.docs.cache_get(fid,native_key)
                 if sections is None:
                     sections=await run_in_threadpool(extract,path,row["extension"])
@@ -156,7 +209,7 @@ class Rag:
                         sections,warning = await vision_sections(path,sections,self.provider,
                             lambda key:self.docs.cache_get(fid,key),
                             lambda key,value:self.docs.cache_put(fid,key,value))
-            blocks = self.docs.store_extracted(cid,fid,sections,warning)
+            blocks = await run_in_threadpool(self.docs.store_extracted,cid,fid,sections,warning)
             if not any(b.get("text") for b in blocks):
                 raise ValueError(warning or "No readable text. OCR/vision is unavailable.")
             self.state(fid,"chunking",warning)
@@ -164,16 +217,42 @@ class Rag:
             client = self.provider.client(timeout=120)
             config = await self.descriptor(client)
             if row["state"]=="ready" and row["config"]==config and json.loads(row.get("extracted") or "[]")==sections:
-                self.state(fid,"ready",warning)
-                return
+                reusable=lease.backend=="sqlite"
+                if lease.backend=="lancedb":
+                    try:
+                        space=self.embedding_space(config,row["dimension"])
+                        await run_in_threadpool(self.lifecycle.snapshot,lease,cid,[fid],space)
+                        reusable=True
+                    except IndexUnavailable:
+                        # An explicit re-index operation may repair a missing generation.
+                        reusable=False
+                if reusable:
+                    self.state(fid,"ready",warning)
+                    return
             with closing(self.docs.connect()) as db:
                 existing = db.execute("""SELECT COUNT(*) FROM chunks c JOIN files f ON f.id=c.file_id
                     WHERE f.conversation_id=? AND f.id!=?""",(cid,fid)).fetchone()[0]
             if existing+len(chunks)>4000:
                 raise ValueError("Conversation index limit is 4,000 chunks. Parsed tools remain available.")
-            self.state(fid,"embedding",warning)
+            if lease.backend=="lancedb":
+                async with release_gate(self.docs,cid):
+                    with closing(self.docs.connect()) as db,db:
+                        db.execute("BEGIN IMMEDIATE")
+                        self.lifecycle.check(lease,db)
+                        latest=db.execute("SELECT sha256 FROM files WHERE id=? AND conversation_id=?",(fid,cid)).fetchone()
+                        if latest is None or latest["sha256"]!=row["sha256"]:
+                            raise IndexUnavailable("Document changed before indexing.")
+                        self._write_chunks(db,fid,chunks,config,None,lease.backend)
+                        db.execute("""UPDATE files SET state='embedding',error=?,config=?,
+                            dimension=CASE WHEN config=? THEN dimension ELSE 0 END WHERE id=?""",(warning,config,config,fid))
+                        build,build_scope,build_sources=self.lifecycle.begin_build_transaction(db,lease,cid,fid,config)
+            else:
+                self.state(fid,"embedding",warning)
             vectors=[]
             for start in range(0,len(chunks),12):
+                self.lifecycle.renew(lease,1800)
+                if build:
+                    self.lifecycle.check_build(lease,build_scope,build_sources)
                 batch=chunks[start:start+12]
                 result=await client.embed(model=EMBED_MODEL,truncate=False,
                     input=[self.provider.document_input(row["original_filename"]+" "+
@@ -185,25 +264,36 @@ class Rag:
                 await asyncio.sleep(0)
             if len({len(v) for v in vectors})!=1:
                 raise ValueError("Embedding dimensions changed during indexing.")
-            if config!=await self.descriptor(client):
+            if config!=await self.descriptor(client,refresh=True):
                 raise ValueError("Embedding model changed during indexing; retry.")
-            with closing(self.docs.connect()) as db,db:
-                db.execute("BEGIN IMMEDIATE")
-                if not db.execute("SELECT 1 FROM files WHERE id=? AND conversation_id=?",(fid,cid)).fetchone():
-                    return
-                ids=[]
-                for number,(chunk,vector) in enumerate(zip(chunks,vectors)):
-                    source="SOURCE_"+hashlib.sha256((fid+":"+str(number)+":"+chunk["text"]).encode()).hexdigest()[:24]
-                    ids.append(source)
-                    db.execute("DELETE FROM chunks WHERE file_id=? AND chunk_index=? AND id!=?",(fid,number,source))
-                    db.execute("""INSERT INTO chunks VALUES(?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET
-                        vector=excluded.vector,config=excluded.config,metadata=excluded.metadata""",
-                        (source,fid,number,chunk["text"],json.dumps(chunk["metadata"]),json.dumps(vector),config))
-                if ids:
-                    db.execute("DELETE FROM chunks WHERE file_id=? AND id NOT IN ("+",".join("?" for _ in ids)+")",[fid,*ids])
-                db.execute("""UPDATE files SET state='ready',error=?,config=?,dimension=?,
-                    indexed_at=CURRENT_TIMESTAMP,indexing_ms=? WHERE id=?""",
-                    (warning,config,len(vectors[0]),1000*(time.perf_counter()-started),fid))
+            space=self.embedding_space(config,len(vectors[0])) if lease.backend=="lancedb" else None
+            async with release_gate(self.docs,cid):
+                with closing(self.docs.connect()) as db,db:
+                    db.execute("BEGIN IMMEDIATE")
+                    self.lifecycle.check(lease,db)
+                    if not db.execute("SELECT 1 FROM files WHERE id=? AND conversation_id=?",(fid,cid)).fetchone():
+                        return
+                    if build:
+                        actual,sources,_=self.lifecycle._sources(db,cid,fid)
+                        if actual!=build_scope or sources!=build_sources:
+                            raise IndexUnavailable("Document changed before index publication.")
+                    else:
+                        self._write_chunks(db,fid,chunks,config,vectors,lease.backend)
+                    db.execute("""UPDATE files SET state=?,error=?,config=?,dimension=?,
+                        indexed_at=CURRENT_TIMESTAMP,indexing_ms=? WHERE id=?""",
+                        ("ready" if lease.backend=="sqlite" else "indexing",warning,config,len(vectors[0]),
+                         1000*(time.perf_counter()-started),fid))
+                    if space:
+                        operation,scope,records=self.lifecycle.stage_transaction(db,lease,cid,fid,space)
+                        db.execute("UPDATE vector_builds SET state='complete',error=NULL,updated_at=? WHERE id=?",(time.time(),build))
+            if space:
+                for record,vector in zip(records,vectors):
+                    record["vector"]=vector
+                self.lifecycle.renew(lease,1800)
+                await run_in_threadpool(self.vector_store.initialize_index,space)
+                receipt=await run_in_threadpool(self.vector_store.upsert_chunks,space,scope,records)
+                await run_in_threadpool(self.lifecycle.publish,lease,operation,space,receipt)
+                self.state(fid,"ready",warning)
         except asyncio.CancelledError:
             self.state(fid,"failed","Indexing interrupted. Choose Re-index; extracted tools may remain available.")
             raise
@@ -211,6 +301,10 @@ class Rag:
             message=str(error) if isinstance(error,ValueError) else "Indexing failed. Check the document and Ollama, then Re-index."
             self.state(fid,"failed",message[:300])
         finally:
+            if build:
+                with closing(self.docs.connect()) as db,db:
+                    db.execute("UPDATE vector_builds SET error='Embedding interrupted; explicit re-index required',updated_at=? WHERE id=? AND state='pending'",
+                               (time.time(),build))
             if client is not None:
                 await client.close()
 
@@ -363,7 +457,13 @@ class Rag:
                 selected.append(row);seen.add(digest)
         return selected
 
-    async def retrieve(self, client, cid, file_ids, query, *, broad=False, balanced=False, mode="STANDARD", scope_blocks=None):
+    async def retrieve(self, client, cid, file_ids, query, **options):
+        with self.lifecycle.operation("retrieval",ttl=180) as lease:
+            result=await self._retrieve(client,cid,file_ids,query,lease=lease,**options)
+            self.lifecycle.check(lease)
+            return result
+
+    async def _retrieve(self, client, cid, file_ids, query, *, lease, broad=False, balanced=False, mode="STANDARD", scope_blocks=None):
         if not file_ids:
             return [],"no files"
         with closing(self.docs.connect()) as db:
@@ -372,7 +472,8 @@ class Rag:
             if len(selected)!=len(set(file_ids)):raise ValueError("A selected file is unavailable.")
             if any(not row or row.get("parse_state") not in ("ready","partial") for row in selected):
                 raise ValueError("A selected document needs extraction. Choose Re-index.")
-            rows=[dict(r) for r in db.execute("""SELECT c.*,f.original_filename,f.dimension FROM chunks c
+            columns="c.*" if lease.backend=="sqlite" else "c.id,c.file_id,c.chunk_index,c.text,c.metadata,c.config,'[]' AS vector"
+            rows=[dict(r) for r in db.execute("SELECT "+columns+""",f.original_filename,f.dimension FROM chunks c
                 JOIN files f ON f.id=c.file_id WHERE f.conversation_id=? AND f.id IN ("""
                 +",".join("?" for _ in file_ids)+")",[cid,*file_ids])]
         generations={r["id"]:r["index_generation"] for r in selected}
@@ -399,11 +500,28 @@ class Rag:
             config=await self.descriptor(client)
             if any(r.get("vector") and r["config"]!=config for r in rows):
                 raise ValueError("The embedding model or chunk settings changed. Re-index the selected files.")
-            self.pack_vectors(cid,rows,generations,config)
-            with phase("dense_search"):
-                dense=await self.retrieve_dense(client,rows,query,config)
+            if lease.backend=="sqlite":
+                self.pack_vectors(cid,rows,generations,config)
+                with phase("dense_search"):
+                    dense=await self.retrieve_dense(client,rows,query,config)
+            else:
+                dimensions={r["dimension"] for r in selected if r.get("dimension")}
+                if len(dimensions)!=1:
+                    raise IndexUnavailable("Selected files need a compatible published embedding space.")
+                space=self.embedding_space(config,dimensions.pop())
+                state=current.get();key=(config,self.provider.query_input(query))
+                vector=state.embeddings.get(key) if state else None
+                if vector is None:
+                    embedded=await client.embed(model=EMBED_MODEL,input=key[1],truncate=False)
+                    vector=unit(embedded["embeddings"][0])
+                    if state:state.embeddings[key]=vector
+                with phase("dense_search"):
+                    dense=await run_in_threadpool(self.lifecycle.search,lease,cid,file_ids,space,vector,30,
+                        [r["id"] for r in rows] if scope_blocks is not None else None)
             if config!=await self.descriptor(client,refresh=True):
                 raise ValueError("Embedding model changed during retrieval. Re-index.")
+        except IndexUnavailable:
+            raise
         except ValueError as error:
             if any(word in str(error).lower() for word in ("changed","incompatible","invalid vector","zero vector")):
                 raise
@@ -433,6 +551,10 @@ class Rag:
                 row["id"]=parent["id"].replace("BLOCK_","SOURCE_")
                 row["text"]=parent["text"]
                 row["metadata"]={k:v for k,v in parent.items() if k!="text"}
+                if row.get("source_revision"):
+                    from .vector_store import source_fingerprint
+                    row["source_revision"].update(source_id=row["id"],
+                        source_fingerprint=source_fingerprint(row["text"],row["metadata"]))
             if not any(old["id"]==row["id"] for old in evidence):
                 evidence.append(row)
         self.validate_generation(cid,generations)

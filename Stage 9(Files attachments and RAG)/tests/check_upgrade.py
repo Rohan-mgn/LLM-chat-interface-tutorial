@@ -17,6 +17,7 @@ from RAG.vector_cache import VectorCache
 from RAG.request_state import RequestState, current
 from RAG.operations import previous_operation, resolve
 from RAG.grounding import review
+from stream_fixture import start_stream
 from RAG.context_budget import evidence_messages, check
 
 class EvidenceTests(unittest.TestCase):
@@ -316,9 +317,10 @@ class UpgradeTests(unittest.TestCase):
                 gid=uuid4()
                 response=await self.app.chat(self.app.ChatRequest(conversation_id=self.cid,generation_id=gid,
                     message="What is the project codename?",use_files=True,file_ids=[file["id"]]))
+                transport,events=start_stream(response)
                 await asyncio.wait_for(entered.wait(),3)
                 self.assertEqual((await self.app.stop_generation(gid))["status"],"stopped")
-                await response.body_iterator.aclose()
+                await transport
             self.assertTrue(self.app.provider.text_slots.acquire(blocking=False))
             self.app.provider.text_slots.release()
         asyncio.run(run())

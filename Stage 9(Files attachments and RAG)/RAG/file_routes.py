@@ -6,6 +6,7 @@ from fastapi import APIRouter, File, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from starlette.concurrency import run_in_threadpool
 from .documents import MAX_FILE
+from .parser_registry import MIMES
 
 class UploadBodyLimit:
     """Bound the multipart body before Starlette can spool an oversized upload."""
@@ -45,7 +46,8 @@ def router_for(app_module):
     @router.get("/files/config")
     def config():
         return {"max_file_size":MAX_FILE,"max_files":4,"max_total_size":20*1024*1024,
-                "debug":rag.debug,"embedding_model":rag.provider.embed_model,"vision_model":rag.provider.vision_model or None}
+                "debug":rag.debug,"embedding_model":rag.provider.embed_model,"vision_model":rag.provider.vision_model or None,
+                "extensions":list(MIMES)}
 
     @router.get("/conversations/{cid}/files")
     def files(cid:int):
@@ -107,10 +109,7 @@ def router_for(app_module):
             if task:
                 task.cancel()
                 await asyncio.gather(task,return_exceptions=True)
-            with closing(docs.connect()) as db, db:
-                db.execute("DELETE FROM files WHERE id=? AND conversation_id=?",(fid,cid))
-                # Stored debug contexts can contain deleted document text; erase them too.
-                db.execute("DELETE FROM rag_runs WHERE message_id IN (SELECT id FROM messages WHERE conversation_id=?)",(cid,))
+            await run_in_threadpool(docs.delete,cid,fid)
             rag.vector_cache.invalidate(cid,fid)
             await run_in_threadpool(docs.cleanup)
         finally:

@@ -17,7 +17,7 @@ import statistics
 import sys
 import time
 from unittest.mock import patch
-from uuid import UUID
+from uuid import UUID, uuid4
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import check_rag as fixtures
 from RAG import evidence
@@ -43,11 +43,14 @@ def numeric_match(value,expected):
 def main():
     parser=argparse.ArgumentParser(__doc__)
     parser.add_argument("--live",action="store_true")
+    parser.add_argument("--backend",choices=("sqlite","lancedb"),default="sqlite")
     parser.add_argument("--split",choices=("development","held_out","all"),default="development")
     parser.add_argument("--limit",type=int,default=80)
     parser.add_argument("--family",help="Run a named development family for a targeted refinement check")
     parser.add_argument("--output",type=Path,required=True)
     args=parser.parse_args()
+    if args.backend=="lancedb" and not args.live:
+        parser.error("Dedicated-backend quality comparisons require real installed embeddings (--live).")
     corpus=json.loads((HERE/"evaluation_cases.json").read_text(encoding="utf-8"))
     model_snapshot={}
     implementation_hash=hashlib.sha256(b"".join(p.read_bytes() for p in sorted((HERE.parent/"RAG").glob("*.py")))).hexdigest()
@@ -68,6 +71,8 @@ def main():
         if args.split!="all" and family["split"]!=args.split:continue
         if args.family and family["family"]!=args.family:continue
         if len(results)>=args.limit:break
+        vector_setting=patch.dict(os.environ,{"VECTOR_DB_DIR":str(HERE/".artifacts"/("ev-"+uuid4().hex[:8]))})
+        vector_setting.start()
         fixture=fixtures.Checks();fixture.setUp()
         try:
             if args.live:fixture.mock.stop()
@@ -85,6 +90,13 @@ def main():
                 if state["parse_state"] not in ("ready","partial"):raise AssertionError(state)
                 mapping[file["name"]]=f["id"]
             file_ids_patch.stop()
+            if args.backend=="lancedb":
+                from RAG.vector_migration import VectorMigration
+                from check_vector_migration import ACCEPTANCE
+                migration=VectorMigration(fixture.app.rag.lifecycle,HERE/".artifacts"/("eb-"+uuid4().hex[:8]))
+                migration.prepare(lambda f:fixture.app.rag.embedding_space(f["config"],f["dimension"]))
+                # Isolated evaluation fixture, not an acceptance/cutover of live data.
+                migration.activate(ACCEPTANCE)
             inverse={v:k for k,v in mapping.items()}
             for case in family["cases"]:
                 if len(results)>=args.limit:break
@@ -140,7 +152,7 @@ def main():
                 print(json.dumps({k:record[k] for k in ("id","status","route_correct","total_ms")}),flush=True)
                 groups=defaultdict(list)
                 for result in results:groups[result["category"]].append(result)
-                report={"live":args.live,"model_digests_at_start":model_snapshot,"implementation_fingerprint":implementation_hash,
+                report={"live":args.live,"storage_backend":args.backend,"model_digests_at_start":model_snapshot,"implementation_fingerprint":implementation_hash,
                     "corpus_fingerprint":hashlib.sha256((HERE/"evaluation_cases.json").read_bytes()).hexdigest(),
                     "context_tokens":__import__("RAG.context_budget",fromlist=["CONTEXT_TOKENS"]).CONTEXT_TOKENS,
                     "claim_review_mode":os.getenv("RAG_CLAIM_REVIEW","off"),"processor":platform.processor(),"settings_fingerprint":hashlib.sha256(Path(evidence.__file__).read_bytes()).hexdigest(),
@@ -151,6 +163,7 @@ def main():
         finally:
             if "file_ids_patch" in locals():file_ids_patch.stop()
             fixture.tearDown()
+            vector_setting.stop()
     return 0
 
 if __name__=="__main__":raise SystemExit(main())

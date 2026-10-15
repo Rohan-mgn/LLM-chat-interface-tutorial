@@ -1,0 +1,111 @@
+{
+  "baseline": "verified pre-preparation SQLite backup",
+  "backup_sha256": "32ca92999945d813c92f8f6bebb847a15de483a50a01c45de59db9b29234af26",
+  "tables": {
+    "block_citations": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "branch_selections": {
+      "rows": 8,
+      "sha256": "17e23af4d17054007bcf7ca7c54977326bd59836c5f34702d565d0fdb7584cb8"
+    },
+    "chunks": {
+      "rows": 63,
+      "sha256": "a6dc93505687cb838dcb7bf1e5e7beb84b17a5cf750d222d2d0ce99cb88e0cb6"
+    },
+    "chunks_fts": {
+      "rows": 63,
+      "sha256": "e9abd7467f3ebdf4971364aa2d9f7d47e54a690b765c10fc9a1b38a278e494ea"
+    },
+    "chunks_fts_config": {
+      "rows": 1,
+      "sha256": "1b46aa17993c72cbbcac958b9ad84a9ec19d6a5c50c2de596afd6a5d7f9ee94d"
+    },
+    "chunks_fts_content": {
+      "rows": 63,
+      "sha256": "255c7dc7189dc6c550ef7e242de07d6ea4b5567557dffb6be401012ca2be346a"
+    },
+    "chunks_fts_data": {
+      "rows": 86,
+      "sha256": "01be45cfb4d28a66b5a78150f9122691966682e5c3c353e2aaa68727d2ceb02e"
+    },
+    "chunks_fts_docsize": {
+      "rows": 63,
+      "sha256": "b7386b6b387f7222be4f17de6a20bee964265f5f0980b0079ddec184c55b712c"
+    },
+    "chunks_fts_idx": {
+      "rows": 84,
+      "sha256": "6d98a9a2e9cb48003cf0cc7e020c2fa3b37190c7b3b74fb351fd68236cc3ff4e"
+    },
+    "citations": {
+      "rows": 7,
+      "sha256": "258b6c4006c3e568ba249ab28e59e4e67128dbc60095cf75f75309d2f3bf552c"
+    },
+    "conversations": {
+      "rows": 1,
+      "sha256": "e815efc4eebaaa7eba3ff59ed8caad636fd446e054f79859870664d4c1907230"
+    },
+    "document_blocks": {
+      "rows": 4,
+      "sha256": "1a42745509edc58bbff6977e934bb91bf77a5e1429438d9930b38deef827aee1"
+    },
+    "document_cache": {
+      "rows": 4,
+      "sha256": "f363d299f4f25f4e2ebbef79efbf7809d1545dd87b37b206765a99ff21e3d686"
+    },
+    "document_schema": {
+      "rows": 1,
+      "sha256": "038966de9f6b9a901b20b4c6ca8b2a46009feebe031babc842d43690c0bc222b"
+    },
+    "files": {
+      "rows": 4,
+      "sha256": "bc45464a9a000e62442b0606906b51f8268e6fd0566b5fc8cc21fa36fb44d8bf"
+    },
+    "generation_cancellations": {
+      "rows": 2,
+      "sha256": "3d2eed47eca29981d5ee723fef0f1d8affc76a667552167887803d7131abfe5b"
+    },
+    "generation_requests": {
+      "rows": 6,
+      "sha256": "3ba3d9ca40a92b98c0511aff2a72355c514764298e3de914cc9169e4beb1518f"
+    },
+    "history_summaries": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "message_files": {
+      "rows": 12,
+      "sha256": "c7c1da8fdfa0d9dfa1175c446abff317c8ce751dae8fe3198c972ab336183ac1"
+    },
+    "messages": {
+      "rows": 11,
+      "sha256": "4aa2dc59f7cf9404e5e76baa30d7e3e9ba2c14e2ab5005727cca74d1d89c6c16"
+    },
+    "pending_unlinks": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "rag_runs": {
+      "rows": 6,
+      "sha256": "289194ec60809dfca71153ee674d2c00ab5b6f5bca86e89f6d33d10107cd88ed"
+    },
+    "rag_turns": {
+      "rows": 5,
+      "sha256": "fce08a7f338da3368b0e6c2c26e130d60074041db8e405a6ed16a260fe65d53e"
+    },
+    "sqlite_sequence": {
+      "rows": 2,
+      "sha256": "df4f4268055911bd38ba7e73f05a786c8e12e3137873f4393188a8067d04ec2f"
+    },
+    "tool_run_files": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tool_runs": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "preparation_preserved_authority": true
+}

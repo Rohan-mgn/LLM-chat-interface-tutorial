@@ -10,7 +10,7 @@ def stable_blocks(fid, sections):
     for index,section in enumerate(sections):
         text=unicodedata.normalize("NFC",section.get("text",""))
         kind=section.get("type","page_text" if section.get("page") else "paragraph")
-        location={k:section[k] for k in ("page","section","heading","heading_level","paragraph","sheet","row","table") if k in section}
+        location={k:section[k] for k in ("page","section","heading","heading_level","paragraph","sheet","row","table","slide","line_start","line_end","shape") if k in section}
         import json
         key=json.dumps({"file":fid,"location":location,"index":index,"type":kind,"text":text},sort_keys=True,ensure_ascii=False)
         bid="BLOCK_"+hashlib.sha256(key.encode()).hexdigest()[:24]
@@ -32,10 +32,12 @@ def logical_texts(blocks):
                   previous["blocks"][-1].get("type") not in ("heading","row","table_header") and
                   all(previous["blocks"][-1].get(k)==block.get(k) for k in ("page","section","sheet","row")))
         if can_join:
-            previous["text"]+="\n"+block["text"]
+            separator="" if block.get("preserve_contiguous_lines") and previous["text"].endswith("\n") else "\n"
+            previous["offsets"].append(len(previous["text"])+len(separator))
+            previous["text"]+=separator+block["text"]
             previous["blocks"].append(block)
         else:
-            groups.append({"group":group,"text":block["text"],"blocks":[block]})
+            groups.append({"group":group,"text":block["text"],"blocks":[block],"offsets":[0]})
     return groups
 
 def folded(text,case_sensitive=False):
@@ -71,12 +73,11 @@ def find_text(blocks,text,case_sensitive=False,whole_word=False,limit=200):
             if len(matches)<limit:
                 a,b=offsets[start],offsets[end-1]+1
                 # Locate every block intersected by a match in continuous text.
-                base=0; locations=[]
-                for block in group["blocks"]:
+                locations=[]
+                for block,base in zip(group["blocks"],group["offsets"]):
                     if b>base and a<base+len(block["text"]):
-                        locations.append({k:block[k] for k in ("id","page","section","heading","paragraph","sheet","row") if k in block} |
+                        locations.append({k:block[k] for k in ("id","page","section","heading","paragraph","sheet","row","slide","line_start","line_end") if k in block} |
                                          {"start":max(0,a-base),"end":min(len(block["text"]),b-base)})
-                    base+=len(block["text"])+1
                 matches.append({"text":group["text"][a:b],"locations":locations,
                     "context":group["text"][max(0,a-80):min(len(group["text"]),b+80)]})
     return {"term":text,"count":total,"matches":matches,"truncated":total>len(matches),
@@ -103,6 +104,39 @@ def get_page(blocks,page):
     found=[b for b in blocks if b.get("page")==page]
     if not found:raise ValueError("That page is unavailable.")
     return found
+
+def get_slide(blocks,slide):
+    if type(slide) is not int or not 1<=slide<=200:raise ValueError("Invalid slide number.")
+    found=[b for b in blocks if b.get("slide")==slide]
+    if not found:raise ValueError("That slide is unavailable.")
+    return found
+
+
+def get_lines(blocks,start,end):
+    if type(start) is not int or type(end) is not int or not 1<=start<=end or end-start>500:
+        raise ValueError("Choose a valid range of at most 501 lines.")
+    found=[]
+    for block in blocks:
+        left,right=block.get("line_start"),block.get("line_end")
+        if left is None or right<start or left>end:continue
+        a,b=max(start,left),min(end,right)
+        text="".join(block["text"].splitlines(keepends=True)[a-left:b-left+1])
+        found.append({**block,"text":text,"line_start":a,"line_end":b})
+    if not found:raise ValueError("Those source lines are unavailable.")
+    return found
+
+
+def inspect_code(blocks):
+    symbols={};imports=[];warnings=[]
+    for block in blocks:
+        for symbol in block.get("structure",{}).get("symbols",[]):
+            symbols[(symbol["name"],symbol["line_start"],symbol["line_end"])]=symbol
+        imports.extend(block.get("structure",{}).get("imports",[]))
+        warnings.extend(block.get("warnings",[]))
+    if not any(b.get("language") for b in blocks):raise ValueError("Selected content is not source code or structured text.")
+    return {"symbols":list(symbols.values())[:1000],"imports":list(dict.fromkeys(imports))[:1000],
+        "warnings":list(dict.fromkeys(warnings)),"execution":"Uploaded code was not executed."}
+
 
 def list_sections(blocks):
     return list(dict.fromkeys(b.get("section","") for b in blocks if b.get("section")))
@@ -143,6 +177,9 @@ def extract_urls(blocks):
     return extract_pattern(blocks,r"https?://[^\s<>\"']+")
 
 def run_tool(blocks,operation,args):
+    if operation=="get_slide":return get_slide(blocks,args.get("slide"))
+    if operation=="get_lines":return get_lines(blocks,args.get("line_start"),args.get("line_end"))
+    if operation=="inspect_code":return inspect_code(blocks)
     options={"case_sensitive":bool(args.get("case_sensitive",False))}
     term=args.get("term","")
     if operation=="count_word":return count_word(blocks,term,**options)

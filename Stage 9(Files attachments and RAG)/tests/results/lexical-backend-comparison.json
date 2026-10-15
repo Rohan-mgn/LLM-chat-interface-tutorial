@@ -1,0 +1,132 @@
+{
+  "scope": "Small lexical compatibility fixture; not broad language/search-quality validation",
+  "queries": [
+    {
+      "query": "\"ZX-42\"",
+      "sqlite": [
+        "SOURCE_0"
+      ],
+      "lance": [
+        "SOURCE_0"
+      ],
+      "set_equivalent": true
+    },
+    {
+      "query": "\"E_CONNRESET\"",
+      "sqlite": [
+        "SOURCE_0"
+      ],
+      "lance": [
+        "SOURCE_0"
+      ],
+      "set_equivalent": true
+    },
+    {
+      "query": "\"8443\"",
+      "sqlite": [
+        "SOURCE_0"
+      ],
+      "lance": [
+        "SOURCE_0"
+      ],
+      "set_equivalent": true
+    },
+    {
+      "query": "\"red dragon\"",
+      "sqlite": [
+        "SOURCE_1"
+      ],
+      "lance": [
+        "SOURCE_1"
+      ],
+      "set_equivalent": true
+    },
+    {
+      "query": "\"4.2\"",
+      "sqlite": [
+        "SOURCE_2"
+      ],
+      "lance": [
+        "SOURCE_2"
+      ],
+      "set_equivalent": true
+    },
+    {
+      "query": "\"3.14\"",
+      "sqlite": [
+        "SOURCE_2"
+      ],
+      "lance": [
+        "SOURCE_2"
+      ],
+      "set_equivalent": true
+    },
+    {
+      "query": "\"café\"",
+      "sqlite": [
+        "SOURCE_3"
+      ],
+      "lance": [
+        "SOURCE_3"
+      ],
+      "set_equivalent": true
+    },
+    {
+      "query": "\"cafe\"",
+      "sqlite": [
+        "SOURCE_3"
+      ],
+      "lance": [],
+      "set_equivalent": false
+    },
+    {
+      "query": "\"Übergröße\"",
+      "sqlite": [
+        "SOURCE_3"
+      ],
+      "lance": [
+        "SOURCE_3"
+      ],
+      "set_equivalent": true
+    },
+    {
+      "query": "\"安全阀\"",
+      "sqlite": [
+        "SOURCE_4"
+      ],
+      "lance": [
+        "SOURCE_4"
+      ],
+      "set_equivalent": true
+    },
+    {
+      "query": "\"давление\"",
+      "sqlite": [
+        "SOURCE_4"
+      ],
+      "lance": [
+        "SOURCE_4"
+      ],
+      "set_equivalent": true
+    },
+    {
+      "query": "\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+      "sqlite": [
+        "SOURCE_5"
+      ],
+      "lance": [
+        "SOURCE_5"
+      ],
+      "set_equivalent": true
+    },
+    {
+      "query": "\"absent_identifier_009\"",
+      "sqlite": [],
+      "lance": [],
+      "set_equivalent": true
+    }
+  ],
+  "all_sets_equivalent": false,
+  "scope_and_deletion_passed": true,
+  "production_lexical_backend": "SQLite FTS5 retained"
+}

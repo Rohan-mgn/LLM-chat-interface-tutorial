@@ -1,0 +1,3 @@
+
+# Private live migration snapshots; kept outside active database directories.
+.migration-backups/

@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "frozen_before_candidate_benchmarks": true,
+  "selected_chunks": [
+    100,
+    1000,
+    4000
+  ],
+  "shared_corpus_chunks": 40000,
+  "repetitions": 30,
+  "ranking": {
+    "top30_overlap": 0.99,
+    "tie_aware_ndcg": 0.99,
+    "score_tolerance": 0.000001
+  },
+  "retrieval_max_absolute_regression": 0.02,
+  "unauthorized_results": 0,
+  "invalid_citations": 0,
+  "duplicate_rows_after_100_retries": 0,
+  "publication_interleavings": 1000,
+  "warm_median_ms": 500,
+  "warm_p95_ms": 1000,
+  "cold_median_ms": 5000,
+  "cold_p95_ms": 10000,
+  "peak_incremental_memory_mib": 512,
+  "post_maintenance_disk_limit": "max(256 MiB, 4 * (indexed text bytes + float32 vector bytes))",
+  "no_automatic_threshold_relaxation": true
+}

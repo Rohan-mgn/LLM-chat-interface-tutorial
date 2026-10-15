@@ -15,8 +15,10 @@ from .request_state import current, phase, model_digest
 from .evidence import choose_mode, task_instructions, needs_reference
 from .operations import resolve, record
 from .context_budget import evidence_messages
+from .evidence_release import EvidenceRevision
+from starlette.concurrency import run_in_threadpool
 
-TOOLS=("count_word","count_phrase","find_exact_phrase","find_text","find_pages_containing","get_page","get_section","list_sections","list_headings","document_word_count","document_character_count","document_statistics","extract_emails","extract_urls")
+TOOLS=("get_slide","get_lines","inspect_code","count_word","count_phrase","find_exact_phrase","find_text","find_pages_containing","get_page","get_section","list_sections","list_headings","document_word_count","document_character_count","document_statistics","extract_emails","extract_urls")
 class Route(BaseModel):
     model_config=ConfigDict(extra="forbid")
     route: Literal["NORMAL_CHAT","DOCUMENT_QA","EXACT_SEARCH","COUNT","PAGE_SEARCH","SUMMARIZE_DOCUMENT","SUMMARIZE_SECTION","COMPARE_DOCUMENTS","EXTRACT","TABLE_ANALYSIS"]
@@ -24,6 +26,9 @@ class Route(BaseModel):
     term: str=Field(default="",max_length=500)
     section: str=Field(default="",max_length=500)
     page: int=Field(default=0,ge=0,le=200)
+    slide: int=Field(default=0,ge=0,le=200)
+    line_start: int=Field(default=0,ge=0,le=500000)
+    line_end: int=Field(default=0,ge=0,le=500000)
     case_sensitive: bool=False
 
 class TableFilter(BaseModel):
@@ -53,6 +58,10 @@ def rules(question):
         if phrase in lower and re.search(r"\b(extract|list|find|show)\b",lower):return Route(route="EXTRACT",operation=op)
     if re.search(r"\b(list|show)\b.*\b(headings|sections)\b",lower):
         return Route(route="EXTRACT",operation="list_headings" if "headings" in lower else "list_sections")
+    slide=re.fullmatch(r"(?:show|get|read|extract)\s+slide\s+(\d+)\s*[.!?]*",lower)
+    if slide:return Route(route="EXTRACT",operation="get_slide",slide=int(slide[1]))
+    lines=re.fullmatch(r"(?:show|get|read|extract)\s+lines?\s+(\d+)\s*(?:-|to)\s*(\d+)\s*[.!?]*",lower)
+    if lines:return Route(route="EXTRACT",operation="get_lines",line_start=int(lines[1]),line_end=int(lines[2]))
     page=re.search(r"\b(?:show|get|read|extract)\s+page\s+(\d+)\b",lower)
     if page:return Route(route="EXTRACT",operation="get_page",page=int(page[1]))
     if re.search(r"\b(word count|how many words|total words)\b",lower):return Route(route="COUNT",operation="document_word_count")
@@ -200,7 +209,12 @@ class DocumentAgent:
         question=messages[-1]["content"]
         route=rules(question)
         if route and route.route=="NORMAL_CHAT":return await self.history(cid,messages),None
-        file_ids=json.loads(turn["file_ids"]);files=[self.docs.row(cid,fid) for fid in file_ids]
+        file_ids=json.loads(turn["file_ids"])
+        revision=await run_in_threadpool(EvidenceRevision.capture,self.docs,cid,job["user_message_id"],file_ids)
+        job["evidence_revision"]=revision
+        if current.get():current.get().evidence_check=lambda:revision.validate(self.docs)
+        files=[self.docs.row(cid,fid) for fid in file_ids]
+        revision.validate(self.docs)
         if not files or any(f is None or f.get("parse_state") not in ("ready","partial") for f in files):
             raise ValueError("Selected documents need extraction. Choose Re-index in Files.")
         followup=resolve(self.docs,job,question,files) if route is None or route.route=="DOCUMENT_QA" else None
