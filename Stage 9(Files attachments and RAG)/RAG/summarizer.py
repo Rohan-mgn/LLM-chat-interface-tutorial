@@ -35,7 +35,7 @@ class Summarizer:
     def __init__(self,docs,provider):
         self.docs,self.provider=docs,provider
 
-    async def summarize(self,cid,files,progress,section=None,deadline=None,prior_calls=0,final_budget=None,reserve_calls=1,task=None):
+    async def summarize(self,cid,files,progress,section=None,deadline=None,prior_calls=0,final_budget=None,reserve_calls=1,task=None,on_model_call=None):
         started=time.monotonic();calls=prior_calls;sources=[];documents=[]
         deadline=min(deadline or started+MAX_SECONDS,started+MAX_SECONDS)
         task_json=json.dumps(task or {"objective":"Faithfully summarize all supplied material."},ensure_ascii=False,sort_keys=True)
@@ -60,6 +60,7 @@ class Summarizer:
             # Reserve one call for the final streamed synthesis.
             if calls>=MAX_CALLS-reserve_calls:
                 raise ValueError("Summary reached its 64-call safety ceiling; select a smaller section.")
+            if on_model_call is not None:on_model_call()
             calls+=1
             progress(f"Summarizing source material (model call {calls})...")
             client=self.provider.client(120)

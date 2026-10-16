@@ -1,0 +1,29 @@
+{
+  "candidate_accepted": false,
+  "evaluation": "Manual reference-based development review, not an independent blind score",
+  "input_report": "tests/results/citation-candidate-live.json",
+  "observations": [
+    {
+      "case": "water-cycle-child",
+      "linked_sections": 0,
+      "required_sections": 3,
+      "issues": [
+        "No citations",
+        "Water turns into air conflates water vapor with air",
+        "Shower-skin analogy adds unsupported misleading explanation"
+      ]
+    },
+    {
+      "case": "maintenance-study",
+      "linked_sections": 0,
+      "required_sections": 3,
+      "issues": [
+        "No citations",
+        "Shutdown section has no practice question despite requested one per part",
+        "Answer key adds unsupported causal claim about opening casing causing pressurization"
+      ]
+    }
+  ],
+  "production_prompt_changed": false,
+  "held_out_used": false
+}

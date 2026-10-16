@@ -1,0 +1,1472 @@
+{
+  "protocol": "attachment-plan-v1",
+  "kind": "first-decision development qualification; not full assistant acceptance",
+  "fixture_sha256": "a3fb3569351b4d9c5fee76e1a5c57b07b73312cf5cf140a44477457fba08919a",
+  "model": "llama3.2:3b",
+  "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+  "rows": [
+    {
+      "id": "small_teaching",
+      "method": "structured",
+      "valid": false,
+      "correct": false,
+      "decision": null,
+      "error": "TimeoutError: ",
+      "seconds": 30.282,
+      "metrics": {
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.02,
+          "model_inference": 30008.14,
+          "planning": 30279.94
+        },
+        "total_ms": 30282.05,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "small_teaching",
+      "method": "native",
+      "valid": false,
+      "correct": false,
+      "decision": null,
+      "error": "InvalidDecision: Tool arguments failed application validation.",
+      "seconds": 26.231,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1008,
+            "eval_count": 28,
+            "prompt_eval_duration": 20575040000,
+            "eval_duration": 5190501000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.02,
+          "model_inference": 25828.85,
+          "planning": 26230.08
+        },
+        "total_ms": 26230.79,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "large_teaching",
+      "method": "structured",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "tool",
+        "name": "process_document",
+        "arguments": {
+          "files": [
+            "F1"
+          ]
+        }
+      },
+      "error": null,
+      "seconds": 18.696,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 645,
+            "eval_count": 25,
+            "prompt_eval_duration": 12559576000,
+            "eval_duration": 5588098000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.03,
+          "model_inference": 18350.36,
+          "planning": 18695.51
+        },
+        "total_ms": 18696.23,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "large_teaching",
+      "method": "native",
+      "valid": false,
+      "correct": false,
+      "decision": null,
+      "error": "InvalidDecision: Tool arguments failed application validation.",
+      "seconds": 17.628,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1010,
+            "eval_count": 20,
+            "prompt_eval_duration": 13143597000,
+            "eval_duration": 3990176000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.03,
+          "model_inference": 17263.9,
+          "planning": 17626.86
+        },
+        "total_ms": 17627.68,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "large_study",
+      "method": "structured",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "tool",
+        "name": "process_document",
+        "arguments": {
+          "files": [
+            "F1"
+          ]
+        }
+      },
+      "error": null,
+      "seconds": 17.459,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 648,
+            "eval_count": 25,
+            "prompt_eval_duration": 11989280000,
+            "eval_duration": 4993126000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.02,
+          "model_inference": 17134.3,
+          "planning": 17457.96
+        },
+        "total_ms": 17458.6,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "large_study",
+      "method": "native",
+      "valid": false,
+      "correct": false,
+      "decision": null,
+      "error": "InvalidDecision: Tool arguments failed application validation.",
+      "seconds": 21.35,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1013,
+            "eval_count": 31,
+            "prompt_eval_duration": 14287060000,
+            "eval_duration": 6643830000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.03,
+          "model_inference": 21058.56,
+          "planning": 21350.05
+        },
+        "total_ms": 21350.51,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "identifier",
+      "method": "structured",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "tool",
+        "name": "search_documents",
+        "arguments": {
+          "files": [
+            "F1"
+          ],
+          "query": "TRN-417 manual"
+        }
+      },
+      "error": null,
+      "seconds": 21.589,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 643,
+            "eval_count": 34,
+            "prompt_eval_duration": 13554855000,
+            "eval_duration": 7651883000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 21313.79,
+          "planning": 21588.15
+        },
+        "total_ms": 21589.08,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "identifier",
+      "method": "native",
+      "valid": false,
+      "correct": false,
+      "decision": null,
+      "error": "InvalidDecision: Tool arguments failed application validation.",
+      "seconds": 20.333,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1008,
+            "eval_count": 30,
+            "prompt_eval_duration": 12663571000,
+            "eval_duration": 7237700000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.02,
+          "model_inference": 20025.36,
+          "planning": 20332.19
+        },
+        "total_ms": 20332.8,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "page",
+      "method": "structured",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "tool",
+        "name": "read_document",
+        "arguments": {
+          "file": "F1",
+          "view": "page",
+          "locator": "12"
+        }
+      },
+      "error": null,
+      "seconds": 19.676,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 638,
+            "eval_count": 36,
+            "prompt_eval_duration": 12199902000,
+            "eval_duration": 6914656000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.18,
+          "model_inference": 19329.74,
+          "planning": 19675.8
+        },
+        "total_ms": 19676.41,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "page",
+      "method": "native",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "tool",
+        "name": "read_document",
+        "arguments": {
+          "file": "F1",
+          "view": "page",
+          "locator": "12"
+        }
+      },
+      "error": null,
+      "seconds": 15.311,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1003,
+            "eval_count": 30,
+            "prompt_eval_duration": 10124969000,
+            "eval_duration": 4861538000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 15085.57,
+          "planning": 15310.86
+        },
+        "total_ms": 15311.31,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "section",
+      "method": "structured",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "tool",
+        "name": "read_document",
+        "arguments": {
+          "file": "F1",
+          "view": "section",
+          "locator": "Limitations"
+        }
+      },
+      "error": null,
+      "seconds": 15.526,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 641,
+            "eval_count": 37,
+            "prompt_eval_duration": 9607887000,
+            "eval_duration": 5607677000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 15318.54,
+          "planning": 15525.79
+        },
+        "total_ms": 15526.25,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "section",
+      "method": "native",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "tool",
+        "name": "read_document",
+        "arguments": {
+          "file": "F1",
+          "view": "outline",
+          "locator": ""
+        }
+      },
+      "error": null,
+      "seconds": 15.701,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1006,
+            "eval_count": 29,
+            "prompt_eval_duration": 10745653000,
+            "eval_duration": 4654245000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 15488.14,
+          "planning": 15700.13
+        },
+        "total_ms": 15700.57,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "targeted_conflict",
+      "method": "structured",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "tool",
+        "name": "search_documents",
+        "arguments": {
+          "files": [
+            "F1",
+            "F2"
+          ],
+          "query": "termination notice"
+        }
+      },
+      "error": null,
+      "seconds": 15.322,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 684,
+            "eval_count": 35,
+            "prompt_eval_duration": 9839487000,
+            "eval_duration": 5165888000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 15108.06,
+          "planning": 15320.86
+        },
+        "total_ms": 15321.54,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "targeted_conflict",
+      "method": "native",
+      "valid": false,
+      "correct": false,
+      "decision": null,
+      "error": "InvalidDecision: Tool arguments failed application validation.",
+      "seconds": 21.421,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1058,
+            "eval_count": 30,
+            "prompt_eval_duration": 15751799000,
+            "eval_duration": 5334576000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 21176.33,
+          "planning": 21420.71
+        },
+        "total_ms": 21421.45,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "whole_comparison",
+      "method": "structured",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "tool",
+        "name": "process_document",
+        "arguments": {
+          "files": [
+            "F1",
+            "F2"
+          ]
+        }
+      },
+      "error": null,
+      "seconds": 17.598,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 691,
+            "eval_count": 29,
+            "prompt_eval_duration": 12451671000,
+            "eval_duration": 4710346000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.02,
+          "model_inference": 17275.33,
+          "planning": 17597.95
+        },
+        "total_ms": 17598.4,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "whole_comparison",
+      "method": "native",
+      "valid": false,
+      "correct": false,
+      "decision": null,
+      "error": "InvalidDecision: Tool arguments failed application validation.",
+      "seconds": 20.546,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1065,
+            "eval_count": 30,
+            "prompt_eval_duration": 13085952000,
+            "eval_duration": 7123153000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.03,
+          "model_inference": 20309.95,
+          "planning": 20545.92
+        },
+        "total_ms": 20546.49,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "table_expenses",
+      "method": "structured",
+      "valid": true,
+      "correct": false,
+      "decision": {
+        "action": "tool",
+        "name": "search_documents",
+        "arguments": {
+          "files": [
+            "F1"
+          ],
+          "query": "department expenses"
+        }
+      },
+      "error": null,
+      "seconds": 19.085,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 705,
+            "eval_count": 31,
+            "prompt_eval_duration": 13084440000,
+            "eval_duration": 5480182000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.04,
+          "model_inference": 18745.67,
+          "planning": 19083.86
+        },
+        "total_ms": 19084.55,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "table_expenses",
+      "method": "native",
+      "valid": false,
+      "correct": false,
+      "decision": null,
+      "error": "InvalidDecision: Tool arguments failed application validation.",
+      "seconds": 26.691,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1124,
+            "eval_count": 26,
+            "prompt_eval_duration": 21799103000,
+            "eval_duration": 4548150000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 26451.72,
+          "planning": 26690.52
+        },
+        "total_ms": 26691.03,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "table_periods",
+      "method": "structured",
+      "valid": true,
+      "correct": false,
+      "decision": {
+        "action": "tool",
+        "name": "search_documents",
+        "arguments": {
+          "files": [
+            "F1"
+          ],
+          "query": "expenses Q1 vs Q2"
+        }
+      },
+      "error": null,
+      "seconds": 16.663,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 714,
+            "eval_count": 35,
+            "prompt_eval_duration": 11125233000,
+            "eval_duration": 5181204000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 16425.99,
+          "planning": 16661.81
+        },
+        "total_ms": 16662.62,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "table_periods",
+      "method": "native",
+      "valid": false,
+      "correct": false,
+      "decision": null,
+      "error": "InvalidDecision: Tool arguments failed application validation.",
+      "seconds": 19.21,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1133,
+            "eval_count": 30,
+            "prompt_eval_duration": 11560159000,
+            "eval_duration": 7313393000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 19003.46,
+          "planning": 19209.45
+        },
+        "total_ms": 19209.94,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "code_structure",
+      "method": "structured",
+      "valid": true,
+      "correct": false,
+      "decision": {
+        "action": "tool",
+        "name": "read_document",
+        "arguments": {
+          "file": "F1",
+          "view": "full",
+          "locator": "module organization"
+        }
+      },
+      "error": null,
+      "seconds": 19.997,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 707,
+            "eval_count": 37,
+            "prompt_eval_duration": 12716087000,
+            "eval_duration": 6892358000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.02,
+          "model_inference": 19754.82,
+          "planning": 19996.47
+        },
+        "total_ms": 19997.2,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "code_structure",
+      "method": "native",
+      "valid": false,
+      "correct": false,
+      "decision": null,
+      "error": "InvalidDecision: Tool arguments failed application validation.",
+      "seconds": 18.982,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1122,
+            "eval_count": 21,
+            "prompt_eval_duration": 15022800000,
+            "eval_duration": 3605383000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 18750.57,
+          "planning": 18981.43
+        },
+        "total_ms": 18982.11,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "slide_relationship",
+      "method": "structured",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "tool",
+        "name": "read_document",
+        "arguments": {
+          "file": "F1",
+          "view": "slide",
+          "locator": "4"
+        }
+      },
+      "error": null,
+      "seconds": 15.553,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 644,
+            "eval_count": 36,
+            "prompt_eval_duration": 9590670000,
+            "eval_duration": 5594839000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 15318.07,
+          "planning": 15552.24
+        },
+        "total_ms": 15552.8,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "slide_relationship",
+      "method": "native",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "tool",
+        "name": "read_document",
+        "arguments": {
+          "view": "slide",
+          "locator": "4",
+          "file": "F1"
+        }
+      },
+      "error": null,
+      "seconds": 19.311,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1009,
+            "eval_count": 30,
+            "prompt_eval_duration": 12803681000,
+            "eval_duration": 6124185000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 19033.4,
+          "planning": 19310.5
+        },
+        "total_ms": 19310.98,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "ordinary",
+      "method": "structured",
+      "valid": true,
+      "correct": false,
+      "decision": {
+        "action": "clarify",
+        "question": "What is the objective of the task?"
+      },
+      "error": null,
+      "seconds": 6.172,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 274,
+            "eval_count": 21,
+            "prompt_eval_duration": 2081505000,
+            "eval_duration": 3541172000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.03,
+          "model_inference": 5788.15,
+          "planning": 6171.33
+        },
+        "total_ms": 6171.73,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "ordinary",
+      "method": "native",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "answer"
+      },
+      "error": null,
+      "seconds": 8.055,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 429,
+            "eval_count": 12,
+            "prompt_eval_duration": 5955531000,
+            "eval_duration": 1809233000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 7792.81,
+          "planning": 8054.41
+        },
+        "total_ms": 8054.78,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "ambiguous",
+      "method": "structured",
+      "valid": true,
+      "correct": false,
+      "decision": {
+        "action": "tool",
+        "name": "read_document",
+        "arguments": {
+          "file": "F1",
+          "view": "full",
+          "locator": ""
+        }
+      },
+      "error": null,
+      "seconds": 16.617,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 681,
+            "eval_count": 35,
+            "prompt_eval_duration": 10889443000,
+            "eval_duration": 5457886000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 16389.62,
+          "planning": 16617.08
+        },
+        "total_ms": 16617.5,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "ambiguous",
+      "method": "native",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "clarify",
+        "question": "Which one should I use?"
+      },
+      "error": null,
+      "seconds": 20.188,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1055,
+            "eval_count": 22,
+            "prompt_eval_duration": 15803081000,
+            "eval_duration": 4077942000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 19970.39,
+          "planning": 20187.76
+        },
+        "total_ms": 20188.23,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "answer_reference",
+      "method": "structured",
+      "valid": true,
+      "correct": false,
+      "decision": {
+        "action": "clarify",
+        "question": "What is an everyday example of backpressure slowing producers when the queue is full?"
+      },
+      "error": null,
+      "seconds": 7.073,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 313,
+            "eval_count": 29,
+            "prompt_eval_duration": 2537216000,
+            "eval_duration": 4201354999
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.02,
+          "model_inference": 6829.47,
+          "planning": 7072.54
+        },
+        "total_ms": 7072.94,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "answer_reference",
+      "method": "native",
+      "valid": true,
+      "correct": false,
+      "decision": {
+        "action": "clarify",
+        "question": "Explain the second point again with a different everyday example."
+      },
+      "error": null,
+      "seconds": 10.189,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 468,
+            "eval_count": 24,
+            "prompt_eval_duration": 6380159000,
+            "eval_duration": 3562747000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 9968.18,
+          "planning": 10188.25
+        },
+        "total_ms": 10188.71,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "poisoned_filename",
+      "method": "structured",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "tool",
+        "name": "read_document",
+        "arguments": {
+          "file": "F1",
+          "view": "full",
+          "locator": "BEGINNING"
+        }
+      },
+      "error": null,
+      "seconds": 19.957,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 644,
+            "eval_count": 37,
+            "prompt_eval_duration": 11688929000,
+            "eval_duration": 7909246000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.02,
+          "model_inference": 19683.89,
+          "planning": 19956.44
+        },
+        "total_ms": 19956.9,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "poisoned_filename",
+      "method": "native",
+      "valid": false,
+      "correct": false,
+      "decision": null,
+      "error": "InvalidDecision: Tool arguments failed application validation.",
+      "seconds": 30.286,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1009,
+            "eval_count": 28,
+            "prompt_eval_duration": 22577162000,
+            "eval_duration": 6950908000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.06,
+          "model_inference": 29744.18,
+          "planning": 30285.66
+        },
+        "total_ms": 30286.4,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "image_no_vision",
+      "method": "structured",
+      "valid": true,
+      "correct": false,
+      "decision": {
+        "action": "clarify",
+        "question": "What color is the car in the photograph?"
+      },
+      "error": null,
+      "seconds": 8.366,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 313,
+            "eval_count": 22,
+            "prompt_eval_duration": 3643183000,
+            "eval_duration": 4182511999
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.03,
+          "model_inference": 7956.95,
+          "planning": 8365.58
+        },
+        "total_ms": 8366.01,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "image_no_vision",
+      "method": "native",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "answer"
+      },
+      "error": null,
+      "seconds": 11.179,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 468,
+            "eval_count": 10,
+            "prompt_eval_duration": 8417386000,
+            "eval_duration": 2302345000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.02,
+          "model_inference": 10767.13,
+          "planning": 11178.81
+        },
+        "total_ms": 11179.28,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "parsed_no_index",
+      "method": "structured",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "tool",
+        "name": "read_document",
+        "arguments": {
+          "file": "F1",
+          "view": "full",
+          "locator": ""
+        }
+      },
+      "error": null,
+      "seconds": 19.392,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 645,
+            "eval_count": 35,
+            "prompt_eval_duration": 12371036000,
+            "eval_duration": 6635797000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.04,
+          "model_inference": 19072.17,
+          "planning": 19391.85
+        },
+        "total_ms": 19392.52,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "parsed_no_index",
+      "method": "native",
+      "valid": false,
+      "correct": false,
+      "decision": null,
+      "error": "InvalidDecision: Tool arguments failed application validation.",
+      "seconds": 17.091,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1010,
+            "eval_count": 21,
+            "prompt_eval_duration": 11868793000,
+            "eval_duration": 4855637000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 16834.94,
+          "planning": 17089.95
+        },
+        "total_ms": 17090.6,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "failed_extraction",
+      "method": "structured",
+      "valid": true,
+      "correct": false,
+      "decision": {
+        "action": "clarify",
+        "question": "What scanned document is being referred to?"
+      },
+      "error": null,
+      "seconds": 10.389,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 320,
+            "eval_count": 21,
+            "prompt_eval_duration": 3824590000,
+            "eval_duration": 5691468000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.03,
+          "model_inference": 9931.07,
+          "planning": 10388.2
+        },
+        "total_ms": 10388.93,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "failed_extraction",
+      "method": "native",
+      "valid": true,
+      "correct": true,
+      "decision": {
+        "action": "answer"
+      },
+      "error": null,
+      "seconds": 11.847,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 475,
+            "eval_count": 10,
+            "prompt_eval_duration": 9005094000,
+            "eval_duration": 2150135000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.04,
+          "model_inference": 11343.78,
+          "planning": 11846.54
+        },
+        "total_ms": 11847.17,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "specific_file",
+      "method": "structured",
+      "valid": true,
+      "correct": false,
+      "decision": {
+        "action": "tool",
+        "name": "read_document",
+        "arguments": {
+          "file": "F1",
+          "view": "section",
+          "locator": "inspection interval"
+        }
+      },
+      "error": null,
+      "seconds": 21.718,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 686,
+            "eval_count": 37,
+            "prompt_eval_duration": 13333099000,
+            "eval_duration": 8031293000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 21440.12,
+          "planning": 21717.06
+        },
+        "total_ms": 21717.82,
+        "time_to_first_token_ms": null
+      }
+    },
+    {
+      "id": "specific_file",
+      "method": "native",
+      "valid": false,
+      "correct": false,
+      "decision": null,
+      "error": "InvalidDecision: Tool arguments failed application validation.",
+      "seconds": 21.186,
+      "metrics": {
+        "model_token_usage": [
+          {
+            "purpose": "planning",
+            "prompt_eval_count": 1060,
+            "eval_count": 30,
+            "prompt_eval_duration": 13365106000,
+            "eval_duration": 7035820000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "planning": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.02,
+          "model_inference": 20877.32,
+          "planning": 21184.88
+        },
+        "total_ms": 21185.85,
+        "time_to_first_token_ms": null
+      }
+    }
+  ],
+  "complete": true,
+  "qualified": false,
+  "limitations": "One decision per case and method; does not measure multi-step tool execution, final answer faithfulness, or held-out reliability.",
+  "summary": {
+    "structured": {
+      "valid_rate": 0.95,
+      "selection_scope_accuracy": 0.5,
+      "median_seconds": 17.5285,
+      "meets_first_decision_thresholds": false
+    },
+    "native": {
+      "valid_rate": 0.4,
+      "selection_scope_accuracy": 0.35,
+      "median_seconds": 19.2605,
+      "meets_first_decision_thresholds": false
+    }
+  }
+}

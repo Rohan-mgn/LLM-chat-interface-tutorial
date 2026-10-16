@@ -2,11 +2,11 @@
 import hashlib
 import json
 import re
-from .context_budget import check, input_limit, message_tokens, estimate
+from .context_budget import check, input_limit, message_tokens, estimate, evidence_passage
 from .document_tools import get_section
 
-ANSWER_VERSION = "attachment-answer-v1"
-BUNDLE_VERSION = 1
+ANSWER_VERSION = "attachment-answer-v2-compact-evidence"
+BUNDLE_VERSION = 2
 ANSWER_INSTRUCTIONS = """
 Use the user's actual request and relevant branch history to choose the audience,
 depth and Markdown organization. Explain, teach, compare, critique or transform
@@ -98,8 +98,7 @@ def complete_context(history, question, sources, system_prompt, instructions):
     # A complete document may have thousands of blocks. Check incrementally and
     # serialize once, rather than repeatedly copying an ever-growing JSON list.
     for ordinal,source in enumerate(sources,1):
-        passage={"citation":f"[S{ordinal}]","source_id":source["id"],
-            "filename":source["original_filename"],**source["metadata"],"text":source["text"]}
+        passage=evidence_passage(source,ordinal)
         used+=estimate(json.dumps(passage,ensure_ascii=False))+2
         if used>available:
             return None

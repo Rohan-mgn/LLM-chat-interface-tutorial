@@ -1,0 +1,506 @@
+{
+  "kind": "two development smoke scenarios, not full acceptance",
+  "timing_limitations": "One run per case/strategy; regression work may overlap. Not a percentage speedup or model-quality proof.",
+  "ingestion": "Isolated fixture ingestion; real configured Ollama chat model during timed answering.",
+  "models": [
+    {
+      "model": "embeddinggemma:latest",
+      "digest": "82f094e4c0e19bc4208c692996d4f1ecf14e82a8dee579ee1d2ca1175260058e"
+    },
+    {
+      "model": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72"
+    },
+    {
+      "model": "qwen3:4b",
+      "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+    }
+  ],
+  "rows": [
+    {
+      "case": "water-cycle-child",
+      "strategy": "direct",
+      "question": "Summarize this whole lesson for an eight-year-old, with one short section for each stage and a simple analogy. Keep the stages in order.",
+      "document_sha256": "85572ed0e246d055e9559ebd5d6b51e48c86d6d661a536bc05e80a79d578b981",
+      "status": {
+        "type": "done",
+        "status": "completed",
+        "generation_id": "6ed4fad6-972b-4ff3-a1ec-643d96e952c9"
+      },
+      "errors": [
+        {
+          "type": "error",
+          "message": "The model did not cite a retrieved passage. Open Files to verify the answer.",
+          "generation_id": "6ed4fad6-972b-4ff3-a1ec-643d96e952c9"
+        }
+      ],
+      "seconds": 113.84,
+      "answer": "**The Water Cycle: A Journey for Water**\n\nDo you know what happens to the water in the ocean, lakes, and rivers? It's on a big adventure called the water cycle! Let's follow the journey of water through three main stages: Evaporation, Condensation, and Precipitation.\n\n**Evaporation: Water's Big Leap**\n\nImagine you're at the beach on a hot summer day. The sun is shining brightly, and the water in the ocean is getting warmer and warmer. As the water gets hotter, it turns into water vapor and rises up into the air like a big, invisible balloon. This is called evaporation.\n\n**Condensation: Water's Cooling Down**\n\nNow, imagine you're in a cold room with a cold drink. As you breathe onto the drink, it starts to fog up, right? That's kind of like what happens when water vapor in the air cools down and turns back into tiny liquid drops. This is called condensation.\n\n**Precipitation: Water's Big Fall**\n\nFinally, imagine you're in a big, fluffy cloud. The water drops in the cloud get too heavy, and they start to fall to the ground as rain! This is called precipitation. The rain falls back into the ocean, lakes, and rivers, and the cycle starts all over again.\n\nThat's the water cycle! Water is always on the move, and it's an important part of our planet's journey.\n\n> Coverage check: 3 of 3 source sections have no linked substantive passage in this answer. The response may be incomplete; full coverage is not verified.",
+      "required_terms_present": {
+        "evaporation": true,
+        "condensation": true,
+        "precipitation": true
+      },
+      "details": {
+        "route": "SUMMARIZE_DOCUMENT",
+        "original_query": "Summarize this whole lesson for an eight-year-old, with one short section for each stage and a simple analogy. Keep the stages in order.",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "SUMMARIZE_DOCUMENT",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "Summarize this whole lesson for an eight-year-old, with one short section for each stage and a simple analogy. Keep the stages in order.",
+          "files": [
+            {
+              "id": "c2b2545cf01f47cf9989129b7306cee0",
+              "fingerprint": "85572ed0e246d055e9559ebd5d6b51e48c86d6d661a536bc05e80a79d578b981",
+              "name": "lesson.md"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "Summarize this whole lesson for an eight-year-old, with one short section for each stage and a simple analogy. Keep the stages in order.",
+          "authorized_files": [
+            "c2b2545cf01f47cf9989129b7306cee0"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "coverage_manifest": {
+          "version": 1,
+          "required_sections": [
+            {
+              "id": "689ad453be136bcf8bfddabb",
+              "file_id": "c2b2545cf01f47cf9989129b7306cee0",
+              "location": {
+                "section": "Evaporation"
+              },
+              "source_ids": [
+                "SOURCE_f173e22368e3fd5f64f55ed5",
+                "SOURCE_0398f620a6c2824a8bcc52d5"
+              ]
+            },
+            {
+              "id": "a7c60b76e331cdb7e4a9182a",
+              "file_id": "c2b2545cf01f47cf9989129b7306cee0",
+              "location": {
+                "section": "Condensation"
+              },
+              "source_ids": [
+                "SOURCE_011e32bb880076d034f6892b",
+                "SOURCE_d5f1b7a7882c56ccd5da46f4"
+              ]
+            },
+            {
+              "id": "d3c06904f44a74b99e9d904c",
+              "file_id": "c2b2545cf01f47cf9989129b7306cee0",
+              "location": {
+                "section": "Precipitation"
+              },
+              "source_ids": [
+                "SOURCE_0391eb7e0cd501dbac8ca19b",
+                "SOURCE_b4198946cd44ab6e49ae3e17"
+              ]
+            }
+          ],
+          "extraction": [
+            {
+              "file_id": "c2b2545cf01f47cf9989129b7306cee0",
+              "coverage": {
+                "complete": true,
+                "unreadable": [],
+                "vision": false,
+                "warning": null
+              }
+            }
+          ],
+          "answer_checked": true
+        },
+        "acquisition": "direct_complete",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "direct_complete",
+          "documents": [
+            {
+              "file_id": "c2b2545cf01f47cf9989129b7306cee0",
+              "fingerprint": "85572ed0e246d055e9559ebd5d6b51e48c86d6d661a536bc05e80a79d578b981",
+              "generation": 14,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_f173e22368e3fd5f64f55ed5",
+              "file_id": "c2b2545cf01f47cf9989129b7306cee0",
+              "text_fingerprint": "a85c3004a0e0443ba581366aa488c751720932ac3dc50c052e60ec546f074c02",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_0398f620a6c2824a8bcc52d5",
+              "file_id": "c2b2545cf01f47cf9989129b7306cee0",
+              "text_fingerprint": "3c11c830f8a955985f0d0778a2656e72264c597c10e44c029e53b2d0ebfd34e3",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_011e32bb880076d034f6892b",
+              "file_id": "c2b2545cf01f47cf9989129b7306cee0",
+              "text_fingerprint": "2bca22703bf59ca1d3075ae3a0b138aaaeb69959712ab6e0fb315da5c807418e",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_d5f1b7a7882c56ccd5da46f4",
+              "file_id": "c2b2545cf01f47cf9989129b7306cee0",
+              "text_fingerprint": "8da35a98cd271104d64d777b0e1f00bc2e3f8dbc0f0157c9bb69763fe0956f3c",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_0391eb7e0cd501dbac8ca19b",
+              "file_id": "c2b2545cf01f47cf9989129b7306cee0",
+              "text_fingerprint": "ec5ad1e150bd860df5922e64ab06a8c7aa3aa6cd3915cb4d4d719fcab22c5051",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_b4198946cd44ab6e49ae3e17",
+              "file_id": "c2b2545cf01f47cf9989129b7306cee0",
+              "text_fingerprint": "ee9ce3adc35f7b7153dfc22a891ae6ae4a2c80b7a19bb231323a1e88af73cad1",
+              "origin": "native"
+            }
+          ]
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "33dcbd52e2ff425b20d8339465226ff4208b2bce227fda5d9af0871244d71406",
+          "files": [
+            {
+              "file_id": "c2b2545cf01f47cf9989129b7306cee0",
+              "fingerprint": "85572ed0e246d055e9559ebd5d6b51e48c86d6d661a536bc05e80a79d578b981",
+              "generation": 14,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "answer_coverage": {
+          "version": 1,
+          "method": "substantive cited output spans; semantic completeness unverified",
+          "required": 3,
+          "linked": 0,
+          "missing": [
+            "689ad453be136bcf8bfddabb",
+            "a7c60b76e331cdb7e4a9182a",
+            "d3c06904f44a74b99e9d904c"
+          ],
+          "map": [
+            {
+              "section_id": "689ad453be136bcf8bfddabb",
+              "portions": []
+            },
+            {
+              "section_id": "a7c60b76e331cdb7e4a9182a",
+              "portions": []
+            },
+            {
+              "section_id": "d3c06904f44a74b99e9d904c",
+              "portions": []
+            }
+          ],
+          "semantic_complete": null
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 113745.0,
+        "estimated_input_tokens": 759,
+        "model_token_usage": [
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 909,
+            "eval_count": 293,
+            "prompt_eval_duration": 27793092000,
+            "eval_duration": 70472535000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "generation": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "history_compression": 0.05,
+          "model_queue": 0.02,
+          "model_inference": 113173.2,
+          "answer_generation": 113179.16
+        },
+        "total_ms": 113745.38,
+        "time_to_first_token_ms": 43279.27,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "case": "maintenance-study",
+      "strategy": "direct",
+      "question": "Summarize this complete procedure as a three-part study guide. Include the stop condition, one practice question per part, and a short answer key.",
+      "document_sha256": "94d1be6a8092a380f48860ca1b8f26461e46f0efefa12152f21e28a93ce4ce26",
+      "status": {
+        "type": "done",
+        "status": "completed",
+        "generation_id": "567ae139-65fe-4752-ad40-19cbc201efd0"
+      },
+      "errors": [],
+      "seconds": 81.343,
+      "answer": "**Study Guide: Pump Operation Procedure**\n=====================================\n\n### Part 1: Inspection\n\nBefore starting the pump, inspect the inlet for debris and check that the pressure gauge reads zero.\n\n**Practice Question:** What is the purpose of inspecting the inlet for debris?\n\n### Part 2: Operation\n\n1. Open the inlet valve before starting the pump.\n2. Start the pump and monitor the pressure gauge.\n3. Stop the pump if pressure exceeds 90 kPa.\n\n**Practice Question:** What is the maximum allowed pressure during pump operation?\n\n### Part 3: Shutdown\n\n1. Turn the motor off.\n2. Close the inlet valve.\n3. Record the final pressure.\n4. Do not open the casing while the pump is pressurized.\n\n**Short Answer Key:**\n\n1. What is the purpose of inspecting the inlet for debris?\nAnswer: [SOURCE_4aa01ffaff36f2799a03acb4] to ensure the inlet is clear of debris and the pressure gauge reads zero.\n2. What is the maximum allowed pressure during pump operation?\nAnswer: 90 kPa.\n3. What should not be done during shutdown?\nAnswer: Open the casing while the pump is pressurized.\n\n> Coverage check: 2 of 3 source sections have no linked substantive passage in this answer. The response may be incomplete; full coverage is not verified.",
+      "required_terms_present": {
+        "90": true,
+        "inspect": true,
+        "off": true
+      },
+      "details": {
+        "route": "SUMMARIZE_DOCUMENT",
+        "original_query": "Summarize this complete procedure as a three-part study guide. Include the stop condition, one practice question per part, and a short answer key.",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "SUMMARIZE_DOCUMENT",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "Summarize this complete procedure as a three-part study guide. Include the stop condition, one practice question per part, and a short answer key.",
+          "files": [
+            {
+              "id": "f6f4c07e9c5d4412a21b1d3d68456ee0",
+              "fingerprint": "94d1be6a8092a380f48860ca1b8f26461e46f0efefa12152f21e28a93ce4ce26",
+              "name": "lesson.md"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "Summarize this complete procedure as a three-part study guide. Include the stop condition, one practice question per part, and a short answer key.",
+          "authorized_files": [
+            "f6f4c07e9c5d4412a21b1d3d68456ee0"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "coverage_manifest": {
+          "version": 1,
+          "required_sections": [
+            {
+              "id": "7a047a3629979f8210419edf",
+              "file_id": "f6f4c07e9c5d4412a21b1d3d68456ee0",
+              "location": {
+                "section": "Inspection"
+              },
+              "source_ids": [
+                "SOURCE_4aa01ffaff36f2799a03acb4",
+                "SOURCE_e66145fffadadbd67d9f2e60"
+              ]
+            },
+            {
+              "id": "9aab55462414eeca533eda65",
+              "file_id": "f6f4c07e9c5d4412a21b1d3d68456ee0",
+              "location": {
+                "section": "Operation"
+              },
+              "source_ids": [
+                "SOURCE_21381f7685f63b1aeb13d0d4",
+                "SOURCE_5e289cd604b6d73195e640fd"
+              ]
+            },
+            {
+              "id": "a8463fe711353c26dec65839",
+              "file_id": "f6f4c07e9c5d4412a21b1d3d68456ee0",
+              "location": {
+                "section": "Shutdown"
+              },
+              "source_ids": [
+                "SOURCE_f26f0b9ecf4a6e2bc73e03c0",
+                "SOURCE_93d80ddea982f44cf9344738"
+              ]
+            }
+          ],
+          "extraction": [
+            {
+              "file_id": "f6f4c07e9c5d4412a21b1d3d68456ee0",
+              "coverage": {
+                "complete": true,
+                "unreadable": [],
+                "vision": false,
+                "warning": null
+              }
+            }
+          ],
+          "answer_checked": true
+        },
+        "acquisition": "direct_complete",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "direct_complete",
+          "documents": [
+            {
+              "file_id": "f6f4c07e9c5d4412a21b1d3d68456ee0",
+              "fingerprint": "94d1be6a8092a380f48860ca1b8f26461e46f0efefa12152f21e28a93ce4ce26",
+              "generation": 14,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_4aa01ffaff36f2799a03acb4",
+              "file_id": "f6f4c07e9c5d4412a21b1d3d68456ee0",
+              "text_fingerprint": "e1215111b7f1ac28d3dbd844a82fc9bfadec9840f79ccfc811418ce95adbc9f1",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_e66145fffadadbd67d9f2e60",
+              "file_id": "f6f4c07e9c5d4412a21b1d3d68456ee0",
+              "text_fingerprint": "b623fae9d4ecf314bf33b85386b5369b421ee2eebd8d8868cecb8b9aefe196fd",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_21381f7685f63b1aeb13d0d4",
+              "file_id": "f6f4c07e9c5d4412a21b1d3d68456ee0",
+              "text_fingerprint": "4b2ff1f085c392a17ffb71b13d53d14d870f8995f8caeb8125307b96fecaafcc",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_5e289cd604b6d73195e640fd",
+              "file_id": "f6f4c07e9c5d4412a21b1d3d68456ee0",
+              "text_fingerprint": "d8dd36da474ec8dba9bde2bc0ee02a1c6dd1ecaaaa64b6379c4c8a5921c241f0",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_f26f0b9ecf4a6e2bc73e03c0",
+              "file_id": "f6f4c07e9c5d4412a21b1d3d68456ee0",
+              "text_fingerprint": "615492e6a5e9c2496a11180af6862d8919f4e4cfbc02a7f62ea8ce2e0ab526a6",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_93d80ddea982f44cf9344738",
+              "file_id": "f6f4c07e9c5d4412a21b1d3d68456ee0",
+              "text_fingerprint": "a36357d07c50c7c53524c27803b4544a00d338115cbff2f4a52d2f3608fc94ac",
+              "origin": "native"
+            }
+          ]
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "8ec5062c1660a4eb2172eef2f26f3ab4a8ec81464d1a7e6091ef20e795d89d53",
+          "files": [
+            {
+              "file_id": "f6f4c07e9c5d4412a21b1d3d68456ee0",
+              "fingerprint": "94d1be6a8092a380f48860ca1b8f26461e46f0efefa12152f21e28a93ce4ce26",
+              "generation": 14,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "answer_coverage": {
+          "version": 1,
+          "method": "substantive cited output spans; semantic completeness unverified",
+          "required": 3,
+          "linked": 1,
+          "missing": [
+            "9aab55462414eeca533eda65",
+            "a8463fe711353c26dec65839"
+          ],
+          "map": [
+            {
+              "section_id": "7a047a3629979f8210419edf",
+              "portions": [
+                {
+                  "start": 722,
+                  "end": 1074,
+                  "source_ids": [
+                    "SOURCE_4aa01ffaff36f2799a03acb4"
+                  ]
+                }
+              ]
+            },
+            {
+              "section_id": "9aab55462414eeca533eda65",
+              "portions": []
+            },
+            {
+              "section_id": "a8463fe711353c26dec65839",
+              "portions": []
+            }
+          ],
+          "semantic_complete": null
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 81253.0,
+        "estimated_input_tokens": 773,
+        "model_token_usage": [
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 907,
+            "eval_count": 236,
+            "prompt_eval_duration": 10004914000,
+            "eval_duration": 70517550000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "generation": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "history_compression": 0.07,
+          "model_queue": 0.02,
+          "model_inference": 80737.03,
+          "answer_generation": 80740.21
+        },
+        "total_ms": 81253.34,
+        "time_to_first_token_ms": 10740.45,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    }
+  ]
+}

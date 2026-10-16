@@ -1,0 +1,42 @@
+{
+  "command": "..\\.venv\\Scripts\\python.exe -B tests/check_browser.py --files",
+  "exit_code": 0,
+  "backend": "real FastAPI and isolated SQLite; mocked Ollama",
+  "browsers": [
+    {
+      "layout": "desktop",
+      "viewport": [
+        1416,
+        900
+      ],
+      "result": "PASS"
+    },
+    {
+      "layout": "mobile",
+      "viewport": [
+        390,
+        900
+      ],
+      "result": "PASS"
+    }
+  ],
+  "checks": [
+    "Upload chips",
+    "background indexing",
+    "source selection",
+    "streamed citation",
+    "source preview",
+    "tool evidence",
+    "unavailable historical citation",
+    "refresh restoration",
+    "drag/drop",
+    "clipboard files",
+    "safe text",
+    "remove chip",
+    "deletion",
+    "new-chat isolation",
+    "mobile layout"
+  ],
+  "script_sha256": "44461813b05c7f60d4bdb6da486e2e290e2807f36fd8c69f0dba996c5e08e571",
+  "limitations": "Browser contract checks do not evaluate live-model answer quality."
+}

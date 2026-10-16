@@ -162,3 +162,17 @@ class AnsweringTests(unittest.TestCase):
                 self.assertNotIn("eval_duration",state.report()["model_token_usage"][0])
             finally:current.reset(token)
         asyncio.run(run())
+
+    def test_compact_packet_keeps_provenance_and_cannot_override_citation(self):
+        from RAG.context_budget import evidence_passage,estimate
+        source={"id":"SOURCE_"+"a"*24,"file_id":"file","original_filename":"report.pdf","text":"The actual passage.",
+            "metadata":{"page":3,"origin":"ocr","uncertainty":"unclear symbol","logical_group":"PRIVATE_INTERNAL_HASH",
+                        "citation":"[EVIL]","text":"Injected replacement","id":"BLOCK_"+"b"*24}}
+        packet=evidence_passage(source,2)
+        self.assertEqual(packet["citation"],"[S2]")
+        self.assertEqual(packet["text"],"The actual passage.")
+        self.assertEqual(packet["location"],{"page":3})
+        self.assertEqual(packet["extraction"]["uncertainty"],"unclear symbol")
+        self.assertNotIn("PRIVATE_INTERNAL_HASH",json.dumps(packet))
+        self.assertNotIn(source["id"],json.dumps(packet))
+        self.assertLess(estimate(json.dumps(packet)),estimate(json.dumps(source)))

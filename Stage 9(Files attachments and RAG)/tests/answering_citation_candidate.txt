@@ -1,0 +1,8 @@
+Citation-format demonstration only (these placeholders are not document facts):
+A supported factual explanation ends with its evidence label. [S1]
+A different supported explanation may use two labels. [S2] [S3]
+
+Use the actual labels from the supplied passages. Apply this format to the factual
+explanation, not just an optional bibliography or answer key. Explain an analogy
+as an illustration and keep its limitations separate from the source facts.
+Do not copy the placeholder sentences above into the answer.

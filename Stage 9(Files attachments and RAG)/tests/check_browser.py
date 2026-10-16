@@ -105,7 +105,7 @@ def main():
             if not kwargs.get("stream"):
                 return {"message":{"content":newest}}
             import re
-            source_ids = re.findall(r'"source_id": "(SOURCE_[a-f0-9]+)"', str(kwargs["messages"]))
+            source_ids = re.findall(r'"citation": "\[(S\d+)\]"', str(kwargs["messages"])) or re.findall(r'"source_id": "(SOURCE_[a-f0-9]+)"', str(kwargs["messages"]))
             async def stream():
                 if source_ids:
                     for piece in ["The project is **Blue ", "Falcon** [", source_ids[0], "]."]:

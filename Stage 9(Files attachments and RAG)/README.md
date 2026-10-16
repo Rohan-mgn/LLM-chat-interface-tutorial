@@ -506,3 +506,24 @@ This compares direct acquisition with a forced hierarchical control on two new
 development scenarios, using real answer-model inference after isolated fixture
 ingestion. One observation per strategy is not a performance benchmark or quality
 acceptance result. It does not use or tune the established held-out families.
+
+### Compact evidence and planner qualification
+
+Prompt-facing passages now retain citation aliases, source locations, extraction
+warnings and authoritative text while omitting internal hashes and parser bookkeeping.
+Immutable source identity remains in backend evidence and release checks. Metadata
+cannot override the trusted citation/text fields.
+
+Two live direct-context development probes reported 909 and 907 input tokens,
+compared with the earlier 1,630 and 1,592. This is measured prompt-size reduction,
+not an answer-quality pass: linked section coverage remained 0/3 and 1/3, and
+the child explanation still contained a questionable analogy.
+
+The bounded planner and real document-tool bindings are implemented for testing
+but are **not the production router**. In the frozen 20-case first-decision
+development probe, structured planning scored 95% valid decisions and 50% correct
+action/scope selection; native tools scored 40% and 35%. Neither met the 90%
+selection requirement. No held-out tuning or default routing switch followed.
+
+See [PLANNER_QUALIFICATION.md](PLANNER_QUALIFICATION.md) for component boundaries,
+test commands, tool validation and remaining integration requirements.

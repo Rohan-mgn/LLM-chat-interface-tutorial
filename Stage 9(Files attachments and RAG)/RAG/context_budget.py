@@ -33,6 +33,21 @@ def fit_history(messages, allowance=3000):
         used += cost
     return list(reversed(kept))
 
+def evidence_passage(source, ordinal):
+    """Prompt-facing data only; immutable identities remain in backend evidence.
+
+    Do not copy parser internals (hashes, logical groups, offsets, block IDs) or
+    permit metadata to overwrite the trusted citation label/text fields.
+    """
+    meta=source["metadata"]
+    location={k:meta[k] for k in ("page","slide","section","heading","sheet","table","row","line_start","line_end")
+              if meta.get(k) not in (None,"")}
+    extraction={k:meta[k] for k in ("origin","warnings","uncertainty","requires_vision","formulas","cells")
+                if meta.get(k) not in (None,{},[],"")}
+    return {"citation":f"[S{ordinal}]","filename":source["original_filename"],
+            "location":location,"extraction":extraction,"text":source["text"]}
+
+
 def evidence_messages(history, question, sources, system_prompt, instructions, balanced=False):
     """Pack actual serialized evidence against the same final provider budget."""
     import json
@@ -49,8 +64,7 @@ def evidence_messages(history, question, sources, system_prompt, instructions, b
             else:rest.append(source)
         ordered=list(first.values())+rest
     for source in ordered:
-        passage={"citation":f"[S{len(selected)+1}]","source_id":source["id"],
-                 "filename":source["original_filename"],**source["metadata"],"text":source["text"]}
+        passage=evidence_passage(source,len(selected)+1)
         proposed=passages+[passage]
         context=json.dumps({"untrusted_document_excerpts":proposed},ensure_ascii=False)
         if estimate(context)>available:

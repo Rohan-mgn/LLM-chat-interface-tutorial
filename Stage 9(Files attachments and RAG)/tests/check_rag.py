@@ -42,7 +42,7 @@ class FakeModel:
             if self.owner.fail_rewrite:
                 raise RuntimeError("rewrite unavailable")
             return {"message":{"content":"What was the Q4 sales revenue?"}}
-        sources=re.findall(r'"source_id": "(SOURCE_[a-f0-9]+)"',str(kwargs["messages"]))
+        sources = re.findall(r'"citation": "\[(S\d+)\]"', str(kwargs["messages"])) or re.findall(r'"source_id": "(SOURCE_[a-f0-9]+)"', str(kwargs["messages"]))
         content=("Blue Falcon ["+sources[0]+"] [SOURCE_fake]" if sources else "I do not know.")
         async def stream():
             for start in range(0,len(content),7):
