@@ -527,3 +527,43 @@ selection requirement. No held-out tuning or default routing switch followed.
 
 See [PLANNER_QUALIFICATION.md](PLANNER_QUALIFICATION.md) for component boundaries,
 test commands, tool validation and remaining integration requirements.
+
+### References to points in an earlier answer
+
+For document-grounded conversations, requests such as "explain the second point
+again" resolve against the nearest completed answer on the active branch.
+Numbered items, bullets and Markdown headings are supported; nested bullets,
+fenced code and quotations are not counted as separate top-level points.
+Ambiguous lists, missing points and oversized references ask for a quotation
+instead of guessing. Explicit document filenames/sections remain document
+references. This is bounded structural resolution, not universal pronoun understanding.
+
+The previous answer is an unverified topic, not new evidence. Saved citations
+must still resolve to authorized current source records. The original selected
+section is preserved. Deleted/replaced sources are not redirected to new text.
+
+When valid cited passages fit the existing context budget, the backend reads
+them directly from SQLite and skips query embedding and reranking. Otherwise
+it uses bounded retrieval. Uncited earlier statements always require current
+retrieval. Direct and retrieved evidence share one prompt formatter; a regression
+checks identical generation prompts for identical passages. Exact counts and
+table calculations remain on the deterministic operation path.
+
+The new runtime file is RAG/answer_references.py. Restart the Stage 9 launcher
+once to refresh its explicit watched-file list:
+
+```powershell
+..\.venv\Scripts\python.exe run.py
+```
+
+Focused tests and the opt-in controlled live comparison:
+
+```powershell
+..\.venv\Scripts\python.exe -B -m unittest discover -s tests -p check_answer_references.py -v
+..\.venv\Scripts\python.exe -B tests/smoke_answer_reference.py --live --paired --output tests/results/answer-reference-paired-live.json
+```
+
+The live probe uses installed models and an isolated PRE_ACTIVATION fixture.
+Its previous answer is controlled test data. It is not a vector-backend benchmark
+or proof of fully model-generated multi-turn quality. Prompt fingerprints verify
+whether the two strategies send identical final inputs.

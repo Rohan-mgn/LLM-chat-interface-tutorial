@@ -48,7 +48,7 @@ def evidence_passage(source, ordinal):
             "location":location,"extraction":extraction,"text":source["text"]}
 
 
-def evidence_messages(history, question, sources, system_prompt, instructions, balanced=False):
+def evidence_messages(history, question, sources, system_prompt, instructions, balanced=False, require_all=False):
     """Pack actual serialized evidence against the same final provider budget."""
     import json
     selected=[];passages=[]
@@ -68,6 +68,7 @@ def evidence_messages(history, question, sources, system_prompt, instructions, b
         proposed=passages+[passage]
         context=json.dumps({"untrusted_document_excerpts":proposed},ensure_ascii=False)
         if estimate(context)>available:
+            if require_all:return None
             if balanced and source["file_id"] not in {s["file_id"] for s in selected}:
                 raise ValueError("Evidence from every compared document cannot fit. Narrow the comparison topic.")
             continue

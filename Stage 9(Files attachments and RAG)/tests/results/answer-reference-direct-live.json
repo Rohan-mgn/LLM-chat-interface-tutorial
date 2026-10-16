@@ -1,0 +1,1043 @@
+{
+  "kind": "controlled-prior-answer live development probe; not full assistant acceptance",
+  "models": [
+    {
+      "model": "embeddinggemma:latest",
+      "digest": "82f094e4c0e19bc4208c692996d4f1ecf14e82a8dee579ee1d2ca1175260058e"
+    },
+    {
+      "model": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72"
+    },
+    {
+      "model": "qwen3:4b",
+      "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+    }
+  ],
+  "source_document": "A bounded queue stores pending work up to a fixed capacity. When the queue is full, backpressure makes producers wait instead of creating more queued work. Consumers remove queued work when they have capacity. Backpressure limits pending work; it does not make consumers process faster.",
+  "document_sha256": "b51aed7a273db2331dac207cbbc94da89389183e4405b3b6a94d75a7e7b59a7e",
+  "prior_answer": "1. A bounded queue holds pending work up to a fixed capacity. [SOURCE_1dbd72ee66ece4fef959b36b]\n2. Backpressure makes producers wait when the queue is full; it does not make consumers faster. [SOURCE_1dbd72ee66ece4fef959b36b]",
+  "question": "Explain the second point again with a simple everyday analogy.",
+  "answer": "The second point is: \"Backpressure makes producers wait when the queue is full; it does not make consumers faster.\"\n\nThink of it like a restaurant with a limited number of tables. When the restaurant is full, the waiters can't take in more customers, even if they want to. They have to wait for an available table before they can serve someone new. This is like backpressure - the producers (waiters) can't produce more work (customers) because the queue (restaurant) is full.\n\nThe fact that the restaurant is full doesn't make the waiters work faster. They still have to wait for an available table, and they can't just magically make more tables appear. Similarly, backpressure doesn't make consumers (producers) process work faster. It just means they have to wait for the queue to empty before they can continue.",
+  "events": [
+    {
+      "type": "start",
+      "conversation_id": 1,
+      "user_message_id": 3,
+      "assistant_message_id": 4,
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "status",
+      "message": "Document task: document qa...",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "The",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " second",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " point",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " is",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ":",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " \"",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "Back",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "pressure",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " makes",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " producers",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " wait",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " when",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " the",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " queue",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " is",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " full",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ";",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " it",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " does",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " not",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " make",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " consumers",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " faster",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ".\"\n\n",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "Think",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " of",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " it",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " like",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " a",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " restaurant",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " with",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " a",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " limited",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " number",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " of",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " tables",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ".",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " When",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " the",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " restaurant",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " is",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " full",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ",",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " the",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " wait",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "ers",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " can",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "'t",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " take",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " in",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " more",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " customers",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ",",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " even",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " if",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " they",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " want",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " to",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ".",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " They",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " have",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " to",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " wait",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " for",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " an",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " available",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " table",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " before",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " they",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " can",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " serve",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " someone",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " new",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ".",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " This",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " is",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " like",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " back",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "pressure",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " -",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " the",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " producers",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " (",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "wait",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "ers",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ")",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " can",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "'t",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " produce",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " more",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " work",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " (",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "customers",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ")",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " because",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " the",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " queue",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " (",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "restaurant",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ")",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " is",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " full",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ".\n\n",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "The",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " fact",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " that",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " the",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " restaurant",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " is",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " full",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " doesn",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "'t",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " make",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " the",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " wait",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "ers",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " work",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " faster",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ".",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " They",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " still",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " have",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " to",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " wait",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " for",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " an",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " available",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " table",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ",",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " and",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " they",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " can",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "'t",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " just",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " magically",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " make",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " more",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " tables",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " appear",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ".",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " Similarly",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ",",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " back",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "pressure",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " doesn",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "'t",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " make",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " consumers",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " (",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "pro",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": "ducers",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ")",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " process",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " work",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " faster",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ".",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " It",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " just",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " means",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " they",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " have",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " to",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " wait",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " for",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " the",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " queue",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " to",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " empty",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " before",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " they",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " can",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": " continue",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "delta",
+      "content": ".",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "error",
+      "message": "The model did not cite a retrieved passage. Open Files to verify the answer.",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    },
+    {
+      "type": "done",
+      "status": "completed",
+      "generation_id": "e292511e-73b5-4ff2-9d9a-f21d136bbc30"
+    }
+  ],
+  "indexing_seconds": 3.492,
+  "seconds": 79.717,
+  "details": {
+    "route": "DOCUMENT_QA",
+    "original_query": "Explain the second point again with a simple everyday analogy.",
+    "operation": {
+      "version": 1,
+      "route": {
+        "route": "DOCUMENT_QA",
+        "operation": "",
+        "term": "",
+        "section": "",
+        "page": 0,
+        "slide": 0,
+        "line_start": 0,
+        "line_end": 0,
+        "case_sensitive": false
+      },
+      "question": "Explain the second point again with a simple everyday analogy.",
+      "files": [
+        {
+          "id": "e587d22b975e4343bfe6e5416c89d09d",
+          "fingerprint": "b51aed7a273db2331dac207cbbc94da89389183e4405b3b6a94d75a7e7b59a7e",
+          "name": "queues.txt"
+        }
+      ],
+      "tools": []
+    },
+    "answer_reference": {
+      "ordinal": 2,
+      "kind": "point",
+      "text": "2. Backpressure makes producers wait when the queue is full; it does not make consumers faster. [SOURCE_1dbd72ee66ece4fef959b36b]",
+      "source_ids": [
+        "SOURCE_1dbd72ee66ece4fef959b36b"
+      ],
+      "message_id": 2,
+      "unverified": true
+    },
+    "task_state": {
+      "version": 1,
+      "objective": "Explain the second point again with a simple everyday analogy.",
+      "authorized_files": [
+        "e587d22b975e4343bfe6e5416c89d09d"
+      ],
+      "required_scope": "selected documents",
+      "audience_and_format": "Follow the requirements in the original objective.",
+      "unresolved": [],
+      "limits": {
+        "planning_steps": 4,
+        "tools": 8,
+        "retrieval_rounds": 2
+      }
+    },
+    "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+    "acquisition": "direct_answer_reference",
+    "rewrite": "resolved from completed ancestor operation",
+    "evidence_bundle": {
+      "version": 2,
+      "strategy": "direct_answer_reference",
+      "documents": [
+        {
+          "file_id": "e587d22b975e4343bfe6e5416c89d09d",
+          "fingerprint": "b51aed7a273db2331dac207cbbc94da89389183e4405b3b6a94d75a7e7b59a7e",
+          "generation": 6,
+          "parser": "structured-v2"
+        }
+      ],
+      "sources": [
+        {
+          "id": "SOURCE_1dbd72ee66ece4fef959b36b",
+          "file_id": "e587d22b975e4343bfe6e5416c89d09d",
+          "text_fingerprint": "b51aed7a273db2331dac207cbbc94da89389183e4405b3b6a94d75a7e7b59a7e",
+          "origin": "native"
+        }
+      ]
+    },
+    "evidence_revision": {
+      "version": 1,
+      "identity": "b68b9e498884873c570fe9d0fa5357652464e94a168878ef6f0b4efc8593aea1",
+      "files": [
+        {
+          "file_id": "e587d22b975e4343bfe6e5416c89d09d",
+          "fingerprint": "b51aed7a273db2331dac207cbbc94da89389183e4405b3b6a94d75a7e7b59a7e",
+          "generation": 6,
+          "parser": "structured-v2"
+        }
+      ]
+    },
+    "deterministic_grounding": {
+      "findings": [],
+      "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+    },
+    "claim_review": {
+      "mode": "off",
+      "ran": false,
+      "latency_ms": 0,
+      "status": "disabled"
+    },
+    "generation_ms": 79666.0,
+    "estimated_input_tokens": 692,
+    "model_token_usage": [
+      {
+        "purpose": "generation",
+        "prompt_eval_count": 857,
+        "eval_count": 174,
+        "prompt_eval_duration": 26208647000,
+        "eval_duration": 40812425000
+      }
+    ],
+    "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+    "model_calls": {
+      "generation": 1
+    },
+    "model_call_count": 1,
+    "timings_ms": {
+      "history_compression": 0.1,
+      "model_queue": 0.04,
+      "model_inference": 79194.0,
+      "answer_generation": 79196.96
+    },
+    "total_ms": 79666.16,
+    "time_to_first_token_ms": 38911.25,
+    "output_accounting": "ASGI send completed; no client acknowledgments"
+  },
+  "deterministic_checks": {
+    "completed": true,
+    "resolved_correct_prior_message": true,
+    "resolved_second_point": true,
+    "reused_original_section_number": false,
+    "has_valid_citation": false
+  },
+  "limitations": "Single development observation with controlled prior answer; latency may overlap regression work. Human review needed for analogy correctness."
+}

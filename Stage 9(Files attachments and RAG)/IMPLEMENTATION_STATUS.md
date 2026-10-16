@@ -2,6 +2,10 @@
 
 This is an implementation checkpoint, not a completion claim. Changes are confined to Stage 9.
 
+Latest verification: **233 tests passed**, zero failures/errors, 317.925 seconds
+including discovery. Runtime source hashes stayed unchanged during the run.
+See [the regression report](tests/results/answer-reference-shared-packet-regression.json).
+
 ## Live storage and baseline
 
 - Original regression baseline: 104 tests passed in 52.752 seconds.
@@ -36,9 +40,9 @@ Implemented:
 - Shared final-answer instructions preserve the original task, audience and format. Hierarchical notes carry the exact objective through each reduction, and summary cache keys include that task. Nine focused tests passed before the final regression.
 - Versioned evidence diagnostics record source identity/fingerprint; a structural coverage map links source sections to substantive cited answer spans and explicitly leaves semantic completeness unverified. Missing links and partial extraction produce advisory text that is streamed and persisted identically.
 
-Pending: qualification and production integration of the new bounded semantic planner/executor, full adaptive direct-context selection beyond current complete-document routes, complete shared tool/evidence contract, independent OCR and optional format processors, richer branch-aware answer references, and end-to-end attachment quality acceptance. Existing routing remains until the validated replacement is integrated.
+Pending: qualification and production integration of the new bounded semantic planner/executor, full adaptive direct-context selection beyond current complete-document routes, complete shared tool/evidence contract, independent OCR and optional format processors, broader conversational-reference resolution beyond explicit answer points, and end-to-end attachment quality acceptance. Existing routing remains until the validated replacement is integrated.
 
-The final combined regression passed **190 tests**, with zero failures/errors,
+The earlier combined regression passed **190 tests**, with zero failures/errors,
 in 304.801 seconds including discovery. Runtime source hashes were unchanged.
 See `tests/results/answering-verified-regression.json`.
 
@@ -86,8 +90,9 @@ Implemented in RAG/planner.py and RAG/attachment_tools.py:
   forged metadata, source changes, failed-attempt limits and exact calculations.
 
 The first complete regression passed 214 tests in 367.841 seconds, with unchanged
-runtime hashes. A final run follows the additional hydration and label tests;
-its result is recorded separately rather than overwriting that baseline.
+runtime hashes. The final run after the hydration and label tests passed 216 tests in 373.484
+seconds, with no failures/errors and unchanged runtime source hashes. Results
+are in tests/results/planner-tools-final-regression.json.
 
 The 40-decision development probe is complete. Structured decisions: 19/20 valid,
 10/20 correct action/scope. Native: 8/20 valid, 7/20 correct. Frozen requirements
@@ -114,3 +119,60 @@ See PLANNER_QUALIFICATION.md for thresholds, commands and integration gates.
 Live status was rechecked: LanceDB, epoch 1, CUTOVER_ACTIVE. No finalization,
 rollback, model change, dependency installation or production-data mutation
 was performed in this checkpoint.
+
+## Prior-answer reference implementation
+
+Production follow-ups now resolve explicit ordinal points, bullets, items and
+headings against a completed ancestor answer on the active branch. They do not
+reinterpret answer point two as document section two. The original selected
+section is retained when the prior operation had one.
+
+Prior wording is an unverified topic, never new source evidence. Current selected
+file identities and saved citation relationships are validated again. Missing
+citations, changed documents and ambiguous structures fail safely. Exact
+calculations/counts are not converted into approximate retrieval answers.
+
+Thirteen focused tests passed, covering nested lists/code fences, ambiguity,
+branch siblings, deleted citation relationships, explicit filenames, original
+section scope and exact-operation safeguards. The runtime dependency is included
+in run.py's existing explicit reload list.
+
+The first live development probe used a controlled completed prior answer and
+real installed embedding/chat models in an isolated PRE_ACTIVATION fixture. It
+resolved the correct point, completed in 82.097 seconds and produced a relevant
+restaurant analogy. It still omitted citations. Calls: one embedding, one
+reranking and one final generation, with no rewriting/planning call. First
+server emission was 39.147 seconds. Indexing took 3.824 seconds separately.
+This single observation is not a storage comparison or general quality result.
+See tests/results/answer-reference-live.json.
+
+The direct-read optimization is implemented: valid saved citations are hydrated
+from authoritative source rows, checked against the original section and current
+turn revision, and packed through the same formatter as retrieved passages.
+All required cited passages must fit or the existing retrieval fallback is used.
+Seventeen focused tests passed, including prompt equivalence and an unavailable
+semantic index with readable canonical citations. The pre-format-unification
+full regression passed 231 tests in 313.485 seconds. The final shared-format
+regression passed 233 tests in 317.925 seconds with unchanged runtime source hashes.
+
+An initial direct-read observation reduced calls to one generation call, versus
+one embedding, one reranking and one generation. Elapsed observations were
+79.717 versus 82.097 seconds. It still omitted citations and confused producer/
+consumer roles in its analogy. This is not a quality pass or a reliable speedup
+claim. The prompt format was subsequently unified, and a paired comparison on
+the same source identities was added to avoid that confound.
+
+Current continuation file changes:
+- RAG/answer_references.py: bounded answer-structure selection.
+- RAG/operations.py: completed-branch lookup, citation validation and source hydration.
+- RAG/document_agent.py: follow-up resolution, explicit unverified reference and direct-source acquisition.
+- RAG/context_budget.py: shared all-or-nothing evidence-packing option.
+- run.py: watches the new runtime module.
+- tests/check_answer_references.py: structure, branch, authorization, budget and prompt-equivalence cases.
+- tests/smoke_answer_reference.py: opt-in live probe and paired prompt fingerprints.
+- README.md and IMPLEMENTATION_STATUS.md: usage, results and honest limitations.
+- tests/results/answer-reference*.json: executed regression/live checkpoints; no reports claim full assistant acceptance.
+
+No other stage, root README, tree_store.py, model, model context setting or
+dependency was changed. No files were removed and no migration finalization
+was performed.
