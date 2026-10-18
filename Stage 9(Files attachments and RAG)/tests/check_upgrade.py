@@ -291,7 +291,9 @@ class UpgradeTests(unittest.TestCase):
         self.assertEqual(events[-1]["status"],"completed")
         self.assertEqual(search.call_count,2)
         self.assertEqual(self.details()["rounds"],2)
-        for call in search.call_args_list:self.assertEqual(set(call.args[2]),{a["id"],b["id"]})
+        self.assertEqual(set(search.call_args_list[0].args[2]),{a["id"],b["id"]})
+        self.assertEqual(set(search.call_args_list[1].args[2]),{b["id"]})
+        for call in search.call_args_list:self.assertTrue(set(call.args[2]) <= {a["id"],b["id"]})
 
     def test_cache_generation_changes_while_query_embedding_waits(self):
         file=self.upload()

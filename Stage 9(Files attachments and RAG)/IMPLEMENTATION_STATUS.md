@@ -2,16 +2,38 @@
 
 This is an implementation checkpoint, not a completion claim. Changes are confined to Stage 9.
 
-Latest verification: **233 tests passed**, zero failures/errors, 317.925 seconds
-including discovery. Runtime source hashes stayed unchanged during the run.
-See [the regression report](tests/results/answer-reference-shared-packet-regression.json).
+Evidence/drawing implementation is in progress. The original **253-test baseline**
+was reproduced before edits, with unchanged runtime hashes across an interrupted
+run and its resumed cases. The first integrated run completed **270 tests: 267
+passed and 3 failed**. After corrections, the full run passed **282 tests**,
+with zero failures/errors/skips and unchanged runtime hashes. The final two
+answering corrections then passed **104 affected tests** in isolation and were
+promoted byte-for-byte. These are separate runs, not a single 284-test result.
+See `tests/results/evidence-drawing-final-regression.json` and
+`tests/results/answer-corrections-integration.json`.
+The latest continuation adds scoped review-draft restoration, unresolved-item
+controls, deterministic conflict disclosure and English number-word guarding.
+The final answering/reference run passed **40 tests**. The preceding 64-case
+affected run had one mock-instrumentation assertion failure; the corrected
+10-case claim suite passed with identical runtime hashes. See
+`tests/results/stage9-continuation-verification.json` for the separate-run audit.
+Desktop/mobile drawing and attachment browser checks pass. Frozen production
+probes score **5/5 book questions** (baseline 2/5) and **7/7 P&ID questions**
+(baseline 0/7). These are development term/page checks, not human quality acceptance.
+See [the implementation and capability report](EVIDENCE_DRAWING_DELIVERY.md).
+The earlier [253-test report](tests/results/table-comparisons-final-regression.json)
+remains historical evidence, not a result for the new drawing implementation.
 
 ## Live storage and baseline
+
+Current-checkout note: `../data/stage9/chat.db` is absent in this continuation.
+The cutover statements below describe the saved prior-session reports, not a new
+live-state verification. This session used isolated fixture databases only.
 
 - Original regression baseline: 104 tests passed in 52.752 seconds.
 - Pre-cutover storage regression: 157 tests passed in 219.732 seconds, with unchanged source hashes during the run.
 - Native environment: Windows 11, Python 3.14.3, LanceDB 0.40.0.
-- Live backend is **LanceDB, CUTOVER_ACTIVE, epoch 1**. The verified cutover transferred 63 sources across four files without re-embedding. One conversation and 11 messages, document records, branches and citations matched the verified backup. SQLite integrity and foreign-key checks passed.
+- Last recorded live backend: **LanceDB, CUTOVER_ACTIVE, epoch 1**. The verified cutover transferred 63 sources across four files without re-embedding. One conversation and 11 messages, document records, branches and citations matched the verified backup. SQLite integrity and foreign-key checks passed.
 - `tests/results/live-cutover.json` and `storage-cutover-acceptance.json` record the actual transition and its acceptance evidence.
 - Model defaults and 16,384-token allocation remain unchanged. No models were downloaded.
 
@@ -24,6 +46,10 @@ Implemented and exercised: filtered exact vector search, authoritative hydration
 Legacy SQLite vector data is retained for rollback and receives no new active-backend embeddings. **Live finalization and backup retirement have not occurred.** They require at least 14 days of stabilization/retention and separate explicit decisions. Passing cleanup tests on fixtures does not complete this live milestone.
 
 ## Milestone 2 - incremental implementation
+
+See [the attachment capability matrix](ATTACHMENT_CAPABILITIES.md) for separate
+native extraction, calculator/code, OCR/vision and unsupported-format capabilities,
+plus the implementation and acceptance evidence for every requested scenario.
 
 Implemented:
 
@@ -176,3 +202,62 @@ Current continuation file changes:
 No other stage, root README, tree_store.py, model, model context setting or
 dependency was changed. No files were removed and no migration finalization
 was performed.
+
+## Deterministic comparison continuation
+
+Implemented grouped differences, percentage changes, ratios and rankings in the
+shared table engine and exposed them through the production table interpreter and
+the separately qualified planner bindings. Verified numbers are rendered directly
+from the tool result. Comparisons use exact fractions for averages before rounding;
+zero baselines, absent groups and incomplete numeric aggregates are explicit.
+Source-row manifests augment the existing file fingerprint and argument evidence.
+See [TABLE_COMPARISONS.md](TABLE_COMPARISONS.md) for the contract and limitations.
+
+Sixteen focused arithmetic/API/tool tests passed before full regression, including
+source changes during calculation and exact averages. Three additional schema
+failure-injection tests passed: document, vector and optional lexical schema batches
+now roll back on failure and support retry. SQLite durability settings are unchanged.
+One fixture-startup observation fell from 17.604 to 2.859 seconds after transactional
+schema batching. Different concurrent workloads mean this is not a stable benchmark.
+
+Live model interpretation is **not qualified**. The initial and warm production
+interpreter probes each passed 0/5 new development cases. Initial requests also
+exposed model-loading timeouts at the unchanged 25-second deadline. A development
+candidate with required fields and grouping examples reached 5/5 on development,
+then only 3/6 on a frozen separate holdout. It remains outside production. These
+held-out failures were retained and were not used for further prompt tuning.
+The general bounded planner is still disabled pending its own qualification.
+
+The earlier paired follow-up result is now confirmed complete: identical final
+generation prompts, retrieval 3 model calls / 55.842 seconds, direct reading 1 call /
+24.021 seconds. Neither answer used a valid citation. These are single observations
+with controlled prior answers, not a general quality pass or stable speedup claim.
+
+This checkout lacked its virtual environment. The existing requirements-dev.txt and
+requirements-vector.txt pins were installed into the workspace .venv using Python
+3.14.6; requirement files and model selections were not changed. No live migration,
+cleanup, backup retirement or production-data write was performed in this continuation.
+
+The first complete continuation run executed 252 tests with zero assertion failures
+but 17 Windows access-denied errors (parser temporary directories and a subprocess
+pipe, including cleanup errors). This is a failed run, retained in
+`tests/results/table-comparisons-regression.json`. A final run outside the sandbox
+checks the same fixtures without changing application security or test assertions.
+
+Final rendering now discloses every applied filter and matched-versus-examined
+row count. A new API test confirms that a model-invented filter is visible in the
+answer. This does not make the semantic interpretation correct and does not change
+the failed held-out scores. No candidate prompt was promoted after holdout testing.
+
+Final verification: all **253 tests passed** in 1244.399 seconds (1245.190 including
+discovery), with zero failures, errors or skips and unchanged runtime source hashes.
+The focused comparison suite passed 17 tests; the parser/subprocess permission
+recheck passed 12. Reload checks passed for watched runtime files, excluded files
+and process cleanup. The PowerShell wrapper reported a native-command error for
+stderr warning output; the unittest result and structured report both confirm the
+successful full run. The earlier access-denied run remains recorded as failed.
+See `tests/results/table-comparisons-verification-summary.json` for linked results.
+
+Both Stage 9 milestones remain unfinished: live storage finalization is pending,
+and attachment-level interpretation, citations and final-answer quality have not
+met acceptance. These changes do not establish frontier-model equivalence.

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "origin": "Independently authored synthetic drawing specification; no production detector used to define positions, classes or totals.",
+  "minimum_precision": 1.0,
+  "minimum_recall": 1.0,
+  "expected_count": 5,
+  "expected_label": "Estimated",
+  "pages": [
+    [
+      {"center": [90, 100], "angle": 0, "scale": 0.65, "marked": false},
+      {"center": [200, 170], "angle": 45, "scale": 1.0, "marked": false},
+      {"center": [330, 240], "angle": 90, "scale": 1.5, "marked": false},
+      {"center": [450, 100], "angle": 30, "scale": 1.2, "marked": true}
+    ],
+    [
+      {"center": [100, 190], "angle": 120, "scale": 1.25, "marked": false},
+      {"center": [300, 250], "angle": 270, "scale": 1.8, "marked": false}
+    ]
+  ]
+}

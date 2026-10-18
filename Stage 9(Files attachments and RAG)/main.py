@@ -7,6 +7,7 @@ import sqlite3
 import time
 from RAG.request_state import RequestState, current, phase
 from RAG.grounding import review
+from RAG.claim_gate import release_answer
 from RAG.evidence_release import (OutputQueue, SourceInvalidated, release_gate,
     validate_job, queue_delta, watch_sources, discard_pending, SEND_TIMEOUT)
 from threading import Lock
@@ -26,6 +27,7 @@ from RAG.document_agent import DocumentAgent
 from RAG.documents import Documents
 from RAG.rag import Rag, CitationFilter
 from RAG.file_routes import router_for, UploadBodyLimit
+from RAG.drawing_routes import router_for as drawing_router
 from tree_store import TreeStore, TreeError, migrate, active_path
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -455,6 +457,7 @@ async def produce_reply(job, messages):
         check([{"role":"system","content":prompt}]+messages)
         citation_filter = CitationFilter([s["id"] for s in retrieval["sources"]]) if retrieval and "direct" not in retrieval else None
         answer_started=time.perf_counter()
+        draft=[]
         async with asyncio.timeout_at(job.get("document_deadline")):
             if retrieval and "direct" in retrieval:
                 async def deterministic_response():
@@ -474,17 +477,21 @@ async def produce_reply(job, messages):
                 if citation_filter:
                     content = citation_filter.feed(content)
                 if content:
-                    await queue_delta(documents,job,content)
-                    if request_state.first_token_ms is None:
+                    if retrieval:
+                        draft.append(content)
+                        if sum(map(len,draft))>65536:
+                            raise ValueError("The answer exceeded its pre-release verification budget.")
+                    else:
+                        await queue_delta(documents,job,content)
+                    if not retrieval and request_state.first_token_ms is None:
                         request_state.first_token_ms=round((time.perf_counter()-request_state.started)*1000,2)
         if citation_filter:
             tail = citation_filter.feed("", final=True)
             if tail:
-                await queue_delta(documents,job,tail)
+                draft.append(tail)
+        if not retrieval:
+            job["finishing"]=True  # Ordinary chat has already released all output.
         request_state.add_time("answer_generation",time.perf_counter()-answer_started)
-        # All text has been server-emitted before optional review or completion.
-        if retrieval is None or os.getenv("RAG_CLAIM_REVIEW","off").lower()=="off":
-            job["finishing"]=True
         if stream is not None:
             await stream.aclose()
             stream=None
@@ -492,10 +499,22 @@ async def produce_reply(job, messages):
             await client.close()
             client=None
         if retrieval:
+            validate_job(documents,job)
             retrieval["debug"].update(request_state.retrieval)
-            notice=await review(provider,documents,job,"".join(job["emitted"]),retrieval)
-            if notice:
-                await queue_delta(documents,job,notice)
+            verified="".join(draft)
+            if retrieval.get("sources") and "direct" not in retrieval:
+                job["queue"].put_nowait({"type":"status","message":"Checking evidence before releasing the answer..."})
+                verified=await run_in_threadpool(release_answer,documents,job["conversation_id"],verified,retrieval,messages[-1]['content'])
+            notice=await review(provider,documents,job,verified,retrieval)
+            validate_job(documents,job)
+            # Preserve streamed delivery and its mutation gate after verification.
+            for segment in [verified[:32],*[verified[offset:offset+256] for offset in range(32,len(verified),256)]]:
+                if not segment:continue
+                await queue_delta(documents,job,segment)
+                if request_state.first_token_ms is None:
+                    request_state.first_token_ms=round((time.perf_counter()-request_state.started)*1000,2)
+            if notice:await queue_delta(documents,job,notice)
+        job["finishing"]=True
         text="".join(job["emitted"])
         if not text.strip():
             raise ValueError("Empty response")
@@ -781,5 +800,6 @@ from types import SimpleNamespace
 app.include_router(router_for(SimpleNamespace(documents=documents, rag=rag,
     conversation_exists=conversation_exists, conversation_lock=conversation_lock)))
 app.add_middleware(UploadBodyLimit)
+app.include_router(drawing_router(documents))
 # Keep API routes above static mounts. /static does not shadow API paths.
 app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")

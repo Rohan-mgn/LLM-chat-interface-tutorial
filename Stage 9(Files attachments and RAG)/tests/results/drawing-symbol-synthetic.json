@@ -1,0 +1,151 @@
+{
+  "passed": true,
+  "metrics": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "mean_iou": 1.0,
+    "classification_accuracy": 1.0,
+    "count_agreement": true,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "ground_truth_status": "not_independently_verified"
+  },
+  "seconds": 4.141173100000742,
+  "answer": "**Estimated: 4** matches for gate valve in PDF page(s) 1, 2. This is not an independently verified total; missed or misclassified symbols remain possible.\n\nSource: two-page-symbols.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+  "label": "Estimated",
+  "count": 4,
+  "coverage_complete": true,
+  "detections": [
+    {
+      "id": "SYMBOL_380bccf6c0c923ee002cba37",
+      "page": 1,
+      "bbox": [
+        180.0,
+        168.0,
+        212.0,
+        200.0
+      ],
+      "class": "gate valve",
+      "template_version": 1,
+      "score": 1.0,
+      "method": "native_opposed_triangle_profile",
+      "source_ids": [
+        "PATH_b39f903aef459992712d09cd",
+        "PATH_ca15f05df53c5cb49264faee"
+      ],
+      "ports": [
+        [
+          180.0,
+          184.0
+        ],
+        [
+          212.0,
+          184.0
+        ]
+      ],
+      "status": "unverified",
+      "limitations": [
+        "Supported bow-tie outline only; plant conventions require review."
+      ]
+    },
+    {
+      "id": "SYMBOL_66411407995f7abe6496af5b",
+      "page": 1,
+      "bbox": [
+        80.0,
+        168.0,
+        112.0,
+        200.0
+      ],
+      "class": "gate valve",
+      "template_version": 1,
+      "score": 1.0,
+      "method": "native_opposed_triangle_profile",
+      "source_ids": [
+        "PATH_4ac687282a631a2a8a82f7c7",
+        "PATH_668836675b1b9cefc66bfacb"
+      ],
+      "ports": [
+        [
+          80.0,
+          184.0
+        ],
+        [
+          112.0,
+          184.0
+        ]
+      ],
+      "status": "unverified",
+      "limitations": [
+        "Supported bow-tie outline only; plant conventions require review."
+      ]
+    },
+    {
+      "id": "SYMBOL_aa9ef890d6c0d241e95da67d",
+      "page": 2,
+      "bbox": [
+        180.0,
+        168.0,
+        212.0,
+        200.0
+      ],
+      "class": "gate valve",
+      "template_version": 1,
+      "score": 1.0,
+      "method": "native_opposed_triangle_profile",
+      "source_ids": [
+        "PATH_bf23c1f017b84d6e384d79b4",
+        "PATH_d0c9be0542f5291a57f110f1"
+      ],
+      "ports": [
+        [
+          180.0,
+          184.0
+        ],
+        [
+          212.0,
+          184.0
+        ]
+      ],
+      "status": "unverified",
+      "limitations": [
+        "Supported bow-tie outline only; plant conventions require review."
+      ]
+    },
+    {
+      "id": "SYMBOL_f544a47cb181798a3d60403a",
+      "page": 2,
+      "bbox": [
+        80.0,
+        168.0,
+        112.0,
+        200.0
+      ],
+      "class": "gate valve",
+      "template_version": 1,
+      "score": 1.0,
+      "method": "native_opposed_triangle_profile",
+      "source_ids": [
+        "PATH_3460f9703ccfb9b0574da72f",
+        "PATH_dec6df85aab9b34262f3d331"
+      ],
+      "ports": [
+        [
+          80.0,
+          184.0
+        ],
+        [
+          112.0,
+          184.0
+        ]
+      ],
+      "status": "unverified",
+      "limitations": [
+        "Supported bow-tie outline only; plant conventions require review."
+      ]
+    }
+  ],
+  "fixture_sha256": "dde77f52c4a26b51f899943cc5b7854899cdc4b0e3568ab67ecddc208844f1a1",
+  "truth_sha256": "ccd8cb26f5997b4f4390ad33ff2c31037872970a04820259aa67b88af16a24cc",
+  "limitations": "Synthetic four-object scope only. Ingestion model is mocked; production chat, deterministic tools and persistence are real. No real-drawing accuracy or human review claimed."
+}

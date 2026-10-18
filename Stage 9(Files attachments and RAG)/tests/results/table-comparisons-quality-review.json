@@ -1,0 +1,41 @@
+{
+  "reviewer": "Codex source-and-argument inspection; not independent human evaluation",
+  "scope": "Additional qualitative review of saved outputs; original frozen scores are unchanged",
+  "candidate_promoted": false,
+  "findings": [
+    {
+      "case": "department-ranking (development)",
+      "finding": "Candidate summed transactions by department correctly. It also added an unrequested percentage comparison. The renderer explicitly states that numbers do not establish causes."
+    },
+    {
+      "case": "monthly-decline (held-out)",
+      "finding": "Candidate combined mutually exclusive equality filters and used Sales rather than Month as comparison selector keys. The application rejected the selectors; no verified answer was emitted."
+    },
+    {
+      "case": "tied-teams (held-out)",
+      "finding": "The selected sum and ranking preserved both tied leaders. An additional percentage comparison was not requested."
+    },
+    {
+      "case": "mean-comparison (held-out)",
+      "finding": "Candidate selected average Score grouped by Phase. Exact average comparison produced the expected 100 percent change."
+    },
+    {
+      "case": "subset-renamed-fields (held-out)",
+      "finding": "Candidate selected Zone grouping and identical baseline/current groups, rather than comparing months. The application rejected the comparison."
+    },
+    {
+      "case": "negative-baseline (held-out)",
+      "finding": "Candidate used the requested signed baseline. The deterministic formula produced minus 50 percent, with the formula disclosed."
+    },
+    {
+      "case": "incomplete-numeric-group (held-out)",
+      "finding": "Candidate invented a filter excluding unknown Revenue. Arithmetic was correct only for that subset, so the requested task failed. Final rendering was subsequently hardened to display all applied filters and matched row counts; the holdout remains a failure."
+    }
+  ],
+  "limits": [
+    "Valid schemas and correct arithmetic do not establish semantic argument correctness.",
+    "No candidate rollout or frontier-quality claim.",
+    "No holdout prompt tuning or score relabeling after inspection.",
+    "Resource use and general generated-answer faithfulness are not established by these cases."
+  ]
+}

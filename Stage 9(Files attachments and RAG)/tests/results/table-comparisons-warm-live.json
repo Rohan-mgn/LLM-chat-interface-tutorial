@@ -1,0 +1,473 @@
+{
+  "kind": "development-only five-case table interpretation probe",
+  "fixture_sha256": "0adf9c5182b6b989921ca67f8ce572e1e45eb3b7338bb608724c56899eb39d9f",
+  "models": [
+    {
+      "model": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72"
+    },
+    {
+      "model": "embeddinggemma:latest",
+      "digest": "85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1"
+    },
+    {
+      "model": "phi4-mini:latest",
+      "digest": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753"
+    }
+  ],
+  "rows": [
+    {
+      "case": {
+        "id": "period-percentage",
+        "document": "Period,Amount\nQ1,100\nQ2,125\n",
+        "question": "How did Amount change from Q1 to Q2 as a percentage?",
+        "expected": {
+          "metric": "percent_change",
+          "value": "25.000000"
+        }
+      },
+      "seconds": 2.74,
+      "answer": "",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "e8a9adc7-ba26-49ea-95c2-e7959f1c7315"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "e8a9adc7-ba26-49ea-95c2-e7959f1c7315"
+        },
+        {
+          "type": "error",
+          "message": "Specify the baseline and current groups and the calculation; a comparison could not be validated.",
+          "generation_id": "e8a9adc7-ba26-49ea-95c2-e7959f1c7315"
+        },
+        {
+          "type": "done",
+          "status": "error",
+          "generation_id": "e8a9adc7-ba26-49ea-95c2-e7959f1c7315"
+        }
+      ],
+      "evidence": [],
+      "details": {},
+      "passed": false
+    },
+    {
+      "case": {
+        "id": "department-ranking",
+        "document": "Department,Spend\nEngineering,80\nSupport,50\nEngineering,20\n",
+        "question": "Which department spent more money, and why?",
+        "expected": {
+          "rank_group": {
+            "Department": "Engineering"
+          },
+          "value": "100"
+        }
+      },
+      "seconds": 3.186,
+      "answer": "### comparison\\.csv\n\nOperation: table\\_analysis\n\nDepartment: Engineering\n\n- max Spend: 80\n\nDepartment: Support\n\n- max Spend: 50\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nRanking (ties share rank):\n\n- Rank 1: \\{'Department': 'Engineering'\\} = 80\n\nThese calculations establish numerical differences, not their causes.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "cc86496a-0972-48dd-a526-9a6f6c8ddf16"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "cc86496a-0972-48dd-a526-9a6f6c8ddf16"
+        },
+        {
+          "type": "delta",
+          "content": "### comparison\\.csv\n\nOperation: table\\_analysis\n\nDepartment: Engineering\n\n- max Spend: 80\n\nDepartment: Support\n\n- max Spend: 50\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nRanking (ties share rank):\n\n- Rank 1: \\{'Department': ",
+          "generation_id": "cc86496a-0972-48dd-a526-9a6f6c8ddf16"
+        },
+        {
+          "type": "delta",
+          "content": "'Engineering'\\} = 80\n\nThese calculations establish numerical differences, not their causes.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+          "generation_id": "cc86496a-0972-48dd-a526-9a6f6c8ddf16"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "cc86496a-0972-48dd-a526-9a6f6c8ddf16"
+        }
+      ],
+      "evidence": [
+        {
+          "files": [
+            "fa8ca0f5352647fcb042e6fd82be54a4"
+          ],
+          "file_id": "fa8ca0f5352647fcb042e6fd82be54a4",
+          "fingerprint": "9b27e697e915a4e68875717fc52ff0daa12da592858dc6a67111d6f15bdd4f69",
+          "filename": "comparison.csv",
+          "operation": "table_analysis",
+          "arguments": {
+            "table": "CSV",
+            "group_by": [
+              "Department"
+            ],
+            "filters": [],
+            "aggregates": [
+              {
+                "column": "Spend",
+                "op": "max"
+              }
+            ],
+            "comparisons": [],
+            "ranking": {
+              "aggregate": 0,
+              "direction": "descending",
+              "limit": 1
+            }
+          },
+          "blocks_examined": 4,
+          "coverage": {
+            "complete": true,
+            "unreadable": [],
+            "vision": false,
+            "warning": null
+          },
+          "exact_result": {
+            "table": "CSV",
+            "arguments": {
+              "table": "CSV",
+              "group_by": [
+                "Department"
+              ],
+              "filters": [],
+              "aggregates": [
+                {
+                  "column": "Spend",
+                  "op": "max"
+                }
+              ],
+              "comparisons": [],
+              "ranking": {
+                "aggregate": 0,
+                "direction": "descending",
+                "limit": 1
+              }
+            },
+            "rows_examined": 3,
+            "cells_examined": 6,
+            "columns_examined": [
+              "Department",
+              "Spend"
+            ],
+            "formula_cells": 0,
+            "formula_examples": [],
+            "matched_rows": 3,
+            "missing_values": 0,
+            "excluded_values": 0,
+            "coverage": "complete",
+            "results": [
+              {
+                "group": {
+                  "Department": "Engineering"
+                },
+                "matched_rows": 2,
+                "values": [
+                  {
+                    "operation": "max",
+                    "column": "Spend",
+                    "result": "80",
+                    "exact_fraction": {
+                      "numerator": "80",
+                      "denominator": "1"
+                    },
+                    "missing_values": 0,
+                    "excluded_values": 0
+                  }
+                ],
+                "source_rows": {
+                  "count": 2,
+                  "ids": [
+                    "BLOCK_64a099f578bc5ff087889cd5",
+                    "BLOCK_ff87ae7013c06dc4457f00f7"
+                  ],
+                  "truncated": false,
+                  "sha256": "51d6dc7a17fc7357af4b628cf0dc4f4edbbf772df12e8dac2deecdaed9cc03c5"
+                }
+              },
+              {
+                "group": {
+                  "Department": "Support"
+                },
+                "matched_rows": 1,
+                "values": [
+                  {
+                    "operation": "max",
+                    "column": "Spend",
+                    "result": "50",
+                    "exact_fraction": {
+                      "numerator": "50",
+                      "denominator": "1"
+                    },
+                    "missing_values": 0,
+                    "excluded_values": 0
+                  }
+                ],
+                "source_rows": {
+                  "count": 1,
+                  "ids": [
+                    "BLOCK_11258aa09a799485f8eb2fb3"
+                  ],
+                  "truncated": false,
+                  "sha256": "8d81c0bb3bb5ee827b0a5979d82a0d58de70c287d4e4e21144c647adaee84005"
+                }
+              }
+            ],
+            "ranking": {
+              "arguments": {
+                "aggregate": 0,
+                "direction": "descending",
+                "limit": 1
+              },
+              "status": "ok",
+              "entries": [
+                {
+                  "rank": 1,
+                  "group": {
+                    "Department": "Engineering"
+                  },
+                  "value": "80"
+                }
+              ],
+              "groups_examined": 2,
+              "ties": "competition rank; all boundary ties included"
+            }
+          }
+        }
+      ],
+      "details": {
+        "route": "TABLE_ANALYSIS",
+        "original_query": "Which department spent more money, and why?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "TABLE_ANALYSIS",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "Which department spent more money, and why?",
+          "files": [
+            {
+              "id": "fa8ca0f5352647fcb042e6fd82be54a4",
+              "fingerprint": "9b27e697e915a4e68875717fc52ff0daa12da592858dc6a67111d6f15bdd4f69",
+              "name": "comparison.csv"
+            }
+          ],
+          "tools": [
+            {
+              "file_id": "fa8ca0f5352647fcb042e6fd82be54a4",
+              "operation": "table_analysis",
+              "arguments": {
+                "table": "CSV",
+                "group_by": [
+                  "Department"
+                ],
+                "filters": [],
+                "aggregates": [
+                  {
+                    "column": "Spend",
+                    "op": "max"
+                  }
+                ],
+                "comparisons": [],
+                "ranking": {
+                  "aggregate": 0,
+                  "direction": "descending",
+                  "limit": 1
+                }
+              }
+            }
+          ]
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "070065bf6b791e1a9f43beddba255faa44a87ae9173f2335f351809547ab9312",
+          "files": [
+            {
+              "file_id": "fa8ca0f5352647fcb042e6fd82be54a4",
+              "fingerprint": "9b27e697e915a4e68875717fc52ff0daa12da592858dc6a67111d6f15bdd4f69",
+              "generation": 10,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 2275.5,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 216,
+            "eval_count": 71,
+            "prompt_eval_duration": 326848000,
+            "eval_duration": 1164703000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "generation": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.03,
+          "model_inference": 1551.26,
+          "answer_generation": 644.89
+        },
+        "total_ms": 2275.58,
+        "time_to_first_token_ms": 1943.11,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      },
+      "passed": false
+    },
+    {
+      "case": {
+        "id": "zero-baseline",
+        "document": "Period,Amount\nQ1,0\nQ2,40\n",
+        "question": "What is the percentage increase in Amount from Q1 to Q2?",
+        "expected": {
+          "metric": "percent_change",
+          "value": null,
+          "status": "undefined_zero_baseline"
+        }
+      },
+      "seconds": 2.062,
+      "answer": "",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "542cbc10-be79-47de-a0b3-73dce3fa45ca"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "542cbc10-be79-47de-a0b3-73dce3fa45ca"
+        },
+        {
+          "type": "error",
+          "message": "Specify the baseline and current groups and the calculation; a comparison could not be validated.",
+          "generation_id": "542cbc10-be79-47de-a0b3-73dce3fa45ca"
+        },
+        {
+          "type": "done",
+          "status": "error",
+          "generation_id": "542cbc10-be79-47de-a0b3-73dce3fa45ca"
+        }
+      ],
+      "evidence": [],
+      "details": {},
+      "passed": false
+    },
+    {
+      "case": {
+        "id": "filtered-comparison",
+        "document": "Period,Region,Amount\nQ1,East,50\nQ2,East,75\nQ1,West,1000\nQ2,West,1\n",
+        "question": "For East only, what is the percentage change in Amount from Q1 to Q2?",
+        "expected": {
+          "metric": "percent_change",
+          "value": "50.000000"
+        }
+      },
+      "seconds": 3.111,
+      "answer": "",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "3a5a8f6c-b20a-430e-be1f-57d349c2aade"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "3a5a8f6c-b20a-430e-be1f-57d349c2aade"
+        },
+        {
+          "type": "error",
+          "message": "Specify the baseline and current groups and the calculation; a comparison could not be validated.",
+          "generation_id": "3a5a8f6c-b20a-430e-be1f-57d349c2aade"
+        },
+        {
+          "type": "done",
+          "status": "error",
+          "generation_id": "3a5a8f6c-b20a-430e-be1f-57d349c2aade"
+        }
+      ],
+      "evidence": [],
+      "details": {},
+      "passed": false
+    },
+    {
+      "case": {
+        "id": "missing-period",
+        "document": "Period,Amount\nQ1,100\nQ2,125\n",
+        "question": "What is the percentage change in Amount from Q1 to Q4?",
+        "expected": {
+          "comparison_status": "missing_group"
+        }
+      },
+      "seconds": 2.1,
+      "answer": "",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "380b9c5e-229d-44fd-80a5-7b5783d843e0"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "380b9c5e-229d-44fd-80a5-7b5783d843e0"
+        },
+        {
+          "type": "error",
+          "message": "Specify the baseline and current groups and the calculation; a comparison could not be validated.",
+          "generation_id": "380b9c5e-229d-44fd-80a5-7b5783d843e0"
+        },
+        {
+          "type": "done",
+          "status": "error",
+          "generation_id": "380b9c5e-229d-44fd-80a5-7b5783d843e0"
+        }
+      ],
+      "evidence": [],
+      "details": {},
+      "passed": false
+    }
+  ],
+  "complete": true,
+  "limitations": "Single observation per case. Grader checks deterministic results, not semantic correctness of every argument, explanations or general assistant quality. Ingestion is mocked and untimed. Not held-out acceptance.",
+  "passed": 0,
+  "total": 5
+}

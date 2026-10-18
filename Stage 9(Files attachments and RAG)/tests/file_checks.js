@@ -14,7 +14,9 @@
         await load();
         const file=new page.File(["# Project\n\nThe project codename is Blue Falcon.\n"],"facts.md",{type:"text/markdown"});
         await page.FileUI.addFiles([file]);
-        await wait(()=>!page.FileUI.blocked(),"index ready");
+        await wait(()=>!page.FileUI.blocked(),"native document available");
+        // Direct reading can become available before embeddings; wait separately for the index-state assertion.
+        await wait(()=>doc.querySelector(".document-row")?.textContent.includes("ready"),"index ready");
         assert(doc.querySelectorAll(".attachment-chip").length===1,"Composer attachment missing");
         assert(doc.getElementById("useFiles").checked,"Use files not selected after upload");
         assert(doc.querySelector(".document-row").textContent.includes("ready"),"Index status missing");

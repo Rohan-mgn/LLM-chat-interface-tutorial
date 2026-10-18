@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "reference_origin": "User-supplied expected metadata; visual-count labels and behavior require independent review",
+  "cases": [
+    {
+      "question": "In page_14.pdf, what is the drawing number?",
+      "expected": [
+        "GP3201-G41-PA081-000008"
+      ]
+    },
+    {
+      "question": "What is the REV. value?",
+      "expected": [
+        "04"
+      ]
+    },
+    {
+      "question": "What does 04 mean?",
+      "expected": [
+        "revision"
+      ]
+    },
+    {
+      "question": "What is the revision of page_15.pdf?",
+      "expected": [
+        "02"
+      ]
+    },
+    {
+      "question": "What is the project title in page_14.pdf?",
+      "expected": [
+        "VINYLS PROGRAM",
+        "CHLOR ALKALI"
+      ]
+    },
+    {
+      "question": "How many check valves are in page_14.pdf?",
+      "expected": [
+        "Unverified"
+      ]
+    },
+    {
+      "question": "What is the height of the tank in page_14.pdf?",
+      "expected": [
+        "not to scale"
+      ]
+    }
+  ]
+}

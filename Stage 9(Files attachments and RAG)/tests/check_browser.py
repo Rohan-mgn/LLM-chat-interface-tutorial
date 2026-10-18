@@ -76,12 +76,15 @@ def main():
     parser.add_argument("--responses", action="store_true", help="Run Lesson 15?16 response UI checks")
     parser.add_argument("--composer-buttons", action="store_true", help="Check Indent and Unindent buttons")
     parser.add_argument("--files", action="store_true")
+    parser.add_argument("--drawings", action="store_true")
+    parser.add_argument("--application", type=Path, default=STAGE, help="Qualify an isolated implementation copy")
     options = parser.parse_args()
     if not options.browser.is_file():
         parser.error("Pass --browser with the path to Edge or Chromium.")
 
     lessons = load(ROOT / "tests/check_lessons.py", "lesson_helpers")
-    module = load(STAGE / "main.py", "stage9_browser_app")
+    sys.path.insert(0,str(options.application.resolve()))
+    module = load(options.application / "main.py", "stage9_browser_app")
     test_root = (STAGE / "tests" / ".artifacts").resolve()
     run_dir = test_root / ("stage9-browser-" + uuid.uuid4().hex)
     artifacts = run_dir / "artifacts"
@@ -159,7 +162,20 @@ def main():
 
     @module.app.get("/__stage9_checks.js")
     def browser_script():
-        return FileResponse(TESTS / ("file_checks.js" if options.files else "composer_buttons.js" if options.composer_buttons else "response_checks.js" if options.responses else "browser_checks.js"), media_type="text/javascript")
+        return FileResponse(TESTS / ("drawing_checks.js" if options.drawings else "file_checks.js" if options.files else "composer_buttons.js" if options.composer_buttons else "response_checks.js" if options.responses else "browser_checks.js"), media_type="text/javascript")
+
+    @module.app.get("/__stage9_drawing.pdf")
+    def drawing_fixture():
+        from check_drawing_analysis import drawing
+        from fastapi.responses import Response
+        return Response(drawing(), media_type="application/pdf")
+
+    @module.app.get("/__stage9_unlabeled.pdf")
+    def unlabeled_drawing_fixture():
+        from evaluate_rotated_symbols import build
+        from fastapi.responses import Response
+        specification=json.loads((TESTS/'drawing_rotations_frozen.json').read_text(encoding='utf8'))
+        return Response(build(specification)[0],media_type='application/pdf')
 
     @module.app.get("/__stage9_slow", response_class=HTMLResponse)
     def slow_startup():
@@ -260,7 +276,7 @@ def main():
                     check_browser(base_url, name, path, size)
                     assert len(module.load_conversations()) == 0
                     failures.clear()
-        print("PASS: " + ("Indent/Unindent buttons" if options.composer_buttons else "Lessons 15-16 response UI" if options.responses else "Lessons 13-14 browser/API/SQLite regression") + " on desktop and mobile.")
+        print("PASS: " + ("Drawing review" if options.drawings else "Indent/Unindent buttons" if options.composer_buttons else "Lessons 15-16 response UI" if options.responses else "Lessons 13-14 browser/API/SQLite regression") + " on desktop and mobile.")
     finally:
         release_stream.set()
         if options.keep_artifacts:

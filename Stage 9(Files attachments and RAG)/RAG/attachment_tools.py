@@ -15,6 +15,7 @@ from .answering import canonical_sources, coverage_manifest
 from .context_budget import estimate, input_limit, evidence_passage
 from .document_tools import get_section, get_page, get_slide, get_lines, inspect_code
 from .table_tools import tables_from_blocks, analyze
+from .table_schema import Comparison, Ranking
 from .summarizer import Summarizer
 from .evidence_release import SourceInvalidated
 from .request_state import current
@@ -50,6 +51,8 @@ class CalculateArgument(FileArgument):
     group_by: list[str] = Field(max_length=3)
     filters: list[Filter] = Field(max_length=10)
     aggregates: list[Aggregate] = Field(min_length=1, max_length=8)
+    comparisons: list[Comparison] = Field(default_factory=list, max_length=8)
+    ranking: Ranking | None = None
 
 class AttachmentTools:
     def __init__(self, docs, rag, provider, revision, objective, *, progress=lambda _:None,
@@ -139,7 +142,7 @@ class AttachmentTools:
             tools += [
                 self._tool("inspect_table","Read actual table names, column names, row counts and bounded examples.",
                            FileArgument,tables,self._inspect_table),
-                self._tool("calculate_table","Execute validated exact table aggregation and filters; never evaluate formulas.",
+                self._tool("calculate_table","Aggregate table values, compare exact groups (difference, percent change, ratio), or rank groups. Never evaluate formulas.",
                            CalculateArgument,tables,self._calculate)]
         if code:
             tools.append(self._tool("inspect_code","Inspect source structure without executing uploaded code.",

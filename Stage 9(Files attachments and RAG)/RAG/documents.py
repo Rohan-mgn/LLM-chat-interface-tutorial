@@ -63,6 +63,7 @@ class Documents:
         (self.uploads / ".tmp").mkdir(exist_ok=True)
         with closing(self.connect()) as db, db:
             db.executescript("""
+            BEGIN IMMEDIATE;
             CREATE TABLE IF NOT EXISTS files(
               id TEXT PRIMARY KEY, conversation_id INTEGER NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
               original_filename TEXT NOT NULL, stored_filename TEXT NOT NULL UNIQUE,
@@ -115,6 +116,7 @@ class Documents:
                     continue
                 db.execute("DELETE FROM pending_unlinks WHERE stored_filename=?", (row[0],))
             known = {r[0] for r in db.execute("SELECT stored_filename FROM files")}
+            known.update(r[0] for r in db.execute("SELECT stored_filename FROM drawing_artifacts"))
         import time
         for path in [*self.uploads.glob("*"), *(self.uploads / ".tmp").glob("*")]:
             if path.is_file() and path.name not in known and time.time() - path.stat().st_mtime > 86400:
@@ -316,6 +318,7 @@ class Documents:
                     db.backup(copy)
 
     def upgrade(self):
+        from .drawings import SCHEMA as DRAWING_SCHEMA
         statements=[
             "CREATE TABLE IF NOT EXISTS document_schema(version INTEGER PRIMARY KEY)",
             """CREATE TABLE IF NOT EXISTS document_blocks(id TEXT PRIMARY KEY,
@@ -336,6 +339,7 @@ class Documents:
                 block_id TEXT NOT NULL REFERENCES document_blocks(id) ON DELETE CASCADE, ordinal INTEGER NOT NULL,
                 PRIMARY KEY(message_id,block_id))""",
         ]
+        statements.extend(DRAWING_SCHEMA)
         with closing(self.connect()) as db,db:
             db.execute("BEGIN IMMEDIATE")
             for statement in statements:db.execute(statement)
@@ -373,6 +377,7 @@ class Documents:
         self.fts_available=False
         try:
             with closing(self.connect()) as db,db:
+                db.execute("BEGIN IMMEDIATE")
                 db.execute("CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts USING fts5(id UNINDEXED,text)")
                 for statement in (
                     """CREATE TRIGGER IF NOT EXISTS chunks_fts_insert AFTER INSERT ON chunks BEGIN

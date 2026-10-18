@@ -1,0 +1,1939 @@
+{
+  "kind": "development-only five-case table interpretation probe",
+  "fixture_sha256": "0adf9c5182b6b989921ca67f8ce572e1e45eb3b7338bb608724c56899eb39d9f",
+  "models": [
+    {
+      "model": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72"
+    },
+    {
+      "model": "embeddinggemma:latest",
+      "digest": "85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1"
+    },
+    {
+      "model": "phi4-mini:latest",
+      "digest": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753"
+    }
+  ],
+  "rows": [
+    {
+      "case": {
+        "id": "period-percentage",
+        "document": "Period,Amount\nQ1,100\nQ2,125\n",
+        "question": "How did Amount change from Q1 to Q2 as a percentage?",
+        "expected": {
+          "metric": "percent_change",
+          "value": "25.000000"
+        }
+      },
+      "seconds": 4.223,
+      "answer": "### comparison\\.csv\n\nOperation: table\\_analysis\n\nPeriod: Q1\n\n- sum Amount: 100\n\nPeriod: Q2\n\n- sum Amount: 125\n\nExamined 2 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nCompare sum Amount: \\{'Period': 'Q1'\\} \\(baseline\\) to \\{'Period': 'Q2'\\} \\(current\\)\\.\n\n- percent change: 25\\.000000%\n\nPercentage change uses (current - baseline) / baseline * 100; this is not a percentage-point change.\n\nThese calculations establish numerical differences, not their causes.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "9fc45deb-30cb-4f51-b2e1-0e175c48d5c0"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "9fc45deb-30cb-4f51-b2e1-0e175c48d5c0"
+        },
+        {
+          "type": "delta",
+          "content": "### comparison\\.csv\n\nOperation: table\\_analysis\n\nPeriod: Q1\n\n- sum Amount: 100\n\nPeriod: Q2\n\n- sum Amount: 125\n\nExamined 2 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nCompare sum Amount: \\{'Period': 'Q1'\\} \\(baseline\\) to \\{'Period': 'Q2'\\",
+          "generation_id": "9fc45deb-30cb-4f51-b2e1-0e175c48d5c0"
+        },
+        {
+          "type": "delta",
+          "content": "} \\(current\\)\\.\n\n- percent change: 25\\.000000%\n\nPercentage change uses (current - baseline) / baseline * 100; this is not a percentage-point change.\n\nThese calculations establish numerical differences, not their causes.\n\nOpen **Tool evidence** below to ins",
+          "generation_id": "9fc45deb-30cb-4f51-b2e1-0e175c48d5c0"
+        },
+        {
+          "type": "delta",
+          "content": "pect the operation and source details.",
+          "generation_id": "9fc45deb-30cb-4f51-b2e1-0e175c48d5c0"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "9fc45deb-30cb-4f51-b2e1-0e175c48d5c0"
+        }
+      ],
+      "evidence": [
+        {
+          "files": [
+            "dc9d5cfdfa224796986910f1c3379b60"
+          ],
+          "file_id": "dc9d5cfdfa224796986910f1c3379b60",
+          "fingerprint": "28c52de5eb44fc73b8f685df32f38e638146763aba3148a5c796221844a35ff4",
+          "filename": "comparison.csv",
+          "operation": "table_analysis",
+          "arguments": {
+            "table": "CSV",
+            "group_by": [
+              "Period"
+            ],
+            "filters": [],
+            "aggregates": [
+              {
+                "column": "Amount",
+                "op": "sum"
+              }
+            ],
+            "comparisons": [
+              {
+                "aggregate": 0,
+                "baseline": {
+                  "Period": "Q1"
+                },
+                "current": {
+                  "Period": "Q2"
+                },
+                "metrics": [
+                  "percent_change"
+                ]
+              }
+            ],
+            "ranking": null
+          },
+          "blocks_examined": 3,
+          "coverage": {
+            "complete": true,
+            "unreadable": [],
+            "vision": false,
+            "warning": null
+          },
+          "exact_result": {
+            "table": "CSV",
+            "arguments": {
+              "table": "CSV",
+              "group_by": [
+                "Period"
+              ],
+              "filters": [],
+              "aggregates": [
+                {
+                  "column": "Amount",
+                  "op": "sum"
+                }
+              ],
+              "comparisons": [
+                {
+                  "aggregate": 0,
+                  "baseline": {
+                    "Period": "Q1"
+                  },
+                  "current": {
+                    "Period": "Q2"
+                  },
+                  "metrics": [
+                    "percent_change"
+                  ]
+                }
+              ],
+              "ranking": null
+            },
+            "rows_examined": 2,
+            "cells_examined": 4,
+            "columns_examined": [
+              "Amount",
+              "Period"
+            ],
+            "formula_cells": 0,
+            "formula_examples": [],
+            "matched_rows": 2,
+            "missing_values": 0,
+            "excluded_values": 0,
+            "coverage": "complete",
+            "results": [
+              {
+                "group": {
+                  "Period": "Q1"
+                },
+                "matched_rows": 1,
+                "values": [
+                  {
+                    "operation": "sum",
+                    "column": "Amount",
+                    "result": "100",
+                    "exact_fraction": {
+                      "numerator": "100",
+                      "denominator": "1"
+                    },
+                    "missing_values": 0,
+                    "excluded_values": 0
+                  }
+                ],
+                "source_rows": {
+                  "count": 1,
+                  "ids": [
+                    "BLOCK_28ef5d55559d0f94e274d394"
+                  ],
+                  "truncated": false,
+                  "sha256": "c965279018bcee9b80a7b517dc5ced768bf37f660d2ce72865bb0dc63e3934c0"
+                }
+              },
+              {
+                "group": {
+                  "Period": "Q2"
+                },
+                "matched_rows": 1,
+                "values": [
+                  {
+                    "operation": "sum",
+                    "column": "Amount",
+                    "result": "125",
+                    "exact_fraction": {
+                      "numerator": "125",
+                      "denominator": "1"
+                    },
+                    "missing_values": 0,
+                    "excluded_values": 0
+                  }
+                ],
+                "source_rows": {
+                  "count": 1,
+                  "ids": [
+                    "BLOCK_f03c16ba64b94f188f5bc11c"
+                  ],
+                  "truncated": false,
+                  "sha256": "6cd6b34e54d1f1f61a8412d84938e0a46ba7a34a0197959085a377e54b40ba06"
+                }
+              }
+            ],
+            "comparisons": [
+              {
+                "arguments": {
+                  "aggregate": 0,
+                  "baseline": {
+                    "Period": "Q1"
+                  },
+                  "current": {
+                    "Period": "Q2"
+                  },
+                  "metrics": [
+                    "percent_change"
+                  ]
+                },
+                "metrics": {
+                  "percent_change": {
+                    "value": "25.000000",
+                    "status": "ok",
+                    "rounded": false,
+                    "exact_fraction": {
+                      "numerator": "25",
+                      "denominator": "1"
+                    },
+                    "decimal_places": 6,
+                    "rounding": "half_even"
+                  }
+                },
+                "status": "ok",
+                "baseline": "100",
+                "current": "125",
+                "formula": "difference = current - baseline; percent_change = difference / baseline * 100; ratio = current / baseline"
+              }
+            ]
+          }
+        }
+      ],
+      "interpretations": [
+        {
+          "schema_sha256": "7f59faa390e2a842ba33b7dea0dfb42e72ed495cb269083546fa9115c8f279e7",
+          "prompt_sha256": "f937aad6ebcb7c11e7642d08370f6e2e39e9acd1a466ba5811ce2317d634c90e",
+          "result": {
+            "table": "CSV",
+            "group_by": [
+              "Period"
+            ],
+            "filters": [],
+            "aggregates": [
+              {
+                "column": "Amount",
+                "op": "sum"
+              }
+            ],
+            "comparisons": [
+              {
+                "aggregate": 0,
+                "baseline": {
+                  "Period": "Q1"
+                },
+                "current": {
+                  "Period": "Q2"
+                },
+                "metrics": [
+                  "percent_change"
+                ]
+              }
+            ],
+            "ranking": null
+          },
+          "seconds": 1.997
+        }
+      ],
+      "details": {
+        "route": "TABLE_ANALYSIS",
+        "original_query": "How did Amount change from Q1 to Q2 as a percentage?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "TABLE_ANALYSIS",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "How did Amount change from Q1 to Q2 as a percentage?",
+          "files": [
+            {
+              "id": "dc9d5cfdfa224796986910f1c3379b60",
+              "fingerprint": "28c52de5eb44fc73b8f685df32f38e638146763aba3148a5c796221844a35ff4",
+              "name": "comparison.csv"
+            }
+          ],
+          "tools": [
+            {
+              "file_id": "dc9d5cfdfa224796986910f1c3379b60",
+              "operation": "table_analysis",
+              "arguments": {
+                "table": "CSV",
+                "group_by": [
+                  "Period"
+                ],
+                "filters": [],
+                "aggregates": [
+                  {
+                    "column": "Amount",
+                    "op": "sum"
+                  }
+                ],
+                "comparisons": [
+                  {
+                    "aggregate": 0,
+                    "baseline": {
+                      "Period": "Q1"
+                    },
+                    "current": {
+                      "Period": "Q2"
+                    },
+                    "metrics": [
+                      "percent_change"
+                    ]
+                  }
+                ],
+                "ranking": null
+              }
+            }
+          ]
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "6f423aa56ebe0fdba3961c344f330a3a645680d6994fc327d9ee9095974a9d2a",
+          "files": [
+            {
+              "file_id": "dc9d5cfdfa224796986910f1c3379b60",
+              "fingerprint": "28c52de5eb44fc73b8f685df32f38e638146763aba3148a5c796221844a35ff4",
+              "generation": 8,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 3150.2,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 376,
+            "eval_count": 114,
+            "prompt_eval_duration": 381292000,
+            "eval_duration": 1514072000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "generation": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 1966.07,
+          "answer_generation": 1106.35
+        },
+        "total_ms": 3150.27,
+        "time_to_first_token_ms": 2396.92,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      },
+      "passed": true
+    },
+    {
+      "case": {
+        "id": "department-ranking",
+        "document": "Department,Spend\nEngineering,80\nSupport,50\nEngineering,20\n",
+        "question": "Which department spent more money, and why?",
+        "expected": {
+          "rank_group": {
+            "Department": "Engineering"
+          },
+          "value": "100"
+        }
+      },
+      "seconds": 4.235,
+      "answer": "### comparison\\.csv\n\nOperation: table\\_analysis\n\nDepartment: Engineering\n\n- sum Spend: 100\n\nDepartment: Support\n\n- sum Spend: 50\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nCompare sum Spend: \\{'Department': 'Engineering'\\} \\(baseline\\) to \\{'Department': 'Support'\\} \\(current\\)\\.\n\n- percent change: -50\\.000000%\n\nPercentage change uses (current - baseline) / baseline * 100; this is not a percentage-point change.\n\nRanking (ties share rank):\n\n- Rank 1: \\{'Department': 'Engineering'\\} = 100\n\nThese calculations establish numerical differences, not their causes.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "73af7697-433c-429a-bc78-38afeb5e94d0"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "73af7697-433c-429a-bc78-38afeb5e94d0"
+        },
+        {
+          "type": "delta",
+          "content": "### comparison\\.csv\n\nOperation: table\\_analysis\n\nDepartment: Engineering\n\n- sum Spend: 100\n\nDepartment: Support\n\n- sum Spend: 50\n\nExamined 3 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nCompare sum Spend: \\{'Department': 'Engineering'\\} \\(",
+          "generation_id": "73af7697-433c-429a-bc78-38afeb5e94d0"
+        },
+        {
+          "type": "delta",
+          "content": "baseline\\) to \\{'Department': 'Support'\\} \\(current\\)\\.\n\n- percent change: -50\\.000000%\n\nPercentage change uses (current - baseline) / baseline * 100; this is not a percentage-point change.\n\nRanking (ties share rank):\n\n- Rank 1: \\{'Department': 'Engineerin",
+          "generation_id": "73af7697-433c-429a-bc78-38afeb5e94d0"
+        },
+        {
+          "type": "delta",
+          "content": "g'\\} = 100\n\nThese calculations establish numerical differences, not their causes.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+          "generation_id": "73af7697-433c-429a-bc78-38afeb5e94d0"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "73af7697-433c-429a-bc78-38afeb5e94d0"
+        }
+      ],
+      "evidence": [
+        {
+          "files": [
+            "03c1a5686b794428b84fd414b08680d7"
+          ],
+          "file_id": "03c1a5686b794428b84fd414b08680d7",
+          "fingerprint": "9b27e697e915a4e68875717fc52ff0daa12da592858dc6a67111d6f15bdd4f69",
+          "filename": "comparison.csv",
+          "operation": "table_analysis",
+          "arguments": {
+            "table": "CSV",
+            "group_by": [
+              "Department"
+            ],
+            "filters": [],
+            "aggregates": [
+              {
+                "column": "Spend",
+                "op": "sum"
+              }
+            ],
+            "comparisons": [
+              {
+                "aggregate": 0,
+                "baseline": {
+                  "Department": "Engineering"
+                },
+                "current": {
+                  "Department": "Support"
+                },
+                "metrics": [
+                  "percent_change"
+                ]
+              }
+            ],
+            "ranking": {
+              "aggregate": 0,
+              "direction": "descending",
+              "limit": 1
+            }
+          },
+          "blocks_examined": 4,
+          "coverage": {
+            "complete": true,
+            "unreadable": [],
+            "vision": false,
+            "warning": null
+          },
+          "exact_result": {
+            "table": "CSV",
+            "arguments": {
+              "table": "CSV",
+              "group_by": [
+                "Department"
+              ],
+              "filters": [],
+              "aggregates": [
+                {
+                  "column": "Spend",
+                  "op": "sum"
+                }
+              ],
+              "comparisons": [
+                {
+                  "aggregate": 0,
+                  "baseline": {
+                    "Department": "Engineering"
+                  },
+                  "current": {
+                    "Department": "Support"
+                  },
+                  "metrics": [
+                    "percent_change"
+                  ]
+                }
+              ],
+              "ranking": {
+                "aggregate": 0,
+                "direction": "descending",
+                "limit": 1
+              }
+            },
+            "rows_examined": 3,
+            "cells_examined": 6,
+            "columns_examined": [
+              "Department",
+              "Spend"
+            ],
+            "formula_cells": 0,
+            "formula_examples": [],
+            "matched_rows": 3,
+            "missing_values": 0,
+            "excluded_values": 0,
+            "coverage": "complete",
+            "results": [
+              {
+                "group": {
+                  "Department": "Engineering"
+                },
+                "matched_rows": 2,
+                "values": [
+                  {
+                    "operation": "sum",
+                    "column": "Spend",
+                    "result": "100",
+                    "exact_fraction": {
+                      "numerator": "100",
+                      "denominator": "1"
+                    },
+                    "missing_values": 0,
+                    "excluded_values": 0
+                  }
+                ],
+                "source_rows": {
+                  "count": 2,
+                  "ids": [
+                    "BLOCK_9dc8214bc2a573f460fe5cda",
+                    "BLOCK_49811fe8fb4bcad64ba59e8b"
+                  ],
+                  "truncated": false,
+                  "sha256": "29cefb8067be7be5d265f826753b431dd4aecee66c5e879add184233be175789"
+                }
+              },
+              {
+                "group": {
+                  "Department": "Support"
+                },
+                "matched_rows": 1,
+                "values": [
+                  {
+                    "operation": "sum",
+                    "column": "Spend",
+                    "result": "50",
+                    "exact_fraction": {
+                      "numerator": "50",
+                      "denominator": "1"
+                    },
+                    "missing_values": 0,
+                    "excluded_values": 0
+                  }
+                ],
+                "source_rows": {
+                  "count": 1,
+                  "ids": [
+                    "BLOCK_3c7ad51af357c094475dcd24"
+                  ],
+                  "truncated": false,
+                  "sha256": "561468308e14113cd3cefbf5db4ac428e08f2eb5a26969ebd22b75d9864014ea"
+                }
+              }
+            ],
+            "comparisons": [
+              {
+                "arguments": {
+                  "aggregate": 0,
+                  "baseline": {
+                    "Department": "Engineering"
+                  },
+                  "current": {
+                    "Department": "Support"
+                  },
+                  "metrics": [
+                    "percent_change"
+                  ]
+                },
+                "metrics": {
+                  "percent_change": {
+                    "value": "-50.000000",
+                    "status": "ok",
+                    "rounded": false,
+                    "exact_fraction": {
+                      "numerator": "-50",
+                      "denominator": "1"
+                    },
+                    "decimal_places": 6,
+                    "rounding": "half_even"
+                  }
+                },
+                "status": "ok",
+                "baseline": "100",
+                "current": "50",
+                "formula": "difference = current - baseline; percent_change = difference / baseline * 100; ratio = current / baseline"
+              }
+            ],
+            "ranking": {
+              "arguments": {
+                "aggregate": 0,
+                "direction": "descending",
+                "limit": 1
+              },
+              "status": "ok",
+              "entries": [
+                {
+                  "rank": 1,
+                  "group": {
+                    "Department": "Engineering"
+                  },
+                  "value": "100"
+                }
+              ],
+              "groups_examined": 2,
+              "ties": "competition rank; all boundary ties included"
+            }
+          }
+        }
+      ],
+      "interpretations": [
+        {
+          "schema_sha256": "7f59faa390e2a842ba33b7dea0dfb42e72ed495cb269083546fa9115c8f279e7",
+          "prompt_sha256": "8703b1aef26350a88d7344475d4ded7b24b0c34a0fd1b3ef0ced5cb682164749",
+          "result": {
+            "table": "CSV",
+            "group_by": [
+              "Department"
+            ],
+            "filters": [],
+            "aggregates": [
+              {
+                "column": "Spend",
+                "op": "sum"
+              }
+            ],
+            "comparisons": [
+              {
+                "aggregate": 0,
+                "baseline": {
+                  "Department": "Engineering"
+                },
+                "current": {
+                  "Department": "Support"
+                },
+                "metrics": [
+                  "percent_change"
+                ]
+              }
+            ],
+            "ranking": {
+              "aggregate": 0,
+              "direction": "descending",
+              "limit": 1
+            }
+          },
+          "seconds": 1.704
+        }
+      ],
+      "details": {
+        "route": "TABLE_ANALYSIS",
+        "original_query": "Which department spent more money, and why?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "TABLE_ANALYSIS",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "Which department spent more money, and why?",
+          "files": [
+            {
+              "id": "03c1a5686b794428b84fd414b08680d7",
+              "fingerprint": "9b27e697e915a4e68875717fc52ff0daa12da592858dc6a67111d6f15bdd4f69",
+              "name": "comparison.csv"
+            }
+          ],
+          "tools": [
+            {
+              "file_id": "03c1a5686b794428b84fd414b08680d7",
+              "operation": "table_analysis",
+              "arguments": {
+                "table": "CSV",
+                "group_by": [
+                  "Department"
+                ],
+                "filters": [],
+                "aggregates": [
+                  {
+                    "column": "Spend",
+                    "op": "sum"
+                  }
+                ],
+                "comparisons": [
+                  {
+                    "aggregate": 0,
+                    "baseline": {
+                      "Department": "Engineering"
+                    },
+                    "current": {
+                      "Department": "Support"
+                    },
+                    "metrics": [
+                      "percent_change"
+                    ]
+                  }
+                ],
+                "ranking": {
+                  "aggregate": 0,
+                  "direction": "descending",
+                  "limit": 1
+                }
+              }
+            }
+          ]
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "cdade4de182470704cd6a9fde3d69a444d490da3c7f70f431b7959ab803df121",
+          "files": [
+            {
+              "file_id": "03c1a5686b794428b84fd414b08680d7",
+              "fingerprint": "9b27e697e915a4e68875717fc52ff0daa12da592858dc6a67111d6f15bdd4f69",
+              "generation": 10,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 2876.2,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 385,
+            "eval_count": 110,
+            "prompt_eval_duration": 242161000,
+            "eval_duration": 1421015000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "generation": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 1675.18,
+          "answer_generation": 1130.28
+        },
+        "total_ms": 2876.21,
+        "time_to_first_token_ms": 2154.51,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      },
+      "passed": true
+    },
+    {
+      "case": {
+        "id": "zero-baseline",
+        "document": "Period,Amount\nQ1,0\nQ2,40\n",
+        "question": "What is the percentage increase in Amount from Q1 to Q2?",
+        "expected": {
+          "metric": "percent_change",
+          "value": null,
+          "status": "undefined_zero_baseline"
+        }
+      },
+      "seconds": 4.34,
+      "answer": "### comparison\\.csv\n\nOperation: table\\_analysis\n\nPeriod: Q1\n\n- sum Amount: 0\n\nPeriod: Q2\n\n- sum Amount: 40\n\nExamined 2 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nCompare sum Amount: \\{'Period': 'Q1'\\} \\(baseline\\) to \\{'Period': 'Q2'\\} \\(current\\)\\.\n\n- percent change: undefined \\(zero baseline\\)\n\nPercentage change uses (current - baseline) / baseline * 100; this is not a percentage-point change.\n\nThese calculations establish numerical differences, not their causes.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "398c7d6f-1d80-4df2-8645-94a4aa513b91"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "398c7d6f-1d80-4df2-8645-94a4aa513b91"
+        },
+        {
+          "type": "delta",
+          "content": "### comparison\\.csv\n\nOperation: table\\_analysis\n\nPeriod: Q1\n\n- sum Amount: 0\n\nPeriod: Q2\n\n- sum Amount: 40\n\nExamined 2 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nCompare sum Amount: \\{'Period': 'Q1'\\} \\(baseline\\) to \\{'Period': 'Q2'\\} \\",
+          "generation_id": "398c7d6f-1d80-4df2-8645-94a4aa513b91"
+        },
+        {
+          "type": "delta",
+          "content": "(current\\)\\.\n\n- percent change: undefined \\(zero baseline\\)\n\nPercentage change uses (current - baseline) / baseline * 100; this is not a percentage-point change.\n\nThese calculations establish numerical differences, not their causes.\n\nOpen **Tool evidence**",
+          "generation_id": "398c7d6f-1d80-4df2-8645-94a4aa513b91"
+        },
+        {
+          "type": "delta",
+          "content": " below to inspect the operation and source details.",
+          "generation_id": "398c7d6f-1d80-4df2-8645-94a4aa513b91"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "398c7d6f-1d80-4df2-8645-94a4aa513b91"
+        }
+      ],
+      "evidence": [
+        {
+          "files": [
+            "c8a0e6d2c5f04013888f836f3cd3c06e"
+          ],
+          "file_id": "c8a0e6d2c5f04013888f836f3cd3c06e",
+          "fingerprint": "5aeaf9d996d2b7fe3e141486b5180e018ada4414d0f339661ffd48d0d00eec30",
+          "filename": "comparison.csv",
+          "operation": "table_analysis",
+          "arguments": {
+            "table": "CSV",
+            "group_by": [
+              "Period"
+            ],
+            "filters": [],
+            "aggregates": [
+              {
+                "column": "Amount",
+                "op": "sum"
+              }
+            ],
+            "comparisons": [
+              {
+                "aggregate": 0,
+                "baseline": {
+                  "Period": "Q1"
+                },
+                "current": {
+                  "Period": "Q2"
+                },
+                "metrics": [
+                  "percent_change"
+                ]
+              }
+            ],
+            "ranking": null
+          },
+          "blocks_examined": 3,
+          "coverage": {
+            "complete": true,
+            "unreadable": [],
+            "vision": false,
+            "warning": null
+          },
+          "exact_result": {
+            "table": "CSV",
+            "arguments": {
+              "table": "CSV",
+              "group_by": [
+                "Period"
+              ],
+              "filters": [],
+              "aggregates": [
+                {
+                  "column": "Amount",
+                  "op": "sum"
+                }
+              ],
+              "comparisons": [
+                {
+                  "aggregate": 0,
+                  "baseline": {
+                    "Period": "Q1"
+                  },
+                  "current": {
+                    "Period": "Q2"
+                  },
+                  "metrics": [
+                    "percent_change"
+                  ]
+                }
+              ],
+              "ranking": null
+            },
+            "rows_examined": 2,
+            "cells_examined": 4,
+            "columns_examined": [
+              "Amount",
+              "Period"
+            ],
+            "formula_cells": 0,
+            "formula_examples": [],
+            "matched_rows": 2,
+            "missing_values": 0,
+            "excluded_values": 0,
+            "coverage": "complete",
+            "results": [
+              {
+                "group": {
+                  "Period": "Q1"
+                },
+                "matched_rows": 1,
+                "values": [
+                  {
+                    "operation": "sum",
+                    "column": "Amount",
+                    "result": "0",
+                    "exact_fraction": {
+                      "numerator": "0",
+                      "denominator": "1"
+                    },
+                    "missing_values": 0,
+                    "excluded_values": 0
+                  }
+                ],
+                "source_rows": {
+                  "count": 1,
+                  "ids": [
+                    "BLOCK_5526ca4bdb5d32dbafe4c997"
+                  ],
+                  "truncated": false,
+                  "sha256": "910efdf8bf845ce1570e2066150d2b26b35f3c0a2b94a71c9d02dcee97adb281"
+                }
+              },
+              {
+                "group": {
+                  "Period": "Q2"
+                },
+                "matched_rows": 1,
+                "values": [
+                  {
+                    "operation": "sum",
+                    "column": "Amount",
+                    "result": "40",
+                    "exact_fraction": {
+                      "numerator": "40",
+                      "denominator": "1"
+                    },
+                    "missing_values": 0,
+                    "excluded_values": 0
+                  }
+                ],
+                "source_rows": {
+                  "count": 1,
+                  "ids": [
+                    "BLOCK_09e6958c9b85afc61c08b92e"
+                  ],
+                  "truncated": false,
+                  "sha256": "816145209bcf00d11a1c0aa36d59351f305129fa853447ac1561a89aa6fcbe2a"
+                }
+              }
+            ],
+            "comparisons": [
+              {
+                "arguments": {
+                  "aggregate": 0,
+                  "baseline": {
+                    "Period": "Q1"
+                  },
+                  "current": {
+                    "Period": "Q2"
+                  },
+                  "metrics": [
+                    "percent_change"
+                  ]
+                },
+                "metrics": {
+                  "percent_change": {
+                    "value": null,
+                    "status": "undefined_zero_baseline"
+                  }
+                },
+                "status": "ok",
+                "baseline": "0",
+                "current": "40",
+                "formula": "difference = current - baseline; percent_change = difference / baseline * 100; ratio = current / baseline"
+              }
+            ]
+          }
+        }
+      ],
+      "interpretations": [
+        {
+          "schema_sha256": "7f59faa390e2a842ba33b7dea0dfb42e72ed495cb269083546fa9115c8f279e7",
+          "prompt_sha256": "2f91014124b41da35048866a2d716bb963b17336fa3e72c12db7d7e481ed9214",
+          "result": {
+            "table": "CSV",
+            "group_by": [
+              "Period"
+            ],
+            "filters": [],
+            "aggregates": [
+              {
+                "column": "Amount",
+                "op": "sum"
+              }
+            ],
+            "comparisons": [
+              {
+                "aggregate": 0,
+                "baseline": {
+                  "Period": "Q1"
+                },
+                "current": {
+                  "Period": "Q2"
+                },
+                "metrics": [
+                  "percent_change"
+                ]
+              }
+            ],
+            "ranking": null
+          },
+          "seconds": 1.857
+        }
+      ],
+      "details": {
+        "route": "TABLE_ANALYSIS",
+        "original_query": "What is the percentage increase in Amount from Q1 to Q2?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "TABLE_ANALYSIS",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "What is the percentage increase in Amount from Q1 to Q2?",
+          "files": [
+            {
+              "id": "c8a0e6d2c5f04013888f836f3cd3c06e",
+              "fingerprint": "5aeaf9d996d2b7fe3e141486b5180e018ada4414d0f339661ffd48d0d00eec30",
+              "name": "comparison.csv"
+            }
+          ],
+          "tools": [
+            {
+              "file_id": "c8a0e6d2c5f04013888f836f3cd3c06e",
+              "operation": "table_analysis",
+              "arguments": {
+                "table": "CSV",
+                "group_by": [
+                  "Period"
+                ],
+                "filters": [],
+                "aggregates": [
+                  {
+                    "column": "Amount",
+                    "op": "sum"
+                  }
+                ],
+                "comparisons": [
+                  {
+                    "aggregate": 0,
+                    "baseline": {
+                      "Period": "Q1"
+                    },
+                    "current": {
+                      "Period": "Q2"
+                    },
+                    "metrics": [
+                      "percent_change"
+                    ]
+                  }
+                ],
+                "ranking": null
+              }
+            }
+          ]
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "509658e134c41533b45f3810fd1bcac0a1377a87afec391e46efc3593d67c46c",
+          "files": [
+            {
+              "file_id": "c8a0e6d2c5f04013888f836f3cd3c06e",
+              "fingerprint": "5aeaf9d996d2b7fe3e141486b5180e018ada4414d0f339661ffd48d0d00eec30",
+              "generation": 8,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 2887.3,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 376,
+            "eval_count": 114,
+            "prompt_eval_duration": 331613000,
+            "eval_duration": 1484206000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "generation": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 1829.77,
+          "answer_generation": 989.9
+        },
+        "total_ms": 2887.34,
+        "time_to_first_token_ms": 2199.48,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      },
+      "passed": true
+    },
+    {
+      "case": {
+        "id": "filtered-comparison",
+        "document": "Period,Region,Amount\nQ1,East,50\nQ2,East,75\nQ1,West,1000\nQ2,West,1\n",
+        "question": "For East only, what is the percentage change in Amount from Q1 to Q2?",
+        "expected": {
+          "metric": "percent_change",
+          "value": "50.000000"
+        }
+      },
+      "seconds": 5.514,
+      "answer": "### comparison\\.csv\n\nOperation: table\\_analysis\n\nPeriod: Q1, Region: East\n\n- sum Amount: 50\n\nPeriod: Q2, Region: East\n\n- sum Amount: 75\n\nExamined 4 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nCompare sum Amount: \\{'Period': 'Q1', 'Region': 'East'\\} \\(baseline\\) to \\{'Period': 'Q2', 'Region': 'East'\\} \\(current\\)\\.\n\n- percent change: 50\\.000000%\n\nPercentage change uses (current - baseline) / baseline * 100; this is not a percentage-point change.\n\nThese calculations establish numerical differences, not their causes.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "fe4c6fe5-9be7-4107-b834-f445a5a40e5b"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "fe4c6fe5-9be7-4107-b834-f445a5a40e5b"
+        },
+        {
+          "type": "delta",
+          "content": "### comparison\\.csv\n\nOperation: table\\_analysis\n\nPeriod: Q1, Region: East\n\n- sum Amount: 50\n\nPeriod: Q2, Region: East\n\n- sum Amount: 75\n\nExamined 4 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nCompare sum Amount: \\{'Period': 'Q1', 'Region'",
+          "generation_id": "fe4c6fe5-9be7-4107-b834-f445a5a40e5b"
+        },
+        {
+          "type": "delta",
+          "content": ": 'East'\\} \\(baseline\\) to \\{'Period': 'Q2', 'Region': 'East'\\} \\(current\\)\\.\n\n- percent change: 50\\.000000%\n\nPercentage change uses (current - baseline) / baseline * 100; this is not a percentage-point change.\n\nThese calculations establish numerical diffe",
+          "generation_id": "fe4c6fe5-9be7-4107-b834-f445a5a40e5b"
+        },
+        {
+          "type": "delta",
+          "content": "rences, not their causes.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+          "generation_id": "fe4c6fe5-9be7-4107-b834-f445a5a40e5b"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "fe4c6fe5-9be7-4107-b834-f445a5a40e5b"
+        }
+      ],
+      "evidence": [
+        {
+          "files": [
+            "9e7296d426de4e67bbc2e80f8c06bb39"
+          ],
+          "file_id": "9e7296d426de4e67bbc2e80f8c06bb39",
+          "fingerprint": "5d5d6d4d8a2ec05f4d8af7002e104734c4b6103a52738d62e4ea2c987f46cd99",
+          "filename": "comparison.csv",
+          "operation": "table_analysis",
+          "arguments": {
+            "table": "CSV",
+            "group_by": [
+              "Period",
+              "Region"
+            ],
+            "filters": [
+              {
+                "column": "Region",
+                "op": "eq",
+                "value": "East"
+              }
+            ],
+            "aggregates": [
+              {
+                "column": "Amount",
+                "op": "sum"
+              }
+            ],
+            "comparisons": [
+              {
+                "aggregate": 0,
+                "baseline": {
+                  "Period": "Q1",
+                  "Region": "East"
+                },
+                "current": {
+                  "Period": "Q2",
+                  "Region": "East"
+                },
+                "metrics": [
+                  "percent_change"
+                ]
+              }
+            ],
+            "ranking": null
+          },
+          "blocks_examined": 5,
+          "coverage": {
+            "complete": true,
+            "unreadable": [],
+            "vision": false,
+            "warning": null
+          },
+          "exact_result": {
+            "table": "CSV",
+            "arguments": {
+              "table": "CSV",
+              "group_by": [
+                "Period",
+                "Region"
+              ],
+              "filters": [
+                {
+                  "column": "Region",
+                  "op": "eq",
+                  "value": "East"
+                }
+              ],
+              "aggregates": [
+                {
+                  "column": "Amount",
+                  "op": "sum"
+                }
+              ],
+              "comparisons": [
+                {
+                  "aggregate": 0,
+                  "baseline": {
+                    "Period": "Q1",
+                    "Region": "East"
+                  },
+                  "current": {
+                    "Period": "Q2",
+                    "Region": "East"
+                  },
+                  "metrics": [
+                    "percent_change"
+                  ]
+                }
+              ],
+              "ranking": null
+            },
+            "rows_examined": 4,
+            "cells_examined": 12,
+            "columns_examined": [
+              "Amount",
+              "Period",
+              "Region"
+            ],
+            "formula_cells": 0,
+            "formula_examples": [],
+            "matched_rows": 2,
+            "missing_values": 0,
+            "excluded_values": 0,
+            "coverage": "complete",
+            "results": [
+              {
+                "group": {
+                  "Period": "Q1",
+                  "Region": "East"
+                },
+                "matched_rows": 1,
+                "values": [
+                  {
+                    "operation": "sum",
+                    "column": "Amount",
+                    "result": "50",
+                    "exact_fraction": {
+                      "numerator": "50",
+                      "denominator": "1"
+                    },
+                    "missing_values": 0,
+                    "excluded_values": 0
+                  }
+                ],
+                "source_rows": {
+                  "count": 1,
+                  "ids": [
+                    "BLOCK_5b62f89aeacc5d12578bd481"
+                  ],
+                  "truncated": false,
+                  "sha256": "9e175d48a23ea3b50167ef599222731834874ee1ddff7c7782e510bf730a5326"
+                }
+              },
+              {
+                "group": {
+                  "Period": "Q2",
+                  "Region": "East"
+                },
+                "matched_rows": 1,
+                "values": [
+                  {
+                    "operation": "sum",
+                    "column": "Amount",
+                    "result": "75",
+                    "exact_fraction": {
+                      "numerator": "75",
+                      "denominator": "1"
+                    },
+                    "missing_values": 0,
+                    "excluded_values": 0
+                  }
+                ],
+                "source_rows": {
+                  "count": 1,
+                  "ids": [
+                    "BLOCK_ee2b289d96e7a96a299cee00"
+                  ],
+                  "truncated": false,
+                  "sha256": "496f70d1ddf7187f2ff5f7a7772466d6e02d686f6c50d891c1a46b9029b63b19"
+                }
+              }
+            ],
+            "comparisons": [
+              {
+                "arguments": {
+                  "aggregate": 0,
+                  "baseline": {
+                    "Period": "Q1",
+                    "Region": "East"
+                  },
+                  "current": {
+                    "Period": "Q2",
+                    "Region": "East"
+                  },
+                  "metrics": [
+                    "percent_change"
+                  ]
+                },
+                "metrics": {
+                  "percent_change": {
+                    "value": "50.000000",
+                    "status": "ok",
+                    "rounded": false,
+                    "exact_fraction": {
+                      "numerator": "50",
+                      "denominator": "1"
+                    },
+                    "decimal_places": 6,
+                    "rounding": "half_even"
+                  }
+                },
+                "status": "ok",
+                "baseline": "50",
+                "current": "75",
+                "formula": "difference = current - baseline; percent_change = difference / baseline * 100; ratio = current / baseline"
+              }
+            ]
+          }
+        }
+      ],
+      "interpretations": [
+        {
+          "schema_sha256": "9912d10048b4258a2a15cf01d89c2d874163cb80203e325a26d949a246dd363a",
+          "prompt_sha256": "35767ebcb3b8b1ebc2ef638bdd09952ed2e47df94c16294f46e73d5b98fe5f8a",
+          "result": {
+            "route": "NORMAL_CHAT",
+            "section": "East",
+            "page": 1,
+            "line_start": 1,
+            "line_end": 1,
+            "case_sensitive": false
+          },
+          "seconds": 1.116
+        },
+        {
+          "schema_sha256": "7f59faa390e2a842ba33b7dea0dfb42e72ed495cb269083546fa9115c8f279e7",
+          "prompt_sha256": "2e00c2fc02e0a6fd42ae05f0eb9d896d671ce58c70459fcabb779464f3f72ed2",
+          "result": {
+            "table": "CSV",
+            "group_by": [
+              "Period",
+              "Region"
+            ],
+            "filters": [
+              {
+                "column": "Region",
+                "op": "eq",
+                "value": "East"
+              }
+            ],
+            "aggregates": [
+              {
+                "column": "Amount",
+                "op": "sum"
+              }
+            ],
+            "comparisons": [
+              {
+                "aggregate": 0,
+                "baseline": {
+                  "Period": "Q1",
+                  "Region": "East"
+                },
+                "current": {
+                  "Period": "Q2",
+                  "Region": "East"
+                },
+                "metrics": [
+                  "percent_change"
+                ]
+              }
+            ],
+            "ranking": null
+          },
+          "seconds": 2.287
+        }
+      ],
+      "details": {
+        "route": "TABLE_ANALYSIS",
+        "original_query": "For East only, what is the percentage change in Amount from Q1 to Q2?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "TABLE_ANALYSIS",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "For East only, what is the percentage change in Amount from Q1 to Q2?",
+          "files": [
+            {
+              "id": "9e7296d426de4e67bbc2e80f8c06bb39",
+              "fingerprint": "5d5d6d4d8a2ec05f4d8af7002e104734c4b6103a52738d62e4ea2c987f46cd99",
+              "name": "comparison.csv"
+            }
+          ],
+          "tools": [
+            {
+              "file_id": "9e7296d426de4e67bbc2e80f8c06bb39",
+              "operation": "table_analysis",
+              "arguments": {
+                "table": "CSV",
+                "group_by": [
+                  "Period",
+                  "Region"
+                ],
+                "filters": [
+                  {
+                    "column": "Region",
+                    "op": "eq",
+                    "value": "East"
+                  }
+                ],
+                "aggregates": [
+                  {
+                    "column": "Amount",
+                    "op": "sum"
+                  }
+                ],
+                "comparisons": [
+                  {
+                    "aggregate": 0,
+                    "baseline": {
+                      "Period": "Q1",
+                      "Region": "East"
+                    },
+                    "current": {
+                      "Period": "Q2",
+                      "Region": "East"
+                    },
+                    "metrics": [
+                      "percent_change"
+                    ]
+                  }
+                ],
+                "ranking": null
+              }
+            }
+          ]
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "579a798dba700319dff8142f9e9e2716a56ff100b215816de50c2eca04a73a1d",
+          "files": [
+            {
+              "file_id": "9e7296d426de4e67bbc2e80f8c06bb39",
+              "fingerprint": "5d5d6d4d8a2ec05f4d8af7002e104734c4b6103a52738d62e4ea2c987f46cd99",
+              "generation": 12,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 4429.2,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [
+          {
+            "purpose": "routing",
+            "prompt_eval_count": 142,
+            "eval_count": 41,
+            "prompt_eval_duration": 293472000,
+            "eval_duration": 693658000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 415,
+            "eval_count": 162,
+            "prompt_eval_duration": 59518000,
+            "eval_duration": 2159096000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "routing": 1,
+          "generation": 1
+        },
+        "model_call_count": 2,
+        "timings_ms": {
+          "model_queue": 0.02,
+          "model_inference": 3342.38,
+          "routing": 1117.05,
+          "answer_generation": 979.07
+        },
+        "total_ms": 4429.26,
+        "time_to_first_token_ms": 3771.4,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      },
+      "passed": true
+    },
+    {
+      "case": {
+        "id": "missing-period",
+        "document": "Period,Amount\nQ1,100\nQ2,125\n",
+        "question": "What is the percentage change in Amount from Q1 to Q4?",
+        "expected": {
+          "comparison_status": "missing_group"
+        }
+      },
+      "seconds": 4.515,
+      "answer": "### comparison\\.csv\n\nOperation: table\\_analysis\n\nPeriod: Q1\n\n- sum Amount: 100\n\nPeriod: Q2\n\n- sum Amount: 125\n\nExamined 2 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nCompare sum Amount: \\{'Period': 'Q1'\\} \\(baseline\\) to \\{'Period': 'Q4'\\} \\(current\\)\\.\n\nComparison unavailable: missing\\_group.\n\nPercentage change uses (current - baseline) / baseline * 100; this is not a percentage-point change.\n\nThese calculations establish numerical differences, not their causes.\n\nOpen **Tool evidence** below to inspect the operation and source details.",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "f4424143-7281-4be7-96be-9a00adbbf61f"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "f4424143-7281-4be7-96be-9a00adbbf61f"
+        },
+        {
+          "type": "delta",
+          "content": "### comparison\\.csv\n\nOperation: table\\_analysis\n\nPeriod: Q1\n\n- sum Amount: 100\n\nPeriod: Q2\n\n- sum Amount: 125\n\nExamined 2 rows; 0 missing and 0 non-numeric aggregate values excluded.\n\nCompare sum Amount: \\{'Period': 'Q1'\\} \\(baseline\\) to \\{'Period': 'Q4'\\",
+          "generation_id": "f4424143-7281-4be7-96be-9a00adbbf61f"
+        },
+        {
+          "type": "delta",
+          "content": "} \\(current\\)\\.\n\nComparison unavailable: missing\\_group.\n\nPercentage change uses (current - baseline) / baseline * 100; this is not a percentage-point change.\n\nThese calculations establish numerical differences, not their causes.\n\nOpen **Tool evidence** be",
+          "generation_id": "f4424143-7281-4be7-96be-9a00adbbf61f"
+        },
+        {
+          "type": "delta",
+          "content": "low to inspect the operation and source details.",
+          "generation_id": "f4424143-7281-4be7-96be-9a00adbbf61f"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "f4424143-7281-4be7-96be-9a00adbbf61f"
+        }
+      ],
+      "evidence": [
+        {
+          "files": [
+            "48b1845703b14ad299a7413068db48c1"
+          ],
+          "file_id": "48b1845703b14ad299a7413068db48c1",
+          "fingerprint": "28c52de5eb44fc73b8f685df32f38e638146763aba3148a5c796221844a35ff4",
+          "filename": "comparison.csv",
+          "operation": "table_analysis",
+          "arguments": {
+            "table": "CSV",
+            "group_by": [
+              "Period"
+            ],
+            "filters": [],
+            "aggregates": [
+              {
+                "column": "Amount",
+                "op": "sum"
+              }
+            ],
+            "comparisons": [
+              {
+                "aggregate": 0,
+                "baseline": {
+                  "Period": "Q1"
+                },
+                "current": {
+                  "Period": "Q4"
+                },
+                "metrics": [
+                  "percent_change"
+                ]
+              }
+            ],
+            "ranking": null
+          },
+          "blocks_examined": 3,
+          "coverage": {
+            "complete": true,
+            "unreadable": [],
+            "vision": false,
+            "warning": null
+          },
+          "exact_result": {
+            "table": "CSV",
+            "arguments": {
+              "table": "CSV",
+              "group_by": [
+                "Period"
+              ],
+              "filters": [],
+              "aggregates": [
+                {
+                  "column": "Amount",
+                  "op": "sum"
+                }
+              ],
+              "comparisons": [
+                {
+                  "aggregate": 0,
+                  "baseline": {
+                    "Period": "Q1"
+                  },
+                  "current": {
+                    "Period": "Q4"
+                  },
+                  "metrics": [
+                    "percent_change"
+                  ]
+                }
+              ],
+              "ranking": null
+            },
+            "rows_examined": 2,
+            "cells_examined": 4,
+            "columns_examined": [
+              "Amount",
+              "Period"
+            ],
+            "formula_cells": 0,
+            "formula_examples": [],
+            "matched_rows": 2,
+            "missing_values": 0,
+            "excluded_values": 0,
+            "coverage": "complete",
+            "results": [
+              {
+                "group": {
+                  "Period": "Q1"
+                },
+                "matched_rows": 1,
+                "values": [
+                  {
+                    "operation": "sum",
+                    "column": "Amount",
+                    "result": "100",
+                    "exact_fraction": {
+                      "numerator": "100",
+                      "denominator": "1"
+                    },
+                    "missing_values": 0,
+                    "excluded_values": 0
+                  }
+                ],
+                "source_rows": {
+                  "count": 1,
+                  "ids": [
+                    "BLOCK_4e45ee2de95107bc2d7c9e2e"
+                  ],
+                  "truncated": false,
+                  "sha256": "e0125dee359f8b81df3a7011f1bb434158a382a128d70fd231482e547da2361b"
+                }
+              },
+              {
+                "group": {
+                  "Period": "Q2"
+                },
+                "matched_rows": 1,
+                "values": [
+                  {
+                    "operation": "sum",
+                    "column": "Amount",
+                    "result": "125",
+                    "exact_fraction": {
+                      "numerator": "125",
+                      "denominator": "1"
+                    },
+                    "missing_values": 0,
+                    "excluded_values": 0
+                  }
+                ],
+                "source_rows": {
+                  "count": 1,
+                  "ids": [
+                    "BLOCK_e2213d1c807c50ef09e38b6d"
+                  ],
+                  "truncated": false,
+                  "sha256": "a1903cb2f2559947a599cf7f0a2c234b56c94ef34aad80fa1d7a43f3d8f1e629"
+                }
+              }
+            ],
+            "comparisons": [
+              {
+                "arguments": {
+                  "aggregate": 0,
+                  "baseline": {
+                    "Period": "Q1"
+                  },
+                  "current": {
+                    "Period": "Q4"
+                  },
+                  "metrics": [
+                    "percent_change"
+                  ]
+                },
+                "metrics": {},
+                "status": "missing_group"
+              }
+            ]
+          }
+        }
+      ],
+      "interpretations": [
+        {
+          "schema_sha256": "7f59faa390e2a842ba33b7dea0dfb42e72ed495cb269083546fa9115c8f279e7",
+          "prompt_sha256": "49463072e250e3b3a710ed089fc989e7478f3a6c22789db33b10dbbea6a95fa7",
+          "result": {
+            "table": "CSV",
+            "group_by": [
+              "Period"
+            ],
+            "filters": [],
+            "aggregates": [
+              {
+                "column": "Amount",
+                "op": "sum"
+              }
+            ],
+            "comparisons": [
+              {
+                "aggregate": 0,
+                "baseline": {
+                  "Period": "Q1"
+                },
+                "current": {
+                  "Period": "Q4"
+                },
+                "metrics": [
+                  "percent_change"
+                ]
+              }
+            ],
+            "ranking": null
+          },
+          "seconds": 1.863
+        }
+      ],
+      "details": {
+        "route": "TABLE_ANALYSIS",
+        "original_query": "What is the percentage change in Amount from Q1 to Q4?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "TABLE_ANALYSIS",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "What is the percentage change in Amount from Q1 to Q4?",
+          "files": [
+            {
+              "id": "48b1845703b14ad299a7413068db48c1",
+              "fingerprint": "28c52de5eb44fc73b8f685df32f38e638146763aba3148a5c796221844a35ff4",
+              "name": "comparison.csv"
+            }
+          ],
+          "tools": [
+            {
+              "file_id": "48b1845703b14ad299a7413068db48c1",
+              "operation": "table_analysis",
+              "arguments": {
+                "table": "CSV",
+                "group_by": [
+                  "Period"
+                ],
+                "filters": [],
+                "aggregates": [
+                  {
+                    "column": "Amount",
+                    "op": "sum"
+                  }
+                ],
+                "comparisons": [
+                  {
+                    "aggregate": 0,
+                    "baseline": {
+                      "Period": "Q1"
+                    },
+                    "current": {
+                      "Period": "Q4"
+                    },
+                    "metrics": [
+                      "percent_change"
+                    ]
+                  }
+                ],
+                "ranking": null
+              }
+            }
+          ]
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "2511992cb35dd5f52ad2ab59d97a63fb6fb33bd54743d62e1d4682a7a64f5105",
+          "files": [
+            {
+              "file_id": "48b1845703b14ad299a7413068db48c1",
+              "fingerprint": "28c52de5eb44fc73b8f685df32f38e638146763aba3148a5c796221844a35ff4",
+              "generation": 8,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 3148.1,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 376,
+            "eval_count": 114,
+            "prompt_eval_duration": 313792000,
+            "eval_duration": 1510785000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "generation": 1
+        },
+        "model_call_count": 1,
+        "timings_ms": {
+          "model_queue": 0.01,
+          "model_inference": 1836.06,
+          "answer_generation": 1238.8
+        },
+        "total_ms": 3148.12,
+        "time_to_first_token_ms": 2459.18,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      },
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "candidate": true,
+  "limitations": "Single observation per case; may overlap regression work. Grader checks deterministic results, not semantic correctness of every argument, explanations or general assistant quality. Ingestion is mocked and untimed. Not held-out acceptance or controlled latency benchmarking.",
+  "passed": 5,
+  "total": 5
+}

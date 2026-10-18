@@ -1,0 +1,3358 @@
+{
+  "complete": true,
+  "fixture_sha256": "0628537c6a01bd36b9688b866bf98c432a2bf32a69bf26f9e2372a93b00ef589",
+  "application": "D:\\Projects\\LLM-chat-interface-tutorial\\Stage 9(Files attachments and RAG)\\tests\\.artifacts\\qa-baseline",
+  "main_sha256": "d2047e0aff2b74506ad8b78767e73417ecc9675586069ba7899eea134aa8fdb4",
+  "models": [
+    {
+      "model": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72"
+    },
+    {
+      "model": "embeddinggemma:latest",
+      "digest": "85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1"
+    },
+    {
+      "model": "phi4-mini:latest",
+      "digest": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753"
+    }
+  ],
+  "limitations": "Seven development probes with fixed string checks, not independently human-reviewed answer quality or symbol ground truth. Latency is one observation per case.",
+  "rows": [
+    {
+      "question": "In page_14.pdf, what is the drawing number?",
+      "expected": [
+        "GP3201-G41-PA081-000008"
+      ],
+      "passed": false,
+      "answer": "**Drawing Number Extraction**\n\nAccording to the extracted data from `page_14.pdf`, the drawing number is not explicitly stated in the provided excerpt. However, the excerpt does mention that instrument tag numbers on the drawing are to be prefixed with \"081\".\n\n**Extracted Information**\n\n| Key | Value |\n| --- | --- |\n| Citation | [SOURCE_7354b951fd1c0e5b5a825ca6] |\n| Filename | page_14.pdf |\n| Location | Page 1, Section: Page 1 |\n| Extraction | Native |\n| Text | ... |\n\nUnfortunately, the provided excerpt does not contain the actual drawing number. To obtain the drawing number, you may need to access the full document or consult with the original author.",
+      "seconds": 47.639619600002334,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "**",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "Drawing",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Number",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Extraction",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "**\n\n",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "According",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " to",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " extracted",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " data",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " from",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " `",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "page",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "_",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "14",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": ".pdf",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "`,",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " drawing",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " number",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " is",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " not",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " explicitly",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " stated",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " in",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " provided",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " excerpt",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": ".",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " However",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " excerpt",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " does",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " mention",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " that",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " instrument",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " tag",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " numbers",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " on",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " drawing",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " are",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " to",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " be",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " prefixed",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " with",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " \"",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "081",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "\".\n\n",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "**",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "Extract",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "ed",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Information",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "**\n\n",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "|",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Key",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Value",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |\n",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "|",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " ---",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " ---",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |\n",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "|",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Citation",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " ",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "[SOURCE_7354b951fd1c0e5b5a825ca6]",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |\n",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "|",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Filename",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " page",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "_",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "14",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": ".pdf",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |\n",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "|",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Location",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Page",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " ",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "1",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Section",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": ":",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Page",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " ",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "1",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |\n",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "|",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Extraction",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Native",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |\n",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "|",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " Text",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " ...",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " |\n\n",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": "Unfortunately",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " provided",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " excerpt",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " does",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " not",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " contain",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " actual",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " drawing",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " number",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": ".",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " To",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " obtain",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " drawing",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " number",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " you",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " may",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " need",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " to",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " access",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " full",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " document",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " or",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " consult",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " with",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " original",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": " author",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "delta",
+          "content": ".",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "3525c48b-c209-444a-a3e6-d06a63d1f767"
+        }
+      ],
+      "sources": [
+        {
+          "id": "SOURCE_7354b951fd1c0e5b5a825ca6",
+          "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+          "original_filename": "page_14.pdf",
+          "metadata": "{\"page\": 1, \"section\": \"Page 1\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_af9466951a5165ee15c69e87\", \"parent_id\": \"PARENT_757d6d03cc978f846e421c35\", \"block_index\": 0, \"start\": 0, \"end\": 11441, \"logical_group\": \"BLOCK_af9466951a5165ee15c69e87\", \"offset\": 1203, \"end_offset\": 1897, \"chunk_index\": 2}",
+          "ordinal": 0
+        }
+      ],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "In page_14.pdf, what is the drawing number?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "In page_14.pdf, what is the drawing number?",
+          "files": [
+            {
+              "id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "name": "page_14.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "In page_14.pdf, what is the drawing number?",
+          "authorized_files": [
+            "270e3cd3cddf4028bb1338173fae23f8"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_7354b951fd1c0e5b5a825ca6",
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "text_fingerprint": "17540e6812b6e6ba2910db72e11e43fa5db04b6b0e81337b6e1e9b22927702d9",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "In page_14.pdf, what is the drawing number?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_7354b951fd1c0e5b5a825ca6",
+            "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+            "score": 0.03278688524590164
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "f60c8749dfd940968a1a63e010a114a76dde39b8182ad43b235c0e3c73f40c5d",
+          "files": [
+            {
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "cf2304d6ccac45fcbbf48cfda845c68b",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "unavailable: JSONDecodeError",
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 70366,
+          "hits": 0,
+          "misses": 1
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 46546.4,
+        "estimated_input_tokens": 557,
+        "model_token_usage": [
+          {
+            "purpose": "reranking",
+            "prompt_eval_count": 4440,
+            "eval_count": 512,
+            "prompt_eval_duration": 1558997000,
+            "eval_duration": 8201975000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 855,
+            "eval_count": 139,
+            "prompt_eval_duration": 279098000,
+            "eval_duration": 1843805000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "routing": 1,
+          "metadata": 2,
+          "embedding": 1,
+          "reranking": 1,
+          "generation": 1
+        },
+        "model_call_count": 4,
+        "timings_ms": {
+          "model_queue": 0.04,
+          "model_inference": 44148.9,
+          "routing": 20037.97,
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 1.2,
+          "embedding": 733.95,
+          "dense_search": 735.67,
+          "reranking": 9971.05,
+          "answer_generation": 14187.09
+        },
+        "total_ms": 46546.46,
+        "time_to_first_token_ms": 33839.48,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the REV. value?",
+      "expected": [
+        "04"
+      ],
+      "passed": false,
+      "answer": "I couldn't find relevant evidence in the selected documents. Try a more specific question or select another file.",
+      "seconds": 7.908305699998891,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 3,
+          "assistant_message_id": 4,
+          "generation_id": "588f391d-a2b5-4e08-8944-155c45f22249"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "588f391d-a2b5-4e08-8944-155c45f22249"
+        },
+        {
+          "type": "delta",
+          "content": "I couldn't find relevant evidence in the selected documents. Try a more specific question or select another file.",
+          "generation_id": "588f391d-a2b5-4e08-8944-155c45f22249"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "588f391d-a2b5-4e08-8944-155c45f22249"
+        }
+      ],
+      "sources": [],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "What is the REV. value?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "What is the REV. value?",
+          "files": [
+            {
+              "id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "name": "page_14.pdf"
+            },
+            {
+              "id": "cf2304d6ccac45fcbbf48cfda845c68b",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "name": "page_15.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "What is the REV. value?",
+          "authorized_files": [
+            "270e3cd3cddf4028bb1338173fae23f8",
+            "cf2304d6ccac45fcbbf48cfda845c68b"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "cf2304d6ccac45fcbbf48cfda845c68b",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": []
+        },
+        "rewritten_query": "What is the REV. value?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "dffe5c83d54c897e40c3980dba9bdf805426a52986f8e0ce64e77698a50ad96d",
+          "files": [
+            {
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "cf2304d6ccac45fcbbf48cfda845c68b",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "unavailable: ValueError",
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": false,
+          "reason": "no supported evidence",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 110860,
+          "hits": 1,
+          "misses": 2
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 7475.9,
+        "estimated_input_tokens": 111,
+        "model_token_usage": [
+          {
+            "purpose": "reranking",
+            "prompt_eval_count": 4070,
+            "eval_count": 330,
+            "prompt_eval_duration": 1377620000,
+            "eval_duration": 5237412000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "metadata": 2,
+          "embedding": 1,
+          "reranking": 1
+        },
+        "model_call_count": 2,
+        "timings_ms": {
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 1.34,
+          "embedding": 67.25,
+          "dense_search": 69.07,
+          "model_queue": 0.01,
+          "model_inference": 6642.29,
+          "reranking": 6650.51,
+          "answer_generation": 172.89
+        },
+        "total_ms": 7475.96,
+        "time_to_first_token_ms": 7473.69,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What does 04 mean?",
+      "expected": [
+        "revision"
+      ],
+      "passed": false,
+      "answer": "Documented fact: The value \"04\" appears in the provided document excerpts, specifically in the text extraction from the PDF file \"page_14.pdf\". \n\nAccording to the context, \"04\" likely represents a measurement or unit of measurement, possibly in inches or a similar unit.",
+      "seconds": 12.429013600001781,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 5,
+          "assistant_message_id": 6,
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": "Document",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": "ed",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " fact",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": ":",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " The",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " value",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " \"",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": "04",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": "\"",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " appears",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " in",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " provided",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " document",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " excerpts",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " specifically",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " in",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " text",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " extraction",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " from",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " PDF",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " file",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " \"",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": "page",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": "_",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": "14",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": ".pdf",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": "\".",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " \n\n",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": "According",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " to",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " context",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " \"",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": "04",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": "\"",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " likely",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " represents",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " a",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " measurement",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " or",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " unit",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " of",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " measurement",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " possibly",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " in",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " inches",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " or",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " a",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " similar",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": " unit",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "delta",
+          "content": ".",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "error",
+          "message": "The model did not cite a retrieved passage. Open Files to verify the answer.",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "1d0f564d-07fa-46ed-aee0-88f1b4bf8d9d"
+        }
+      ],
+      "sources": [],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "What does 04 mean?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "What does 04 mean?",
+          "files": [
+            {
+              "id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "name": "page_14.pdf"
+            },
+            {
+              "id": "cf2304d6ccac45fcbbf48cfda845c68b",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "name": "page_15.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "What does 04 mean?",
+          "authorized_files": [
+            "270e3cd3cddf4028bb1338173fae23f8",
+            "cf2304d6ccac45fcbbf48cfda845c68b"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "cf2304d6ccac45fcbbf48cfda845c68b",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_1b5529f21e6f4a34b5341413",
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "text_fingerprint": "92cdeeadfad6e555559de52879576030ae1905276a16025585ac806d9f740ac8",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_1f2f64a421589ec870a9f885",
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "text_fingerprint": "34dfe7fdf03206ee5342f05982afa172ee0ab441637870502a4597de34991f24",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_2c892454d025f905a9c3da5e",
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "text_fingerprint": "b28ddb7b51c096e3148a7b23f85ed0b43fe4a030ba524f0ae73ba79d11e8a539",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_bc979c6179d3afded6f3d539",
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "text_fingerprint": "86c5b482bc38e80198c211fcb202d940faea3878da70b082849c77ed9433ed2f",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "What does 04 mean?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_1b5529f21e6f4a34b5341413",
+            "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+            "score": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_1f2f64a421589ec870a9f885",
+            "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+            "score": 0.03200204813108039
+          },
+          {
+            "id": "SOURCE_2c892454d025f905a9c3da5e",
+            "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+            "score": 0.0315136476426799
+          },
+          {
+            "id": "SOURCE_bc979c6179d3afded6f3d539",
+            "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+            "score": 0.0288981288981289
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "ce90b2498ac6873f926a58ee6e4898fd9ef36d09a434031ea0dc274ce712b3b8",
+          "files": [
+            {
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "cf2304d6ccac45fcbbf48cfda845c68b",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "unavailable: JSONDecodeError",
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 110860,
+          "hits": 3,
+          "misses": 2
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 12022.2,
+        "estimated_input_tokens": 1819,
+        "model_token_usage": [
+          {
+            "purpose": "reranking",
+            "prompt_eval_count": 4314,
+            "eval_count": 512,
+            "prompt_eval_duration": 1465092000,
+            "eval_duration": 8077064000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 2238,
+            "eval_count": 58,
+            "prompt_eval_duration": 566722000,
+            "eval_duration": 805001000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "metadata": 2,
+          "embedding": 1,
+          "reranking": 1,
+          "generation": 1
+        },
+        "model_call_count": 3,
+        "timings_ms": {
+          "history_compression": 0.0,
+          "query_rewrite": 0.0,
+          "lexical_search": 1.23,
+          "embedding": 14.39,
+          "dense_search": 18.69,
+          "model_queue": 0.03,
+          "model_inference": 11611.73,
+          "reranking": 9820.26,
+          "answer_generation": 1806.66
+        },
+        "total_ms": 12022.4,
+        "time_to_first_token_ms": 11308.68,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the revision of page_15.pdf?",
+      "expected": [
+        "02"
+      ],
+      "passed": false,
+      "answer": "I couldn't find relevant evidence in the selected documents. Try a more specific question or select another file.",
+      "seconds": 7.453652100000909,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 7,
+          "assistant_message_id": 8,
+          "generation_id": "8c62580d-18b6-4af1-ab40-d048710dd51a"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "8c62580d-18b6-4af1-ab40-d048710dd51a"
+        },
+        {
+          "type": "delta",
+          "content": "I couldn't find relevant evidence in the selected documents. Try a more specific question or select another file.",
+          "generation_id": "8c62580d-18b6-4af1-ab40-d048710dd51a"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "8c62580d-18b6-4af1-ab40-d048710dd51a"
+        }
+      ],
+      "sources": [],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "What is the revision of page_15.pdf?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "What is the revision of page_15.pdf?",
+          "files": [
+            {
+              "id": "cf2304d6ccac45fcbbf48cfda845c68b",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "name": "page_15.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "What is the revision of page_15.pdf?",
+          "authorized_files": [
+            "cf2304d6ccac45fcbbf48cfda845c68b"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "cf2304d6ccac45fcbbf48cfda845c68b",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": []
+        },
+        "rewritten_query": "What is the revision of page_15.pdf?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "ad7d441c27bf22f9b4a5ba683c761ba5ba48265ceed5d9f670eebe1d8d305166",
+          "files": [
+            {
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "cf2304d6ccac45fcbbf48cfda845c68b",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "unavailable: ValueError",
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": false,
+          "reason": "no supported evidence",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 110860,
+          "hits": 4,
+          "misses": 2
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 7069.8,
+        "estimated_input_tokens": 117,
+        "model_token_usage": [
+          {
+            "purpose": "reranking",
+            "prompt_eval_count": 3784,
+            "eval_count": 328,
+            "prompt_eval_duration": 1295522000,
+            "eval_duration": 5101460000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "metadata": 2,
+          "embedding": 1,
+          "reranking": 1
+        },
+        "model_call_count": 2,
+        "timings_ms": {
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 0.7,
+          "embedding": 23.66,
+          "dense_search": 25.51,
+          "model_queue": 0.01,
+          "model_inference": 6530.67,
+          "reranking": 6540.23,
+          "answer_generation": 153.73
+        },
+        "total_ms": 7069.85,
+        "time_to_first_token_ms": 7067.64,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the project title in page_14.pdf?",
+      "expected": [
+        "VINYLS PROGRAM",
+        "CHLOR ALKALI"
+      ],
+      "passed": false,
+      "answer": "**Document Extract**\n\nThe project title in page_14.pdf is not explicitly stated in the provided excerpt. However, the excerpt does contain the following information:\n\n* The drawing number is `GP3201-G41-PA081-000008`.\n* The drawing title is `PROJECT : GP3201-G41-PA081-000008`.\n* The project title is also mentioned in the notes section as `RPMS-A1-BDR-00`.\n\nTherefore, the project title can be inferred to be `RPMS-A1-BDR-00`, but it is not explicitly stated in the provided excerpt.",
+      "seconds": 9.073857499999576,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 9,
+          "assistant_message_id": 10,
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "**",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "Document",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " Extract",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "**\n\n",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "The",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " project",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " title",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " in",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " page",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "_",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "14",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": ".pdf",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " is",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " not",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " explicitly",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " stated",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " in",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " provided",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " excerpt",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": ".",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " However",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " excerpt",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " does",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " contain",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " following",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " information",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": ":\n\n",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "*",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " The",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " drawing",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " number",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " is",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " `",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "GP",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "320",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "1",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "-G",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "41",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "-",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "PA",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "081",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "-",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "000",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "008",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "`.\n",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "*",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " The",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " drawing",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " title",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " is",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " `",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "PROJECT",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " :",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " GP",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "320",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "1",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "-G",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "41",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "-",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "PA",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "081",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "-",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "000",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "008",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "`.\n",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "*",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " The",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " project",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " title",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " is",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " also",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " mentioned",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " in",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " notes",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " section",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " as",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " `",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "RP",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "MS",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "-A",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "1",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "-B",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "DR",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "-",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "00",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "`.\n\n",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "Therefore",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " project",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " title",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " can",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " be",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " inferred",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " to",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " be",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " `",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "RP",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "MS",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "-A",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "1",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "-B",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "DR",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "-",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "00",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": "`,",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " but",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " it",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " is",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " not",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " explicitly",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " stated",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " in",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " provided",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": " excerpt",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "delta",
+          "content": ".",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "error",
+          "message": "The model did not cite a retrieved passage. Open Files to verify the answer.",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "e7f79734-4e09-4797-aed0-e97fd8ba2978"
+        }
+      ],
+      "sources": [],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "What is the project title in page_14.pdf?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "What is the project title in page_14.pdf?",
+          "files": [
+            {
+              "id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "name": "page_14.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "What is the project title in page_14.pdf?",
+          "authorized_files": [
+            "270e3cd3cddf4028bb1338173fae23f8"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_2d4593b6ad5688eab73daf80",
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "text_fingerprint": "e1b9a05055ae08dd1c515b9de5f6cf81989cb28b2292efbb45535b9312e6e372",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_4cd5e9bfc714776fa776d2a0",
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "text_fingerprint": "ff380e4e99e379688d459eb65de668aadfbb34f0d71191c4d73caf98f02d09cb",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "What is the project title in page_14.pdf?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_2d4593b6ad5688eab73daf80",
+            "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+            "score": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_4cd5e9bfc714776fa776d2a0",
+            "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+            "score": 0.03225806451612903
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "d1f989304582d0b47d95d18b152c77b91d4b09b1334f400e9b2f333b6b745382",
+          "files": [
+            {
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "cf2304d6ccac45fcbbf48cfda845c68b",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "unavailable: ValueError",
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 110860,
+          "hits": 5,
+          "misses": 2
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 8715.3,
+        "estimated_input_tokens": 925,
+        "model_token_usage": [
+          {
+            "purpose": "reranking",
+            "prompt_eval_count": 4128,
+            "eval_count": 269,
+            "prompt_eval_duration": 1388535000,
+            "eval_duration": 4244340000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1130,
+            "eval_count": 123,
+            "prompt_eval_duration": 367410000,
+            "eval_duration": 1632576000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "metadata": 2,
+          "embedding": 1,
+          "reranking": 1,
+          "generation": 1
+        },
+        "model_call_count": 3,
+        "timings_ms": {
+          "history_compression": 0.0,
+          "query_rewrite": 0.01,
+          "lexical_search": 0.97,
+          "embedding": 20.87,
+          "dense_search": 22.35,
+          "model_queue": 0.02,
+          "model_inference": 8304.36,
+          "reranking": 5933.28,
+          "answer_generation": 2383.11
+        },
+        "total_ms": 8715.41,
+        "time_to_first_token_ms": 7132.6,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "How many check valves are in page_14.pdf?",
+      "expected": [
+        "Unverified"
+      ],
+      "passed": false,
+      "answer": "",
+      "seconds": 0.3471036000009917,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 11,
+          "assistant_message_id": 12,
+          "generation_id": "0b16fbee-6727-41d7-a50c-11c30874b448"
+        },
+        {
+          "type": "status",
+          "message": "Document task: count...",
+          "generation_id": "0b16fbee-6727-41d7-a50c-11c30874b448"
+        },
+        {
+          "type": "error",
+          "message": "Specify an exact document operation and its word, phrase, page or section.",
+          "generation_id": "0b16fbee-6727-41d7-a50c-11c30874b448"
+        },
+        {
+          "type": "done",
+          "status": "error",
+          "generation_id": "0b16fbee-6727-41d7-a50c-11c30874b448"
+        }
+      ],
+      "sources": [],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "What is the project title in page_14.pdf?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "What is the project title in page_14.pdf?",
+          "files": [
+            {
+              "id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "name": "page_14.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "What is the project title in page_14.pdf?",
+          "authorized_files": [
+            "270e3cd3cddf4028bb1338173fae23f8"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_2d4593b6ad5688eab73daf80",
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "text_fingerprint": "e1b9a05055ae08dd1c515b9de5f6cf81989cb28b2292efbb45535b9312e6e372",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_4cd5e9bfc714776fa776d2a0",
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "text_fingerprint": "ff380e4e99e379688d459eb65de668aadfbb34f0d71191c4d73caf98f02d09cb",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "What is the project title in page_14.pdf?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_2d4593b6ad5688eab73daf80",
+            "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+            "score": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_4cd5e9bfc714776fa776d2a0",
+            "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+            "score": 0.03225806451612903
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "d1f989304582d0b47d95d18b152c77b91d4b09b1334f400e9b2f333b6b745382",
+          "files": [
+            {
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "cf2304d6ccac45fcbbf48cfda845c68b",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "unavailable: ValueError",
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 110860,
+          "hits": 5,
+          "misses": 2
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 8715.3,
+        "estimated_input_tokens": 925,
+        "model_token_usage": [
+          {
+            "purpose": "reranking",
+            "prompt_eval_count": 4128,
+            "eval_count": 269,
+            "prompt_eval_duration": 1388535000,
+            "eval_duration": 4244340000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1130,
+            "eval_count": 123,
+            "prompt_eval_duration": 367410000,
+            "eval_duration": 1632576000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "metadata": 2,
+          "embedding": 1,
+          "reranking": 1,
+          "generation": 1
+        },
+        "model_call_count": 3,
+        "timings_ms": {
+          "history_compression": 0.0,
+          "query_rewrite": 0.01,
+          "lexical_search": 0.97,
+          "embedding": 20.87,
+          "dense_search": 22.35,
+          "model_queue": 0.02,
+          "model_inference": 8304.36,
+          "reranking": 5933.28,
+          "answer_generation": 2383.11
+        },
+        "total_ms": 8715.41,
+        "time_to_first_token_ms": 7132.6,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the height of the tank in page_14.pdf?",
+      "expected": [
+        "not to scale"
+      ],
+      "passed": false,
+      "answer": "According to the document data, the height of the tank in page_14.pdf is:\n\n* 7500 mm (ID X HEIGHT)\n* 4000 mm (ID X HEIGHT)\n\nNote that there are two different heights mentioned in the document, one for the ID X HEIGHT section and another for the FLOCCULANT TANK section.",
+      "seconds": 8.54058779999832,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 13,
+          "assistant_message_id": 14,
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "According",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " to",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " document",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " data",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " height",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " of",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " tank",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " in",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " page",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "_",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "14",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": ".pdf",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " is",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": ":\n\n",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "*",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " ",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "750",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "0",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " mm",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " (",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "ID",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " X",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " HEIGHT",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": ")\n",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "*",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " ",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "400",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "0",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " mm",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " (",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "ID",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " X",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " HEIGHT",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": ")\n\n",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "Note",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " that",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " there",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " are",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " two",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " different",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " heights",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " mentioned",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " in",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " document",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " one",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " for",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " ID",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " X",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " HEIGHT",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " section",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " and",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " another",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " for",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " F",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "LO",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "CC",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "UL",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "ANT",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " T",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": "ANK",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": " section",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "delta",
+          "content": ".",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "error",
+          "message": "The model did not cite a retrieved passage. Open Files to verify the answer.",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "4a8d536f-a301-43ad-a0dc-01c067bec2b7"
+        }
+      ],
+      "sources": [],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "What is the height of the tank in page_14.pdf?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "What is the height of the tank in page_14.pdf?",
+          "files": [
+            {
+              "id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "name": "page_14.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "What is the height of the tank in page_14.pdf?",
+          "authorized_files": [
+            "270e3cd3cddf4028bb1338173fae23f8"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_54f4684b6bef0244a916378a",
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "text_fingerprint": "04890e421618950baacd11d7dbcb9049cd0f322d36be73bf0e5d473a995ab493",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_63e8a83615c8b30966316546",
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "text_fingerprint": "6021ab7aea29fd4b1606620dfac73f775c75bf6ab4aba1010fe83d565875a480",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "What is the height of the tank in page_14.pdf?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_54f4684b6bef0244a916378a",
+            "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+            "score": 0.03252247488101534
+          },
+          {
+            "id": "SOURCE_63e8a83615c8b30966316546",
+            "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+            "score": 0.03252247488101534
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "d14e552d43cf70c100f16f5602c7e4a81ada31a1858add1cfe7405dd5046ba5f",
+          "files": [
+            {
+              "file_id": "270e3cd3cddf4028bb1338173fae23f8",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "cf2304d6ccac45fcbbf48cfda845c68b",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "unavailable: ValueError",
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 110860,
+          "hits": 6,
+          "misses": 2
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 8102.5,
+        "estimated_input_tokens": 879,
+        "model_token_usage": [
+          {
+            "purpose": "reranking",
+            "prompt_eval_count": 3811,
+            "eval_count": 327,
+            "prompt_eval_duration": 1281745000,
+            "eval_duration": 4933170000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1113,
+            "eval_count": 71,
+            "prompt_eval_duration": 184416000,
+            "eval_duration": 922392000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "metadata": 2,
+          "embedding": 1,
+          "reranking": 1,
+          "generation": 1
+        },
+        "model_call_count": 3,
+        "timings_ms": {
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 42.48,
+          "embedding": 20.17,
+          "dense_search": 21.7,
+          "model_queue": 0.02,
+          "model_inference": 7672.39,
+          "reranking": 6303.93,
+          "answer_generation": 1377.08
+        },
+        "total_ms": 8102.63,
+        "time_to_first_token_ms": 7301.2,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    }
+  ],
+  "artifacts": "D:\\Projects\\LLM-chat-interface-tutorial\\Stage 9(Files attachments and RAG)\\tests\\.artifacts\\drawing-qa-e9738ec7957342928028beb7c7dd772d",
+  "ingestion": [
+    {
+      "name": "page_14.pdf",
+      "sha256": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+      "state": "ready",
+      "seconds": 14.57873340000151
+    },
+    {
+      "name": "page_15.pdf",
+      "sha256": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+      "state": "ready",
+      "seconds": 2.8629486999998335
+    }
+  ],
+  "passed": 0,
+  "total": 7,
+  "p50_seconds": 8.54058779999832,
+  "p95_seconds": 47.639619600002334
+}

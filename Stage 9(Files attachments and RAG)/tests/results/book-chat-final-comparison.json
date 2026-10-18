@@ -1,0 +1,64 @@
+{
+  "same_fixture": true,
+  "fixture_sha256": "b8267beae56b67ceb4e0f28d3bf0add3aaa4a9153bbe99d419144444ef7f5052",
+  "before": {
+    "passed": 2,
+    "total": 5,
+    "p50_seconds": 14.006854100000055,
+    "maximum_observed_seconds": 52.02523819999624,
+    "model_calls": {
+      "metadata": 6,
+      "embedding": 3,
+      "reranking": 3,
+      "generation": 3,
+      "routing": 1
+    },
+    "required_page_groups_found": 2,
+    "required_page_groups": 5,
+    "requests_without_attributable_call_metrics": [
+      "Contrast local, cohort and global explanations; explain why local explanations on novel data can contradict global explanations.",
+      "How many check valve symbols appear on PDF page 1?"
+    ],
+    "reported_ollama_tokens": {
+      "prompt_eval_count": 13652,
+      "eval_count": 1545
+    },
+    "token_scope": "Reported calls only; missing token counts are unknown.",
+    "peak_rss_bytes": null,
+    "resolved_citations": 2,
+    "checked_citations": 2,
+    "failures": [
+      "What is the first early-release date stated in the book?",
+      "Contrast local, cohort and global explanations; explain why local explanations on novel data can contradict global explanations.",
+      "How many check valve symbols appear on PDF page 1?"
+    ]
+  },
+  "after": {
+    "passed": 5,
+    "total": 5,
+    "p50_seconds": 6.12603990000207,
+    "maximum_observed_seconds": 10.460364099999424,
+    "model_calls": {
+      "metadata": 9,
+      "embedding": 5,
+      "generation": 4,
+      "routing": 1
+    },
+    "required_page_groups_found": 5,
+    "required_page_groups": 5,
+    "requests_without_attributable_call_metrics": [],
+    "reported_ollama_tokens": {
+      "prompt_eval_count": 5882,
+      "eval_count": 742
+    },
+    "token_scope": "Reported calls only; missing token counts are unknown.",
+    "peak_rss_bytes": null,
+    "resolved_citations": 13,
+    "checked_citations": 13,
+    "failures": []
+  },
+  "limitations": "Five additional development probes frozen before either evaluation run. Fixed term and cited-page checks measure acquisition and source resolution, not semantic correctness, blind human clarity, summary completeness, or all unsupported claims. One latency observation per case; no model grading.",
+  "broad_answer_quality_acceptance": false,
+  "human_reviewed_real_drawing_annotations": false,
+  "latency_comparison": "Small single-observation development probes; concurrent offline regression may affect timings."
+}

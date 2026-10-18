@@ -1,0 +1,27 @@
+{
+  "fixture_sha256": "0628537c6a01bd36b9688b866bf98c432a2bf32a69bf26f9e2372a93b00ef589",
+  "same_fixture": true,
+  "before": {
+    "passed": 0,
+    "total": 7,
+    "p50_seconds": 8.54058779999832,
+    "p95_seconds": 47.639619600002334,
+    "model_calls": {
+      "routing": 1,
+      "metadata": 14,
+      "embedding": 7,
+      "reranking": 7,
+      "generation": 5
+    }
+  },
+  "after": {
+    "passed": 7,
+    "total": 7,
+    "p50_seconds": 2.4699035000012373,
+    "p95_seconds": 7.8760481999997864,
+    "model_calls": {}
+  },
+  "limitations": "Seven development probes with fixed string checks, not independently human-reviewed answer quality or symbol ground truth. Latency is one observation per case.",
+  "independent_real_drawing_ground_truth_available": false,
+  "broad_answer_quality_acceptance": false
+}

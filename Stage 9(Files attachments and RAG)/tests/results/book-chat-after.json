@@ -1,0 +1,3021 @@
+{
+  "complete": true,
+  "fixture_sha256": "b8267beae56b67ceb4e0f28d3bf0add3aaa4a9153bbe99d419144444ef7f5052",
+  "application": "D:\\Projects\\LLM-chat-interface-tutorial\\Stage 9(Files attachments and RAG)",
+  "main_sha256": "3fd5badb77f6559461381e3cf56aeab9332ddc010fd9246e1cdc7df8141227f0",
+  "models": [
+    {
+      "model": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72"
+    },
+    {
+      "model": "embeddinggemma:latest",
+      "digest": "85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1"
+    },
+    {
+      "model": "phi4-mini:latest",
+      "digest": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753"
+    }
+  ],
+  "limitations": "Five additional development probes frozen before either evaluation run. Fixed term and cited-page checks measure acquisition and source resolution, not semantic correctness, blind human clarity, summary completeness, or all unsupported claims. One latency observation per case; no model grading.",
+  "rows": [
+    {
+      "question": "Who are the authors of Explainable AI for Practitioners?",
+      "expected": [
+        "Michael Munn",
+        "David Pitman"
+      ],
+      "passed": false,
+      "answer": "I couldn't verify the drafted answer. The available source evidence is:\n\n> Explainable\tAI\tfor\tPractitioners Designing\tand\tImplementing\tExplainable\tML\tSolutions With\tEarly\tRelease\tebooks,\tyou\tget\tbooks\tin\ttheir\tearliest\tform\u2014the\tauthor\u2019s\traw\tand\tunedited [SOURCE_62849b587104035bbb4b3b14]\n\n> Explainable\tAI\tfor\tPractitioners, The\tviews\texpressed\tin\tthis\twork\tare\tthose\tof\tthe\tauthors,\tand\tdo\tnot\trepresent\tthe\tpublisher\u2019s\tviews. While\tthe\tpublisher\tand\tthe\tauthors\thave\tused\tgood\tfaith\tefforts\tto\tensure\tthat\tthe\tinformation\tand instructions\tcontained\tin\tthis\twork\tare\taccurate,\tthe\tpublisher\tand\tthe\tauthors\tdisclaim\tall\trespons [SOURCE_10c1b108131c2dc7daeb9fd7]\n\n> About\tthe\tAuthors David\tPitman\tis\ta\tSenior\tEngineering\tManager\tworking\tin\tGoogle\tCloud\ton\tthe\tAI\tPlatform,\twhere\the leads\tthe\tExplainable\tAI\tteam. and\tBS\tin\tComputer\tScience,\tfocusing\tin\tAI\tand\tHuman- [SOURCE_92869642a62b903861240f0f]\n\n> Explainable\tAI\tfor\tPractitioners [SOURCE_57b213c9aae115a409549f24]\n\nThese excerpts do not establish that every part of the question has been answered.",
+      "content_match": false,
+      "required_page_groups_found": 1,
+      "required_page_groups": 1,
+      "cited_pages": [
+        2,
+        3,
+        74
+      ],
+      "citation_resolution": [
+        {
+          "id": "SOURCE_62849b587104035bbb4b3b14",
+          "status": 200
+        },
+        {
+          "id": "SOURCE_10c1b108131c2dc7daeb9fd7",
+          "status": 200
+        },
+        {
+          "id": "SOURCE_92869642a62b903861240f0f",
+          "status": 200
+        },
+        {
+          "id": "SOURCE_57b213c9aae115a409549f24",
+          "status": 200
+        }
+      ],
+      "seconds": 5.876814300005208,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "861b10c6-fc9e-48d6-8227-25bcab79a248"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "861b10c6-fc9e-48d6-8227-25bcab79a248"
+        },
+        {
+          "type": "status",
+          "message": "Checking evidence before releasing the answer...",
+          "generation_id": "861b10c6-fc9e-48d6-8227-25bcab79a248"
+        },
+        {
+          "type": "delta",
+          "content": "I couldn't verify the drafted an",
+          "generation_id": "861b10c6-fc9e-48d6-8227-25bcab79a248"
+        },
+        {
+          "type": "delta",
+          "content": "swer. The available source evidence is:\n\n> Explainable\tAI\tfor\tPractitioners Designing\tand\tImplementing\tExplainable\tML\tSolutions With\tEarly\tRelease\tebooks,\tyou\tget\tbooks\tin\ttheir\tearliest\tform\u2014the\tauthor\u2019s\traw\tand\tunedited [SOURCE_62849b587104035bbb4b3b14]\n",
+          "generation_id": "861b10c6-fc9e-48d6-8227-25bcab79a248"
+        },
+        {
+          "type": "delta",
+          "content": "\n> Explainable\tAI\tfor\tPractitioners, The\tviews\texpressed\tin\tthis\twork\tare\tthose\tof\tthe\tauthors,\tand\tdo\tnot\trepresent\tthe\tpublisher\u2019s\tviews. While\tthe\tpublisher\tand\tthe\tauthors\thave\tused\tgood\tfaith\tefforts\tto\tensure\tthat\tthe\tinformation\tand instructions\tcon",
+          "generation_id": "861b10c6-fc9e-48d6-8227-25bcab79a248"
+        },
+        {
+          "type": "delta",
+          "content": "tained\tin\tthis\twork\tare\taccurate,\tthe\tpublisher\tand\tthe\tauthors\tdisclaim\tall\trespons [SOURCE_10c1b108131c2dc7daeb9fd7]\n\n> About\tthe\tAuthors David\tPitman\tis\ta\tSenior\tEngineering\tManager\tworking\tin\tGoogle\tCloud\ton\tthe\tAI\tPlatform,\twhere\the leads\tthe\tExplaina",
+          "generation_id": "861b10c6-fc9e-48d6-8227-25bcab79a248"
+        },
+        {
+          "type": "delta",
+          "content": "ble\tAI\tteam. and\tBS\tin\tComputer\tScience,\tfocusing\tin\tAI\tand\tHuman- [SOURCE_92869642a62b903861240f0f]\n\n> Explainable\tAI\tfor\tPractitioners [SOURCE_57b213c9aae115a409549f24]\n\nThese excerpts do not establish that every part of the question has been answered.",
+          "generation_id": "861b10c6-fc9e-48d6-8227-25bcab79a248"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "861b10c6-fc9e-48d6-8227-25bcab79a248"
+        }
+      ],
+      "sources": [
+        {
+          "id": "SOURCE_62849b587104035bbb4b3b14",
+          "file_id": "aee7d5d64f6846819083489daa2019b0",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 2, \"section\": \"Page 2\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_98484ae2e5c0c2c1e52556e5\", \"parent_id\": \"PARENT_62253fe7731710a0998ae909\", \"block_index\": 1, \"start\": 0, \"end\": 328, \"logical_group\": \"BLOCK_98484ae2e5c0c2c1e52556e5\", \"offset\": 0, \"end_offset\": 328, \"chunk_index\": 0}",
+          "ordinal": 0
+        },
+        {
+          "id": "SOURCE_10c1b108131c2dc7daeb9fd7",
+          "file_id": "aee7d5d64f6846819083489daa2019b0",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 3, \"section\": \"Page 3\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_fad2760d847589f1f4c2222c\", \"parent_id\": \"PARENT_66df900966b7596665da5660\", \"block_index\": 2, \"start\": 0, \"end\": 1863, \"logical_group\": \"BLOCK_fad2760d847589f1f4c2222c\", \"offset\": 910, \"end_offset\": 1435, \"chunk_index\": 3}",
+          "ordinal": 1
+        },
+        {
+          "id": "SOURCE_92869642a62b903861240f0f",
+          "file_id": "aee7d5d64f6846819083489daa2019b0",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 74, \"section\": \"Page 74\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_92869642a62b903861240f0f\", \"parent_id\": \"PARENT_a49ca412568e91b673dc950e\", \"block_index\": 73, \"start\": 0, \"end\": 752, \"logical_group\": \"BLOCK_92869642a62b903861240f0f\"}",
+          "ordinal": 2
+        },
+        {
+          "id": "SOURCE_57b213c9aae115a409549f24",
+          "file_id": "aee7d5d64f6846819083489daa2019b0",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 3, \"section\": \"Page 3\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_fad2760d847589f1f4c2222c\", \"parent_id\": \"PARENT_66df900966b7596665da5660\", \"block_index\": 2, \"start\": 0, \"end\": 1863, \"logical_group\": \"BLOCK_fad2760d847589f1f4c2222c\", \"offset\": 0, \"end_offset\": 525, \"chunk_index\": 1}",
+          "ordinal": 3
+        }
+      ],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "Who are the authors of Explainable AI for Practitioners?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "Who are the authors of Explainable AI for Practitioners?",
+          "files": [
+            {
+              "id": "aee7d5d64f6846819083489daa2019b0",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "name": "Explainable-AI-for-Practitioners.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "Who are the authors of Explainable AI for Practitioners?",
+          "authorized_files": [
+            "aee7d5d64f6846819083489daa2019b0"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "research": {
+          "version": 1,
+          "paths": [
+            {
+              "round": 1,
+              "query": "Who are the authors of Explainable AI for Practitioners?",
+              "source_ids": [
+                "SOURCE_62849b587104035bbb4b3b14",
+                "SOURCE_10c1b108131c2dc7daeb9fd7",
+                "SOURCE_92869642a62b903861240f0f",
+                "SOURCE_57b213c9aae115a409549f24"
+              ]
+            }
+          ],
+          "coverage": {
+            "subquestions": [
+              {
+                "question": "Who are the authors of Explainable AI for Practitioners",
+                "source_ids": [
+                  "SOURCE_62849b587104035bbb4b3b14",
+                  "SOURCE_10c1b108131c2dc7daeb9fd7",
+                  "SOURCE_57b213c9aae115a409549f24"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": true,
+            "subquestion_budget": 4,
+            "partial": false,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          },
+          "stop_reason": "candidate_coverage_sufficient",
+          "round_limit": 2,
+          "supplied_coverage": {
+            "subquestions": [
+              {
+                "question": "Who are the authors of Explainable AI for Practitioners",
+                "source_ids": [
+                  "SOURCE_62849b587104035bbb4b3b14",
+                  "SOURCE_10c1b108131c2dc7daeb9fd7",
+                  "SOURCE_57b213c9aae115a409549f24"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": true,
+            "subquestion_budget": 4,
+            "partial": false,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          }
+        },
+        "field_conflicts": [],
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_62849b587104035bbb4b3b14",
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "text_fingerprint": "a7c5d10648deb3dfdb9a5934f6645f8b204683206b3f90a8d90ba3bcaddea9d8",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_10c1b108131c2dc7daeb9fd7",
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "text_fingerprint": "3ffe4315a9baa69c00e85763827eb9931d9ce92ac48b4c1badba79a9a1617d24",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_92869642a62b903861240f0f",
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "text_fingerprint": "ec4765e4968cb85554b74e37e5ff090385d217424aadfaf24bee45a0aceff151",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_57b213c9aae115a409549f24",
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "text_fingerprint": "f9baadbd932c9797b8c265ed72a7baad65af2f2df765f32387daf65bdab761ac",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "Who are the authors of Explainable AI for Practitioners?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_62849b587104035bbb4b3b14",
+            "file_id": "aee7d5d64f6846819083489daa2019b0",
+            "score": 0.032266458495966696
+          },
+          {
+            "id": "SOURCE_10c1b108131c2dc7daeb9fd7",
+            "file_id": "aee7d5d64f6846819083489daa2019b0",
+            "score": 0.031754032258064516
+          },
+          {
+            "id": "SOURCE_92869642a62b903861240f0f",
+            "file_id": "aee7d5d64f6846819083489daa2019b0",
+            "score": 0.032018442622950824
+          },
+          {
+            "id": "SOURCE_57b213c9aae115a409549f24",
+            "file_id": "aee7d5d64f6846819083489daa2019b0",
+            "score": 0.0315136476426799
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "ac175e92df6078f03370428364f9ef824257980bab75dad97010739ed3001e47",
+          "files": [
+            {
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "deterministic lexical/structural ranking",
+        "ranking_features": [
+          {
+            "id": "SOURCE_62849b587104035bbb4b3b14",
+            "lexical_overlap": 1.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.032266458495966696
+          },
+          {
+            "id": "SOURCE_10c1b108131c2dc7daeb9fd7",
+            "lexical_overlap": 1.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.031754032258064516
+          },
+          {
+            "id": "SOURCE_45f393fa6cf171aff9e2c998",
+            "lexical_overlap": 0.75,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.032018442622950824
+          },
+          {
+            "id": "SOURCE_57b213c9aae115a409549f24",
+            "lexical_overlap": 0.75,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0315136476426799
+          },
+          {
+            "id": "SOURCE_df4d5b31fa6cb9891af5dc51",
+            "lexical_overlap": 0.75,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03125763125763126
+          },
+          {
+            "id": "SOURCE_f3eb4d0fddeb5cbee7871a4f",
+            "lexical_overlap": 0.75,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.029857397504456328
+          },
+          {
+            "id": "SOURCE_c26c8f1d6a1bf87ac652d271",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.029236022193768675
+          },
+          {
+            "id": "SOURCE_4d9514442610a09011f53641",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.027583600982429624
+          },
+          {
+            "id": "SOURCE_f54a1441ff24d484ae967840",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025978407557354925
+          },
+          {
+            "id": "SOURCE_b9c9a48768a660f4d0497c00",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025859192525859193
+          },
+          {
+            "id": "SOURCE_9fa063b8155ae837c1f417cb",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025098039215686277
+          },
+          {
+            "id": "SOURCE_d7ce384ffbe8ac11f84900b3",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014705882352941176
+          },
+          {
+            "id": "SOURCE_c009d16a821d62d235fe198e",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014492753623188406
+          },
+          {
+            "id": "SOURCE_db90cde68589b36c37b47364",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_971659e86fa7cb38e5aeae31",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013888888888888888
+          },
+          {
+            "id": "SOURCE_83d3218f254bb297cbd9efb3",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0136986301369863
+          },
+          {
+            "id": "SOURCE_6f16621645eb4b6606d44e68",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012987012987012988
+          },
+          {
+            "id": "SOURCE_4f489621ba7f46268cdd9f5b",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025793650793650792
+          },
+          {
+            "id": "SOURCE_e77d1a39d5f2c79602793745",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025098039215686277
+          },
+          {
+            "id": "SOURCE_f8eff40935af1d49082c03df",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.024706420619185605
+          },
+          {
+            "id": "SOURCE_b899db09794710798fc612dd",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.023255813953488372
+          },
+          {
+            "id": "SOURCE_0a1948272be4150a3d791315",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013513513513513514
+          },
+          {
+            "id": "SOURCE_2e795838d5db79762274fb85",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.01282051282051282
+          },
+          {
+            "id": "SOURCE_280feb0a594afbc04fbc4e49",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0125
+          },
+          {
+            "id": "SOURCE_50d394c92788a2475e8d797c",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012345679012345678
+          },
+          {
+            "id": "SOURCE_dc5de4fd1527aec816c39c08",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012195121951219513
+          },
+          {
+            "id": "SOURCE_f22f5761c1dfc66333723f72",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012195121951219513
+          },
+          {
+            "id": "SOURCE_1dc608ba20e638f2b61a3cbe",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012048192771084338
+          },
+          {
+            "id": "SOURCE_9d7ff69c439b6a59f5bfda63",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_6000c53ca49550049081871c",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          },
+          {
+            "id": "SOURCE_958ac01560475d37758ba5cb",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_2a0e6afde4d6bd7d0c64b01e",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          },
+          {
+            "id": "SOURCE_51d376f0cca6e8289e29a13a",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014925373134328358
+          },
+          {
+            "id": "SOURCE_0fb4e9b49f2312b725d3368b",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014492753623188406
+          },
+          {
+            "id": "SOURCE_b8700552c22f219d72a4bbf2",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_3fd8b5655a420fe238a0ae3b",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_a0c59aded572b1c64d261289",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0136986301369863
+          },
+          {
+            "id": "SOURCE_2da9f3db1da714008a1cc269",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013157894736842105
+          },
+          {
+            "id": "SOURCE_732989f127a62e84489ac8f8",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012987012987012988
+          },
+          {
+            "id": "SOURCE_f0b56d43c3daa7be17fc5df8",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0125
+          },
+          {
+            "id": "SOURCE_89ca58b869ad7d8afd4f302e",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011904761904761904
+          },
+          {
+            "id": "SOURCE_aba43a06c93f52bc3fdec748",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_099df375d066e06396cc3980",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          },
+          {
+            "id": "SOURCE_23a551d3ed26f5d3c89567d9",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_5844a3d389fc68bc358a8d55",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          }
+        ],
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 985038,
+          "hits": 0,
+          "misses": 1
+        },
+        "claim_gate": {
+          "version": "pre-release-v1",
+          "before_release": true,
+          "claims": [],
+          "rejected": [
+            {
+              "text": "Authors of Explainable AI for Practitioners",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "According to the document excerpt from the book \"Explainable AI for Practitioners\" by Michael Munn and David Pitman, the authors are:",
+              "source_ids": [
+                "SOURCE_62849b587104035bbb4b3b14"
+              ],
+              "support": "unresolved",
+              "reason": "insufficient lexical support"
+            },
+            {
+              "text": "Michael Munn David Pitman",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "Additionally, the book is published by O'Reilly Media, Inc., and the copyright is held by Michael Munn, David Pitman, and O'Reilly Media, Inc.",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            }
+          ],
+          "fallback": true,
+          "independent_semantic_verification": false,
+          "output_sha256": "680b50608758a362736c3a69ebdc6e439f21913bb1f80449c19e2e8fc63605be",
+          "limitation": "Non-extractive narrative is explicitly an interpretation, not a verified fact."
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 3599.4,
+        "estimated_input_tokens": 1718,
+        "model_token_usage": [
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1603,
+            "eval_count": 93,
+            "prompt_eval_duration": 509084000,
+            "eval_duration": 1307795000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "metadata": 2,
+          "embedding": 1,
+          "generation": 1
+        },
+        "model_call_count": 2,
+        "timings_ms": {
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 3.39,
+          "embedding": 20.87,
+          "dense_search": 32.31,
+          "reranking": 2.0,
+          "model_queue": 0.02,
+          "model_inference": 1947.42,
+          "answer_generation": 1949.0
+        },
+        "total_ms": 3599.66,
+        "time_to_first_token_ms": 3125.69,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the first early-release date stated in the book?",
+      "expected": [],
+      "passed": false,
+      "answer": "I couldn't verify the drafted answer. The available source evidence is:\n\n> With\tEarly\tRelease\tebooks,\tyou\tget\tbooks\tin\ttheir\tearliest\tform\u2014the\tauthor\u2019s\traw\tand\tunedited This\twill\tbe\tthe\t2nd\tchapter\tof\tthe\tfinal\tbook. If\tyou\thave\tcomments\tabout\thow\twe\tmight\timprove\tthe\tcontent\tand/or\texamples\tin\tthis\tbook,\tor\tif [SOURCE_f22f5761c1dfc66333723f72]\n\nThese excerpts do not establish that every part of the question has been answered.\n\nPartial evidence coverage: the two-round retrieval budget did not establish support for every requested point. Uncovered requests: What is the first early-release date stated in the book.",
+      "content_match": false,
+      "required_page_groups_found": 0,
+      "required_page_groups": 1,
+      "cited_pages": [
+        5
+      ],
+      "citation_resolution": [
+        {
+          "id": "SOURCE_f22f5761c1dfc66333723f72",
+          "status": 200
+        }
+      ],
+      "seconds": 5.426944899998489,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 3,
+          "assistant_message_id": 4,
+          "generation_id": "b477d5c8-8873-4984-9c2f-64011943bd42"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "b477d5c8-8873-4984-9c2f-64011943bd42"
+        },
+        {
+          "type": "status",
+          "message": "Checking evidence before releasing the answer...",
+          "generation_id": "b477d5c8-8873-4984-9c2f-64011943bd42"
+        },
+        {
+          "type": "delta",
+          "content": "I couldn't verify the drafted an",
+          "generation_id": "b477d5c8-8873-4984-9c2f-64011943bd42"
+        },
+        {
+          "type": "delta",
+          "content": "swer. The available source evidence is:\n\n> With\tEarly\tRelease\tebooks,\tyou\tget\tbooks\tin\ttheir\tearliest\tform\u2014the\tauthor\u2019s\traw\tand\tunedited This\twill\tbe\tthe\t2nd\tchapter\tof\tthe\tfinal\tbook. If\tyou\thave\tcomments\tabout\thow\twe\tmight\timprove\tthe\tcontent\tand/or\texam",
+          "generation_id": "b477d5c8-8873-4984-9c2f-64011943bd42"
+        },
+        {
+          "type": "delta",
+          "content": "ples\tin\tthis\tbook,\tor\tif [SOURCE_f22f5761c1dfc66333723f72]\n\nThese excerpts do not establish that every part of the question has been answered.\n\nPartial evidence coverage: the two-round retrieval budget did not establish support for every requested point. U",
+          "generation_id": "b477d5c8-8873-4984-9c2f-64011943bd42"
+        },
+        {
+          "type": "delta",
+          "content": "ncovered requests: What is the first early-release date stated in the book.",
+          "generation_id": "b477d5c8-8873-4984-9c2f-64011943bd42"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "b477d5c8-8873-4984-9c2f-64011943bd42"
+        }
+      ],
+      "sources": [
+        {
+          "id": "SOURCE_f22f5761c1dfc66333723f72",
+          "file_id": "aee7d5d64f6846819083489daa2019b0",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 5, \"section\": \"Page 5\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_207d3f55a585bfc78bda838d\", \"parent_id\": \"PARENT_3bf23aa3223e26cc1305fbfa\", \"block_index\": 4, \"start\": 0, \"end\": 2915, \"logical_group\": \"BLOCK_207d3f55a585bfc78bda838d\", \"offset\": 0, \"end_offset\": 525, \"chunk_index\": 6}",
+          "ordinal": 0
+        }
+      ],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "What is the first early-release date stated in the book?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "What is the first early-release date stated in the book?",
+          "files": [
+            {
+              "id": "aee7d5d64f6846819083489daa2019b0",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "name": "Explainable-AI-for-Practitioners.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "What is the first early-release date stated in the book?",
+          "authorized_files": [
+            "aee7d5d64f6846819083489daa2019b0"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "research": {
+          "version": 1,
+          "paths": [
+            {
+              "round": 1,
+              "query": "What is the first early-release date stated in the book?",
+              "source_ids": [
+                "SOURCE_f22f5761c1dfc66333723f72"
+              ]
+            },
+            {
+              "round": 2,
+              "query": "What is the first early-release date stated in the book",
+              "files": [
+                "aee7d5d64f6846819083489daa2019b0"
+              ],
+              "source_ids": [
+                "SOURCE_f22f5761c1dfc66333723f72"
+              ]
+            }
+          ],
+          "coverage": {
+            "subquestions": [
+              {
+                "question": "What is the first early-release date stated in the book",
+                "source_ids": [],
+                "status": "unanswered",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": false,
+            "subquestion_budget": 4,
+            "partial": true,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          },
+          "stop_reason": "round_limit",
+          "round_limit": 2,
+          "supplied_coverage": {
+            "subquestions": [
+              {
+                "question": "What is the first early-release date stated in the book",
+                "source_ids": [],
+                "status": "unanswered",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": false,
+            "subquestion_budget": 4,
+            "partial": true,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          }
+        },
+        "field_conflicts": [],
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_f22f5761c1dfc66333723f72",
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "text_fingerprint": "af24723fe9cf7399597db1280a329695b5f7e3e939062d216a662daa9ff394ac",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "What is the first early-release date stated in the book?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 2,
+        "sources": [
+          {
+            "id": "SOURCE_f22f5761c1dfc66333723f72",
+            "file_id": "aee7d5d64f6846819083489daa2019b0",
+            "score": 0.03278688524590164
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "713e0eccb047883832642c1b267ea567e3ca82509000b9b9667344738c869043",
+          "files": [
+            {
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "deterministic lexical/structural ranking",
+        "ranking_features": [
+          {
+            "id": "SOURCE_4f489621ba7f46268cdd9f5b",
+            "lexical_overlap": 0.4,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.02964426877470356
+          },
+          {
+            "id": "SOURCE_971659e86fa7cb38e5aeae31",
+            "lexical_overlap": 0.4,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.028665028665028666
+          },
+          {
+            "id": "SOURCE_6c4af4972334fe09d0afe5a3",
+            "lexical_overlap": 0.4,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.026553280111072546
+          },
+          {
+            "id": "SOURCE_cfd94bdeca12224c1b57c8fe",
+            "lexical_overlap": 0.4,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015625
+          },
+          {
+            "id": "SOURCE_0a1948272be4150a3d791315",
+            "lexical_overlap": 0.4,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014705882352941176
+          },
+          {
+            "id": "SOURCE_f22f5761c1dfc66333723f72",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_1dc608ba20e638f2b61a3cbe",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03225806451612903
+          },
+          {
+            "id": "SOURCE_732989f127a62e84489ac8f8",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03149801587301587
+          },
+          {
+            "id": "SOURCE_62849b587104035bbb4b3b14",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03125763125763126
+          },
+          {
+            "id": "SOURCE_9a660bf0954e468fbc61492a",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.028594771241830064
+          },
+          {
+            "id": "SOURCE_cb509a4c4b931158b1ca24dc",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.026547116736990152
+          },
+          {
+            "id": "SOURCE_06922698cc4ac4330f938aa7",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025856389986824768
+          },
+          {
+            "id": "SOURCE_bdeb6c47a341f6869872b661",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.02519288301054952
+          },
+          {
+            "id": "SOURCE_568bec690a9db9365352298e",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_dbc62d9326f0be0e859c52f5",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_357be061efbf157036af28d6",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0136986301369863
+          },
+          {
+            "id": "SOURCE_57b213c9aae115a409549f24",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013333333333333334
+          },
+          {
+            "id": "SOURCE_c33dac3a0d2af6be8fd5ee26",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013333333333333334
+          },
+          {
+            "id": "SOURCE_29c82620617b64cd4fd21e4b",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013157894736842105
+          },
+          {
+            "id": "SOURCE_519cdb4d495902beaa047c15",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012987012987012988
+          },
+          {
+            "id": "SOURCE_7b47ce21c4470731d8819e0a",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.01282051282051282
+          },
+          {
+            "id": "SOURCE_dc5de4fd1527aec816c39c08",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0125
+          },
+          {
+            "id": "SOURCE_b90692f80efe13f5f25b903b",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012345679012345678
+          },
+          {
+            "id": "SOURCE_2da9f3db1da714008a1cc269",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012195121951219513
+          },
+          {
+            "id": "SOURCE_2e6e2d0111998587c586b64c",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012195121951219513
+          },
+          {
+            "id": "SOURCE_bac9a5f88587430a9178f18f",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012048192771084338
+          },
+          {
+            "id": "SOURCE_4ed43a6eb290407c92b21cfe",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011904761904761904
+          },
+          {
+            "id": "SOURCE_ff11ff67650d54f278683eaf",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011764705882352941
+          },
+          {
+            "id": "SOURCE_396fb9de9500f21a915c67d3",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011627906976744186
+          },
+          {
+            "id": "SOURCE_c062f74e5ed60f5ea5cd25ec",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_f54a1441ff24d484ae967840",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_52b120831f55a5ec2e252b68",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          },
+          {
+            "id": "SOURCE_766140ee7b8a50b5b0c6ae72",
+            "lexical_overlap": 0.2,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          },
+          {
+            "id": "SOURCE_10c1b108131c2dc7daeb9fd7",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015384615384615385
+          },
+          {
+            "id": "SOURCE_f0b56d43c3daa7be17fc5df8",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014925373134328358
+          },
+          {
+            "id": "SOURCE_f8eff40935af1d49082c03df",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_fc90f494d46b791a4c472945",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_9833e69f35ebf5accd5822b3",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013513513513513514
+          },
+          {
+            "id": "SOURCE_5f70350d115637eed78007eb",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013157894736842105
+          },
+          {
+            "id": "SOURCE_1473cc5eebe78639c25f8c59",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012987012987012988
+          },
+          {
+            "id": "SOURCE_3211570e020d192b5b36f442",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.01282051282051282
+          },
+          {
+            "id": "SOURCE_405affb410a5d5c1685c754f",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012658227848101266
+          },
+          {
+            "id": "SOURCE_d3cc43f2dce0a19e33823821",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0125
+          },
+          {
+            "id": "SOURCE_b984715db8c70e1b7a0de47f",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012345679012345678
+          },
+          {
+            "id": "SOURCE_b955cabfc8a0d4ea6a639586",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012048192771084338
+          },
+          {
+            "id": "SOURCE_4213f22b0e7e631dc1cb8b32",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011904761904761904
+          },
+          {
+            "id": "SOURCE_35e8af49a18f9ecea30ec33a",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011764705882352941
+          },
+          {
+            "id": "SOURCE_1884e266f3d61638c94cc7f9",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_93f7454789cf6056f572f438",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          }
+        ],
+        "mode": "DEEP",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 985038,
+          "hits": 2,
+          "misses": 1
+        },
+        "claim_gate": {
+          "version": "pre-release-v1",
+          "before_release": true,
+          "claims": [],
+          "rejected": [
+            {
+              "text": "According to the document excerpt, there is no specific early-release date stated in the book. However, it mentions that the book is part of an \"Early Release\" series, and the author notes that readers can take advantage of the technologies in these books \"long before the official release of these titles.\"",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            }
+          ],
+          "fallback": true,
+          "independent_semantic_verification": false,
+          "output_sha256": "a6e788f9dd3c16b2e55ae8a20eed5cb651211ecaa50d0b465ac15c43b4ae0a37",
+          "limitation": "Non-extractive narrative is explicitly an interpretation, not a verified fact."
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 4504.0,
+        "estimated_input_tokens": 525,
+        "model_token_usage": [
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 795,
+            "eval_count": 61,
+            "prompt_eval_duration": 255619000,
+            "eval_duration": 837157000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "metadata": 3,
+          "embedding": 2,
+          "generation": 1
+        },
+        "model_call_count": 3,
+        "timings_ms": {
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 8.25,
+          "embedding": 154.1,
+          "dense_search": 180.11,
+          "reranking": 4.59,
+          "model_queue": 0.01,
+          "model_inference": 1174.15,
+          "answer_generation": 1175.04
+        },
+        "total_ms": 4504.09,
+        "time_to_first_token_ms": 3192.03,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+      "expected": [
+        "intrinsic",
+        "prediction"
+      ],
+      "passed": true,
+      "answer": "I couldn't verify the drafted answer. The available source evidence is:\n\n> eate\tthe\texplanation\tare\tcalled\tpost-hoc explanations. Most\tof\tthe\ttechniques\twe\tdiscuss\tin\tthis\tbook\tare\tpost-hoc\texplanations\tbecause\tthey\tare By\tcontrast,\tgenerating\tintrinsic\texplanations notice\tthat\tsome\tlibraries\tare\tset\tup\tto\tprovide\tan\texplanation\twith\tthe\tprediction-\tthis\tdoes\tnot necessarily\tmean\tthe\texplanation\tis\tintrinsic,\tas\tit\tmay\tbe\tthat\tthe\tservice\tfirst\tgenerates\tthe\tprediction, then\tthe\texplanation,\tbefore\treturning\tboth\ttogether. [SOURCE_6c4af4972334fe09d0afe5a3]\n\n> tecture\tto\taid\tin\tgenerating\tthe\texplanation. example,\tan\texplanation\tfor\ttree-based\tmodels\tmay\tlook\tat\tthe\tweights\tof\tspecific\tnodes\twithin\tthe\ttree to\textract\tthe\tmost\tinfluential\tdecision\tpoints\twithin\tthe\ttree\tto\texplain\ta\tprediction. Does\tthis\tmean\tthat\topaque,\tor\tblack-box,\tmodels \talways\tuse\tmodel-agnostic\ttechniques,\twhile Not\tnecessarily,\tthere are\tmany\tunique\texplanation\ttechniques\tfor\tDeep\tNeural\tNetworks\t\\(DNNs\\)\twhich\tare\tconsidered Local,\tCohort,\tand\tGlobal\tExplanations Explanation [SOURCE_69cdc7f86600b187fbcc9bae]\n\nThese excerpts do not establish that every part of the question has been answered.",
+      "content_match": true,
+      "required_page_groups_found": 1,
+      "required_page_groups": 1,
+      "cited_pages": [
+        10
+      ],
+      "citation_resolution": [
+        {
+          "id": "SOURCE_6c4af4972334fe09d0afe5a3",
+          "status": 200
+        },
+        {
+          "id": "SOURCE_69cdc7f86600b187fbcc9bae",
+          "status": 200
+        }
+      ],
+      "seconds": 6.527111299998069,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 5,
+          "assistant_message_id": 6,
+          "generation_id": "cad01e1e-3cb9-40c2-a6ad-d166df22b2b7"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "cad01e1e-3cb9-40c2-a6ad-d166df22b2b7"
+        },
+        {
+          "type": "status",
+          "message": "Checking evidence before releasing the answer...",
+          "generation_id": "cad01e1e-3cb9-40c2-a6ad-d166df22b2b7"
+        },
+        {
+          "type": "delta",
+          "content": "I couldn't verify the drafted an",
+          "generation_id": "cad01e1e-3cb9-40c2-a6ad-d166df22b2b7"
+        },
+        {
+          "type": "delta",
+          "content": "swer. The available source evidence is:\n\n> eate\tthe\texplanation\tare\tcalled\tpost-hoc explanations. Most\tof\tthe\ttechniques\twe\tdiscuss\tin\tthis\tbook\tare\tpost-hoc\texplanations\tbecause\tthey\tare By\tcontrast,\tgenerating\tintrinsic\texplanations notice\tthat\tsome\tlibr",
+          "generation_id": "cad01e1e-3cb9-40c2-a6ad-d166df22b2b7"
+        },
+        {
+          "type": "delta",
+          "content": "aries\tare\tset\tup\tto\tprovide\tan\texplanation\twith\tthe\tprediction-\tthis\tdoes\tnot necessarily\tmean\tthe\texplanation\tis\tintrinsic,\tas\tit\tmay\tbe\tthat\tthe\tservice\tfirst\tgenerates\tthe\tprediction, then\tthe\texplanation,\tbefore\treturning\tboth\ttogether. [SOURCE_6c4af49",
+          "generation_id": "cad01e1e-3cb9-40c2-a6ad-d166df22b2b7"
+        },
+        {
+          "type": "delta",
+          "content": "72334fe09d0afe5a3]\n\n> tecture\tto\taid\tin\tgenerating\tthe\texplanation. example,\tan\texplanation\tfor\ttree-based\tmodels\tmay\tlook\tat\tthe\tweights\tof\tspecific\tnodes\twithin\tthe\ttree to\textract\tthe\tmost\tinfluential\tdecision\tpoints\twithin\tthe\ttree\tto\texplain\ta\tpredict",
+          "generation_id": "cad01e1e-3cb9-40c2-a6ad-d166df22b2b7"
+        },
+        {
+          "type": "delta",
+          "content": "ion. Does\tthis\tmean\tthat\topaque,\tor\tblack-box,\tmodels \talways\tuse\tmodel-agnostic\ttechniques,\twhile Not\tnecessarily,\tthere are\tmany\tunique\texplanation\ttechniques\tfor\tDeep\tNeural\tNetworks\t\\(DNNs\\)\twhich\tare\tconsidered Local,\tCohort,\tand\tGlobal\tExplanations E",
+          "generation_id": "cad01e1e-3cb9-40c2-a6ad-d166df22b2b7"
+        },
+        {
+          "type": "delta",
+          "content": "xplanation [SOURCE_69cdc7f86600b187fbcc9bae]\n\nThese excerpts do not establish that every part of the question has been answered.",
+          "generation_id": "cad01e1e-3cb9-40c2-a6ad-d166df22b2b7"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "cad01e1e-3cb9-40c2-a6ad-d166df22b2b7"
+        }
+      ],
+      "sources": [
+        {
+          "id": "SOURCE_6c4af4972334fe09d0afe5a3",
+          "file_id": "aee7d5d64f6846819083489daa2019b0",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 10, \"section\": \"Page 10\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_2f5cb2e52870def016d4ac7d\", \"parent_id\": \"PARENT_f4af096cc1de1cfaa87a96d3\", \"block_index\": 9, \"start\": 0, \"end\": 3509, \"logical_group\": \"BLOCK_2f5cb2e52870def016d4ac7d\", \"offset\": 455, \"end_offset\": 1155, \"chunk_index\": 42}",
+          "ordinal": 0
+        },
+        {
+          "id": "SOURCE_69cdc7f86600b187fbcc9bae",
+          "file_id": "aee7d5d64f6846819083489daa2019b0",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 10, \"section\": \"Page 10\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_2f5cb2e52870def016d4ac7d\", \"parent_id\": \"PARENT_f4af096cc1de1cfaa87a96d3\", \"block_index\": 9, \"start\": 0, \"end\": 3509, \"logical_group\": \"BLOCK_2f5cb2e52870def016d4ac7d\", \"offset\": 1995, \"end_offset\": 2695, \"chunk_index\": 45}",
+          "ordinal": 1
+        }
+      ],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+          "files": [
+            {
+              "id": "aee7d5d64f6846819083489daa2019b0",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "name": "Explainable-AI-for-Practitioners.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+          "authorized_files": [
+            "aee7d5d64f6846819083489daa2019b0"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "research": {
+          "version": 1,
+          "paths": [
+            {
+              "round": 1,
+              "query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+              "source_ids": [
+                "SOURCE_6c4af4972334fe09d0afe5a3",
+                "SOURCE_69cdc7f86600b187fbcc9bae"
+              ]
+            }
+          ],
+          "coverage": {
+            "subquestions": [
+              {
+                "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic",
+                "source_ids": [
+                  "SOURCE_6c4af4972334fe09d0afe5a3",
+                  "SOURCE_69cdc7f86600b187fbcc9bae"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": true,
+            "subquestion_budget": 4,
+            "partial": false,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          },
+          "stop_reason": "candidate_coverage_sufficient",
+          "round_limit": 2,
+          "supplied_coverage": {
+            "subquestions": [
+              {
+                "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic",
+                "source_ids": [
+                  "SOURCE_6c4af4972334fe09d0afe5a3",
+                  "SOURCE_69cdc7f86600b187fbcc9bae"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": true,
+            "subquestion_budget": 4,
+            "partial": false,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          }
+        },
+        "field_conflicts": [],
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_6c4af4972334fe09d0afe5a3",
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "text_fingerprint": "50acf67928df89f59a97bb542e34b10e57fc351c0eaddd08e0aed7a3dc26f79a",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_69cdc7f86600b187fbcc9bae",
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "text_fingerprint": "bf9bf661bac42b06dbde18d08c95869aebc88ad10ee5c71db48c9d7fb8256af3",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_6c4af4972334fe09d0afe5a3",
+            "file_id": "aee7d5d64f6846819083489daa2019b0",
+            "score": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_69cdc7f86600b187fbcc9bae",
+            "file_id": "aee7d5d64f6846819083489daa2019b0",
+            "score": 0.029827662395050816
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "cd7bf198974c7658e54d2ac900b580774446d7219f87196aece7432ab9e4fc8e",
+          "files": [
+            {
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "deterministic lexical/structural ranking",
+        "ranking_features": [
+          {
+            "id": "SOURCE_6c4af4972334fe09d0afe5a3",
+            "lexical_overlap": 0.875,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_69cdc7f86600b187fbcc9bae",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.029827662395050816
+          },
+          {
+            "id": "SOURCE_1bbe969bafdde4e709af4cde",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03149801587301587
+          },
+          {
+            "id": "SOURCE_0a1948272be4150a3d791315",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.02728937728937729
+          },
+          {
+            "id": "SOURCE_4b621f470c74b492b9001f5e",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015151515151515152
+          },
+          {
+            "id": "SOURCE_aba43a06c93f52bc3fdec748",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014705882352941176
+          },
+          {
+            "id": "SOURCE_db90cde68589b36c37b47364",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014492753623188406
+          },
+          {
+            "id": "SOURCE_06922698cc4ac4330f938aa7",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025206087507926443
+          },
+          {
+            "id": "SOURCE_c26c8f1d6a1bf87ac652d271",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025
+          },
+          {
+            "id": "SOURCE_52b120831f55a5ec2e252b68",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.024099883855981417
+          },
+          {
+            "id": "SOURCE_b4625825f9aa1590c0e6e68e",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.016129032258064516
+          },
+          {
+            "id": "SOURCE_1473cc5eebe78639c25f8c59",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015873015873015872
+          },
+          {
+            "id": "SOURCE_8c6d871f418852586e0d6a25",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015625
+          },
+          {
+            "id": "SOURCE_9fa063b8155ae837c1f417cb",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015384615384615385
+          },
+          {
+            "id": "SOURCE_e5646c9061873b30ac8fa5c2",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015151515151515152
+          },
+          {
+            "id": "SOURCE_ef3c6dca9e4fdb649ccae3f2",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014925373134328358
+          },
+          {
+            "id": "SOURCE_f3eb4d0fddeb5cbee7871a4f",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014925373134328358
+          },
+          {
+            "id": "SOURCE_b9c9a48768a660f4d0497c00",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014705882352941176
+          },
+          {
+            "id": "SOURCE_93f7454789cf6056f572f438",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_fde6e26220a2b2b8c758b487",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_dd608a580f92f096e0b49459",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_8b5f90f3269cd4c036598c6c",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013888888888888888
+          },
+          {
+            "id": "SOURCE_d3cc43f2dce0a19e33823821",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013888888888888888
+          },
+          {
+            "id": "SOURCE_d1129563568f0e6c600a518c",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0136986301369863
+          },
+          {
+            "id": "SOURCE_f54a1441ff24d484ae967840",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013333333333333334
+          },
+          {
+            "id": "SOURCE_2da9f3db1da714008a1cc269",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013157894736842105
+          },
+          {
+            "id": "SOURCE_4d9514442610a09011f53641",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012987012987012988
+          },
+          {
+            "id": "SOURCE_57b9eed99bb2b269638e163c",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011627906976744186
+          },
+          {
+            "id": "SOURCE_7a413a1f06f02e4e9b224c97",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_ff11ff67650d54f278683eaf",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_4af8022d1e68ac808b0ed8a0",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014492753623188406
+          },
+          {
+            "id": "SOURCE_f428ddb4b2acb0d34d290713",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_5f336d7de92b30abc4c2bd08",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013513513513513514
+          },
+          {
+            "id": "SOURCE_9187d25d0270a7f9b5eacd9c",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013513513513513514
+          },
+          {
+            "id": "SOURCE_11ec4da75534912f5f6ba582",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013333333333333334
+          },
+          {
+            "id": "SOURCE_7219fad1a2f8cde131b0cb60",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012987012987012988
+          },
+          {
+            "id": "SOURCE_4ed43a6eb290407c92b21cfe",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.01282051282051282
+          },
+          {
+            "id": "SOURCE_876b178638edfcb984cb9bfe",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.01282051282051282
+          },
+          {
+            "id": "SOURCE_5fe77c986bc520cab3f7765d",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012658227848101266
+          },
+          {
+            "id": "SOURCE_f22f5761c1dfc66333723f72",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012345679012345678
+          },
+          {
+            "id": "SOURCE_1dc608ba20e638f2b61a3cbe",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012195121951219513
+          },
+          {
+            "id": "SOURCE_fc90f494d46b791a4c472945",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012048192771084338
+          },
+          {
+            "id": "SOURCE_35e8af49a18f9ecea30ec33a",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011764705882352941
+          },
+          {
+            "id": "SOURCE_568bec690a9db9365352298e",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011764705882352941
+          },
+          {
+            "id": "SOURCE_280feb0a594afbc04fbc4e49",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011627906976744186
+          },
+          {
+            "id": "SOURCE_f12799f191f49982755f5605",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          },
+          {
+            "id": "SOURCE_9a660bf0954e468fbc61492a",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_e25ca0603ab022e1448eb3a9",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_aeb47db76c5ed0c468d6efa2",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          },
+          {
+            "id": "SOURCE_cfd94bdeca12224c1b57c8fe",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          },
+          {
+            "id": "SOURCE_f0f00a10ed133d78db441cac",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012658227848101266
+          },
+          {
+            "id": "SOURCE_f4d1e03129bfd0093a207e49",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012345679012345678
+          },
+          {
+            "id": "SOURCE_64c2e08df5cd966163900812",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          }
+        ],
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 985038,
+          "hits": 3,
+          "misses": 1
+        },
+        "claim_gate": {
+          "version": "pre-release-v1",
+          "before_release": true,
+          "claims": [],
+          "rejected": [
+            {
+              "text": "According to the document excerpt , receiving a prediction and explanation together does not necessarily mean the explanation is intrinsic. The text states that \"this does not necessarily mean the explanation is intrinsic, as it may be that the service first generates the prediction, then the explanation, before returning both together.\"",
+              "source_ids": [
+                "SOURCE_6c4af4972334fe09d0afe5a3"
+              ],
+              "support": "unresolved",
+              "reason": "insufficient lexical support"
+            }
+          ],
+          "fallback": true,
+          "independent_semantic_verification": false,
+          "output_sha256": "361038852a89e11993a79e3d67f8ff310b3d959dfebe5cb65bf63123ba49b0ed",
+          "limitation": "Non-extractive narrative is explicitly an interpretation, not a verified fact."
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 5668.0,
+        "estimated_input_tokens": 1131,
+        "model_token_usage": [
+          {
+            "purpose": "routing",
+            "prompt_eval_count": 143,
+            "eval_count": 64,
+            "prompt_eval_duration": 70844000,
+            "eval_duration": 1337695000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1161,
+            "eval_count": 61,
+            "prompt_eval_duration": 207534000,
+            "eval_duration": 836745000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "routing": 1,
+          "metadata": 2,
+          "embedding": 1,
+          "generation": 1
+        },
+        "model_call_count": 3,
+        "timings_ms": {
+          "model_queue": 0.03,
+          "model_inference": 2563.2,
+          "routing": 1522.26,
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 5.33,
+          "embedding": 16.16,
+          "dense_search": 27.68,
+          "reranking": 8.08,
+          "answer_generation": 1096.44
+        },
+        "total_ms": 5668.28,
+        "time_to_first_token_ms": 3929.4,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "Contrast local, cohort and global explanations; explain why local explanations on novel data can contradict global explanations.",
+      "expected": [
+        "local",
+        "cohort",
+        "global",
+        "novel"
+      ],
+      "passed": false,
+      "answer": "",
+      "content_match": false,
+      "required_page_groups_found": 0,
+      "required_page_groups": 2,
+      "cited_pages": [],
+      "citation_resolution": [],
+      "seconds": 1.975976499998069,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 7,
+          "assistant_message_id": 8,
+          "generation_id": "e1a10052-7216-4671-814b-6ebbed46aa06"
+        },
+        {
+          "type": "status",
+          "message": "Document task: extract...",
+          "generation_id": "e1a10052-7216-4671-814b-6ebbed46aa06"
+        },
+        {
+          "type": "error",
+          "message": "Specify an exact document operation and its word, phrase, page or section.",
+          "generation_id": "e1a10052-7216-4671-814b-6ebbed46aa06"
+        },
+        {
+          "type": "done",
+          "status": "error",
+          "generation_id": "e1a10052-7216-4671-814b-6ebbed46aa06"
+        }
+      ],
+      "sources": [],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+          "files": [
+            {
+              "id": "aee7d5d64f6846819083489daa2019b0",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "name": "Explainable-AI-for-Practitioners.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+          "authorized_files": [
+            "aee7d5d64f6846819083489daa2019b0"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "research": {
+          "version": 1,
+          "paths": [
+            {
+              "round": 1,
+              "query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+              "source_ids": [
+                "SOURCE_6c4af4972334fe09d0afe5a3",
+                "SOURCE_69cdc7f86600b187fbcc9bae"
+              ]
+            }
+          ],
+          "coverage": {
+            "subquestions": [
+              {
+                "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic",
+                "source_ids": [
+                  "SOURCE_6c4af4972334fe09d0afe5a3",
+                  "SOURCE_69cdc7f86600b187fbcc9bae"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": true,
+            "subquestion_budget": 4,
+            "partial": false,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          },
+          "stop_reason": "candidate_coverage_sufficient",
+          "round_limit": 2,
+          "supplied_coverage": {
+            "subquestions": [
+              {
+                "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic",
+                "source_ids": [
+                  "SOURCE_6c4af4972334fe09d0afe5a3",
+                  "SOURCE_69cdc7f86600b187fbcc9bae"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": true,
+            "subquestion_budget": 4,
+            "partial": false,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          }
+        },
+        "field_conflicts": [],
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_6c4af4972334fe09d0afe5a3",
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "text_fingerprint": "50acf67928df89f59a97bb542e34b10e57fc351c0eaddd08e0aed7a3dc26f79a",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_69cdc7f86600b187fbcc9bae",
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "text_fingerprint": "bf9bf661bac42b06dbde18d08c95869aebc88ad10ee5c71db48c9d7fb8256af3",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_6c4af4972334fe09d0afe5a3",
+            "file_id": "aee7d5d64f6846819083489daa2019b0",
+            "score": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_69cdc7f86600b187fbcc9bae",
+            "file_id": "aee7d5d64f6846819083489daa2019b0",
+            "score": 0.029827662395050816
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "cd7bf198974c7658e54d2ac900b580774446d7219f87196aece7432ab9e4fc8e",
+          "files": [
+            {
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "deterministic lexical/structural ranking",
+        "ranking_features": [
+          {
+            "id": "SOURCE_6c4af4972334fe09d0afe5a3",
+            "lexical_overlap": 0.875,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_69cdc7f86600b187fbcc9bae",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.029827662395050816
+          },
+          {
+            "id": "SOURCE_1bbe969bafdde4e709af4cde",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03149801587301587
+          },
+          {
+            "id": "SOURCE_0a1948272be4150a3d791315",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.02728937728937729
+          },
+          {
+            "id": "SOURCE_4b621f470c74b492b9001f5e",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015151515151515152
+          },
+          {
+            "id": "SOURCE_aba43a06c93f52bc3fdec748",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014705882352941176
+          },
+          {
+            "id": "SOURCE_db90cde68589b36c37b47364",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014492753623188406
+          },
+          {
+            "id": "SOURCE_06922698cc4ac4330f938aa7",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025206087507926443
+          },
+          {
+            "id": "SOURCE_c26c8f1d6a1bf87ac652d271",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025
+          },
+          {
+            "id": "SOURCE_52b120831f55a5ec2e252b68",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.024099883855981417
+          },
+          {
+            "id": "SOURCE_b4625825f9aa1590c0e6e68e",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.016129032258064516
+          },
+          {
+            "id": "SOURCE_1473cc5eebe78639c25f8c59",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015873015873015872
+          },
+          {
+            "id": "SOURCE_8c6d871f418852586e0d6a25",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015625
+          },
+          {
+            "id": "SOURCE_9fa063b8155ae837c1f417cb",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015384615384615385
+          },
+          {
+            "id": "SOURCE_e5646c9061873b30ac8fa5c2",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015151515151515152
+          },
+          {
+            "id": "SOURCE_ef3c6dca9e4fdb649ccae3f2",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014925373134328358
+          },
+          {
+            "id": "SOURCE_f3eb4d0fddeb5cbee7871a4f",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014925373134328358
+          },
+          {
+            "id": "SOURCE_b9c9a48768a660f4d0497c00",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014705882352941176
+          },
+          {
+            "id": "SOURCE_93f7454789cf6056f572f438",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_fde6e26220a2b2b8c758b487",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_dd608a580f92f096e0b49459",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_8b5f90f3269cd4c036598c6c",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013888888888888888
+          },
+          {
+            "id": "SOURCE_d3cc43f2dce0a19e33823821",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013888888888888888
+          },
+          {
+            "id": "SOURCE_d1129563568f0e6c600a518c",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0136986301369863
+          },
+          {
+            "id": "SOURCE_f54a1441ff24d484ae967840",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013333333333333334
+          },
+          {
+            "id": "SOURCE_2da9f3db1da714008a1cc269",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013157894736842105
+          },
+          {
+            "id": "SOURCE_4d9514442610a09011f53641",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012987012987012988
+          },
+          {
+            "id": "SOURCE_57b9eed99bb2b269638e163c",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011627906976744186
+          },
+          {
+            "id": "SOURCE_7a413a1f06f02e4e9b224c97",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_ff11ff67650d54f278683eaf",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_4af8022d1e68ac808b0ed8a0",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014492753623188406
+          },
+          {
+            "id": "SOURCE_f428ddb4b2acb0d34d290713",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_5f336d7de92b30abc4c2bd08",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013513513513513514
+          },
+          {
+            "id": "SOURCE_9187d25d0270a7f9b5eacd9c",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013513513513513514
+          },
+          {
+            "id": "SOURCE_11ec4da75534912f5f6ba582",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013333333333333334
+          },
+          {
+            "id": "SOURCE_7219fad1a2f8cde131b0cb60",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012987012987012988
+          },
+          {
+            "id": "SOURCE_4ed43a6eb290407c92b21cfe",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.01282051282051282
+          },
+          {
+            "id": "SOURCE_876b178638edfcb984cb9bfe",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.01282051282051282
+          },
+          {
+            "id": "SOURCE_5fe77c986bc520cab3f7765d",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012658227848101266
+          },
+          {
+            "id": "SOURCE_f22f5761c1dfc66333723f72",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012345679012345678
+          },
+          {
+            "id": "SOURCE_1dc608ba20e638f2b61a3cbe",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012195121951219513
+          },
+          {
+            "id": "SOURCE_fc90f494d46b791a4c472945",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012048192771084338
+          },
+          {
+            "id": "SOURCE_35e8af49a18f9ecea30ec33a",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011764705882352941
+          },
+          {
+            "id": "SOURCE_568bec690a9db9365352298e",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011764705882352941
+          },
+          {
+            "id": "SOURCE_280feb0a594afbc04fbc4e49",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011627906976744186
+          },
+          {
+            "id": "SOURCE_f12799f191f49982755f5605",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          },
+          {
+            "id": "SOURCE_9a660bf0954e468fbc61492a",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_e25ca0603ab022e1448eb3a9",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_aeb47db76c5ed0c468d6efa2",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          },
+          {
+            "id": "SOURCE_cfd94bdeca12224c1b57c8fe",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          },
+          {
+            "id": "SOURCE_f0f00a10ed133d78db441cac",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012658227848101266
+          },
+          {
+            "id": "SOURCE_f4d1e03129bfd0093a207e49",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012345679012345678
+          },
+          {
+            "id": "SOURCE_64c2e08df5cd966163900812",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          }
+        ],
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 985038,
+          "hits": 3,
+          "misses": 1
+        },
+        "claim_gate": {
+          "version": "pre-release-v1",
+          "before_release": true,
+          "claims": [],
+          "rejected": [
+            {
+              "text": "According to the document excerpt , receiving a prediction and explanation together does not necessarily mean the explanation is intrinsic. The text states that \"this does not necessarily mean the explanation is intrinsic, as it may be that the service first generates the prediction, then the explanation, before returning both together.\"",
+              "source_ids": [
+                "SOURCE_6c4af4972334fe09d0afe5a3"
+              ],
+              "support": "unresolved",
+              "reason": "insufficient lexical support"
+            }
+          ],
+          "fallback": true,
+          "independent_semantic_verification": false,
+          "output_sha256": "361038852a89e11993a79e3d67f8ff310b3d959dfebe5cb65bf63123ba49b0ed",
+          "limitation": "Non-extractive narrative is explicitly an interpretation, not a verified fact."
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 5668.0,
+        "estimated_input_tokens": 1131,
+        "model_token_usage": [
+          {
+            "purpose": "routing",
+            "prompt_eval_count": 143,
+            "eval_count": 64,
+            "prompt_eval_duration": 70844000,
+            "eval_duration": 1337695000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1161,
+            "eval_count": 61,
+            "prompt_eval_duration": 207534000,
+            "eval_duration": 836745000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "routing": 1,
+          "metadata": 2,
+          "embedding": 1,
+          "generation": 1
+        },
+        "model_call_count": 3,
+        "timings_ms": {
+          "model_queue": 0.03,
+          "model_inference": 2563.2,
+          "routing": 1522.26,
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 5.33,
+          "embedding": 16.16,
+          "dense_search": 27.68,
+          "reranking": 8.08,
+          "answer_generation": 1096.44
+        },
+        "total_ms": 5668.28,
+        "time_to_first_token_ms": 3929.4,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "How many check valve symbols appear on PDF page 1?",
+      "expected": [
+        "Unverified"
+      ],
+      "passed": true,
+      "answer": "**Unverified:** select a symbol reference or define a supported template in the drawing viewer. No symbol total has been established.\n\nSource: Explainable-AI-for-Practitioners.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "content_match": true,
+      "required_page_groups_found": 0,
+      "required_page_groups": 0,
+      "cited_pages": [],
+      "citation_resolution": [],
+      "seconds": 3.6822314000019105,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 9,
+          "assistant_message_id": 10,
+          "generation_id": "b802b4f0-9606-47b4-9bad-268246d5c023"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "b802b4f0-9606-47b4-9bad-268246d5c023"
+        },
+        {
+          "type": "delta",
+          "content": "**Unverified:** select a symbol ",
+          "generation_id": "b802b4f0-9606-47b4-9bad-268246d5c023"
+        },
+        {
+          "type": "delta",
+          "content": "reference or define a supported template in the drawing viewer. No symbol total has been established.\n\nSource: Explainable-AI-for-Practitioners.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+          "generation_id": "b802b4f0-9606-47b4-9bad-268246d5c023"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "b802b4f0-9606-47b4-9bad-268246d5c023"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_00c831d89f730a0eb93184eb",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_SYMBOLS",
+        "original_query": "How many check valve symbols appear on PDF page 1?",
+        "drawing_context": {
+          "files": {
+            "aee7d5d64f6846819083489daa2019b0": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21"
+          },
+          "page": 1,
+          "kind": "symbols"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "08efcb70926a8a54b164ff2b7dc662ac9b4c498f4d5ac649902fcb30599dd046",
+          "files": [
+            {
+              "file_id": "aee7d5d64f6846819083489daa2019b0",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 2816.5,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 0.05
+        },
+        "total_ms": 2816.48,
+        "time_to_first_token_ms": 2554.79,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    }
+  ],
+  "artifacts": "D:\\Projects\\LLM-chat-interface-tutorial\\Stage 9(Files attachments and RAG)\\tests\\.artifacts\\drawing-qa-aa9417cedda3445d9324b4c3340a0289",
+  "ingestion": [
+    {
+      "name": "Explainable-AI-for-Practitioners.pdf",
+      "sha256": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+      "state": "ready",
+      "seconds": 21.13015340000129
+    }
+  ],
+  "passed": 2,
+  "total": 5,
+  "p50_seconds": 5.426944899998489,
+  "p95_seconds": 6.527111299998069
+}

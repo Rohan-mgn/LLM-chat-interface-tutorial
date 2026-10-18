@@ -1,0 +1,226 @@
+{
+  "kind": "development-only five-case table interpretation probe",
+  "fixture_sha256": "0adf9c5182b6b989921ca67f8ce572e1e45eb3b7338bb608724c56899eb39d9f",
+  "models": [
+    {
+      "model": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72"
+    },
+    {
+      "model": "embeddinggemma:latest",
+      "digest": "85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1"
+    },
+    {
+      "model": "phi4-mini:latest",
+      "digest": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753"
+    }
+  ],
+  "rows": [
+    {
+      "case": {
+        "id": "period-percentage",
+        "document": "Period,Amount\nQ1,100\nQ2,125\n",
+        "question": "How did Amount change from Q1 to Q2 as a percentage?",
+        "expected": {
+          "metric": "percent_change",
+          "value": "25.000000"
+        }
+      },
+      "seconds": 25.64,
+      "answer": "",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "a7b4549c-ee7d-4764-92c4-9b8e01b451a0"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "a7b4549c-ee7d-4764-92c4-9b8e01b451a0"
+        },
+        {
+          "type": "error",
+          "message": "The document operation reached its time limit. Select a smaller section.",
+          "generation_id": "a7b4549c-ee7d-4764-92c4-9b8e01b451a0"
+        },
+        {
+          "type": "done",
+          "status": "error",
+          "generation_id": "a7b4549c-ee7d-4764-92c4-9b8e01b451a0"
+        }
+      ],
+      "evidence": [],
+      "details": {},
+      "passed": false
+    },
+    {
+      "case": {
+        "id": "department-ranking",
+        "document": "Department,Spend\nEngineering,80\nSupport,50\nEngineering,20\n",
+        "question": "Which department spent more money, and why?",
+        "expected": {
+          "rank_group": {
+            "Department": "Engineering"
+          },
+          "value": "100"
+        }
+      },
+      "seconds": 25.801,
+      "answer": "",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "c93fd405-5038-4585-b4da-d9a7c6d22c46"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "c93fd405-5038-4585-b4da-d9a7c6d22c46"
+        },
+        {
+          "type": "error",
+          "message": "The document operation reached its time limit. Select a smaller section.",
+          "generation_id": "c93fd405-5038-4585-b4da-d9a7c6d22c46"
+        },
+        {
+          "type": "done",
+          "status": "error",
+          "generation_id": "c93fd405-5038-4585-b4da-d9a7c6d22c46"
+        }
+      ],
+      "evidence": [],
+      "details": {},
+      "passed": false
+    },
+    {
+      "case": {
+        "id": "zero-baseline",
+        "document": "Period,Amount\nQ1,0\nQ2,40\n",
+        "question": "What is the percentage increase in Amount from Q1 to Q2?",
+        "expected": {
+          "metric": "percent_change",
+          "value": null,
+          "status": "undefined_zero_baseline"
+        }
+      },
+      "seconds": 25.787,
+      "answer": "",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "bd714956-1805-45ee-8b2c-9c9709fb8ec6"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "bd714956-1805-45ee-8b2c-9c9709fb8ec6"
+        },
+        {
+          "type": "error",
+          "message": "The document operation reached its time limit. Select a smaller section.",
+          "generation_id": "bd714956-1805-45ee-8b2c-9c9709fb8ec6"
+        },
+        {
+          "type": "done",
+          "status": "error",
+          "generation_id": "bd714956-1805-45ee-8b2c-9c9709fb8ec6"
+        }
+      ],
+      "evidence": [],
+      "details": {},
+      "passed": false
+    },
+    {
+      "case": {
+        "id": "filtered-comparison",
+        "document": "Period,Region,Amount\nQ1,East,50\nQ2,East,75\nQ1,West,1000\nQ2,West,1\n",
+        "question": "For East only, what is the percentage change in Amount from Q1 to Q2?",
+        "expected": {
+          "metric": "percent_change",
+          "value": "50.000000"
+        }
+      },
+      "seconds": 41.228,
+      "answer": "",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "48e2df1a-ab9f-4ba9-a30e-31ab22448331"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "48e2df1a-ab9f-4ba9-a30e-31ab22448331"
+        },
+        {
+          "type": "error",
+          "message": "Specify the baseline and current groups and the calculation; a comparison could not be validated.",
+          "generation_id": "48e2df1a-ab9f-4ba9-a30e-31ab22448331"
+        },
+        {
+          "type": "done",
+          "status": "error",
+          "generation_id": "48e2df1a-ab9f-4ba9-a30e-31ab22448331"
+        }
+      ],
+      "evidence": [],
+      "details": {},
+      "passed": false
+    },
+    {
+      "case": {
+        "id": "missing-period",
+        "document": "Period,Amount\nQ1,100\nQ2,125\n",
+        "question": "What is the percentage change in Amount from Q1 to Q4?",
+        "expected": {
+          "comparison_status": "missing_group"
+        }
+      },
+      "seconds": 2.206,
+      "answer": "",
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "2fc411c5-7eb6-433e-a0f6-a81074788613"
+        },
+        {
+          "type": "status",
+          "message": "Document task: table analysis...",
+          "generation_id": "2fc411c5-7eb6-433e-a0f6-a81074788613"
+        },
+        {
+          "type": "error",
+          "message": "Specify the baseline and current groups and the calculation; a comparison could not be validated.",
+          "generation_id": "2fc411c5-7eb6-433e-a0f6-a81074788613"
+        },
+        {
+          "type": "done",
+          "status": "error",
+          "generation_id": "2fc411c5-7eb6-433e-a0f6-a81074788613"
+        }
+      ],
+      "evidence": [],
+      "details": {},
+      "passed": false
+    }
+  ],
+  "complete": true,
+  "limitations": "Single observation per case. Grader checks deterministic results, not semantic correctness of every argument, explanations or general assistant quality. Ingestion is mocked and untimed. Not held-out acceptance.",
+  "passed": 0,
+  "total": 5
+}

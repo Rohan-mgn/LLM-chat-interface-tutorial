@@ -6,97 +6,75 @@
     const escapeHtml = text => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     const touchLayout = matchMedia("(hover: none), (pointer: coarse)");
 
+    function textNodes(content) {
+        const walker = document.createTreeWalker(content,NodeFilter.SHOW_TEXT), result=[];
+        while(walker.nextNode()) if(!walker.currentNode.parentElement.closest("button,.code-toolbar")) result.push(walker.currentNode);
+        return result;
+    }
+    function selectedOffsets(content) {
+        const selection=getSelection();
+        if(!selection || selection.isCollapsed || !content.contains(selection.anchorNode) || !content.contains(selection.focusNode))return null;
+        let offset=0,anchor=null,focus=null;
+        for(const node of textNodes(content)) {
+            if(node===selection.anchorNode)anchor=offset+selection.anchorOffset;
+            if(node===selection.focusNode)focus=offset+selection.focusOffset;
+            offset+=node.textContent.length;
+        }
+        return anchor===null || focus===null ? null : {anchor,focus};
+    }
+    function restoreSelection(content,saved) {
+        if(!saved)return;
+        let offset=0,anchor,focus;
+        for(const node of textNodes(content)) {
+            const end=offset+node.textContent.length;
+            if(!anchor && saved.anchor>=offset && saved.anchor<=end)anchor=[node,saved.anchor-offset];
+            if(!focus && saved.focus>=offset && saved.focus<=end)focus=[node,saved.focus-offset];
+            offset=end;
+        }
+        if(anchor && focus)getSelection().setBaseAndExtent(...anchor,...focus);
+    }
+
     function attach(content) {
         if (states.has(content)) return states.get(content);
-        const state = { timer: null, frame: null, hovered: false, active: false, keyboard: false, cache: new Map() };
+        const state = { frame: null, cache: new Map(), components: new Map() };
         states.set(content, state);
         content.classList.add("response-body");
-        const hint = document.createElement("button");
-        hint.type = "button";
-        hint.className = "response-scroll-hint";
-        hint.hidden = true;
-        content.after(hint);
-        state.hint = hint;
-        const reading = () => content.dispatchEvent(new CustomEvent("response-reading", { bubbles: true }));
-        function activate(value) {
-            state.active = Boolean(value && content.classList.contains("response-overflow"));
-            content.classList.toggle("inner-scroll-active", state.active);
-            hint.textContent = state.active || touchLayout.matches
-                ? "Scrollable reply · scroll here to read more"
-                : "Long reply · hover to scroll, or select here";
-            hint.setAttribute("aria-label", "Focus this long reply to scroll with the keyboard");
-        }
-        state.measure = () => {
-            if (!content.isConnected) return;
-            const wasOverflowing = content.classList.contains("response-overflow");
-            const overflow = content.scrollHeight > content.clientHeight + 1;
-            if (overflow && !wasOverflowing && state.hovered && !touchLayout.matches) {
-                clearTimeout(state.timer);
-                state.timer = setTimeout(() => {
-                    if (state.hovered && content.isConnected) activate(true);
-                }, HOVER_DELAY);
-            }
-            content.classList.toggle("response-overflow", overflow);
-            hint.hidden = !overflow;
-            if (overflow) {
-                content.tabIndex = 0;
-                content.setAttribute("role", "region");
-                content.setAttribute("aria-label", "Long assistant reply. Use arrow keys or Page Down to read. Escape returns scrolling to the conversation.");
-            } else {
-                content.removeAttribute("tabindex");
-                content.removeAttribute("role");
-                content.removeAttribute("aria-label");
-            }
-            activate(overflow && (state.active || state.keyboard));
-        };
-        content.addEventListener("pointerenter", event => {
-            state.hovered = true;
-            if (event.pointerType === "touch" || touchLayout.matches || !content.classList.contains("response-overflow")) return;
-            clearTimeout(state.timer);
-            state.timer = setTimeout(() => {
-                if (state.hovered && content.isConnected) activate(true);
-            }, HOVER_DELAY);
+        state.measure = () => content.querySelectorAll("[data-component-key]").forEach(component => {
+            const overflow = component.scrollHeight > component.clientHeight + 1 || component.scrollWidth > component.clientWidth + 1;
+            component.tabIndex = overflow ? 0 : -1;
+            const button = component.parentElement.querySelector(".expand-component");
+            if (button) button.hidden = !overflow && !component.classList.contains("component-expanded");
         });
-        content.addEventListener("pointerleave", () => {
-            state.hovered = false;
-            clearTimeout(state.timer);
-            activate(false);
-        });
-        content.addEventListener("focusin", () => { state.keyboard = true; activate(true); });
-        content.addEventListener("focusout", event => {
-            if (!content.contains(event.relatedTarget)) { state.keyboard = false; activate(false); }
-        });
-        content.addEventListener("keydown", event => {
-            if (event.key === "Escape") {
-                clearTimeout(state.timer);
-                state.keyboard = false;
-                activate(false);
-                document.getElementById("conversation").focus({ preventScroll: true });
-                return;
-            }
-            if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) reading();
-        });
-        content.addEventListener("pointerdown", event => {
-            if (event.pointerType === "touch") { activate(true); reading(); }
-        });
-        content.addEventListener("touchstart", () => { activate(true); reading(); }, { passive: true });
-        content.addEventListener("wheel", event => {
-            // Horizontal gestures and Shift+wheel belong to code/table scrollers.
-            if (event.shiftKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
-            if (!content.classList.contains("response-overflow")) return;
-            const target = state.active || touchLayout.matches ? content : document.getElementById("conversation");
-            const units = event.deltaMode === 1 ? 20 : event.deltaMode === 2 ? target.clientHeight : 1;
-            if (event.cancelable) {
-                event.preventDefault();
-                target.scrollTop += event.deltaY * units;
-            }
-            if (target === content) reading();
-        }, { passive: false });
-        hint.addEventListener("click", () => { content.focus({ preventScroll: true }); reading(); });
         state.observer = new ResizeObserver(state.measure);
         state.observer.observe(content);
-        state.activate = activate;
         return state;
+    }
+
+    function decorateComponents(content, state) {
+        content.querySelectorAll("table").forEach(table => {
+            const wrapper = document.createElement("div"), viewport = document.createElement("div");
+            wrapper.className = "table-component"; viewport.className = "table-viewport";
+            table.replaceWith(wrapper); wrapper.append(viewport); viewport.append(table);
+        });
+        content.querySelectorAll(".code-block pre, .table-viewport").forEach((component,index) => {
+            const key = String(index); component.dataset.componentKey = key;
+            const saved = state.components.get(key) || {};
+            component.classList.add("response-component");
+            component.classList.toggle("component-expanded",Boolean(saved.expanded));
+            component.setAttribute("role","region");
+            component.setAttribute("aria-label",component.tagName === "PRE" ? "Code or structured data" : "Table");
+            const button = document.createElement("button"); button.type = "button"; button.className = "expand-component";
+            const update = () => { button.textContent = component.classList.contains("component-expanded") ? "Collapse" : "Expand"; button.setAttribute("aria-expanded",String(component.classList.contains("component-expanded"))); };
+            button.addEventListener("click",() => {component.classList.toggle("component-expanded");update();state.measure();});
+            if (component.tagName === "PRE") component.parentElement.querySelector(".code-toolbar").append(button);
+            else component.parentElement.prepend(button);
+            update(); component.scrollTop = saved.top || 0; component.scrollLeft = saved.left || 0;
+            const reading = () => content.dispatchEvent(new CustomEvent("response-reading",{bubbles:true}));
+            component.addEventListener("wheel",reading,{passive:true});
+            component.addEventListener("touchstart",reading,{passive:true});
+            component.addEventListener("keydown",event=>{if(["ArrowUp","ArrowDown","PageUp","PageDown","Home","End"].includes(event.key))reading();});
+            if (saved.focused) component.focus({preventScroll:true});
+        });
     }
 
     function decorateCode(content, state, final, positions) {
@@ -165,7 +143,10 @@
 
     function render(content, markdown, { final = true } = {}) {
         const state = attach(content);
+        const selection=selectedOffsets(content);
         const scrollTop = content.scrollTop;
+        content.querySelectorAll("[data-component-key]").forEach(component => state.components.set(component.dataset.componentKey,{
+            top:component.scrollTop,left:component.scrollLeft,expanded:component.classList.contains("component-expanded"),focused:document.activeElement===component}));
         const positions = [...content.querySelectorAll("pre")].map(pre => pre.scrollLeft);
         try {
             if (!window.marked?.parse || !window.DOMPurify?.isSupported) throw new Error("Markdown unavailable");
@@ -190,11 +171,13 @@
             content.replaceChildren(fragment);
             content.classList.add("markdown-content");
             decorateCode(content, state, final, positions);
+            decorateComponents(content, state);
         } catch {
             content.classList.remove("markdown-content");
             content.textContent = markdown;
         }
         content.scrollTop = scrollTop;
+        restoreSelection(content,selection);
         state.measure();
         cancelAnimationFrame(state.frame);
         state.frame = requestAnimationFrame(state.measure);
@@ -213,7 +196,7 @@
     }
     function toLatest(root) {
         const latest = [...root.querySelectorAll(".response-body")].at(-1);
-        if (latest) latest.scrollTop = latest.scrollHeight;
+        if (latest) latest.querySelectorAll(".response-component").forEach(c => { c.scrollTop = c.scrollHeight; });
     }
     window.ResponseUX = { render, dispose, toLatest, HOVER_DELAY };
 })();

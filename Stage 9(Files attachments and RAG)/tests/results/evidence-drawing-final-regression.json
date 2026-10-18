@@ -1,0 +1,910 @@
+{
+  "tests": 282,
+  "failures": 0,
+  "errors": 0,
+  "skipped": [],
+  "seconds": 1997.108,
+  "successful": true,
+  "sources_unchanged": true,
+  "source_hashes": {
+    "RAG\\__init__.py": "5037fb3fa7a0bb63b16b3aac545f3831a4e808bf9be469f5332d645236ffb83d",
+    "RAG\\answer_references.py": "4c8ba81a4e3f27f2776196693219b30a59c4cf5bd4ec579aa49eba375df2a76e",
+    "RAG\\answering.py": "042ee5464494e98e6c30a0d4544348c24d18dfce850ebb1d10fff4bfccc28171",
+    "RAG\\attachment_tools.py": "a10aa39a832b985b1f69e0449557dec3f1c5edaf951bded4157d64ee1ccef677",
+    "RAG\\claim_gate.py": "756bf34120007bcfcb9782a4ff04d0e4049f88f12125cf3b1be0be7015059e92",
+    "RAG\\context_budget.py": "2da74c82d652d9387908109c27fbd8dc522717a969cb89da5d76b6c917232a67",
+    "RAG\\document_agent.py": "9ff812728ac0fe9e44d349dc8b7a8a4175c90487a83f4559dade84dcb45fd97f",
+    "RAG\\document_parsers.py": "37b7ee327faf287862661c544512ed178230b540f07cdba2f9c44fccd50e21b8",
+    "RAG\\document_tools.py": "68f34a0a592dff4379bd92c81968be1e0272c6614eaf4f4ca95d22733949d106",
+    "RAG\\documents.py": "0ff8dccc76eb836f75d3c0b089d124daabaf51ae7ddbc4c4c145ed39b3051eed",
+    "RAG\\drawing_annotations.py": "af233d8a68083b9d6474f49c39af360d213e50616e859eba0f2b0482c35d8026",
+    "RAG\\drawing_chat.py": "d53f470f45fd0c0bd9f418f9218fc90b6fab4450e3e40551f17debf3d5a4aa8a",
+    "RAG\\drawing_extract.py": "403b6db0b7b1a2d681a8b392e66722e1af11244c504deb70a62f536bfbf7a7da",
+    "RAG\\drawing_geometry.py": "dda65354d4c27831547f79bd4c402f810863ea786a1b59b82f383ad5450dedaf",
+    "RAG\\drawing_graph.py": "0686a8782417cdaa77e06ba23eb60c4b5f96535043ffb557664ab91b5030f6cd",
+    "RAG\\drawing_measurements.py": "5ef03c6924a54cf2cb4994450e1ba61d78bc457f032c30328a73a07172017b57",
+    "RAG\\drawing_revisions.py": "26fef2bfe309d337a86907f7af32068efd29910a8a97abcca4b1dc6ae6172096",
+    "RAG\\drawing_routes.py": "cd1383b91d0bb4226fe55e35045e10375868ef799b5b2da35de962e4441f59ae",
+    "RAG\\drawing_symbols.py": "01caf312d3b8d8614ad723fd78b48469200a510a647a68a8384299fbf97b5928",
+    "RAG\\drawing_validation.py": "1161ac5d03fbb9562d636a6f3d08db8335b7dbbe557f7ea69706a8d88c7e0c6a",
+    "RAG\\drawing_worker.py": "8759ddb92fbafd3409e8b735c4fd6b2e93f24b21f8a3cba8faa34f64b94a37ce",
+    "RAG\\drawings.py": "5d65d627b28b009a09cb3ed48141e7c4fe54df8e091217303599e6aee7c91e45",
+    "RAG\\evidence.py": "7f081f9ce7f711e52a25691767f5c19375b1d5880b39da91b632e327a4d2d669",
+    "RAG\\evidence_release.py": "fe9b8d0f957375a522309c6ba4a0fc82ae510ba488a7710879c8a736a22019b6",
+    "RAG\\file_routes.py": "3fc281b8315d7140e8c406470c3d4fea4317bebd36fe1588837fa41af0c36b2c",
+    "RAG\\grounding.py": "ade6a6fa4ac64568646885373a2081b53810f56d4a88d55c7ee00a795327cd4d",
+    "RAG\\index_lifecycle.py": "a311813f277c83576b4562a142dc85aea47824496a183006e2cd2349b26283dc",
+    "RAG\\model_provider.py": "c75ba488e4534a11741f2396408a01c99727926142e3b5017cab46e667511ecb",
+    "RAG\\operations.py": "8808bc782c63eaec6f1a79c49b4f8c2048daa065a1bf438a6bf96d1243ec486f",
+    "RAG\\parser_limits.py": "fd77392f25f948c0d5d495cc635c943a43d24f217af086dcc78a074dfa105cab",
+    "RAG\\parser_registry.py": "9e3ff85f90c030bf80953d048d02d8633bd9098463d96b1579cf51e48715d375",
+    "RAG\\parser_worker.py": "94b8315c5b919ca61bb62c3c318d07a9ee1d1e233714a74a5e705bbbf62cd9dd",
+    "RAG\\planner.py": "2076d7d763159324f96edff5a0054ef03cbaf550b4ebc2cdd672a9769649c42e",
+    "RAG\\rag.py": "9510e36449bf35f1b75b7da6c26a069c2487a24870af12cc84ecd04ce1685e48",
+    "RAG\\request_state.py": "1627d77e45309d8e6a505c22f026ee71f770ddb112c2eb40f2c2151f89e117e9",
+    "RAG\\research.py": "23039e5b9c84e36b9f33fb59ffb89df9a1c69219db1a13fcd549009c719c9529",
+    "RAG\\storage_gate.py": "d9ca6539bd66daf62cfa33c0c87c55a83eaa2c05d79ac2ea79be4fed1c221fd0",
+    "RAG\\structured_formats.py": "a2d1d37eea523fd027320d2f566940735dec528548a0ac3a212c6b8eebd725bd",
+    "RAG\\summarizer.py": "62561ddebf27b3b4e85fb69b0a24f49aa579da30a5772aa165e0aa39a5e665b9",
+    "RAG\\table_schema.py": "379b1134f0fd4ed71751aaf50b08bfd9450b1873adb28e9c73b685f403baf7c7",
+    "RAG\\table_tools.py": "cfbb9c74ea6e51c71ceb5f5817434c45a834f34e18eb0a007e89ffe8f260b6db",
+    "RAG\\vector_cache.py": "67ac8bf10fe1abacc9fd362dcc2755478955305a9a1bc52cb7b9c4e3b924c0c2",
+    "RAG\\vector_migration.py": "133a6e2bb95400551a26ef47a43849a6d66f80584a6afec8dde3f273c9ff2ae9",
+    "RAG\\vector_recovery.py": "2d5c6798de0cd05aaf4aff54df87b69fcb82c854350bdf47c779e9e9a4600088",
+    "RAG\\vector_store.py": "597eac4109afaa2a85c177c8026b69a706ee076f7ca7983bd6d0386b7309593e",
+    "main.py": "3fd5badb77f6559461381e3cf56aeab9332ddc010fd9246e1cdc7df8141227f0",
+    "run.py": "1557aaefa2d2cb4c4e4000a0cc7583e395d1059dcd731193bbe92bf88c003ad5",
+    "tree_store.py": "ed7d73884b0f34678316e4ee237b19aefd14de333963ea673ae6a56bcb787ca9"
+  },
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "failure_details": [],
+  "completed": {
+    "check_answer_references.CompleteEvidenceBudget.test_required_sources_are_all_or_nothing_with_shared_formatter": {
+      "status": "passed"
+    },
+    "check_answer_references.ReferenceIntegration.test_changed_or_deselected_file_cannot_supply_old_answer_evidence": {
+      "status": "passed"
+    },
+    "check_answer_references.ReferenceIntegration.test_exact_operation_is_never_downgraded_to_approximate_retrieval": {
+      "status": "passed"
+    },
+    "check_answer_references.ReferenceIntegration.test_explicit_filename_is_not_interpreted_as_previous_answer": {
+      "status": "passed"
+    },
+    "check_answer_references.ReferenceIntegration.test_followup_targets_answer_point_and_keeps_original_question": {
+      "status": "passed"
+    },
+    "check_answer_references.ReferenceIntegration.test_known_canonical_citation_remains_readable_with_index_unavailable": {
+      "status": "passed"
+    },
+    "check_answer_references.ReferenceIntegration.test_known_source_and_retrieval_send_identical_generation_prompts": {
+      "status": "passed"
+    },
+    "check_answer_references.ReferenceIntegration.test_original_section_scope_is_preserved_without_using_answer_ordinal": {
+      "status": "passed"
+    },
+    "check_answer_references.ReferenceIntegration.test_reference_uses_parent_branch_not_newest_sibling": {
+      "status": "passed"
+    },
+    "check_answer_references.ReferenceIntegration.test_removed_citation_is_not_redirected_to_current_content": {
+      "status": "passed"
+    },
+    "check_answer_references.ReferenceIntegration.test_summarize_point_does_not_become_whole_document_summary": {
+      "status": "passed"
+    },
+    "check_answer_references.ReferenceIntegration.test_uncited_prior_point_uses_current_retrieval_instead_of_trusting_history": {
+      "status": "passed"
+    },
+    "check_answer_references.StructureTests.test_bullets_are_positional_not_document_numbers": {
+      "status": "passed"
+    },
+    "check_answer_references.StructureTests.test_heading_reference_uses_answer_headings": {
+      "status": "passed"
+    },
+    "check_answer_references.StructureTests.test_multiple_lists_require_clarification": {
+      "status": "passed"
+    },
+    "check_answer_references.StructureTests.test_nonexistent_and_oversized_references_do_not_guess": {
+      "status": "passed"
+    },
+    "check_answer_references.StructureTests.test_ordered_points_skip_nested_lists_code_and_quotes": {
+      "status": "passed"
+    },
+    "check_answering.AnsweringTests.test_compact_packet_keeps_provenance_and_cannot_override_citation": {
+      "status": "passed"
+    },
+    "check_answering.AnsweringTests.test_complete_context_never_silently_drops_sections": {
+      "status": "passed"
+    },
+    "check_answering.AnsweringTests.test_coverage_requires_substantive_output_and_does_not_claim_proof": {
+      "status": "passed"
+    },
+    "check_answering.AnsweringTests.test_curly_quotes_are_verified_as_quotes_not_question_marks": {
+      "status": "passed"
+    },
+    "check_answering.AnsweringTests.test_huge_task_rejected_before_model_inference": {
+      "status": "passed"
+    },
+    "check_answering.AnsweringTests.test_ollama_usage_survives_streaming_and_missing_counts_stay_unknown": {
+      "status": "passed"
+    },
+    "check_answering.AnsweringTests.test_output_sections_are_not_document_section_selectors": {
+      "status": "passed"
+    },
+    "check_answering.AnsweringTests.test_parsed_document_works_without_semantic_index": {
+      "status": "passed"
+    },
+    "check_answering.AnsweringTests.test_partial_coverage_warning_is_emitted_and_persisted": {
+      "status": "passed"
+    },
+    "check_answering.AnsweringTests.test_selected_section_and_file_scope_are_preserved": {
+      "status": "passed"
+    },
+    "check_answering.AnsweringTests.test_small_complete_document_skips_summary_and_retrieval": {
+      "status": "passed"
+    },
+    "check_answering.AnsweringTests.test_task_changes_invalidate_summary_cache_and_reduction_keeps_objective": {
+      "status": "passed"
+    },
+    "check_attachment_tools.AttachmentToolTests.test_actual_hybrid_search_and_no_external_file_access": {
+      "status": "passed"
+    },
+    "check_attachment_tools.AttachmentToolTests.test_actual_read_without_index_and_section_scope": {
+      "status": "passed"
+    },
+    "check_attachment_tools.AttachmentToolTests.test_code_inspection_never_executes_source": {
+      "status": "passed"
+    },
+    "check_attachment_tools.AttachmentToolTests.test_failed_summary_attempts_share_absolute_call_ceiling": {
+      "status": "passed"
+    },
+    "check_attachment_tools.AttachmentToolTests.test_oversize_read_does_not_publish_partial_evidence": {
+      "status": "passed"
+    },
+    "check_attachment_tools.AttachmentToolTests.test_planner_executes_validated_real_tool_and_revalidates_evidence": {
+      "status": "passed"
+    },
+    "check_attachment_tools.AttachmentToolTests.test_retrieval_content_is_revalidated_before_planner_exposure": {
+      "status": "passed"
+    },
+    "check_attachment_tools.AttachmentToolTests.test_search_rehydrates_location_and_filename_not_only_text": {
+      "status": "passed"
+    },
+    "check_attachment_tools.AttachmentToolTests.test_source_change_during_read_discards_result": {
+      "status": "passed"
+    },
+    "check_attachment_tools.AttachmentToolTests.test_summary_keeps_task_shared_call_count_and_cancellation": {
+      "status": "passed"
+    },
+    "check_attachment_tools.AttachmentToolTests.test_table_catalog_and_exact_calculation": {
+      "status": "passed"
+    },
+    "check_attachment_tools.AttachmentToolTests.test_tool_passage_labels_are_stable_across_document_reads": {
+      "status": "passed"
+    },
+    "check_attachment_tools.AttachmentToolTests.test_unknown_alias_extra_fields_and_injection_are_rejected": {
+      "status": "passed"
+    },
+    "check_claim_release.ClaimReleaseTests.test_fabricated_numeric_claim_never_reaches_sse": {
+      "status": "passed"
+    },
+    "check_claim_release.ClaimReleaseTests.test_missing_citations_fall_back_to_actual_passages": {
+      "status": "passed"
+    },
+    "check_claim_release.ClaimReleaseTests.test_source_substring_cannot_remove_a_numeric_condition": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_gap_matrix_preserves_missing_subquestion_and_file": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_ranking_keeps_features_and_exact_identifier": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_subquestion_budget_is_disclosed_instead_of_dropping_requests": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_assets_are_available": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_auto_title_still_uses_first_complete_exchange": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_cancel_before_post_prevents_late_generation": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_conflicting_actions_and_deletion_rejected_during_generation": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_conversation_isolation_followup_and_ordering": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_delete_conversation_cascades_all_branches_and_choices": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_disconnect_cancels_model_and_releases_lock": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_edit_adds_user_sibling_preserving_every_original_row": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_failed_final_save_never_reports_success": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_failure_retry_creates_assistant_sibling_and_keeps_failed_content": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_feedback_is_scoped_persistent_and_toggleable": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_parent_edges_cannot_cross_chats_or_be_rewritten": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_regeneration_and_each_siblings_descendants_are_independent": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_restart_preserves_history_and_marks_interrupted_response": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_search_finds_hidden_branch_and_selects_its_ancestry": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_search_rename_unicode_and_safe_literal_matching": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_stage6_upgrade_preserves_messages_and_backfills_relationships": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_stop_after_partial_token": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_stop_before_first_token": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_stop_during_completion_waits_for_cleanup_without_recancelling": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_stop_scheduled_before_producer_starts_releases_reservation": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_stopped_turn_can_branch_or_continue_without_partial_model_context": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_stream_protocol_persistence_and_model_context": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_target_validation_and_duplicate_request_rejected": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_unchanged_edit_and_cross_conversation_parent_are_rejected": {
+      "status": "passed"
+    },
+    "check_database.Checks.test_upfront_failure_is_visible_and_retriable": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ExactTests.test_block_identifiers_stable_but_content_sensitive": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ExactTests.test_budget_unicode_and_oversize": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ExactTests.test_pages_sections_extraction_and_statistics": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ExactTests.test_router_acceptance_and_no_arithmetic_fallback": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ExactTests.test_structural_boundaries_and_explicit_continuation": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ExactTests.test_unicode_whole_word_phrase_offsets": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_changed_parse_invalidates_obsolete_source_before_embedding": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_csv_calculation_and_provenance": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_exact_count_and_scoped_tool_evidence_without_model": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_exact_extract_preserves_citation_like_source_text": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_filter_phrase_is_not_silently_ignored": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_first_appearance_order_and_stable_reindex": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_fts_lexical_fallback_and_pipeline_scope": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_hierarchical_summary_covers_end_and_cancellation": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_history_compression_is_branch_keyed": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_hybrid_fusion_reranker_fallback_and_diversity": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_migration_preserves_history_and_citations_backup_repeatable": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_no_planning_round_without_deep_information_gap": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_parsed_tools_survive_embedding_failure": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_summary_comparison_uses_every_selected_file": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_summary_deadline_applies_to_final_stream": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_summary_full_coverage_section_cache_and_limits": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_two_conversations_and_same_conversation_conflict": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_use_files_false_bypasses_router_and_tools": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_vision_cache_native_preservation_and_no_vision_dependency": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_vision_work_does_not_block_native_indexing": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ProviderTests.test_default_one_configurable_two_and_cancelled_waiter": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ProviderTests.test_same_model_name_still_separates_text_and_image_slots": {
+      "status": "passed"
+    },
+    "check_document_intelligence.WorkbookTests.test_cached_formula_used_without_evaluation": {
+      "status": "passed"
+    },
+    "check_document_intelligence.WorkbookTests.test_formula_expression_and_absent_cache": {
+      "status": "passed"
+    },
+    "check_document_intelligence.WorkbookTests.test_invalid_columns_and_operators_are_not_code": {
+      "status": "passed"
+    },
+    "check_document_intelligence.WorkbookTests.test_useful_cell_and_merge_limits": {
+      "status": "passed"
+    },
+    "check_document_intelligence.WorkbookTests.test_xlsx_grouping_and_zero_not_missing": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.DrawingChatTests.test_count_chat_and_review_cannot_automatically_become_exact": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.DrawingChatTests.test_cross_conversation_render_and_stale_review_rejected": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.DrawingChatTests.test_real_drawing_number_and_branch_followup_revision": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.DrawingChatTests.test_synthetic_title_block_beats_unrelated_revision_note": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.DrawingChatTests.test_unavailable_symbol_is_not_text_count_or_zero": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.GeometryTests.test_crop_and_user_unit_round_trip": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.GeometryTests.test_crossing_lines_do_not_create_connections": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.GeometryTests.test_determinism_or_high_confidence_never_grants_exact": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.GeometryTests.test_duplicate_tiles_do_not_duplicate_symbols": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.GeometryTests.test_independent_matching_penalizes_misses_and_wrong_classes": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.GeometryTests.test_opposed_triangles_rotated_scaled_and_distinct_internal_mark": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.GeometryTests.test_rendered_landmarks_match_crop_rotation_and_user_unit": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.GeometryTests.test_rotations_have_independently_expected_corners": {
+      "status": "passed"
+    },
+    "check_drawing_analysis.GeometryTests.test_units_and_nts_are_guarded": {
+      "status": "passed"
+    },
+    "check_drawing_annotations.AnnotationTests.test_exhaustive_review_total_uses_reviewed_boxes_and_saved_label": {
+      "status": "passed"
+    },
+    "check_drawing_annotations.AnnotationTests.test_json_result_is_rejected_if_review_changes_before_release": {
+      "status": "passed"
+    },
+    "check_drawing_annotations.AnnotationTests.test_reviewed_connection_reaches_chat_and_signal_is_not_process": {
+      "status": "passed"
+    },
+    "check_drawing_annotations.AnnotationTests.test_uploaded_reference_is_scoped_and_deleted_reference_invalidates_template": {
+      "status": "passed"
+    },
+    "check_drawing_safety.DrawingSafetyTests.test_artifact_integrity_and_delete_outbox": {
+      "status": "passed"
+    },
+    "check_drawing_safety.DrawingSafetyTests.test_explicit_table_dimension_and_unit_conversion_through_chat": {
+      "status": "passed"
+    },
+    "check_drawing_safety.DrawingSafetyTests.test_review_change_invalidates_saved_tool_evidence_and_release_revision": {
+      "status": "passed"
+    },
+    "check_drawing_safety.DrawingSafetyTests.test_revision_table_corroborates_without_selecting_largest_revision": {
+      "status": "passed"
+    },
+    "check_drawing_safety.DrawingSafetyTests.test_zero_count_review_requires_analyzed_real_page": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_background_extraction_change_cancels_queued_answer": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_cross_process_commit_waits_for_release_then_blocks_later_output": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_disconnect_and_send_timeout_do_not_persist_unsent_text": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_permission_change_after_queueing_blocks_release": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_queue_bounded_and_progress_coalesced": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_queued_answer_deleted_before_release_is_never_persisted": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_replacement_during_draft_releases_no_unverified_prefix": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_revocation_after_last_send_before_completion_never_marks_complete": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_revocation_during_model_wait_cancels_without_waiting_for_a_token": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_unchanged_extraction_keeps_revision_valid": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_use_files_false_has_no_source_dependency": {
+      "status": "passed"
+    },
+    "check_index_lifecycle.LifecycleTests.test_1000_publication_compare_and_swap_interleavings": {
+      "status": "passed"
+    },
+    "check_index_lifecycle.LifecycleTests.test_completed_operations_remove_unused_os_reservations": {
+      "status": "passed"
+    },
+    "check_index_lifecycle.LifecycleTests.test_corruption_reports_degraded_not_absent_answer": {
+      "status": "passed"
+    },
+    "check_index_lifecycle.LifecycleTests.test_delete_creates_outbox_and_prevents_old_candidate_hydration": {
+      "status": "passed"
+    },
+    "check_index_lifecycle.LifecycleTests.test_delete_outbox_reclaims_current_rows_idempotently": {
+      "status": "passed"
+    },
+    "check_index_lifecycle.LifecycleTests.test_epoch_transition_drains_active_leases_even_if_expired": {
+      "status": "passed"
+    },
+    "check_index_lifecycle.LifecycleTests.test_generation_changes_in_same_sqlite_transaction": {
+      "status": "passed"
+    },
+    "check_index_lifecycle.LifecycleTests.test_late_native_write_after_delete_ack_is_reclaimed": {
+      "status": "passed"
+    },
+    "check_index_lifecycle.LifecycleTests.test_metadata_failure_does_not_publish": {
+      "status": "passed"
+    },
+    "check_index_lifecycle.LifecycleTests.test_publication_hydrates_sqlite_and_preserves_history": {
+      "status": "passed"
+    },
+    "check_index_lifecycle.LifecycleTests.test_reconciliation_recovers_acknowledgment_loss_without_embeddings": {
+      "status": "passed"
+    },
+    "check_index_lifecycle.LifecycleTests.test_replacement_between_write_and_publication_fails": {
+      "status": "passed"
+    },
+    "check_index_lifecycle.LifecycleTests.test_write_acknowledgment_loss_restart_is_recoverable": {
+      "status": "passed"
+    },
+    "check_parser_registry.ParserTests.test_archive_path_duplicate_macro_and_expansion_validation": {
+      "status": "passed"
+    },
+    "check_parser_registry.ParserTests.test_continuous_source_boundary_exact_search_has_correct_offsets": {
+      "status": "passed"
+    },
+    "check_parser_registry.ParserTests.test_json_and_syntax_errors_preserve_source_with_explicit_warning": {
+      "status": "passed"
+    },
+    "check_parser_registry.ParserTests.test_legacy_native_output_and_source_ids_remain_unchanged": {
+      "status": "passed"
+    },
+    "check_parser_registry.ParserTests.test_pptx_slide_order_notes_tables_cached_chart_and_visual_limitation": {
+      "status": "passed"
+    },
+    "check_parser_registry.ParserTests.test_python_ast_lines_whitespace_and_no_execution": {
+      "status": "passed"
+    },
+    "check_parser_registry.ParserTests.test_windows_job_enforces_memory_and_no_child_process": {
+      "status": "passed"
+    },
+    "check_parser_registry.ParserTests.test_worker_wall_timeout_is_terminable": {
+      "status": "passed"
+    },
+    "check_parser_registry.ParserTests.test_xml_external_entities_fail_closed": {
+      "status": "passed"
+    },
+    "check_parser_registry.UploadTests.test_pptx_upload_reports_missing_visual_coverage_and_slide_tools": {
+      "status": "passed"
+    },
+    "check_parser_registry.UploadTests.test_python_upload_line_tool_and_mime_validation": {
+      "status": "passed"
+    },
+    "check_planner.PlannerTests.test_extra_sql_field_and_boolean_page_rejected": {
+      "status": "passed"
+    },
+    "check_planner.PlannerTests.test_failed_tool_never_becomes_a_successful_result": {
+      "status": "passed"
+    },
+    "check_planner.PlannerTests.test_invalid_tool_can_repair_once_within_decision_limit": {
+      "status": "passed"
+    },
+    "check_planner.PlannerTests.test_native_decision_is_validated_and_client_closed": {
+      "status": "passed"
+    },
+    "check_planner.PlannerTests.test_oversize_tool_output_is_not_silently_truncated": {
+      "status": "passed"
+    },
+    "check_planner.PlannerTests.test_prompt_injection_is_data_not_a_registered_tool": {
+      "status": "passed"
+    },
+    "check_planner.PlannerTests.test_search_and_decision_limits_are_enforced": {
+      "status": "passed"
+    },
+    "check_planner.PlannerTests.test_source_revocation_during_model_call_propagates": {
+      "status": "passed"
+    },
+    "check_planner.PlannerTests.test_stop_cancels_tool_and_does_not_save_result": {
+      "status": "passed"
+    },
+    "check_planner.PlannerTests.test_tool_and_shared_deadlines": {
+      "status": "passed"
+    },
+    "check_planner.PlannerTests.test_unavailable_file_alias_cannot_execute": {
+      "status": "passed"
+    },
+    "check_planner.PlannerTests.test_validated_read_then_answer_keeps_actual_objective": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_changed_embedding_model_requires_reindex": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_citation_chunk_boundaries_unknown_and_unfinished": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_conflicting_documents_both_reach_model_as_scoped_data": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_context_budget_and_dimension_mismatch_fail_explicitly": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_cross_conversation_file_cannot_attach_or_retrieve": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_csv_rows_metadata_and_docx": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_delete_conversation_removes_files": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_delete_file_cascades_vectors_citations_and_physical_bytes": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_duplicate_upload_and_index_reuse": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_edit_and_retry_preserve_attachment_and_retrieval_scope": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_filename_safety_download_headers_and_image_preview": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_index_failure_can_retry_and_pending_restart_is_not_stuck": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_injection_is_untrusted_data_and_debug_disabled_by_default": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_invalid_content_mime_empty_and_size_rejected": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_multiple_attachments_and_limits_are_enforced": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_no_evidence_does_not_hallucinate_a_model_answer": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_pdf_text_extraction_preserves_page_number": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_query_rewrite_and_fallback_use_selected_history": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_replacement_invalidates_old_sources_and_relinks_message": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_restart_marks_interrupted_index_and_keeps_ready_vectors": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_scanned_pdf_is_an_explicit_failed_state": {
+      "status": "passed"
+    },
+    "check_rag.Checks.test_scoped_retrieval_stream_citations_and_restoration": {
+      "status": "passed"
+    },
+    "check_schema_initialization.SchemaInitializationTests.test_document_batch_rolls_back_and_retries": {
+      "status": "passed"
+    },
+    "check_schema_initialization.SchemaInitializationTests.test_optional_fts_failure_does_not_leave_partial_triggers": {
+      "status": "passed"
+    },
+    "check_schema_initialization.SchemaInitializationTests.test_vector_batch_including_write_guards_rolls_back": {
+      "status": "passed"
+    },
+    "check_storage_evaluation.ComparisonTests.test_frozen_regression_tolerance_and_category_reporting": {
+      "status": "passed"
+    },
+    "check_storage_evaluation.ComparisonTests.test_missing_relevant_file_reduces_ndcg": {
+      "status": "passed"
+    },
+    "check_storage_evaluation.ComparisonTests.test_rejects_partial_runs_and_model_changes": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ArithmeticTests.test_comparisons_use_exact_averages_before_rounding": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ArithmeticTests.test_exact_decimal_change_and_source_rows": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ArithmeticTests.test_filter_is_applied_before_comparison": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ArithmeticTests.test_formula_without_cache_cannot_be_compared": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ArithmeticTests.test_missing_group_is_not_zero": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ArithmeticTests.test_multicolumn_selectors_must_be_complete_and_exact": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ArithmeticTests.test_partial_sum_cannot_be_compared_or_ranked": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ArithmeticTests.test_rank_ties_and_ascending_order": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ArithmeticTests.test_repeating_ratio_preserves_fraction_and_rounding": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ArithmeticTests.test_schema_rejects_untrusted_options_and_legacy_spec_still_works": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ArithmeticTests.test_source_row_manifest_is_bounded_but_sensitive": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ArithmeticTests.test_untrusted_derived_arguments_are_rejected": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ArithmeticTests.test_zero_and_negative_baselines_are_explicit": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ComparisonChatTests.test_chat_uses_deterministic_values_and_persists_tool_evidence": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ComparisonChatTests.test_model_selected_filter_scope_is_visible_in_the_answer": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ComparisonChatTests.test_planner_tool_uses_same_arithmetic_and_revision_boundary": {
+      "status": "passed"
+    },
+    "check_table_comparisons.ComparisonChatTests.test_single_spreadsheet_comparison_does_not_require_two_files": {
+      "status": "passed"
+    },
+    "check_upgrade.EvidenceTests.test_cache_storage_bound_and_float32": {
+      "status": "passed"
+    },
+    "check_upgrade.EvidenceTests.test_exact_identifier_and_late_terms": {
+      "status": "passed"
+    },
+    "check_upgrade.EvidenceTests.test_fast_requires_retriever_agreement_and_no_tie": {
+      "status": "passed"
+    },
+    "check_upgrade.EvidenceTests.test_high_rank_is_not_answerability": {
+      "status": "passed"
+    },
+    "check_upgrade.EvidenceTests.test_reranking_rescues_low_raw_scores": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_atomic_metadata_failure_and_restart": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_cache_generation_changes_while_query_embedding_waits": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_count_followup_switches_only_to_authorized_file": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_deep_round_limit_and_selected_scope": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_fast_avoids_rewrite_and_reranking": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_followup_uses_selected_branch": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_generation_changes_transactionally_and_rollback_does_not": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_package_loaded_once_and_evaluation_split": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_quarter_followup_recalculates_without_model": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_query_embedding_reuse_and_cache_scope": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_quotation_validation_and_review_cancellation": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_reindex_cache_invalidates_and_deleted_file_evicts": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_review_modes_failure_and_no_silent_rewrite": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_review_warning_is_same_in_stream_and_database": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_section_and_comparison_context_resolution": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_stale_inflight_cache_load_cannot_publish": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_stop_during_api_claim_review": {
+      "status": "passed"
+    },
+    "check_upgrade.UpgradeTests.test_summary_digest_prompt_invalidation_and_final_reduction": {
+      "status": "passed"
+    },
+    "check_vector_migration.MigrationTests.test_cutover_requires_complete_acceptance_and_verified_backup": {
+      "status": "passed"
+    },
+    "check_vector_migration.MigrationTests.test_finalization_time_decision_and_schema_guards": {
+      "status": "passed"
+    },
+    "check_vector_migration.MigrationTests.test_mutated_sources_prevent_cutover_and_do_not_destroy_legacy": {
+      "status": "passed"
+    },
+    "check_vector_migration.MigrationTests.test_preparation_retries_preserve_authoritative_records": {
+      "status": "passed"
+    },
+    "check_vector_migration.MigrationTests.test_retirement_keeps_new_vector_free_recovery_snapshot": {
+      "status": "passed"
+    },
+    "check_vector_migration.MigrationTests.test_retirement_recovers_unlink_acknowledgment_loss": {
+      "status": "passed"
+    },
+    "check_vector_migration.MigrationTests.test_retirement_rejects_an_outside_backup_path": {
+      "status": "passed"
+    },
+    "check_vector_migration.MigrationTests.test_retirement_requires_decision_and_minimum_snapshot_retention": {
+      "status": "passed"
+    },
+    "check_vector_migration.MigrationTests.test_rollback_preserves_post_cutover_messages": {
+      "status": "passed"
+    },
+    "check_vector_migration.MigrationTests.test_unknown_vector_dependency_prevents_destructive_cleanup": {
+      "status": "passed"
+    },
+    "check_vector_recovery.RecoveryTests.test_cancellation_leaves_durable_retry_and_no_successful_publication": {
+      "status": "passed"
+    },
+    "check_vector_recovery.RecoveryTests.test_changed_source_during_inference_is_not_published": {
+      "status": "passed"
+    },
+    "check_vector_recovery.RecoveryTests.test_corrupted_numeric_vector_is_not_blessed_as_recovered": {
+      "status": "passed"
+    },
+    "check_vector_recovery.RecoveryTests.test_finalized_database_rebuild_has_no_legacy_vector_writes": {
+      "status": "passed"
+    },
+    "check_vector_recovery.RecoveryTests.test_healthy_generation_is_reused_without_inference": {
+      "status": "passed"
+    },
+    "check_vector_recovery.RecoveryTests.test_missing_index_rebuild_and_restart_keep_citations_and_source_ids": {
+      "status": "passed"
+    },
+    "check_vector_recovery.RecoveryTests.test_unavailable_digest_preserves_sources_and_does_not_embed": {
+      "status": "passed"
+    },
+    "check_vector_recovery.RecoveryTests.test_wrong_conversation_does_not_embed_or_expose_document": {
+      "status": "passed"
+    },
+    "check_vector_runtime.RuntimeTests.test_chat_after_cutover_never_calls_legacy_dense_scan": {
+      "status": "passed"
+    },
+    "check_vector_runtime.RuntimeTests.test_finalized_schema_survives_restart_and_new_indexing": {
+      "status": "passed"
+    },
+    "check_vector_runtime.RuntimeTests.test_interrupted_upload_keeps_retryable_intent_and_parsed_content": {
+      "status": "passed"
+    },
+    "check_vector_runtime.RuntimeTests.test_live_worker_observes_rollback_epoch_and_current_history": {
+      "status": "passed"
+    },
+    "check_vector_runtime.RuntimeTests.test_missing_index_produces_explicit_error_not_no_evidence_answer": {
+      "status": "passed"
+    },
+    "check_vector_runtime.RuntimeTests.test_new_embeddings_only_in_vector_store": {
+      "status": "passed"
+    },
+    "check_vector_runtime.RuntimeTests.test_upload_commits_sources_and_pending_intent_before_embedding": {
+      "status": "passed"
+    },
+    "check_vector_store.VectorStoreTests.test_concurrent_process_readers_writers": {
+      "status": "passed"
+    },
+    "check_vector_store.VectorStoreTests.test_cross_process_gate_and_nested_thread_gate": {
+      "status": "passed"
+    },
+    "check_vector_store.VectorStoreTests.test_fts_incremental_deletion_phrase_and_scope": {
+      "status": "passed"
+    },
+    "check_vector_store.VectorStoreTests.test_idempotent_retry_and_restart": {
+      "status": "passed"
+    },
+    "check_vector_store.VectorStoreTests.test_maintenance_retains_protected_versions_shutdown_and_paths": {
+      "status": "passed"
+    },
+    "check_vector_store.VectorStoreTests.test_malformed_vectors_and_duplicate_sources": {
+      "status": "passed"
+    },
+    "check_vector_store.VectorStoreTests.test_manifest_detects_missing_rows_even_at_newer_version": {
+      "status": "passed"
+    },
+    "check_vector_store.VectorStoreTests.test_model_generation_and_fingerprint_filters": {
+      "status": "passed"
+    },
+    "check_vector_store.VectorStoreTests.test_multibatch_merge_is_atomic_and_retry_does_not_duplicate": {
+      "status": "passed"
+    },
+    "check_vector_store.VectorStoreTests.test_reader_observes_new_generations_from_another_process": {
+      "status": "passed"
+    },
+    "check_vector_store.VectorStoreTests.test_replacement_preserves_old_identity_without_returning_it": {
+      "status": "passed"
+    },
+    "check_vector_store.VectorStoreTests.test_supplied_cosine_identity_only_and_authorized_prefilter": {
+      "status": "passed"
+    }
+  }
+}

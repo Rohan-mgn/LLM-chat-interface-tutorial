@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "reference_origin": "Analyst-defined probes from direct native-text inspection of the supplied book, independently of production extraction. No human-review attestation.",
+  "limitations": "Five additional development probes frozen before either evaluation run. Fixed term and cited-page checks measure acquisition and source resolution, not semantic correctness, blind human clarity, summary completeness, or all unsupported claims. One latency observation per case; no model grading.",
+  "documents": [
+    {
+      "path": "C:/Users/Roh/Downloads/Explainable-AI-for-Practitioners.pdf",
+      "sha256": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21"
+    }
+  ],
+  "cases": [
+    {
+      "question": "Who are the authors of Explainable AI for Practitioners?",
+      "expected": [
+        "Michael Munn",
+        "David Pitman"
+      ],
+      "required_page_groups": [
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "question": "What is the first early-release date stated in the book?",
+      "required_patterns": [
+        "2022-07-20|July 20,? 2022|20 July 2022"
+      ],
+      "required_page_groups": [
+        [
+          3
+        ]
+      ]
+    },
+    {
+      "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+      "expected": [
+        "intrinsic",
+        "prediction"
+      ],
+      "required_patterns": [
+        "not necessarily|does not|doesn't|not.*intrinsic"
+      ],
+      "required_page_groups": [
+        [
+          10
+        ]
+      ]
+    },
+    {
+      "question": "Contrast local, cohort and global explanations; explain why local explanations on novel data can contradict global explanations.",
+      "expected": [
+        "local",
+        "cohort",
+        "global",
+        "novel"
+      ],
+      "required_page_groups": [
+        [
+          10
+        ],
+        [
+          11
+        ]
+      ]
+    },
+    {
+      "question": "How many check valve symbols appear on PDF page 1?",
+      "expected": [
+        "Unverified"
+      ],
+      "required_patterns": [
+        "No symbol total|cannot|unavailable"
+      ],
+      "required_page_groups": []
+    }
+  ]
+}

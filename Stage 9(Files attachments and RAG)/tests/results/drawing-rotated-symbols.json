@@ -1,0 +1,235 @@
+{
+  "passed": true,
+  "fixture_sha256": "29e5ceb640b1df668d19f5553d7dad3853f462fdd807103dff5cdb909c6da9cd",
+  "pdf_sha256": "b09b3e41437386f28679e27a5c64e0788663ea57a4569ed9a4d7887ed3321114",
+  "metrics": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "mean_iou": 0.999999918757239,
+    "classification_accuracy": 1.0,
+    "count_agreement": true,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "ground_truth_status": "not_independently_verified"
+  },
+  "count": 5,
+  "label": "Estimated",
+  "seconds": 16.698798199999146,
+  "truth": [
+    {
+      "page": 1,
+      "class": "gate valve",
+      "bbox": [
+        79.6,
+        289.6,
+        100.4,
+        310.4
+      ]
+    },
+    {
+      "page": 1,
+      "class": "gate valve",
+      "bbox": [
+        177.37258300203047,
+        207.37258300203047,
+        222.62741699796953,
+        252.62741699796953
+      ]
+    },
+    {
+      "page": 1,
+      "class": "gate valve",
+      "bbox": [
+        306.0,
+        136.0,
+        354.0,
+        184.0
+      ]
+    },
+    {
+      "page": 2,
+      "class": "gate valve",
+      "bbox": [
+        72.67949192431124,
+        182.67949192431124,
+        127.32050807568876,
+        237.32050807568876
+      ]
+    },
+    {
+      "page": 2,
+      "class": "gate valve",
+      "bbox": [
+        271.2,
+        121.19999999999999,
+        328.8,
+        178.8
+      ]
+    }
+  ],
+  "detections": [
+    {
+      "id": "SYMBOL_358b532f80ec9029105d79f3",
+      "page": 1,
+      "bbox": [
+        306.0,
+        136.0,
+        354.0,
+        184.0
+      ],
+      "class": "gate valve",
+      "template_version": 1,
+      "score": 1.0,
+      "method": "native_opposed_triangle_profile",
+      "source_ids": [
+        "PATH_13d05bdc6a14dff9792ead0a",
+        "PATH_34b2c5d85c64011fce277e30"
+      ],
+      "ports": [
+        [
+          330.0,
+          184.0
+        ],
+        [
+          330.0,
+          136.0
+        ]
+      ],
+      "status": "unverified",
+      "limitations": [
+        "Supported bow-tie outline only; plant conventions require review."
+      ]
+    },
+    {
+      "id": "SYMBOL_39c6d46758e88c7f1a03cea5",
+      "page": 1,
+      "bbox": [
+        79.6,
+        289.6,
+        100.4,
+        310.4
+      ],
+      "class": "gate valve",
+      "template_version": 1,
+      "score": 1.0,
+      "method": "native_opposed_triangle_profile",
+      "source_ids": [
+        "PATH_52ca09b3f1b08ce9f8785d47",
+        "PATH_f11942eede4177c6b0e31577"
+      ],
+      "ports": [
+        [
+          79.6,
+          300.0
+        ],
+        [
+          100.4,
+          300.0
+        ]
+      ],
+      "status": "unverified",
+      "limitations": [
+        "Supported bow-tie outline only; plant conventions require review."
+      ]
+    },
+    {
+      "id": "SYMBOL_5a3f56f4c109c13356fdd11c",
+      "page": 1,
+      "bbox": [
+        177.37258,
+        207.37258,
+        222.62742,
+        252.62742
+      ],
+      "class": "gate valve",
+      "template_version": 1,
+      "score": 1.0,
+      "method": "native_opposed_triangle_profile",
+      "source_ids": [
+        "PATH_0e2b51ca357e6931c7a839ee",
+        "PATH_ee7aeccadd2fad8e2a1006ca"
+      ],
+      "ports": [
+        [
+          188.68628999999999,
+          241.31371000000001
+        ],
+        [
+          211.31371000000001,
+          218.68628999999999
+        ]
+      ],
+      "status": "unverified",
+      "limitations": [
+        "Supported bow-tie outline only; plant conventions require review."
+      ]
+    },
+    {
+      "id": "SYMBOL_824ee1a88892f52e5ab4aa53",
+      "page": 2,
+      "bbox": [
+        72.67949,
+        182.67949,
+        127.32051,
+        237.32051
+      ],
+      "class": "gate valve",
+      "template_version": 1,
+      "score": 1.0,
+      "method": "native_opposed_triangle_profile",
+      "source_ids": [
+        "PATH_5a185ffb45a16734e23765ec",
+        "PATH_a58a81efa6945e053afb83d9"
+      ],
+      "ports": [
+        [
+          110.0,
+          227.32051
+        ],
+        [
+          90.0,
+          192.67949
+        ]
+      ],
+      "status": "unverified",
+      "limitations": [
+        "Supported bow-tie outline only; plant conventions require review."
+      ]
+    },
+    {
+      "id": "SYMBOL_b191a55ef630dfc0f7cf94fa",
+      "page": 2,
+      "bbox": [
+        271.2,
+        121.19999999999999,
+        328.8,
+        178.8
+      ],
+      "class": "gate valve",
+      "template_version": 1,
+      "score": 1.0,
+      "method": "native_opposed_triangle_profile",
+      "source_ids": [
+        "PATH_a065dc17b5e3dc27193ee609",
+        "PATH_fd9913652284d6dd09f98b5a"
+      ],
+      "ports": [
+        [
+          300.0,
+          121.19999999999999
+        ],
+        [
+          300.0,
+          178.8
+        ]
+      ],
+      "status": "unverified",
+      "limitations": [
+        "Supported bow-tie outline only; plant conventions require review."
+      ]
+    }
+  ],
+  "answer": "**Estimated: 5** matches for gate valve in PDF page(s) 1, 2. This is not an independently verified total; missed or misclassified symbols remain possible.\n\nSource: rotated-symbols.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+  "native_text_state": "failed",
+  "limitations": "Synthetic five-target scope plus a marked lookalike; automatic vector profile only. Not exhaustive real-drawing ground truth or arbitrary symbol recognition."
+}

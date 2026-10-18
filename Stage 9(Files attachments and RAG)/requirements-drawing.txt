@@ -1,0 +1,9 @@
+-r requirements-vector.txt
+pdfplumber==0.11.10
+pdfminer-six==20260107
+pypdfium2==5.14.0
+opencv-python-headless==5.0.0.93
+cryptography==50.0.2
+cffi==2.1.1
+charset-normalizer==3.5.2
+pycparser==3.11

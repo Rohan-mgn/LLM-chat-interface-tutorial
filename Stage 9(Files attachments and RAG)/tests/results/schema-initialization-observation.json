@@ -1,0 +1,6 @@
+{
+  "before_seconds": 17.604,
+  "after_seconds": 2.859,
+  "scope": "One isolated fixture initialization per version. Different concurrent workloads; not a stable performance benchmark.",
+  "transactions": "Schema batches are atomic; durability settings unchanged."
+}

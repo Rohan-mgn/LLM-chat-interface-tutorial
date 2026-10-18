@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "origin": "Independently specified synthetic drawing coordinates; not human-reviewed real-drawing truth",
+  "fixture": "Two copies of drawing() from check_drawing_analysis.py; 600 by 400 PDF points per page",
+  "required_label": "Estimated",
+  "required_count": 4,
+  "minimum_precision": 1.0,
+  "minimum_recall": 1.0,
+  "objects": [
+    {"page": 1, "bbox": [80,168,112,200], "class": "gate valve"},
+    {"page": 1, "bbox": [180,168,212,200], "class": "gate valve"},
+    {"page": 2, "bbox": [80,168,112,200], "class": "gate valve"},
+    {"page": 2, "bbox": [180,168,212,200], "class": "gate valve"}
+  ]
+}

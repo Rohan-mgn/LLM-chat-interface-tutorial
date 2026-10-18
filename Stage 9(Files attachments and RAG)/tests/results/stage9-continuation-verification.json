@@ -1,0 +1,131 @@
+{
+  "scope": "Continuation checkpoint; overall Stage 9 acceptance remains incomplete",
+  "regression_history": [
+    {
+      "report": "evidence-drawing-final-regression.json",
+      "tests": 282,
+      "failures": 0,
+      "note": "Before the last answering and review corrections"
+    },
+    {
+      "report": "answer-corrections-integration.json",
+      "tests": 104,
+      "failures": 0,
+      "note": "Isolated qualification then exact promotion"
+    },
+    {
+      "report": "review-conflict-regression.json",
+      "tests": 64,
+      "failures": 1,
+      "note": "Mock prompt recording assertion; 63 other tests passed"
+    },
+    {
+      "report": "conflict-release-recheck.json",
+      "tests": 10,
+      "failures": 0,
+      "note": "Same runtime hashes as 64-case run; corrected instrumentation"
+    },
+    {
+      "report": "final-claim-answering-regression.json",
+      "tests": 40,
+      "failures": 0,
+      "note": "Final number-word guard, answering and follow-up regression"
+    }
+  ],
+  "browser_suites": {
+    "drawing-review-restoration-browser-recheck.log": {
+      "passed": true,
+      "sha256": "5d21cb6140b7640fb828f8ca0d57ff0057f1040192641a5af3fd4f644aa9bd1e"
+    },
+    "attachment-browser-final-recheck.log": {
+      "passed": true,
+      "sha256": "ad50eafad928c901b75895835933eda2dd26be12e3923302843612900734076a"
+    },
+    "response-browser-final.log": {
+      "passed": true,
+      "sha256": "d8a2cd60f7998f025104b4197c67dec2aa46e43e9a51e8602472731af41d4912"
+    }
+  },
+  "development_qa": {
+    "book-chat-final-comparison.json": {
+      "before": 2,
+      "after": 5,
+      "total": 5,
+      "independent_human_quality_acceptance": false
+    },
+    "drawing-chat-integrated-comparison.json": {
+      "before": 0,
+      "after": 7,
+      "total": 7,
+      "independent_human_quality_acceptance": false
+    }
+  },
+  "final_runtime_hashes": {
+    "RAG\\__init__.py": "5037fb3fa7a0bb63b16b3aac545f3831a4e808bf9be469f5332d645236ffb83d",
+    "RAG\\answer_references.py": "4c8ba81a4e3f27f2776196693219b30a59c4cf5bd4ec579aa49eba375df2a76e",
+    "RAG\\answering.py": "042ee5464494e98e6c30a0d4544348c24d18dfce850ebb1d10fff4bfccc28171",
+    "RAG\\attachment_tools.py": "a10aa39a832b985b1f69e0449557dec3f1c5edaf951bded4157d64ee1ccef677",
+    "RAG\\claim_gate.py": "9c736c2a7fd3e81a2a59f86e0eff704bce4de108bae412a6176fb8a9f902f537",
+    "RAG\\context_budget.py": "2da74c82d652d9387908109c27fbd8dc522717a969cb89da5d76b6c917232a67",
+    "RAG\\document_agent.py": "7b191a75f9e7475d08113a30f357b21f9b37a48ffe0a0400597c283973f54357",
+    "RAG\\document_parsers.py": "37b7ee327faf287862661c544512ed178230b540f07cdba2f9c44fccd50e21b8",
+    "RAG\\document_tools.py": "68f34a0a592dff4379bd92c81968be1e0272c6614eaf4f4ca95d22733949d106",
+    "RAG\\documents.py": "0ff8dccc76eb836f75d3c0b089d124daabaf51ae7ddbc4c4c145ed39b3051eed",
+    "RAG\\drawing_annotations.py": "af233d8a68083b9d6474f49c39af360d213e50616e859eba0f2b0482c35d8026",
+    "RAG\\drawing_chat.py": "d53f470f45fd0c0bd9f418f9218fc90b6fab4450e3e40551f17debf3d5a4aa8a",
+    "RAG\\drawing_extract.py": "403b6db0b7b1a2d681a8b392e66722e1af11244c504deb70a62f536bfbf7a7da",
+    "RAG\\drawing_geometry.py": "dda65354d4c27831547f79bd4c402f810863ea786a1b59b82f383ad5450dedaf",
+    "RAG\\drawing_graph.py": "0686a8782417cdaa77e06ba23eb60c4b5f96535043ffb557664ab91b5030f6cd",
+    "RAG\\drawing_measurements.py": "5ef03c6924a54cf2cb4994450e1ba61d78bc457f032c30328a73a07172017b57",
+    "RAG\\drawing_revisions.py": "26fef2bfe309d337a86907f7af32068efd29910a8a97abcca4b1dc6ae6172096",
+    "RAG\\drawing_routes.py": "bf70af159ffd61fd02c4f23b25782198ded1f0d6a55d5e6efbb7de803d013f78",
+    "RAG\\drawing_symbols.py": "01caf312d3b8d8614ad723fd78b48469200a510a647a68a8384299fbf97b5928",
+    "RAG\\drawing_validation.py": "1161ac5d03fbb9562d636a6f3d08db8335b7dbbe557f7ea69706a8d88c7e0c6a",
+    "RAG\\drawing_worker.py": "8759ddb92fbafd3409e8b735c4fd6b2e93f24b21f8a3cba8faa34f64b94a37ce",
+    "RAG\\drawings.py": "5d65d627b28b009a09cb3ed48141e7c4fe54df8e091217303599e6aee7c91e45",
+    "RAG\\evidence.py": "7f081f9ce7f711e52a25691767f5c19375b1d5880b39da91b632e327a4d2d669",
+    "RAG\\evidence_release.py": "fe9b8d0f957375a522309c6ba4a0fc82ae510ba488a7710879c8a736a22019b6",
+    "RAG\\file_routes.py": "3fc281b8315d7140e8c406470c3d4fea4317bebd36fe1588837fa41af0c36b2c",
+    "RAG\\grounding.py": "ade6a6fa4ac64568646885373a2081b53810f56d4a88d55c7ee00a795327cd4d",
+    "RAG\\index_lifecycle.py": "a311813f277c83576b4562a142dc85aea47824496a183006e2cd2349b26283dc",
+    "RAG\\model_provider.py": "c75ba488e4534a11741f2396408a01c99727926142e3b5017cab46e667511ecb",
+    "RAG\\operations.py": "8808bc782c63eaec6f1a79c49b4f8c2048daa065a1bf438a6bf96d1243ec486f",
+    "RAG\\parser_limits.py": "fd77392f25f948c0d5d495cc635c943a43d24f217af086dcc78a074dfa105cab",
+    "RAG\\parser_registry.py": "9e3ff85f90c030bf80953d048d02d8633bd9098463d96b1579cf51e48715d375",
+    "RAG\\parser_worker.py": "94b8315c5b919ca61bb62c3c318d07a9ee1d1e233714a74a5e705bbbf62cd9dd",
+    "RAG\\planner.py": "2076d7d763159324f96edff5a0054ef03cbaf550b4ebc2cdd672a9769649c42e",
+    "RAG\\rag.py": "9510e36449bf35f1b75b7da6c26a069c2487a24870af12cc84ecd04ce1685e48",
+    "RAG\\request_state.py": "1627d77e45309d8e6a505c22f026ee71f770ddb112c2eb40f2c2151f89e117e9",
+    "RAG\\research.py": "36fef19edc097eb63d9afa1ec4eaafb071fc79b4728906c0d5b38f3cb8252f11",
+    "RAG\\storage_gate.py": "d9ca6539bd66daf62cfa33c0c87c55a83eaa2c05d79ac2ea79be4fed1c221fd0",
+    "RAG\\structured_formats.py": "a2d1d37eea523fd027320d2f566940735dec528548a0ac3a212c6b8eebd725bd",
+    "RAG\\summarizer.py": "62561ddebf27b3b4e85fb69b0a24f49aa579da30a5772aa165e0aa39a5e665b9",
+    "RAG\\table_schema.py": "379b1134f0fd4ed71751aaf50b08bfd9450b1873adb28e9c73b685f403baf7c7",
+    "RAG\\table_tools.py": "cfbb9c74ea6e51c71ceb5f5817434c45a834f34e18eb0a007e89ffe8f260b6db",
+    "RAG\\vector_cache.py": "67ac8bf10fe1abacc9fd362dcc2755478955305a9a1bc52cb7b9c4e3b924c0c2",
+    "RAG\\vector_migration.py": "133a6e2bb95400551a26ef47a43849a6d66f80584a6afec8dde3f273c9ff2ae9",
+    "RAG\\vector_recovery.py": "2d5c6798de0cd05aaf4aff54df87b69fcb82c854350bdf47c779e9e9a4600088",
+    "RAG\\vector_store.py": "597eac4109afaa2a85c177c8026b69a706ee076f7ca7983bd6d0386b7309593e",
+    "main.py": "3fd5badb77f6559461381e3cf56aeab9332ddc010fd9246e1cdc7df8141227f0",
+    "run.py": "1557aaefa2d2cb4c4e4000a0cc7583e395d1059dcd731193bbe92bf88c003ad5",
+    "tree_store.py": "ed7d73884b0f34678316e4ee237b19aefd14de333963ea673ae6a56bcb787ca9"
+  },
+  "continuation_file_hashes": {
+    "RAG/claim_gate.py": "9c736c2a7fd3e81a2a59f86e0eff704bce4de108bae412a6176fb8a9f902f537",
+    "RAG/document_agent.py": "7b191a75f9e7475d08113a30f357b21f9b37a48ffe0a0400597c283973f54357",
+    "RAG/research.py": "36fef19edc097eb63d9afa1ec4eaafb071fc79b4728906c0d5b38f3cb8252f11",
+    "RAG/drawing_routes.py": "bf70af159ffd61fd02c4f23b25782198ded1f0d6a55d5e6efbb7de803d013f78",
+    "static/drawings.js": "3ec159aa5630c408e8ea1738de884f3b278b5f469d4ad9ceacc2ba23a9f0577a",
+    "tests/check_claim_release.py": "7bb3fb7c5950835194ea70fc6469c772c049182ab8953923e0d7752afe1681d2",
+    "tests/check_drawing_annotations.py": "fa548b007decec0cd0cd281f466d0560a13464cb8bc0f2be19dd64f0237bd6f8",
+    "tests/drawing_checks.js": "5f5f1de114031607073cc2a270ac974e2c857b4ecbaccb840fd4ad3435e5c1e8",
+    "tests/run_regression.py": "c776244d7467de66874e63e73b2bb50e66b0b84c6e1850b003d5e7342fb2d5cb"
+  },
+  "limitations": [
+    "No single full-suite run is claimed for all final corrections.",
+    "Fixtures and fixed term/page checks do not establish independent human factuality, broad summary completeness, or real-drawing symbol accuracy.",
+    "Only the claim gate changed after the 64-case run; all other runtime hashes match the final 40-case run.",
+    "No live storage finalization or additional models."
+  ],
+  "shell_reporting_note": "PowerShell reported wrapper exit 1 for redirected native stderr, including passing runs. Reproduced with a Python process that only writes a diagnostic to stderr and exits 0: LASTEXITCODE was 0, but the bare redirected wrapper returned 1. Acceptance outcomes above use the completed JSON runner reports and browser PASS records; initial real assertion failures are retained separately. Future redirected commands should explicitly exit $LASTEXITCODE."
+}

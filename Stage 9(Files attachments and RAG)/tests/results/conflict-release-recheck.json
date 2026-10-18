@@ -1,0 +1,98 @@
+{
+  "tests": 10,
+  "failures": 0,
+  "errors": 0,
+  "skipped": [],
+  "seconds": 46.164,
+  "successful": true,
+  "sources_unchanged": true,
+  "source_hashes": {
+    "RAG\\__init__.py": "5037fb3fa7a0bb63b16b3aac545f3831a4e808bf9be469f5332d645236ffb83d",
+    "RAG\\answer_references.py": "4c8ba81a4e3f27f2776196693219b30a59c4cf5bd4ec579aa49eba375df2a76e",
+    "RAG\\answering.py": "042ee5464494e98e6c30a0d4544348c24d18dfce850ebb1d10fff4bfccc28171",
+    "RAG\\attachment_tools.py": "a10aa39a832b985b1f69e0449557dec3f1c5edaf951bded4157d64ee1ccef677",
+    "RAG\\claim_gate.py": "9b521eea5b4cbecf5fc486ca7a006055b3a345be6bdfe55b2005a7fad3abea22",
+    "RAG\\context_budget.py": "2da74c82d652d9387908109c27fbd8dc522717a969cb89da5d76b6c917232a67",
+    "RAG\\document_agent.py": "7b191a75f9e7475d08113a30f357b21f9b37a48ffe0a0400597c283973f54357",
+    "RAG\\document_parsers.py": "37b7ee327faf287862661c544512ed178230b540f07cdba2f9c44fccd50e21b8",
+    "RAG\\document_tools.py": "68f34a0a592dff4379bd92c81968be1e0272c6614eaf4f4ca95d22733949d106",
+    "RAG\\documents.py": "0ff8dccc76eb836f75d3c0b089d124daabaf51ae7ddbc4c4c145ed39b3051eed",
+    "RAG\\drawing_annotations.py": "af233d8a68083b9d6474f49c39af360d213e50616e859eba0f2b0482c35d8026",
+    "RAG\\drawing_chat.py": "d53f470f45fd0c0bd9f418f9218fc90b6fab4450e3e40551f17debf3d5a4aa8a",
+    "RAG\\drawing_extract.py": "403b6db0b7b1a2d681a8b392e66722e1af11244c504deb70a62f536bfbf7a7da",
+    "RAG\\drawing_geometry.py": "dda65354d4c27831547f79bd4c402f810863ea786a1b59b82f383ad5450dedaf",
+    "RAG\\drawing_graph.py": "0686a8782417cdaa77e06ba23eb60c4b5f96535043ffb557664ab91b5030f6cd",
+    "RAG\\drawing_measurements.py": "5ef03c6924a54cf2cb4994450e1ba61d78bc457f032c30328a73a07172017b57",
+    "RAG\\drawing_revisions.py": "26fef2bfe309d337a86907f7af32068efd29910a8a97abcca4b1dc6ae6172096",
+    "RAG\\drawing_routes.py": "bf70af159ffd61fd02c4f23b25782198ded1f0d6a55d5e6efbb7de803d013f78",
+    "RAG\\drawing_symbols.py": "01caf312d3b8d8614ad723fd78b48469200a510a647a68a8384299fbf97b5928",
+    "RAG\\drawing_validation.py": "1161ac5d03fbb9562d636a6f3d08db8335b7dbbe557f7ea69706a8d88c7e0c6a",
+    "RAG\\drawing_worker.py": "8759ddb92fbafd3409e8b735c4fd6b2e93f24b21f8a3cba8faa34f64b94a37ce",
+    "RAG\\drawings.py": "5d65d627b28b009a09cb3ed48141e7c4fe54df8e091217303599e6aee7c91e45",
+    "RAG\\evidence.py": "7f081f9ce7f711e52a25691767f5c19375b1d5880b39da91b632e327a4d2d669",
+    "RAG\\evidence_release.py": "fe9b8d0f957375a522309c6ba4a0fc82ae510ba488a7710879c8a736a22019b6",
+    "RAG\\file_routes.py": "3fc281b8315d7140e8c406470c3d4fea4317bebd36fe1588837fa41af0c36b2c",
+    "RAG\\grounding.py": "ade6a6fa4ac64568646885373a2081b53810f56d4a88d55c7ee00a795327cd4d",
+    "RAG\\index_lifecycle.py": "a311813f277c83576b4562a142dc85aea47824496a183006e2cd2349b26283dc",
+    "RAG\\model_provider.py": "c75ba488e4534a11741f2396408a01c99727926142e3b5017cab46e667511ecb",
+    "RAG\\operations.py": "8808bc782c63eaec6f1a79c49b4f8c2048daa065a1bf438a6bf96d1243ec486f",
+    "RAG\\parser_limits.py": "fd77392f25f948c0d5d495cc635c943a43d24f217af086dcc78a074dfa105cab",
+    "RAG\\parser_registry.py": "9e3ff85f90c030bf80953d048d02d8633bd9098463d96b1579cf51e48715d375",
+    "RAG\\parser_worker.py": "94b8315c5b919ca61bb62c3c318d07a9ee1d1e233714a74a5e705bbbf62cd9dd",
+    "RAG\\planner.py": "2076d7d763159324f96edff5a0054ef03cbaf550b4ebc2cdd672a9769649c42e",
+    "RAG\\rag.py": "9510e36449bf35f1b75b7da6c26a069c2487a24870af12cc84ecd04ce1685e48",
+    "RAG\\request_state.py": "1627d77e45309d8e6a505c22f026ee71f770ddb112c2eb40f2c2151f89e117e9",
+    "RAG\\research.py": "36fef19edc097eb63d9afa1ec4eaafb071fc79b4728906c0d5b38f3cb8252f11",
+    "RAG\\storage_gate.py": "d9ca6539bd66daf62cfa33c0c87c55a83eaa2c05d79ac2ea79be4fed1c221fd0",
+    "RAG\\structured_formats.py": "a2d1d37eea523fd027320d2f566940735dec528548a0ac3a212c6b8eebd725bd",
+    "RAG\\summarizer.py": "62561ddebf27b3b4e85fb69b0a24f49aa579da30a5772aa165e0aa39a5e665b9",
+    "RAG\\table_schema.py": "379b1134f0fd4ed71751aaf50b08bfd9450b1873adb28e9c73b685f403baf7c7",
+    "RAG\\table_tools.py": "cfbb9c74ea6e51c71ceb5f5817434c45a834f34e18eb0a007e89ffe8f260b6db",
+    "RAG\\vector_cache.py": "67ac8bf10fe1abacc9fd362dcc2755478955305a9a1bc52cb7b9c4e3b924c0c2",
+    "RAG\\vector_migration.py": "133a6e2bb95400551a26ef47a43849a6d66f80584a6afec8dde3f273c9ff2ae9",
+    "RAG\\vector_recovery.py": "2d5c6798de0cd05aaf4aff54df87b69fcb82c854350bdf47c779e9e9a4600088",
+    "RAG\\vector_store.py": "597eac4109afaa2a85c177c8026b69a706ee076f7ca7983bd6d0386b7309593e",
+    "main.py": "3fd5badb77f6559461381e3cf56aeab9332ddc010fd9246e1cdc7df8141227f0",
+    "run.py": "1557aaefa2d2cb4c4e4000a0cc7583e395d1059dcd731193bbe92bf88c003ad5",
+    "tree_store.py": "ed7d73884b0f34678316e4ee237b19aefd14de333963ea673ae6a56bcb787ca9"
+  },
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "failure_details": [],
+  "completed": {
+    "check_claim_release.ClaimReleaseTests.test_fabricated_numeric_claim_never_reaches_sse": {
+      "status": "passed"
+    },
+    "check_claim_release.ClaimReleaseTests.test_missing_citations_fall_back_to_actual_passages": {
+      "status": "passed"
+    },
+    "check_claim_release.ClaimReleaseTests.test_omitted_competing_value_is_disclosed_before_sse_release": {
+      "status": "passed"
+    },
+    "check_claim_release.ClaimReleaseTests.test_source_substring_cannot_remove_a_numeric_condition": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_conceptual_contrast_routes_to_document_evidence": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_field_conflicts_normalize_units_but_not_revision_identifiers": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_gap_matrix_preserves_missing_subquestion_and_file": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_ranking_keeps_features_and_exact_identifier": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_short_excerpt_preserves_byline_and_normalizes_layout_whitespace": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_subquestion_budget_is_disclosed_instead_of_dropping_requests": {
+      "status": "passed"
+    }
+  },
+  "patterns": [
+    "check_claim_release.py"
+  ],
+  "scope": "affected"
+}

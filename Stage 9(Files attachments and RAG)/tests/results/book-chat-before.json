@@ -1,0 +1,2883 @@
+{
+  "complete": true,
+  "fixture_sha256": "b8267beae56b67ceb4e0f28d3bf0add3aaa4a9153bbe99d419144444ef7f5052",
+  "application": "D:\\Projects\\LLM-chat-interface-tutorial\\Stage 9(Files attachments and RAG)\\tests\\.artifacts\\qa-baseline",
+  "main_sha256": "d2047e0aff2b74506ad8b78767e73417ecc9675586069ba7899eea134aa8fdb4",
+  "models": [
+    {
+      "model": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72"
+    },
+    {
+      "model": "embeddinggemma:latest",
+      "digest": "85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1"
+    },
+    {
+      "model": "phi4-mini:latest",
+      "digest": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753"
+    }
+  ],
+  "limitations": "Five additional development probes frozen before either evaluation run. Fixed term and cited-page checks measure acquisition and source resolution, not semantic correctness, blind human clarity, summary completeness, or all unsupported claims. One latency observation per case; no model grading.",
+  "rows": [
+    {
+      "question": "Who are the authors of Explainable AI for Practitioners?",
+      "expected": [
+        "Michael Munn",
+        "David Pitman"
+      ],
+      "passed": true,
+      "answer": "**Authors of Explainable AI for Practitioners**\n\nAccording to the document excerpt [SOURCE_7ef8d8c538c65a99528a927c] from the book \"Explainable AI for Practitioners\" by Michael Munn and David Pitman, the authors are:\n\n* Michael Munn\n* David Pitman\n\nAdditionally, the book is published by O'Reilly Media, Inc., and the copyright is held by Michael Munn, David Pitman, and O'Reilly Media, Inc.",
+      "content_match": true,
+      "required_page_groups_found": 1,
+      "required_page_groups": 1,
+      "cited_pages": [
+        2
+      ],
+      "citation_resolution": [
+        {
+          "id": "SOURCE_7ef8d8c538c65a99528a927c",
+          "status": 200
+        }
+      ],
+      "seconds": 21.37593129999732,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "**",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "Authors",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " of",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " Explain",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "able",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " AI",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " for",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " Pract",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "ition",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "ers",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "**\n\n",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "According",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " to",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " document",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " excerpt",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " ",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "[SOURCE_7ef8d8c538c65a99528a927c]",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " from",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " book",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " \"",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "Ex",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "plain",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "able",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " AI",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " for",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " Pract",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "ition",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "ers",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "\"",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " by",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " Michael",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " M",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "unn",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " and",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " David",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " Pit",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "man",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " authors",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " are",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": ":\n\n",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "*",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " Michael",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " M",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "unn",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "\n",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "*",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " David",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " Pit",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "man",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "\n\n",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "Additionally",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " book",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " is",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " published",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " by",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " O",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "'Re",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "illy",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " Media",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " Inc",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": ".,",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " and",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " copyright",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " is",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " held",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " by",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " Michael",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " M",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "unn",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " David",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " Pit",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "man",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " and",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " O",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "'Re",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": "illy",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " Media",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": " Inc",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "delta",
+          "content": ".",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "a9c85107-4e2f-45e6-9a4f-3c417f99f379"
+        }
+      ],
+      "sources": [
+        {
+          "id": "SOURCE_7ef8d8c538c65a99528a927c",
+          "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 2, \"section\": \"Page 2\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_4e188653ff373d8429da98b3\", \"parent_id\": \"PARENT_e26af3876cdd85d46f9b8be2\", \"block_index\": 1, \"start\": 0, \"end\": 328, \"logical_group\": \"BLOCK_4e188653ff373d8429da98b3\", \"offset\": 0, \"end_offset\": 328, \"chunk_index\": 0}",
+          "ordinal": 0
+        }
+      ],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "Who are the authors of Explainable AI for Practitioners?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "Who are the authors of Explainable AI for Practitioners?",
+          "files": [
+            {
+              "id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "name": "Explainable-AI-for-Practitioners.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "Who are the authors of Explainable AI for Practitioners?",
+          "authorized_files": [
+            "f08fbdde5b37472bb81678b3f5cf06d9"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_7ef8d8c538c65a99528a927c",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "a7c5d10648deb3dfdb9a5934f6645f8b204683206b3f90a8d90ba3bcaddea9d8",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_6729362621ef29221943473d",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "3ffe4315a9baa69c00e85763827eb9931d9ce92ac48b4c1badba79a9a1617d24",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_21b1bbc3d0bf758bbe42f2f3",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "ec4765e4968cb85554b74e37e5ff090385d217424aadfaf24bee45a0aceff151",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_034584342dda904da497176b",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "f9baadbd932c9797b8c265ed72a7baad65af2f2df765f32387daf65bdab761ac",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "Who are the authors of Explainable AI for Practitioners?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_7ef8d8c538c65a99528a927c",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.032266458495966696
+          },
+          {
+            "id": "SOURCE_6729362621ef29221943473d",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.031754032258064516
+          },
+          {
+            "id": "SOURCE_21b1bbc3d0bf758bbe42f2f3",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.032018442622950824
+          },
+          {
+            "id": "SOURCE_034584342dda904da497176b",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.0315136476426799
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "a00b5f2c81662af45853848e0aeacb53058d1d4af75358167a30cf038bc5698f",
+          "files": [
+            {
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "unavailable: ValueError",
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 985038,
+          "hits": 0,
+          "misses": 1
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 19846.6,
+        "estimated_input_tokens": 1718,
+        "model_token_usage": [
+          {
+            "purpose": "reranking",
+            "prompt_eval_count": 3304,
+            "eval_count": 283,
+            "prompt_eval_duration": 1653459000,
+            "eval_duration": 4059990000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1603,
+            "eval_count": 93,
+            "prompt_eval_duration": 473688000,
+            "eval_duration": 1170856000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "metadata": 2,
+          "embedding": 1,
+          "reranking": 1,
+          "generation": 1
+        },
+        "model_call_count": 3,
+        "timings_ms": {
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 3.21,
+          "embedding": 128.74,
+          "dense_search": 138.84,
+          "model_queue": 0.02,
+          "model_inference": 18957.42,
+          "reranking": 6595.84,
+          "answer_generation": 12371.53
+        },
+        "total_ms": 19846.88,
+        "time_to_first_token_ms": 8496.35,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the first early-release date stated in the book?",
+      "expected": [],
+      "passed": false,
+      "answer": "According to the document excerpt, there is no specific early-release date stated in the book. However, it mentions that the book is part of an \"Early Release\" series, and the author notes that readers can take advantage of the technologies in these books \"long before the official release of these titles.\"",
+      "content_match": false,
+      "required_page_groups_found": 0,
+      "required_page_groups": 1,
+      "cited_pages": [],
+      "citation_resolution": [],
+      "seconds": 14.006854100000055,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 3,
+          "assistant_message_id": 4,
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": "According",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " to",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " document",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " excerpt",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " there",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " is",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " no",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " specific",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " early",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": "-release",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " date",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " stated",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " in",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " book",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": ".",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " However",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " it",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " mentions",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " that",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " book",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " is",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " part",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " of",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " an",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " \"",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": "Early",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " Release",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": "\"",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " series",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " and",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " author",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " notes",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " that",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " readers",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " can",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " take",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " advantage",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " of",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " technologies",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " in",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " these",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " books",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " \"",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": "long",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " before",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " official",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " release",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " of",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " these",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": " titles",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "delta",
+          "content": ".\"",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "error",
+          "message": "The model did not cite a retrieved passage. Open Files to verify the answer.",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "fd3eefe9-49ce-4e68-a4d7-80cfd104a598"
+        }
+      ],
+      "sources": [],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "What is the first early-release date stated in the book?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "What is the first early-release date stated in the book?",
+          "files": [
+            {
+              "id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "name": "Explainable-AI-for-Practitioners.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "What is the first early-release date stated in the book?",
+          "authorized_files": [
+            "f08fbdde5b37472bb81678b3f5cf06d9"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_39275c5cd2d2ee4c69a12214",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "af24723fe9cf7399597db1280a329695b5f7e3e939062d216a662daa9ff394ac",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "What is the first early-release date stated in the book?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_39275c5cd2d2ee4c69a12214",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.03278688524590164
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "f1732eb919e9e9587f2c50f12bc8a9b2e7fdba79acf51e69db7598698772308c",
+          "files": [
+            {
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "unavailable: JSONDecodeError",
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 985038,
+          "hits": 1,
+          "misses": 1
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 13126.3,
+        "estimated_input_tokens": 525,
+        "model_token_usage": [
+          {
+            "purpose": "reranking",
+            "prompt_eval_count": 2894,
+            "eval_count": 512,
+            "prompt_eval_duration": 962561000,
+            "eval_duration": 7886140000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 795,
+            "eval_count": 61,
+            "prompt_eval_duration": 557875000,
+            "eval_duration": 796718000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "metadata": 2,
+          "embedding": 1,
+          "reranking": 1,
+          "generation": 1
+        },
+        "model_call_count": 3,
+        "timings_ms": {
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 4.83,
+          "embedding": 19.6,
+          "dense_search": 46.66,
+          "model_queue": 0.02,
+          "model_inference": 12257.12,
+          "reranking": 8889.5,
+          "answer_generation": 3377.56
+        },
+        "total_ms": 13126.47,
+        "time_to_first_token_ms": 10912.01,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+      "expected": [
+        "intrinsic",
+        "prediction"
+      ],
+      "passed": true,
+      "answer": "**Intrinsic vs. Post-Hoc Explanations**\n\nAccording to the book, receiving a prediction and explanation together does not necessarily mean the explanation is intrinsic.\n\n**Post-Hoc Explanations**\n\nExplanations that are performed after the model has been trained and rely on the prediction to create the explanation are called post-hoc explanations. Most of the techniques discussed in the book are post-hoc explanations because they are more portable and can be decoupled from the model itself.\n\n**Intrinsic Explanations**\n\nIntrinsic explanations, on the other hand, are explanations that are part of the model's prediction itself. These explanations are generated within the model and are not dependent on the prediction.\n\n**Key Point**\n\nThe book highlights that the fact that a service provides an explanation with the prediction does not necessarily mean the explanation is intrinsic. It may be that the service first generates the prediction, then the explanation, before returning both together.\n\n**Citation**\n[SOURCE_5d5e2da5161fea52e254c9cd]",
+      "content_match": true,
+      "required_page_groups_found": 1,
+      "required_page_groups": 1,
+      "cited_pages": [
+        10
+      ],
+      "citation_resolution": [
+        {
+          "id": "SOURCE_5d5e2da5161fea52e254c9cd",
+          "status": 200
+        }
+      ],
+      "seconds": 52.02523819999624,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 5,
+          "assistant_message_id": 6,
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "**",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "In",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "trinsic",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " vs",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": ".",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " Post",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "-H",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "oc",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " Ex",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "plan",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "ations",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "**\n\n",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "According",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " to",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " book",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " receiving",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " a",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " prediction",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " and",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " explanation",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " together",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " does",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " not",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " necessarily",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " mean",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " explanation",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " is",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " intrinsic",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": ".\n\n",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "**",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "Post",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "-H",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "oc",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " Ex",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "plan",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "ations",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "**\n\n",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "Ex",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "plan",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "ations",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " that",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " are",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " performed",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " after",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " model",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " has",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " been",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " trained",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " and",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " rely",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " on",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " prediction",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " to",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " create",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " explanation",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " are",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " called",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " post",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "-h",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "oc",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " explanations",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": ".",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " Most",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " of",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " techniques",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " discussed",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " in",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " book",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " are",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " post",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "-h",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "oc",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " explanations",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " because",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " they",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " are",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " more",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " portable",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " and",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " can",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " be",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " dec",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "ou",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "pled",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " from",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " model",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " itself",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": ".\n\n",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "**",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "In",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "trinsic",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " Ex",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "plan",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "ations",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "**\n\n",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "In",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "trinsic",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " explanations",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " on",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " other",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " hand",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " are",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " explanations",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " that",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " are",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " part",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " of",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " model",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "'s",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " prediction",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " itself",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": ".",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " These",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " explanations",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " are",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " generated",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " within",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " model",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " and",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " are",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " not",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " dependent",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " on",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " prediction",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": ".\n\n",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "**",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "Key",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " Point",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "**\n\n",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "The",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " book",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " highlights",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " that",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " fact",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " that",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " a",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " service",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " provides",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " an",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " explanation",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " with",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " prediction",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " does",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " not",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " necessarily",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " mean",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " explanation",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " is",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " intrinsic",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": ".",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " It",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " may",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " be",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " that",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " service",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " first",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " generates",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " prediction",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " then",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " the",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " explanation",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": ",",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " before",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " returning",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " both",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": " together",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": ".\n\n",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "**",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "C",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "itation",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "**\n",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "delta",
+          "content": "[SOURCE_5d5e2da5161fea52e254c9cd]",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "7aa94017-bdaf-49a9-b14b-0725ff3f9ac5"
+        }
+      ],
+      "sources": [
+        {
+          "id": "SOURCE_5d5e2da5161fea52e254c9cd",
+          "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 10, \"section\": \"Page 10\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_58a951c55b8e83cc0ca3f335\", \"parent_id\": \"PARENT_0270c755f261d916972be9ab\", \"block_index\": 9, \"start\": 0, \"end\": 3509, \"logical_group\": \"BLOCK_58a951c55b8e83cc0ca3f335\", \"offset\": 455, \"end_offset\": 1155, \"chunk_index\": 42}",
+          "ordinal": 0
+        }
+      ],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+          "files": [
+            {
+              "id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "name": "Explainable-AI-for-Practitioners.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+          "authorized_files": [
+            "f08fbdde5b37472bb81678b3f5cf06d9"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_9d5d7e4cbd3901c637b68e70",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "bf9bf661bac42b06dbde18d08c95869aebc88ad10ee5c71db48c9d7fb8256af3",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_0c6d9dbc7e2a7255976ff9ed",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "e1ab2525120318eecab795d70bd74937c804063ace181fa3831db92f57911449",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_5d5e2da5161fea52e254c9cd",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "50acf67928df89f59a97bb542e34b10e57fc351c0eaddd08e0aed7a3dc26f79a",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_369b5093f4f01ecba5326337",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "afaac062bf675445cb639b036b2b801e745e96960d0b03c4ba84f5daa8bad527",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_9d5d7e4cbd3901c637b68e70",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.029827662395050816
+          },
+          {
+            "id": "SOURCE_0c6d9dbc7e2a7255976ff9ed",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.03149801587301587
+          },
+          {
+            "id": "SOURCE_5d5e2da5161fea52e254c9cd",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_369b5093f4f01ecba5326337",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.016129032258064516
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "7f2991eb8d0a88655ac60a01e3b425a4236dffa65c77e991fa30ea9c197e255e",
+          "files": [
+            {
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "validated",
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 985038,
+          "hits": 2,
+          "misses": 1
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 50208.2,
+        "estimated_input_tokens": 1916,
+        "model_token_usage": [
+          {
+            "purpose": "routing",
+            "prompt_eval_count": 143,
+            "eval_count": 64,
+            "prompt_eval_duration": 399426000,
+            "eval_duration": 1214940000
+          },
+          {
+            "purpose": "reranking",
+            "prompt_eval_count": 3205,
+            "eval_count": 336,
+            "prompt_eval_duration": 1042994999,
+            "eval_duration": 5145543000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1708,
+            "eval_count": 196,
+            "prompt_eval_duration": 401198000,
+            "eval_duration": 2759807000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "routing": 1,
+          "metadata": 2,
+          "embedding": 1,
+          "reranking": 1,
+          "generation": 1
+        },
+        "model_call_count": 4,
+        "timings_ms": {
+          "model_queue": 0.03,
+          "model_inference": 49163.6,
+          "routing": 1704.28,
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 4.16,
+          "embedding": 15.02,
+          "dense_search": 31.42,
+          "reranking": 6230.7,
+          "answer_generation": 41256.76
+        },
+        "total_ms": 50208.87,
+        "time_to_first_token_ms": 9812.99,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "Contrast local, cohort and global explanations; explain why local explanations on novel data can contradict global explanations.",
+      "expected": [
+        "local",
+        "cohort",
+        "global",
+        "novel"
+      ],
+      "passed": false,
+      "answer": "",
+      "content_match": false,
+      "required_page_groups_found": 0,
+      "required_page_groups": 2,
+      "cited_pages": [],
+      "citation_resolution": [],
+      "seconds": 2.2427632000035373,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 7,
+          "assistant_message_id": 8,
+          "generation_id": "0b9f6c18-7958-4b10-a4c7-3c9d24cf034c"
+        },
+        {
+          "type": "status",
+          "message": "Document task: extract...",
+          "generation_id": "0b9f6c18-7958-4b10-a4c7-3c9d24cf034c"
+        },
+        {
+          "type": "error",
+          "message": "Specify an exact document operation and its word, phrase, page or section.",
+          "generation_id": "0b9f6c18-7958-4b10-a4c7-3c9d24cf034c"
+        },
+        {
+          "type": "done",
+          "status": "error",
+          "generation_id": "0b9f6c18-7958-4b10-a4c7-3c9d24cf034c"
+        }
+      ],
+      "sources": [],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+          "files": [
+            {
+              "id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "name": "Explainable-AI-for-Practitioners.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+          "authorized_files": [
+            "f08fbdde5b37472bb81678b3f5cf06d9"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_9d5d7e4cbd3901c637b68e70",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "bf9bf661bac42b06dbde18d08c95869aebc88ad10ee5c71db48c9d7fb8256af3",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_0c6d9dbc7e2a7255976ff9ed",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "e1ab2525120318eecab795d70bd74937c804063ace181fa3831db92f57911449",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_5d5e2da5161fea52e254c9cd",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "50acf67928df89f59a97bb542e34b10e57fc351c0eaddd08e0aed7a3dc26f79a",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_369b5093f4f01ecba5326337",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "afaac062bf675445cb639b036b2b801e745e96960d0b03c4ba84f5daa8bad527",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_9d5d7e4cbd3901c637b68e70",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.029827662395050816
+          },
+          {
+            "id": "SOURCE_0c6d9dbc7e2a7255976ff9ed",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.03149801587301587
+          },
+          {
+            "id": "SOURCE_5d5e2da5161fea52e254c9cd",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_369b5093f4f01ecba5326337",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.016129032258064516
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "7f2991eb8d0a88655ac60a01e3b425a4236dffa65c77e991fa30ea9c197e255e",
+          "files": [
+            {
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "validated",
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 985038,
+          "hits": 2,
+          "misses": 1
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 50208.2,
+        "estimated_input_tokens": 1916,
+        "model_token_usage": [
+          {
+            "purpose": "routing",
+            "prompt_eval_count": 143,
+            "eval_count": 64,
+            "prompt_eval_duration": 399426000,
+            "eval_duration": 1214940000
+          },
+          {
+            "purpose": "reranking",
+            "prompt_eval_count": 3205,
+            "eval_count": 336,
+            "prompt_eval_duration": 1042994999,
+            "eval_duration": 5145543000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1708,
+            "eval_count": 196,
+            "prompt_eval_duration": 401198000,
+            "eval_duration": 2759807000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "routing": 1,
+          "metadata": 2,
+          "embedding": 1,
+          "reranking": 1,
+          "generation": 1
+        },
+        "model_call_count": 4,
+        "timings_ms": {
+          "model_queue": 0.03,
+          "model_inference": 49163.6,
+          "routing": 1704.28,
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 4.16,
+          "embedding": 15.02,
+          "dense_search": 31.42,
+          "reranking": 6230.7,
+          "answer_generation": 41256.76
+        },
+        "total_ms": 50208.87,
+        "time_to_first_token_ms": 9812.99,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "How many check valve symbols appear on PDF page 1?",
+      "expected": [
+        "Unverified"
+      ],
+      "passed": false,
+      "answer": "",
+      "content_match": false,
+      "required_page_groups_found": 0,
+      "required_page_groups": 0,
+      "cited_pages": [],
+      "citation_resolution": [],
+      "seconds": 0.723685499993735,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 9,
+          "assistant_message_id": 10,
+          "generation_id": "870ee091-a32f-4552-8785-00a3ac5cf42b"
+        },
+        {
+          "type": "status",
+          "message": "Document task: count...",
+          "generation_id": "870ee091-a32f-4552-8785-00a3ac5cf42b"
+        },
+        {
+          "type": "error",
+          "message": "Specify an exact document operation and its word, phrase, page or section.",
+          "generation_id": "870ee091-a32f-4552-8785-00a3ac5cf42b"
+        },
+        {
+          "type": "done",
+          "status": "error",
+          "generation_id": "870ee091-a32f-4552-8785-00a3ac5cf42b"
+        }
+      ],
+      "sources": [],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+          "files": [
+            {
+              "id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "name": "Explainable-AI-for-Practitioners.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+          "authorized_files": [
+            "f08fbdde5b37472bb81678b3f5cf06d9"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_9d5d7e4cbd3901c637b68e70",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "bf9bf661bac42b06dbde18d08c95869aebc88ad10ee5c71db48c9d7fb8256af3",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_0c6d9dbc7e2a7255976ff9ed",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "e1ab2525120318eecab795d70bd74937c804063ace181fa3831db92f57911449",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_5d5e2da5161fea52e254c9cd",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "50acf67928df89f59a97bb542e34b10e57fc351c0eaddd08e0aed7a3dc26f79a",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_369b5093f4f01ecba5326337",
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "text_fingerprint": "afaac062bf675445cb639b036b2b801e745e96960d0b03c4ba84f5daa8bad527",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_9d5d7e4cbd3901c637b68e70",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.029827662395050816
+          },
+          {
+            "id": "SOURCE_0c6d9dbc7e2a7255976ff9ed",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.03149801587301587
+          },
+          {
+            "id": "SOURCE_5d5e2da5161fea52e254c9cd",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_369b5093f4f01ecba5326337",
+            "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+            "score": 0.016129032258064516
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "7f2991eb8d0a88655ac60a01e3b425a4236dffa65c77e991fa30ea9c197e255e",
+          "files": [
+            {
+              "file_id": "f08fbdde5b37472bb81678b3f5cf06d9",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "validated",
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 985038,
+          "hits": 2,
+          "misses": 1
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 50208.2,
+        "estimated_input_tokens": 1916,
+        "model_token_usage": [
+          {
+            "purpose": "routing",
+            "prompt_eval_count": 143,
+            "eval_count": 64,
+            "prompt_eval_duration": 399426000,
+            "eval_duration": 1214940000
+          },
+          {
+            "purpose": "reranking",
+            "prompt_eval_count": 3205,
+            "eval_count": 336,
+            "prompt_eval_duration": 1042994999,
+            "eval_duration": 5145543000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1708,
+            "eval_count": 196,
+            "prompt_eval_duration": 401198000,
+            "eval_duration": 2759807000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "routing": 1,
+          "metadata": 2,
+          "embedding": 1,
+          "reranking": 1,
+          "generation": 1
+        },
+        "model_call_count": 4,
+        "timings_ms": {
+          "model_queue": 0.03,
+          "model_inference": 49163.6,
+          "routing": 1704.28,
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 4.16,
+          "embedding": 15.02,
+          "dense_search": 31.42,
+          "reranking": 6230.7,
+          "answer_generation": 41256.76
+        },
+        "total_ms": 50208.87,
+        "time_to_first_token_ms": 9812.99,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    }
+  ],
+  "artifacts": "D:\\Projects\\LLM-chat-interface-tutorial\\Stage 9(Files attachments and RAG)\\tests\\.artifacts\\drawing-qa-21dc35d4f18946ebb4e523449a8f2cf3",
+  "ingestion": [
+    {
+      "name": "Explainable-AI-for-Practitioners.pdf",
+      "sha256": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+      "state": "ready",
+      "seconds": 21.84719100000075
+    }
+  ],
+  "passed": 2,
+  "total": 5,
+  "p50_seconds": 14.006854100000055,
+  "p95_seconds": 52.02523819999624
+}

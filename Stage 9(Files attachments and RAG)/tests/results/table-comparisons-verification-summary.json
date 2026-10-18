@@ -1,0 +1,69 @@
+{
+  "scope": "Continuation verification; regression success is separate from live answer quality",
+  "focused_table_tests": {
+    "tests": 17,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 102.667
+  },
+  "permission_recheck": {
+    "tests": 12,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 75.012
+  },
+  "reload": {
+    "passed": true,
+    "scope": "Runtime file restarts, excluded files, process cleanup"
+  },
+  "live_candidate_promoted": false,
+  "live_models_changed": false,
+  "live_database_present": false,
+  "evaluations": {
+    "table-comparisons-live": {
+      "complete": true,
+      "passed": 0,
+      "total": 5,
+      "fixture_sha256": "0adf9c5182b6b989921ca67f8ce572e1e45eb3b7338bb608724c56899eb39d9f"
+    },
+    "table-comparisons-warm-live": {
+      "complete": true,
+      "passed": 0,
+      "total": 5,
+      "fixture_sha256": "0adf9c5182b6b989921ca67f8ce572e1e45eb3b7338bb608724c56899eb39d9f"
+    },
+    "table-comparisons-candidate-live": {
+      "complete": true,
+      "passed": 4,
+      "total": 5,
+      "fixture_sha256": "0adf9c5182b6b989921ca67f8ce572e1e45eb3b7338bb608724c56899eb39d9f"
+    },
+    "table-comparisons-candidate-v2-live": {
+      "complete": true,
+      "passed": 5,
+      "total": 5,
+      "fixture_sha256": "0adf9c5182b6b989921ca67f8ce572e1e45eb3b7338bb608724c56899eb39d9f"
+    },
+    "table-comparisons-heldout-live": {
+      "complete": true,
+      "passed": 3,
+      "total": 6,
+      "fixture_sha256": "3bbce94271ee8af00e57698d6da730106fb162c48a011b2699a77c589e636bbf"
+    }
+  },
+  "full_regression": {
+    "tests": 253,
+    "failures": 0,
+    "errors": 0,
+    "skipped": [],
+    "seconds": 1245.19,
+    "successful": true,
+    "sources_unchanged": true,
+    "report": "tests/results/table-comparisons-final-regression.json",
+    "shell_note": "PowerShell reported NativeCommandError for stderr warning output; unittest OK and structured report confirm successful tests."
+  },
+  "milestones_complete": {
+    "storage": false,
+    "assistant": false
+  }
+}

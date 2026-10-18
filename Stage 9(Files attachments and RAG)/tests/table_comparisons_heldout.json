@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "scope": "New table interpretation holdout, separate from the original storage and attachment families. Frozen before first execution; do not tune on its failures.",
+  "cases": [
+    {
+      "id": "monthly-decline",
+      "document": "Month,Sales\nMarch,80\nApril,60\n",
+      "question": "What is the percentage change in Sales from March to April?",
+      "expected": {"metric": "percent_change", "value": "-25.000000"}
+    },
+    {
+      "id": "tied-teams",
+      "document": "Team,Cost\nNorth,30\nSouth,20\nSouth,10\n",
+      "question": "Rank the teams by total Cost, highest first. Show the highest rank including ties.",
+      "expected": {"rank_groups": [{"Team": "North"}, {"Team": "South"}], "value": "30"}
+    },
+    {
+      "id": "mean-comparison",
+      "document": "Phase,Score\nBefore,1\nBefore,2\nAfter,2\nAfter,4\n",
+      "question": "What is the percentage change in average Score from Before to After?",
+      "expected": {"metric": "percent_change", "value": "100.000000"}
+    },
+    {
+      "id": "subset-renamed-fields",
+      "document": "Month,Zone,Units\nMay,South,20\nJune,South,40\nMay,North,1000\nJune,North,1\n",
+      "question": "What is the percentage change in Units from May to June for South only?",
+      "expected": {"metric": "percent_change", "value": "100.000000"}
+    },
+    {
+      "id": "negative-baseline",
+      "document": "Period,Balance\nStart,-40\nEnd,-20\n",
+      "question": "Calculate the percentage change in Balance from Start to End using the signed starting balance as the denominator.",
+      "expected": {"metric": "percent_change", "value": "-50.000000"}
+    },
+    {
+      "id": "incomplete-numeric-group",
+      "document": "Month,Revenue\nJuly,10\nJuly,unknown\nAugust,20\n",
+      "question": "What is the percentage change in total Revenue from July to August?",
+      "expected": {"comparison_status": "incomplete_numeric_values"}
+    }
+  ]
+}

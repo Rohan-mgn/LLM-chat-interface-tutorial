@@ -1,0 +1,790 @@
+{
+  "complete": true,
+  "fixture_sha256": "0628537c6a01bd36b9688b866bf98c432a2bf32a69bf26f9e2372a93b00ef589",
+  "application": "D:\\Projects\\LLM-chat-interface-tutorial\\Stage 9(Files attachments and RAG)",
+  "main_sha256": "3fd5badb77f6559461381e3cf56aeab9332ddc010fd9246e1cdc7df8141227f0",
+  "models": [
+    {
+      "model": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72"
+    },
+    {
+      "model": "embeddinggemma:latest",
+      "digest": "85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1"
+    },
+    {
+      "model": "phi4-mini:latest",
+      "digest": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753"
+    }
+  ],
+  "limitations": "Seven development probes with fixed string checks, not independently human-reviewed answer quality or symbol ground truth. Latency is one observation per case.",
+  "rows": [
+    {
+      "question": "In page_14.pdf, what is the drawing number?",
+      "expected": [
+        "GP3201-G41-PA081-000008"
+      ],
+      "passed": true,
+      "answer": "Drawing number: **GP3201-G41-PA081-000008**.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "content_match": true,
+      "required_page_groups_found": 0,
+      "required_page_groups": 0,
+      "cited_pages": [],
+      "citation_resolution": [],
+      "seconds": 7.01812329999666,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "472bd827-dabf-4844-9fcc-41bfd52be84d"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "472bd827-dabf-4844-9fcc-41bfd52be84d"
+        },
+        {
+          "type": "delta",
+          "content": "Drawing number: **GP3201-G41-PA0",
+          "generation_id": "472bd827-dabf-4844-9fcc-41bfd52be84d"
+        },
+        {
+          "type": "delta",
+          "content": "81-000008**.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+          "generation_id": "472bd827-dabf-4844-9fcc-41bfd52be84d"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "472bd827-dabf-4844-9fcc-41bfd52be84d"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_da1773eca0b7bfb76db9366c",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_METADATA",
+        "original_query": "In page_14.pdf, what is the drawing number?",
+        "drawing_context": {
+          "files": {
+            "4ae19ba9775b49d995ac7ed2daf053f0": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585"
+          },
+          "page": 1,
+          "kind": "metadata"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "5e5f3e2d784f68286e86eac376e1555b87e53de8e241a6f16c8b6b2951f17836",
+          "files": [
+            {
+              "file_id": "4ae19ba9775b49d995ac7ed2daf053f0",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "b1e375cd7daf41d6bd069681d5ab02e1",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 5016.2,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 0.51
+        },
+        "total_ms": 5016.24,
+        "time_to_first_token_ms": 4729.19,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the REV. value?",
+      "expected": [
+        "04"
+      ],
+      "passed": true,
+      "answer": "Revision: **04**.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "content_match": true,
+      "required_page_groups_found": 0,
+      "required_page_groups": 0,
+      "cited_pages": [],
+      "citation_resolution": [],
+      "seconds": 1.7825346000026911,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 3,
+          "assistant_message_id": 4,
+          "generation_id": "9c9e6998-d644-483b-965a-6415a205c33d"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "9c9e6998-d644-483b-965a-6415a205c33d"
+        },
+        {
+          "type": "delta",
+          "content": "Revision: **04**.\n\nSource: page\\",
+          "generation_id": "9c9e6998-d644-483b-965a-6415a205c33d"
+        },
+        {
+          "type": "delta",
+          "content": "_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+          "generation_id": "9c9e6998-d644-483b-965a-6415a205c33d"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "9c9e6998-d644-483b-965a-6415a205c33d"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_7dbb5685a597534978ee10cc",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_METADATA",
+        "original_query": "What is the REV. value?",
+        "drawing_context": {
+          "files": {
+            "4ae19ba9775b49d995ac7ed2daf053f0": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585"
+          },
+          "page": 1,
+          "kind": "metadata"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "5ea11e46a4078349badcd221888e860e23f4ceedc1be1c68782b34dfc946bf33",
+          "files": [
+            {
+              "file_id": "4ae19ba9775b49d995ac7ed2daf053f0",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "b1e375cd7daf41d6bd069681d5ab02e1",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 847.3,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 2.28
+        },
+        "total_ms": 847.39,
+        "time_to_first_token_ms": 474.6,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What does 04 mean?",
+      "expected": [
+        "revision"
+      ],
+      "passed": true,
+      "answer": "**04** is the revision shown in this drawing's title block.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "content_match": true,
+      "required_page_groups_found": 0,
+      "required_page_groups": 0,
+      "cited_pages": [],
+      "citation_resolution": [],
+      "seconds": 1.90689150000253,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 5,
+          "assistant_message_id": 6,
+          "generation_id": "f833763f-e4b7-4ab8-9fa5-fb3e6485c476"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "f833763f-e4b7-4ab8-9fa5-fb3e6485c476"
+        },
+        {
+          "type": "delta",
+          "content": "**04** is the revision shown in ",
+          "generation_id": "f833763f-e4b7-4ab8-9fa5-fb3e6485c476"
+        },
+        {
+          "type": "delta",
+          "content": "this drawing's title block.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+          "generation_id": "f833763f-e4b7-4ab8-9fa5-fb3e6485c476"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "f833763f-e4b7-4ab8-9fa5-fb3e6485c476"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_7d141595877631f3a8b5b270",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_METADATA",
+        "original_query": "What does 04 mean?",
+        "drawing_context": {
+          "files": {
+            "4ae19ba9775b49d995ac7ed2daf053f0": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585"
+          },
+          "page": 1,
+          "kind": "metadata"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "b4fc49ba5679b5f44a2112920c4e8d09afd0587ed06814d18f88d8ad17e7010a",
+          "files": [
+            {
+              "file_id": "4ae19ba9775b49d995ac7ed2daf053f0",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "b1e375cd7daf41d6bd069681d5ab02e1",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 953.3,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 1.86
+        },
+        "total_ms": 953.32,
+        "time_to_first_token_ms": 651.14,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the revision of page_15.pdf?",
+      "expected": [
+        "02"
+      ],
+      "passed": true,
+      "answer": "Revision: **02**.\n\nSource: page\\_15.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "content_match": true,
+      "required_page_groups_found": 0,
+      "required_page_groups": 0,
+      "cited_pages": [],
+      "citation_resolution": [],
+      "seconds": 4.424436200002674,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 7,
+          "assistant_message_id": 8,
+          "generation_id": "08369150-2e1c-40d9-93d8-adcea15ed400"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "08369150-2e1c-40d9-93d8-adcea15ed400"
+        },
+        {
+          "type": "delta",
+          "content": "Revision: **02**.\n\nSource: page\\",
+          "generation_id": "08369150-2e1c-40d9-93d8-adcea15ed400"
+        },
+        {
+          "type": "delta",
+          "content": "_15.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+          "generation_id": "08369150-2e1c-40d9-93d8-adcea15ed400"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "08369150-2e1c-40d9-93d8-adcea15ed400"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_7445c37d236d61ed9bcf06ea",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_METADATA",
+        "original_query": "What is the revision of page_15.pdf?",
+        "drawing_context": {
+          "files": {
+            "b1e375cd7daf41d6bd069681d5ab02e1": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07"
+          },
+          "page": 1,
+          "kind": "metadata"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "3bfdfd0cac34169e35d78d3b3b28f749a4dd59238c6428d6d14d062de3ac7345",
+          "files": [
+            {
+              "file_id": "4ae19ba9775b49d995ac7ed2daf053f0",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "b1e375cd7daf41d6bd069681d5ab02e1",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 3700.3,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 0.12
+        },
+        "total_ms": 3700.31,
+        "time_to_first_token_ms": 3246.28,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the project title in page_14.pdf?",
+      "expected": [
+        "VINYLS PROGRAM",
+        "CHLOR ALKALI"
+      ],
+      "passed": true,
+      "answer": "Project title: **VINYLS PROGRAM : CHLOR ALKALI \\(1035 KTA CHLORINE\\)**.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "content_match": true,
+      "required_page_groups_found": 0,
+      "required_page_groups": 0,
+      "cited_pages": [],
+      "citation_resolution": [],
+      "seconds": 1.6216127000006963,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 9,
+          "assistant_message_id": 10,
+          "generation_id": "27eff264-49e2-45ed-809d-1c98d82e29a9"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "27eff264-49e2-45ed-809d-1c98d82e29a9"
+        },
+        {
+          "type": "delta",
+          "content": "Project title: **VINYLS PROGRAM ",
+          "generation_id": "27eff264-49e2-45ed-809d-1c98d82e29a9"
+        },
+        {
+          "type": "delta",
+          "content": ": CHLOR ALKALI \\(1035 KTA CHLORINE\\)**.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+          "generation_id": "27eff264-49e2-45ed-809d-1c98d82e29a9"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "27eff264-49e2-45ed-809d-1c98d82e29a9"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_f490c5885266b189d34ecc39",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_METADATA",
+        "original_query": "What is the project title in page_14.pdf?",
+        "drawing_context": {
+          "files": {
+            "4ae19ba9775b49d995ac7ed2daf053f0": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585"
+          },
+          "page": 1,
+          "kind": "metadata"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "3c01bc0d94970d618466fd4f617c0cee4172f98fdbc553c75e4952af58176100",
+          "files": [
+            {
+              "file_id": "4ae19ba9775b49d995ac7ed2daf053f0",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "b1e375cd7daf41d6bd069681d5ab02e1",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 800.0,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 2.21
+        },
+        "total_ms": 800.01,
+        "time_to_first_token_ms": 474.24,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "How many check valves are in page_14.pdf?",
+      "expected": [
+        "Unverified"
+      ],
+      "passed": true,
+      "answer": "**Unverified:** select a symbol reference or define a supported template in the drawing viewer. No symbol total has been established.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "content_match": true,
+      "required_page_groups_found": 0,
+      "required_page_groups": 0,
+      "cited_pages": [],
+      "citation_resolution": [],
+      "seconds": 1.489177400006156,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 11,
+          "assistant_message_id": 12,
+          "generation_id": "42db8e16-f997-4566-9486-0a1be05fef26"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "42db8e16-f997-4566-9486-0a1be05fef26"
+        },
+        {
+          "type": "delta",
+          "content": "**Unverified:** select a symbol ",
+          "generation_id": "42db8e16-f997-4566-9486-0a1be05fef26"
+        },
+        {
+          "type": "delta",
+          "content": "reference or define a supported template in the drawing viewer. No symbol total has been established.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+          "generation_id": "42db8e16-f997-4566-9486-0a1be05fef26"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "42db8e16-f997-4566-9486-0a1be05fef26"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_fe80de1b18105a0592c0c87d",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_SYMBOLS",
+        "original_query": "How many check valves are in page_14.pdf?",
+        "drawing_context": {
+          "files": {
+            "4ae19ba9775b49d995ac7ed2daf053f0": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585"
+          },
+          "page": 1,
+          "kind": "symbols"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "b432d506400a45bb31005db4b586fb94da339bbe36ee1d05533b8f33f55eac33",
+          "files": [
+            {
+              "file_id": "4ae19ba9775b49d995ac7ed2daf053f0",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "b1e375cd7daf41d6bd069681d5ab02e1",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 807.8,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 1.83
+        },
+        "total_ms": 807.78,
+        "time_to_first_token_ms": 478.41,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the height of the tank in page_14.pdf?",
+      "expected": [
+        "not to scale"
+      ],
+      "passed": true,
+      "answer": "A dimension for the requested object has not been established from an unambiguous associated specification or dimension line. This drawing is marked NTS (not to scale), so image distances cannot establish physical dimensions. Native dimension annotations are available in the evidence viewer; select a supported equipment label and dimension.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "content_match": true,
+      "required_page_groups_found": 0,
+      "required_page_groups": 0,
+      "cited_pages": [],
+      "citation_resolution": [],
+      "seconds": 2.1683354999986477,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 13,
+          "assistant_message_id": 14,
+          "generation_id": "fc83e547-3317-4206-a19d-e0bc5628dd0f"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "fc83e547-3317-4206-a19d-e0bc5628dd0f"
+        },
+        {
+          "type": "delta",
+          "content": "A dimension for the requested ob",
+          "generation_id": "fc83e547-3317-4206-a19d-e0bc5628dd0f"
+        },
+        {
+          "type": "delta",
+          "content": "ject has not been established from an unambiguous associated specification or dimension line. This drawing is marked NTS (not to scale), so image distances cannot establish physical dimensions. Native dimension annotations are available in the evidence vie",
+          "generation_id": "fc83e547-3317-4206-a19d-e0bc5628dd0f"
+        },
+        {
+          "type": "delta",
+          "content": "wer; select a supported equipment label and dimension.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+          "generation_id": "fc83e547-3317-4206-a19d-e0bc5628dd0f"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "fc83e547-3317-4206-a19d-e0bc5628dd0f"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_3b7cddc41c5d721e8d748ceb",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_DIMENSION",
+        "original_query": "What is the height of the tank in page_14.pdf?",
+        "drawing_context": {
+          "files": {
+            "4ae19ba9775b49d995ac7ed2daf053f0": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585"
+          },
+          "page": 1,
+          "kind": "dimension"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "caba0a5f804f76d32f0c6e861a33b71893df6c313afdc36273e433f1e35aea1d",
+          "files": [
+            {
+              "file_id": "4ae19ba9775b49d995ac7ed2daf053f0",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "b1e375cd7daf41d6bd069681d5ab02e1",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 1318.1,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 2.4
+        },
+        "total_ms": 1318.09,
+        "time_to_first_token_ms": 687.05,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    }
+  ],
+  "artifacts": "D:\\Projects\\LLM-chat-interface-tutorial\\Stage 9(Files attachments and RAG)\\tests\\.artifacts\\drawing-qa-a1224618d55942959fcb72c3951ce516",
+  "ingestion": [
+    {
+      "name": "page_14.pdf",
+      "sha256": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+      "state": "ready",
+      "seconds": 9.376602399999683
+    },
+    {
+      "name": "page_15.pdf",
+      "sha256": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+      "state": "ready",
+      "seconds": 6.782498799999303
+    }
+  ],
+  "passed": 7,
+  "total": 7,
+  "p50_seconds": 1.90689150000253,
+  "p95_seconds": 7.01812329999666
+}

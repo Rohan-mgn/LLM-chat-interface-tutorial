@@ -1,0 +1,3318 @@
+{
+  "complete": true,
+  "fixture_sha256": "b8267beae56b67ceb4e0f28d3bf0add3aaa4a9153bbe99d419144444ef7f5052",
+  "application": "D:\\Projects\\LLM-chat-interface-tutorial\\Stage 9(Files attachments and RAG)",
+  "main_sha256": "3fd5badb77f6559461381e3cf56aeab9332ddc010fd9246e1cdc7df8141227f0",
+  "models": [
+    {
+      "model": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72"
+    },
+    {
+      "model": "embeddinggemma:latest",
+      "digest": "85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1"
+    },
+    {
+      "model": "phi4-mini:latest",
+      "digest": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753"
+    }
+  ],
+  "limitations": "Five additional development probes frozen before either evaluation run. Fixed term and cited-page checks measure acquisition and source resolution, not semantic correctness, blind human clarity, summary completeness, or all unsupported claims. One latency observation per case; no model grading.",
+  "rows": [
+    {
+      "question": "Who are the authors of Explainable AI for Practitioners?",
+      "expected": [
+        "Michael Munn",
+        "David Pitman"
+      ],
+      "passed": true,
+      "answer": "I couldn't verify the drafted answer. The available source evidence is:\n\n> Explainable AI for Practitioners Designing and Implementing Explainable ML Solutions With Early Release ebooks, you get books in their earliest form\u2014the author\u2019s raw and unedited content as they write\u2014so you can take advantage of these technologies long before the official release of these titles. Michael Munn and David Pitman [SOURCE_5b21d1b0022b9e5833c75945]\n\n> isbn=9781098119133 for release details. The O\u2019Reilly logo is a registered trademark of O\u2019Reilly Media, Inc. Explainable AI for Practitioners, the cover image, and related trade dress are trademarks of O\u2019Reilly Media, Inc. The views expressed in this work are those of the authors, and do not represent the publisher\u2019s views. While the publisher and the authors have used good faith efforts to ensure that the information and instructions contained in this work are accurate, the publisher and the authors disclaim all respons [SOURCE_4a16a15996f96fd866437f55]\n\n> Explainable AI for Practitioners by Michael Munn and David Pitman Copyright \u00a9 2022 Michael Munn, David Pitman and O\u2019Reilly Media, Inc. All rights reserved. Printed in the United States of America. Published by O\u2019Reilly Media, Inc., 1005 Gravenstein Highway North, Sebastopol, CA 95472. O\u2019Reilly books may be purchased for educational, business, or sales promotional use. Online editions are also available for most titles \\(http://oreilly.com\\). For more information, contact our corporate/institutional sales department: 800-9 [SOURCE_122c6756469ede2a7ab4d0a6]\n\n> About the Authors Michael Munn is an ML Solutions Engineer at Google where he works with customers of Google Before joining Google, he worked as a research professor. David Pitman is a Senior Engineering Manager working in Google Cloud on the AI Platform, where he leads the Explainable AI team. He is also a co-organizer of PuPPy, the largest Python group in the David has a M.Eng. and BS in Computer Science, focusing in AI and Human- Computer Interaction, from MIT, where he was previously a research scientist. [SOURCE_dbbcd0a2c93cdec0e2fbfe9b]\n\nThese excerpts do not establish that every part of the question has been answered.",
+      "content_match": true,
+      "required_page_groups_found": 1,
+      "required_page_groups": 1,
+      "cited_pages": [
+        2,
+        3,
+        74
+      ],
+      "citation_resolution": [
+        {
+          "id": "SOURCE_5b21d1b0022b9e5833c75945",
+          "status": 200
+        },
+        {
+          "id": "SOURCE_4a16a15996f96fd866437f55",
+          "status": 200
+        },
+        {
+          "id": "SOURCE_122c6756469ede2a7ab4d0a6",
+          "status": 200
+        },
+        {
+          "id": "SOURCE_dbbcd0a2c93cdec0e2fbfe9b",
+          "status": 200
+        }
+      ],
+      "seconds": 7.965563199999451,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        },
+        {
+          "type": "status",
+          "message": "Checking evidence before releasing the answer...",
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        },
+        {
+          "type": "delta",
+          "content": "I couldn't verify the drafted an",
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        },
+        {
+          "type": "delta",
+          "content": "swer. The available source evidence is:\n\n> Explainable AI for Practitioners Designing and Implementing Explainable ML Solutions With Early Release ebooks, you get books in their earliest form\u2014the author\u2019s raw and unedited content as they write\u2014so you can t",
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        },
+        {
+          "type": "delta",
+          "content": "ake advantage of these technologies long before the official release of these titles. Michael Munn and David Pitman [SOURCE_5b21d1b0022b9e5833c75945]\n\n> isbn=9781098119133 for release details. The O\u2019Reilly logo is a registered trademark of O\u2019Reilly Media, ",
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        },
+        {
+          "type": "delta",
+          "content": "Inc. Explainable AI for Practitioners, the cover image, and related trade dress are trademarks of O\u2019Reilly Media, Inc. The views expressed in this work are those of the authors, and do not represent the publisher\u2019s views. While the publisher and the author",
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        },
+        {
+          "type": "delta",
+          "content": "s have used good faith efforts to ensure that the information and instructions contained in this work are accurate, the publisher and the authors disclaim all respons [SOURCE_4a16a15996f96fd866437f55]\n\n> Explainable AI for Practitioners by Michael Munn and",
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        },
+        {
+          "type": "delta",
+          "content": " David Pitman Copyright \u00a9 2022 Michael Munn, David Pitman and O\u2019Reilly Media, Inc. All rights reserved. Printed in the United States of America. Published by O\u2019Reilly Media, Inc., 1005 Gravenstein Highway North, Sebastopol, CA 95472. O\u2019Reilly books may be ",
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        },
+        {
+          "type": "delta",
+          "content": "purchased for educational, business, or sales promotional use. Online editions are also available for most titles \\(http://oreilly.com\\). For more information, contact our corporate/institutional sales department: 800-9 [SOURCE_122c6756469ede2a7ab4d0a6]\n\n>",
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        },
+        {
+          "type": "delta",
+          "content": " About the Authors Michael Munn is an ML Solutions Engineer at Google where he works with customers of Google Before joining Google, he worked as a research professor. David Pitman is a Senior Engineering Manager working in Google Cloud on the AI Platform,",
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        },
+        {
+          "type": "delta",
+          "content": " where he leads the Explainable AI team. He is also a co-organizer of PuPPy, the largest Python group in the David has a M.Eng. and BS in Computer Science, focusing in AI and Human- Computer Interaction, from MIT, where he was previously a research scienti",
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        },
+        {
+          "type": "delta",
+          "content": "st. [SOURCE_dbbcd0a2c93cdec0e2fbfe9b]\n\nThese excerpts do not establish that every part of the question has been answered.",
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "35026f26-f138-48c4-88cf-9b7b5ff9629f"
+        }
+      ],
+      "sources": [
+        {
+          "id": "SOURCE_5b21d1b0022b9e5833c75945",
+          "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 2, \"section\": \"Page 2\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_ae4b4e4528320d419716cd9b\", \"parent_id\": \"PARENT_5182a524eba6a1d50201173a\", \"block_index\": 1, \"start\": 0, \"end\": 328, \"logical_group\": \"BLOCK_ae4b4e4528320d419716cd9b\", \"offset\": 0, \"end_offset\": 328, \"chunk_index\": 0}",
+          "ordinal": 0
+        },
+        {
+          "id": "SOURCE_4a16a15996f96fd866437f55",
+          "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 3, \"section\": \"Page 3\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_a71e98a8269947fb39d0ed1f\", \"parent_id\": \"PARENT_f0702d37bfbbe6953b7fe64d\", \"block_index\": 2, \"start\": 0, \"end\": 1863, \"logical_group\": \"BLOCK_a71e98a8269947fb39d0ed1f\", \"offset\": 910, \"end_offset\": 1435, \"chunk_index\": 3}",
+          "ordinal": 1
+        },
+        {
+          "id": "SOURCE_122c6756469ede2a7ab4d0a6",
+          "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 3, \"section\": \"Page 3\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_a71e98a8269947fb39d0ed1f\", \"parent_id\": \"PARENT_f0702d37bfbbe6953b7fe64d\", \"block_index\": 2, \"start\": 0, \"end\": 1863, \"logical_group\": \"BLOCK_a71e98a8269947fb39d0ed1f\", \"offset\": 0, \"end_offset\": 525, \"chunk_index\": 1}",
+          "ordinal": 2
+        },
+        {
+          "id": "SOURCE_dbbcd0a2c93cdec0e2fbfe9b",
+          "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 74, \"section\": \"Page 74\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_dbbcd0a2c93cdec0e2fbfe9b\", \"parent_id\": \"PARENT_e72c7ef04f669b32faa5279d\", \"block_index\": 73, \"start\": 0, \"end\": 752, \"logical_group\": \"BLOCK_dbbcd0a2c93cdec0e2fbfe9b\"}",
+          "ordinal": 3
+        }
+      ],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "Who are the authors of Explainable AI for Practitioners?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "Who are the authors of Explainable AI for Practitioners?",
+          "files": [
+            {
+              "id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "name": "Explainable-AI-for-Practitioners.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "Who are the authors of Explainable AI for Practitioners?",
+          "authorized_files": [
+            "175d73e4075e417a9b1eda7ddc25cf61"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "research": {
+          "version": 1,
+          "paths": [
+            {
+              "round": 1,
+              "query": "Who are the authors of Explainable AI for Practitioners?",
+              "source_ids": [
+                "SOURCE_5b21d1b0022b9e5833c75945",
+                "SOURCE_4a16a15996f96fd866437f55",
+                "SOURCE_dbbcd0a2c93cdec0e2fbfe9b",
+                "SOURCE_122c6756469ede2a7ab4d0a6"
+              ]
+            }
+          ],
+          "coverage": {
+            "subquestions": [
+              {
+                "question": "Who are the authors of Explainable AI for Practitioners",
+                "source_ids": [
+                  "SOURCE_5b21d1b0022b9e5833c75945",
+                  "SOURCE_4a16a15996f96fd866437f55",
+                  "SOURCE_122c6756469ede2a7ab4d0a6"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": true,
+            "subquestion_budget": 4,
+            "partial": false,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          },
+          "stop_reason": "candidate_coverage_sufficient",
+          "round_limit": 2,
+          "supplied_coverage": {
+            "subquestions": [
+              {
+                "question": "Who are the authors of Explainable AI for Practitioners",
+                "source_ids": [
+                  "SOURCE_5b21d1b0022b9e5833c75945",
+                  "SOURCE_4a16a15996f96fd866437f55",
+                  "SOURCE_122c6756469ede2a7ab4d0a6"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": true,
+            "subquestion_budget": 4,
+            "partial": false,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          }
+        },
+        "field_conflicts": [],
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_5b21d1b0022b9e5833c75945",
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "text_fingerprint": "a7c5d10648deb3dfdb9a5934f6645f8b204683206b3f90a8d90ba3bcaddea9d8",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_4a16a15996f96fd866437f55",
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "text_fingerprint": "3ffe4315a9baa69c00e85763827eb9931d9ce92ac48b4c1badba79a9a1617d24",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_dbbcd0a2c93cdec0e2fbfe9b",
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "text_fingerprint": "ec4765e4968cb85554b74e37e5ff090385d217424aadfaf24bee45a0aceff151",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_122c6756469ede2a7ab4d0a6",
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "text_fingerprint": "f9baadbd932c9797b8c265ed72a7baad65af2f2df765f32387daf65bdab761ac",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "Who are the authors of Explainable AI for Practitioners?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_5b21d1b0022b9e5833c75945",
+            "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+            "score": 0.032266458495966696
+          },
+          {
+            "id": "SOURCE_4a16a15996f96fd866437f55",
+            "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+            "score": 0.031754032258064516
+          },
+          {
+            "id": "SOURCE_dbbcd0a2c93cdec0e2fbfe9b",
+            "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+            "score": 0.032018442622950824
+          },
+          {
+            "id": "SOURCE_122c6756469ede2a7ab4d0a6",
+            "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+            "score": 0.0315136476426799
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "55ea6f13efcbf2b50c93092510f9902524eb1fb29eb8ec022958f222b3ac239d",
+          "files": [
+            {
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "deterministic lexical/structural ranking",
+        "ranking_features": [
+          {
+            "id": "SOURCE_5b21d1b0022b9e5833c75945",
+            "lexical_overlap": 1.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.032266458495966696
+          },
+          {
+            "id": "SOURCE_4a16a15996f96fd866437f55",
+            "lexical_overlap": 1.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.031754032258064516
+          },
+          {
+            "id": "SOURCE_1b11186895a035abfce9193c",
+            "lexical_overlap": 0.75,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.032018442622950824
+          },
+          {
+            "id": "SOURCE_122c6756469ede2a7ab4d0a6",
+            "lexical_overlap": 0.75,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0315136476426799
+          },
+          {
+            "id": "SOURCE_53d5ee5a01a545cf4fa2cb62",
+            "lexical_overlap": 0.75,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03125763125763126
+          },
+          {
+            "id": "SOURCE_cd2677adb7d0f090893f5eac",
+            "lexical_overlap": 0.75,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.029857397504456328
+          },
+          {
+            "id": "SOURCE_c772ee6ed2e572efdc32714e",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.029236022193768675
+          },
+          {
+            "id": "SOURCE_1fb0c8e80d9e6cdb5c626e7c",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.027583600982429624
+          },
+          {
+            "id": "SOURCE_72444e3a4b40bb7bfab350d9",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025978407557354925
+          },
+          {
+            "id": "SOURCE_d8d8fbd4272227e18f5799e2",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025859192525859193
+          },
+          {
+            "id": "SOURCE_82bf15ff83c9f367ab1397c8",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025098039215686277
+          },
+          {
+            "id": "SOURCE_0d76f1c6fa95c2f47624711a",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014705882352941176
+          },
+          {
+            "id": "SOURCE_3220ac407adf76672c22a05e",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014492753623188406
+          },
+          {
+            "id": "SOURCE_05669eb763f5cbff8c1b3e48",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_24458218303b78748b913fd9",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013888888888888888
+          },
+          {
+            "id": "SOURCE_f1bf6d5a17d4ec749a2e7df7",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0136986301369863
+          },
+          {
+            "id": "SOURCE_e80b8ec118e3480d73bd8c76",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012987012987012988
+          },
+          {
+            "id": "SOURCE_b7e980dca76a23e164b8030b",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025793650793650792
+          },
+          {
+            "id": "SOURCE_f8deb0aad6e269ca945c75dd",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025098039215686277
+          },
+          {
+            "id": "SOURCE_2f2d2dd4f7703e92527f02bd",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.024706420619185605
+          },
+          {
+            "id": "SOURCE_3a9af8cc96171bbc35cee579",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.023255813953488372
+          },
+          {
+            "id": "SOURCE_a0f8977ec0fb9d2c6b91fb60",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013513513513513514
+          },
+          {
+            "id": "SOURCE_9caa3e65ddc6a571d8a55c8e",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.01282051282051282
+          },
+          {
+            "id": "SOURCE_6311fb2de7019c2976f28a41",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0125
+          },
+          {
+            "id": "SOURCE_0c81d1a8176cc2bb9f1a9f2d",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012345679012345678
+          },
+          {
+            "id": "SOURCE_0d047cddd3a5261ce31d4496",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012195121951219513
+          },
+          {
+            "id": "SOURCE_749a35476d2d0e6df3e31cd6",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012195121951219513
+          },
+          {
+            "id": "SOURCE_ec6edfb45938435e53176f89",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012048192771084338
+          },
+          {
+            "id": "SOURCE_d245eac0796064105ebd25db",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_7258342b04b2bb602365e57a",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          },
+          {
+            "id": "SOURCE_d3b63b07fcfe12889f4fd845",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_0c4109a45ce4c993ae7111ab",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          },
+          {
+            "id": "SOURCE_7fb0a3bc9995e42c34edba02",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014925373134328358
+          },
+          {
+            "id": "SOURCE_99df1e35be3213f77b7ca892",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014492753623188406
+          },
+          {
+            "id": "SOURCE_ba5985953538b2f4fccb8afc",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_c31b51c989c2682967357f0a",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_f10ce2dd648b19328f32c034",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0136986301369863
+          },
+          {
+            "id": "SOURCE_cb995c1fa23bbed9a51c3796",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013157894736842105
+          },
+          {
+            "id": "SOURCE_f398c725f14b20b0334a780e",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012987012987012988
+          },
+          {
+            "id": "SOURCE_bbb2cdaca32a8afb178e239d",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0125
+          },
+          {
+            "id": "SOURCE_921eb22b13e8c6b2802aa624",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011904761904761904
+          },
+          {
+            "id": "SOURCE_d0ebdd21b467ecb0dcd0fe02",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_65486b5ec5c01cff46f1667e",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          },
+          {
+            "id": "SOURCE_5e9a596d9c5618b2f780cde0",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_5d911bbf19b5f2629df83649",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          }
+        ],
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 985038,
+          "hits": 0,
+          "misses": 1
+        },
+        "claim_gate": {
+          "version": "pre-release-v1",
+          "before_release": true,
+          "claims": [],
+          "rejected": [
+            {
+              "text": "Authors of Explainable AI for Practitioners",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "According to the document excerpt from the book \"Explainable AI for Practitioners\" by Michael Munn and David Pitman, the authors are:",
+              "source_ids": [
+                "SOURCE_5b21d1b0022b9e5833c75945"
+              ],
+              "support": "unresolved",
+              "reason": "insufficient lexical support"
+            },
+            {
+              "text": "Michael Munn David Pitman",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "Additionally, the book is published by O'Reilly Media, Inc., and the copyright is held by Michael Munn, David Pitman, and O'Reilly Media, Inc.",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            }
+          ],
+          "fallback": true,
+          "field_conflicts": [],
+          "independent_semantic_verification": false,
+          "output_sha256": "50161b3eb9083baafae57847af4b4ffbcbe46bc6c31e4d3b3e2d4192aa3e153d",
+          "limitation": "Non-extractive narrative is explicitly an interpretation, not a verified fact."
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 6123.0,
+        "estimated_input_tokens": 1718,
+        "model_token_usage": [
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1603,
+            "eval_count": 93,
+            "prompt_eval_duration": 590089000,
+            "eval_duration": 1244038000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "metadata": 2,
+          "embedding": 1,
+          "generation": 1
+        },
+        "model_call_count": 2,
+        "timings_ms": {
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 2.34,
+          "embedding": 22.48,
+          "dense_search": 34.66,
+          "reranking": 1.96,
+          "model_queue": 0.01,
+          "model_inference": 1906.29,
+          "answer_generation": 1907.89
+        },
+        "total_ms": 6123.28,
+        "time_to_first_token_ms": 3195.22,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the first early-release date stated in the book?",
+      "expected": [],
+      "passed": true,
+      "answer": "I couldn't verify the drafted answer. The available source evidence is:\n\n> Chapter 1. An Overview of Explainability A NOTE FOR EARLY RELEASE READERS With Early Release ebooks, you get books in their earliest form\u2014the author\u2019s raw and unedited content as they write\u2014so you can take advantage of these technologies long before the official release of these titles. This will be the 2nd chapter of the final book. Please note that the GitHub repo will be made active later on. If you have comments about how we might improve the content and/or examples in this book, or if you notice missing material wi [SOURCE_749a35476d2d0e6df3e31cd6]\n\n> Explainable AI for Practitioners Designing and Implementing Explainable ML Solutions With Early Release ebooks, you get books in their earliest form\u2014the author\u2019s raw and unedited content as they write\u2014so you can take advantage of these technologies long before the official release of these titles. Michael Munn and David Pitman [SOURCE_5b21d1b0022b9e5833c75945]\n\n> Chapter 2. Explainability for Image Data A NOTE FOR EARLY RELEASE READERS With Early Release ebooks, you get books in their earliest form\u2014the author\u2019s raw and unedited content as they write\u2014so you can take advantage of these technologies long before the official release of these titles. This will be the 4th chapter of the final book. Please note that the GitHub repo will be made active later on. If you have comments about how we might improve the content and/or examples in this book, or if you notice missing material wi [SOURCE_ec6edfb45938435e53176f89]\n\n> formation, contact our corporate/institutional sales department: 800-998-9938 or corporate@oreilly.com. Acquisitions Editor: Rebecca Novack Development Editor: Rita Fernando Production Editor: Jonathon Owen Copyeditor: Proofreader: Indexer: Interior Designer: David Futato Cover Designer: Karen Montgomery Illustrator: December 2022: First Edition Revision History for the Early Release 2022-07-20: First Release See http://oreilly.com/catalog/errata.csp?isbn=9781098119133 for release details. The O\u2019Reilly logo is a registe [SOURCE_f398c725f14b20b0334a780e]\n\nThese excerpts do not establish that every part of the question has been answered.\n\nPartial evidence coverage: the two-round retrieval budget did not establish support for every requested point. Uncovered requests: What is the first early-release date stated in the book.",
+      "content_match": true,
+      "required_page_groups_found": 1,
+      "required_page_groups": 1,
+      "cited_pages": [
+        2,
+        3,
+        5,
+        24
+      ],
+      "citation_resolution": [
+        {
+          "id": "SOURCE_749a35476d2d0e6df3e31cd6",
+          "status": 200
+        },
+        {
+          "id": "SOURCE_5b21d1b0022b9e5833c75945",
+          "status": 200
+        },
+        {
+          "id": "SOURCE_ec6edfb45938435e53176f89",
+          "status": 200
+        },
+        {
+          "id": "SOURCE_f398c725f14b20b0334a780e",
+          "status": 200
+        }
+      ],
+      "seconds": 6.12603990000207,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 3,
+          "assistant_message_id": 4,
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "status",
+          "message": "Checking evidence before releasing the answer...",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "delta",
+          "content": "I couldn't verify the drafted an",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "delta",
+          "content": "swer. The available source evidence is:\n\n> Chapter 1. An Overview of Explainability A NOTE FOR EARLY RELEASE READERS With Early Release ebooks, you get books in their earliest form\u2014the author\u2019s raw and unedited content as they write\u2014so you can take advanta",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "delta",
+          "content": "ge of these technologies long before the official release of these titles. This will be the 2nd chapter of the final book. Please note that the GitHub repo will be made active later on. If you have comments about how we might improve the content and/or exa",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "delta",
+          "content": "mples in this book, or if you notice missing material wi [SOURCE_749a35476d2d0e6df3e31cd6]\n\n> Explainable AI for Practitioners Designing and Implementing Explainable ML Solutions With Early Release ebooks, you get books in their earliest form\u2014the author\u2019s ",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "delta",
+          "content": "raw and unedited content as they write\u2014so you can take advantage of these technologies long before the official release of these titles. Michael Munn and David Pitman [SOURCE_5b21d1b0022b9e5833c75945]\n\n> Chapter 2. Explainability for Image Data A NOTE FOR ",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "delta",
+          "content": "EARLY RELEASE READERS With Early Release ebooks, you get books in their earliest form\u2014the author\u2019s raw and unedited content as they write\u2014so you can take advantage of these technologies long before the official release of these titles. This will be the 4th",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "delta",
+          "content": " chapter of the final book. Please note that the GitHub repo will be made active later on. If you have comments about how we might improve the content and/or examples in this book, or if you notice missing material wi [SOURCE_ec6edfb45938435e53176f89]\n\n> f",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "delta",
+          "content": "ormation, contact our corporate/institutional sales department: 800-998-9938 or corporate@oreilly.com. Acquisitions Editor: Rebecca Novack Development Editor: Rita Fernando Production Editor: Jonathon Owen Copyeditor: Proofreader: Indexer: Interior Designe",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "delta",
+          "content": "r: David Futato Cover Designer: Karen Montgomery Illustrator: December 2022: First Edition Revision History for the Early Release 2022-07-20: First Release See http://oreilly.com/catalog/errata.csp?isbn=9781098119133 for release details. The O\u2019Reilly logo ",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "delta",
+          "content": "is a registe [SOURCE_f398c725f14b20b0334a780e]\n\nThese excerpts do not establish that every part of the question has been answered.\n\nPartial evidence coverage: the two-round retrieval budget did not establish support for every requested point. Uncovered req",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "delta",
+          "content": "uests: What is the first early-release date stated in the book.",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "c99eaf22-10f5-4487-87ac-47785d9690b5"
+        }
+      ],
+      "sources": [
+        {
+          "id": "SOURCE_749a35476d2d0e6df3e31cd6",
+          "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 5, \"section\": \"Page 5\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_defa45829274d5bcce1fb307\", \"parent_id\": \"PARENT_6dc6b9155d7ce0304a5935c1\", \"block_index\": 4, \"start\": 0, \"end\": 2915, \"logical_group\": \"BLOCK_defa45829274d5bcce1fb307\", \"offset\": 0, \"end_offset\": 525, \"chunk_index\": 6}",
+          "ordinal": 0
+        },
+        {
+          "id": "SOURCE_5b21d1b0022b9e5833c75945",
+          "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 2, \"section\": \"Page 2\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_ae4b4e4528320d419716cd9b\", \"parent_id\": \"PARENT_5182a524eba6a1d50201173a\", \"block_index\": 1, \"start\": 0, \"end\": 328, \"logical_group\": \"BLOCK_ae4b4e4528320d419716cd9b\", \"offset\": 0, \"end_offset\": 328, \"chunk_index\": 0}",
+          "ordinal": 1
+        },
+        {
+          "id": "SOURCE_ec6edfb45938435e53176f89",
+          "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 24, \"section\": \"Page 24\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_29e22a55c0f91c13237d95c4\", \"parent_id\": \"PARENT_4c8cc3e0654ba5c027958099\", \"block_index\": 23, \"start\": 0, \"end\": 2900, \"logical_group\": \"BLOCK_29e22a55c0f91c13237d95c4\", \"offset\": 0, \"end_offset\": 525, \"chunk_index\": 123}",
+          "ordinal": 2
+        },
+        {
+          "id": "SOURCE_f398c725f14b20b0334a780e",
+          "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 3, \"section\": \"Page 3\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_a71e98a8269947fb39d0ed1f\", \"parent_id\": \"PARENT_f0702d37bfbbe6953b7fe64d\", \"block_index\": 2, \"start\": 0, \"end\": 1863, \"logical_group\": \"BLOCK_a71e98a8269947fb39d0ed1f\", \"offset\": 455, \"end_offset\": 980, \"chunk_index\": 2}",
+          "ordinal": 3
+        }
+      ],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "What is the first early-release date stated in the book?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "What is the first early-release date stated in the book?",
+          "files": [
+            {
+              "id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "name": "Explainable-AI-for-Practitioners.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "What is the first early-release date stated in the book?",
+          "authorized_files": [
+            "175d73e4075e417a9b1eda7ddc25cf61"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "research": {
+          "version": 1,
+          "paths": [
+            {
+              "round": 1,
+              "query": "What is the first early-release date stated in the book?",
+              "source_ids": [
+                "SOURCE_749a35476d2d0e6df3e31cd6"
+              ]
+            },
+            {
+              "round": 2,
+              "query": "What is the first early release date stated in the book",
+              "files": [
+                "175d73e4075e417a9b1eda7ddc25cf61"
+              ],
+              "source_ids": [
+                "SOURCE_749a35476d2d0e6df3e31cd6",
+                "SOURCE_f398c725f14b20b0334a780e",
+                "SOURCE_5b21d1b0022b9e5833c75945",
+                "SOURCE_ec6edfb45938435e53176f89"
+              ]
+            }
+          ],
+          "coverage": {
+            "subquestions": [
+              {
+                "question": "What is the first early-release date stated in the book",
+                "source_ids": [],
+                "status": "unanswered",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": false,
+            "subquestion_budget": 4,
+            "partial": true,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          },
+          "stop_reason": "round_limit",
+          "round_limit": 2,
+          "supplied_coverage": {
+            "subquestions": [
+              {
+                "question": "What is the first early-release date stated in the book",
+                "source_ids": [],
+                "status": "unanswered",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": false,
+            "subquestion_budget": 4,
+            "partial": true,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          }
+        },
+        "field_conflicts": [],
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_749a35476d2d0e6df3e31cd6",
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "text_fingerprint": "af24723fe9cf7399597db1280a329695b5f7e3e939062d216a662daa9ff394ac",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_f398c725f14b20b0334a780e",
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "text_fingerprint": "f1e2b8b02df9c50b9e5cc80ece4b115834e58177ec3a19fd9f224513e7d88603",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_5b21d1b0022b9e5833c75945",
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "text_fingerprint": "a7c5d10648deb3dfdb9a5934f6645f8b204683206b3f90a8d90ba3bcaddea9d8",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_ec6edfb45938435e53176f89",
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "text_fingerprint": "0627baf0149665dffa16c615cac91216ee94a2ffc6a84058feb91e621fedd7f2",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "What is the first early-release date stated in the book?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 2,
+        "sources": [
+          {
+            "id": "SOURCE_749a35476d2d0e6df3e31cd6",
+            "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+            "score": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_f398c725f14b20b0334a780e",
+            "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+            "score": 0.03149801587301587
+          },
+          {
+            "id": "SOURCE_5b21d1b0022b9e5833c75945",
+            "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+            "score": 0.03149801587301587
+          },
+          {
+            "id": "SOURCE_ec6edfb45938435e53176f89",
+            "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+            "score": 0.03225806451612903
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "a3134b0368631fab3ea3f22becdda54c475e65068b9cfe0bb8912b521e2fb4d0",
+          "files": [
+            {
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "deterministic lexical/structural ranking",
+        "ranking_features": [
+          {
+            "id": "SOURCE_749a35476d2d0e6df3e31cd6",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_ec6edfb45938435e53176f89",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03225806451612903
+          },
+          {
+            "id": "SOURCE_5b21d1b0022b9e5833c75945",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03149801587301587
+          },
+          {
+            "id": "SOURCE_f398c725f14b20b0334a780e",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03149801587301587
+          },
+          {
+            "id": "SOURCE_b7e980dca76a23e164b8030b",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.029418126757516764
+          },
+          {
+            "id": "SOURCE_24458218303b78748b913fd9",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.02813852813852814
+          },
+          {
+            "id": "SOURCE_ffe62067f2c3053203b0f26d",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0266900790166813
+          },
+          {
+            "id": "SOURCE_65fa7804a55d1558ad0b967a",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015384615384615385
+          },
+          {
+            "id": "SOURCE_a0f8977ec0fb9d2c6b91fb60",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014705882352941176
+          },
+          {
+            "id": "SOURCE_4a16a15996f96fd866437f55",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.02967032967032967
+          },
+          {
+            "id": "SOURCE_00797a4b2aefe1436264feb8",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.027984344422700584
+          },
+          {
+            "id": "SOURCE_9ac0f32da3d7dbd2ce77a81a",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.02638888888888889
+          },
+          {
+            "id": "SOURCE_7332e802f0d54bb121f442a7",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.02594183740912095
+          },
+          {
+            "id": "SOURCE_f948512668c6b61d45462f55",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.024877149877149878
+          },
+          {
+            "id": "SOURCE_1a96a6ce14decb4c99fb4c17",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_9a1bbf6c207460c3bffe15ab",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013888888888888888
+          },
+          {
+            "id": "SOURCE_122c6756469ede2a7ab4d0a6",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0136986301369863
+          },
+          {
+            "id": "SOURCE_a8e68168dfda2705142e0533",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013513513513513514
+          },
+          {
+            "id": "SOURCE_3b6a247a8017f630659e4a7b",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013157894736842105
+          },
+          {
+            "id": "SOURCE_5d0f6303ddfcfed140acbbcf",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012987012987012988
+          },
+          {
+            "id": "SOURCE_edd24e7f68c139bafd24bf4c",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.01282051282051282
+          },
+          {
+            "id": "SOURCE_299cdb2f83a689daaff6ba5b",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012658227848101266
+          },
+          {
+            "id": "SOURCE_c88d20385165139fa2127c94",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012658227848101266
+          },
+          {
+            "id": "SOURCE_0d047cddd3a5261ce31d4496",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012345679012345678
+          },
+          {
+            "id": "SOURCE_c50da98cc6d03e7bf612f19d",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012195121951219513
+          },
+          {
+            "id": "SOURCE_cb995c1fa23bbed9a51c3796",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012048192771084338
+          },
+          {
+            "id": "SOURCE_ff01d80ddda13e6c322ab7be",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011904761904761904
+          },
+          {
+            "id": "SOURCE_6e1d4bfa2d2a0b1afb7408df",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011764705882352941
+          },
+          {
+            "id": "SOURCE_bcae635a34a29a32ec43cd7f",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011627906976744186
+          },
+          {
+            "id": "SOURCE_e2580f00bb5b0a8a945fc8ef",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011627906976744186
+          },
+          {
+            "id": "SOURCE_72444e3a4b40bb7bfab350d9",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_9ca833659820154d49e5886e",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_eb57532496b6803e6d87764a",
+            "lexical_overlap": 0.16666666666666666,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          },
+          {
+            "id": "SOURCE_bbb2cdaca32a8afb178e239d",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015151515151515152
+          },
+          {
+            "id": "SOURCE_2f2d2dd4f7703e92527f02bd",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014492753623188406
+          },
+          {
+            "id": "SOURCE_91e9029d297e4ce5c3941c61",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_72c621c06d5df0d98ce20cdd",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013333333333333334
+          },
+          {
+            "id": "SOURCE_8693bb54275fada0d63828b2",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013333333333333334
+          },
+          {
+            "id": "SOURCE_c0f5da8712b9e21fd9454abb",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013157894736842105
+          },
+          {
+            "id": "SOURCE_897fe10bda723dd8a3859d59",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.01282051282051282
+          },
+          {
+            "id": "SOURCE_f5c56edf5aee1b448decd454",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0125
+          },
+          {
+            "id": "SOURCE_29df57c074c36933fc5c0ef8",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012345679012345678
+          },
+          {
+            "id": "SOURCE_cc3651fd81cb3223c4211a21",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012195121951219513
+          },
+          {
+            "id": "SOURCE_808b79f1f7e22262147c70a0",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012048192771084338
+          },
+          {
+            "id": "SOURCE_8ccfd1356bc25c26bb88309e",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011904761904761904
+          },
+          {
+            "id": "SOURCE_acdc17258631db8ecd5e4177",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          },
+          {
+            "id": "SOURCE_597580fb76d051d81e345c2e",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_419896f6c672bd4d8a67cfc5",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          }
+        ],
+        "mode": "DEEP",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 985038,
+          "hits": 2,
+          "misses": 1
+        },
+        "claim_gate": {
+          "version": "pre-release-v1",
+          "before_release": true,
+          "claims": [],
+          "rejected": [
+            {
+              "text": "According to the document excerpts, the first early-release date stated in the book is:",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "December 2022: First Edition",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "This is mentioned in the \"Revision History for the Early Release\" section, which states:",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "2022-07-20: First Release",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "See http://oreilly.com/catalog/errata.csp?isbn=9781098119133 for release details.",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            }
+          ],
+          "fallback": true,
+          "field_conflicts": [],
+          "independent_semantic_verification": false,
+          "output_sha256": "f6704eb9b76381598a12b0069cbf5460c1af8fb0e4c66e7c491bbfa37cdfec79",
+          "limitation": "Non-extractive narrative is explicitly an interpretation, not a verified fact."
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 5334.7,
+        "estimated_input_tokens": 1582,
+        "model_token_usage": [
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1497,
+            "eval_count": 78,
+            "prompt_eval_duration": 454611000,
+            "eval_duration": 995981000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "metadata": 3,
+          "embedding": 2,
+          "generation": 1
+        },
+        "model_call_count": 3,
+        "timings_ms": {
+          "history_compression": 0.01,
+          "query_rewrite": 0.0,
+          "lexical_search": 6.89,
+          "embedding": 31.66,
+          "dense_search": 54.97,
+          "reranking": 4.32,
+          "model_queue": 0.01,
+          "model_inference": 1542.08,
+          "answer_generation": 1543.05
+        },
+        "total_ms": 5335.18,
+        "time_to_first_token_ms": 3221.51,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+      "expected": [
+        "intrinsic",
+        "prediction"
+      ],
+      "passed": true,
+      "answer": "I couldn't verify the drafted answer. The available source evidence is:\n\n> eate the explanation are called post-hoc explanations. Most of the techniques we discuss in this book are post-hoc explanations because they are more portable and can be decoupled from the model itself. By contrast, generating intrinsic explanations often requires modifications to the model itself or using an interpretable model. However, you may notice that some libraries are set up to provide an explanation with the prediction- this does not necessarily mean the explanation is intrinsic, as it may be that the service first generates the prediction, then the explanation, before returning both together. Within the group of post-hoc explainabi [SOURCE_ffe62067f2c3053203b0f26d]\n\n> tecture to aid in generating the explanation. For example, an explanation for tree-based models may look at the weights of specific nodes within the tree to extract the most influential decision points within the tree to explain a prediction. Does this mean that opaque, or black-box, models always use model-agnostic techniques, while explainability for transparent, or interpretable, models is always model-specific? Not necessarily, there are many unique explanation techniques for Deep Neural Networks \\(DNNs\\) which are considered opaque models, and a linear regression model could be explained using Shapley values, a model- agnostic technique. L [SOURCE_ba086517b96eeadb0d1f270b]\n\nThese excerpts do not establish that every part of the question has been answered.",
+      "content_match": true,
+      "required_page_groups_found": 1,
+      "required_page_groups": 1,
+      "cited_pages": [
+        10
+      ],
+      "citation_resolution": [
+        {
+          "id": "SOURCE_ffe62067f2c3053203b0f26d",
+          "status": 200
+        },
+        {
+          "id": "SOURCE_ba086517b96eeadb0d1f270b",
+          "status": 200
+        }
+      ],
+      "seconds": 4.936494899993704,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 5,
+          "assistant_message_id": 6,
+          "generation_id": "0f8b6ba5-25bf-422e-8f3e-4beb0ed4046f"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "0f8b6ba5-25bf-422e-8f3e-4beb0ed4046f"
+        },
+        {
+          "type": "status",
+          "message": "Checking evidence before releasing the answer...",
+          "generation_id": "0f8b6ba5-25bf-422e-8f3e-4beb0ed4046f"
+        },
+        {
+          "type": "delta",
+          "content": "I couldn't verify the drafted an",
+          "generation_id": "0f8b6ba5-25bf-422e-8f3e-4beb0ed4046f"
+        },
+        {
+          "type": "delta",
+          "content": "swer. The available source evidence is:\n\n> eate the explanation are called post-hoc explanations. Most of the techniques we discuss in this book are post-hoc explanations because they are more portable and can be decoupled from the model itself. By contras",
+          "generation_id": "0f8b6ba5-25bf-422e-8f3e-4beb0ed4046f"
+        },
+        {
+          "type": "delta",
+          "content": "t, generating intrinsic explanations often requires modifications to the model itself or using an interpretable model. However, you may notice that some libraries are set up to provide an explanation with the prediction- this does not necessarily mean the ",
+          "generation_id": "0f8b6ba5-25bf-422e-8f3e-4beb0ed4046f"
+        },
+        {
+          "type": "delta",
+          "content": "explanation is intrinsic, as it may be that the service first generates the prediction, then the explanation, before returning both together. Within the group of post-hoc explainabi [SOURCE_ffe62067f2c3053203b0f26d]\n\n> tecture to aid in generating the expl",
+          "generation_id": "0f8b6ba5-25bf-422e-8f3e-4beb0ed4046f"
+        },
+        {
+          "type": "delta",
+          "content": "anation. For example, an explanation for tree-based models may look at the weights of specific nodes within the tree to extract the most influential decision points within the tree to explain a prediction. Does this mean that opaque, or black-box, models a",
+          "generation_id": "0f8b6ba5-25bf-422e-8f3e-4beb0ed4046f"
+        },
+        {
+          "type": "delta",
+          "content": "lways use model-agnostic techniques, while explainability for transparent, or interpretable, models is always model-specific? Not necessarily, there are many unique explanation techniques for Deep Neural Networks \\(DNNs\\) which are considered opaque models",
+          "generation_id": "0f8b6ba5-25bf-422e-8f3e-4beb0ed4046f"
+        },
+        {
+          "type": "delta",
+          "content": ", and a linear regression model could be explained using Shapley values, a model- agnostic technique. L [SOURCE_ba086517b96eeadb0d1f270b]\n\nThese excerpts do not establish that every part of the question has been answered.",
+          "generation_id": "0f8b6ba5-25bf-422e-8f3e-4beb0ed4046f"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "0f8b6ba5-25bf-422e-8f3e-4beb0ed4046f"
+        }
+      ],
+      "sources": [
+        {
+          "id": "SOURCE_ffe62067f2c3053203b0f26d",
+          "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 10, \"section\": \"Page 10\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_ba265c7a3c1f2df4cec693bd\", \"parent_id\": \"PARENT_9504d5075d4f23f4149b68f7\", \"block_index\": 9, \"start\": 0, \"end\": 3509, \"logical_group\": \"BLOCK_ba265c7a3c1f2df4cec693bd\", \"offset\": 455, \"end_offset\": 1155, \"chunk_index\": 42}",
+          "ordinal": 0
+        },
+        {
+          "id": "SOURCE_ba086517b96eeadb0d1f270b",
+          "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 10, \"section\": \"Page 10\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_ba265c7a3c1f2df4cec693bd\", \"parent_id\": \"PARENT_9504d5075d4f23f4149b68f7\", \"block_index\": 9, \"start\": 0, \"end\": 3509, \"logical_group\": \"BLOCK_ba265c7a3c1f2df4cec693bd\", \"offset\": 1995, \"end_offset\": 2695, \"chunk_index\": 45}",
+          "ordinal": 1
+        }
+      ],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+          "files": [
+            {
+              "id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "name": "Explainable-AI-for-Practitioners.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+          "authorized_files": [
+            "175d73e4075e417a9b1eda7ddc25cf61"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "research": {
+          "version": 1,
+          "paths": [
+            {
+              "round": 1,
+              "query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+              "source_ids": [
+                "SOURCE_ffe62067f2c3053203b0f26d",
+                "SOURCE_ba086517b96eeadb0d1f270b"
+              ]
+            }
+          ],
+          "coverage": {
+            "subquestions": [
+              {
+                "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic",
+                "source_ids": [
+                  "SOURCE_ffe62067f2c3053203b0f26d",
+                  "SOURCE_ba086517b96eeadb0d1f270b"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": true,
+            "subquestion_budget": 4,
+            "partial": false,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          },
+          "stop_reason": "candidate_coverage_sufficient",
+          "round_limit": 2,
+          "supplied_coverage": {
+            "subquestions": [
+              {
+                "question": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic",
+                "source_ids": [
+                  "SOURCE_ffe62067f2c3053203b0f26d",
+                  "SOURCE_ba086517b96eeadb0d1f270b"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": true,
+            "subquestion_budget": 4,
+            "partial": false,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          }
+        },
+        "field_conflicts": [],
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_ffe62067f2c3053203b0f26d",
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "text_fingerprint": "50acf67928df89f59a97bb542e34b10e57fc351c0eaddd08e0aed7a3dc26f79a",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_ba086517b96eeadb0d1f270b",
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "text_fingerprint": "bf9bf661bac42b06dbde18d08c95869aebc88ad10ee5c71db48c9d7fb8256af3",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "According to the book, does receiving a prediction and explanation together necessarily mean the explanation is intrinsic?",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_ffe62067f2c3053203b0f26d",
+            "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+            "score": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_ba086517b96eeadb0d1f270b",
+            "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+            "score": 0.029827662395050816
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "e0d19947f74bfc7e453994954bebf9d98e87ef3549d199fbd93f6575473cbeb9",
+          "files": [
+            {
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "deterministic lexical/structural ranking",
+        "ranking_features": [
+          {
+            "id": "SOURCE_ffe62067f2c3053203b0f26d",
+            "lexical_overlap": 0.875,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03278688524590164
+          },
+          {
+            "id": "SOURCE_ba086517b96eeadb0d1f270b",
+            "lexical_overlap": 0.5,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.029827662395050816
+          },
+          {
+            "id": "SOURCE_7802c522fb1c72ef3be2157a",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03149801587301587
+          },
+          {
+            "id": "SOURCE_a0f8977ec0fb9d2c6b91fb60",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.02728937728937729
+          },
+          {
+            "id": "SOURCE_fd58f854b3a2241bca6361cf",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015151515151515152
+          },
+          {
+            "id": "SOURCE_d0ebdd21b467ecb0dcd0fe02",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014705882352941176
+          },
+          {
+            "id": "SOURCE_05669eb763f5cbff8c1b3e48",
+            "lexical_overlap": 0.375,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014492753623188406
+          },
+          {
+            "id": "SOURCE_7332e802f0d54bb121f442a7",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025206087507926443
+          },
+          {
+            "id": "SOURCE_c772ee6ed2e572efdc32714e",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.025
+          },
+          {
+            "id": "SOURCE_601faf3c7e6270e14080ca67",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.024099883855981417
+          },
+          {
+            "id": "SOURCE_df261becafe148c834e4c2f8",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.016129032258064516
+          },
+          {
+            "id": "SOURCE_897fe10bda723dd8a3859d59",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015873015873015872
+          },
+          {
+            "id": "SOURCE_2a68f293b2375100bf6416eb",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015625
+          },
+          {
+            "id": "SOURCE_82bf15ff83c9f367ab1397c8",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015384615384615385
+          },
+          {
+            "id": "SOURCE_fd2008bb08c0718fa1633ae7",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015151515151515152
+          },
+          {
+            "id": "SOURCE_0c351e674256b7ed5e290f45",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014925373134328358
+          },
+          {
+            "id": "SOURCE_cd2677adb7d0f090893f5eac",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014925373134328358
+          },
+          {
+            "id": "SOURCE_d8d8fbd4272227e18f5799e2",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014705882352941176
+          },
+          {
+            "id": "SOURCE_419896f6c672bd4d8a67cfc5",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_4a30a2c044f4b4dde1ae967f",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_085cab54bd2b27eb651bf870",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_0084eb88b5303dacda09aa3c",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013888888888888888
+          },
+          {
+            "id": "SOURCE_29df57c074c36933fc5c0ef8",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013888888888888888
+          },
+          {
+            "id": "SOURCE_d6c16b6cc523a1350448ecd6",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0136986301369863
+          },
+          {
+            "id": "SOURCE_72444e3a4b40bb7bfab350d9",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013333333333333334
+          },
+          {
+            "id": "SOURCE_cb995c1fa23bbed9a51c3796",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013157894736842105
+          },
+          {
+            "id": "SOURCE_1fb0c8e80d9e6cdb5c626e7c",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012987012987012988
+          },
+          {
+            "id": "SOURCE_13ec95b27ce56d70cc8a37c8",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011627906976744186
+          },
+          {
+            "id": "SOURCE_4b5efb50ed6997df8e061391",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_e2580f00bb5b0a8a945fc8ef",
+            "lexical_overlap": 0.25,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_f78195016d284a95fd42c0b3",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014492753623188406
+          },
+          {
+            "id": "SOURCE_18d1d753bd01fecf76a2151c",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_04b56936cbca971e27cdb24c",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013513513513513514
+          },
+          {
+            "id": "SOURCE_9c2a68f1f4809476e8cb224d",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013513513513513514
+          },
+          {
+            "id": "SOURCE_24276ddce9f6f19bda1cd5ac",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013333333333333334
+          },
+          {
+            "id": "SOURCE_8993a547f96449fcb94a5911",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012987012987012988
+          },
+          {
+            "id": "SOURCE_6e1d4bfa2d2a0b1afb7408df",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.01282051282051282
+          },
+          {
+            "id": "SOURCE_756fab0f029148e9bca1cf4b",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.01282051282051282
+          },
+          {
+            "id": "SOURCE_5342829f776cbc3bfbcf2030",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012658227848101266
+          },
+          {
+            "id": "SOURCE_749a35476d2d0e6df3e31cd6",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012345679012345678
+          },
+          {
+            "id": "SOURCE_ec6edfb45938435e53176f89",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012195121951219513
+          },
+          {
+            "id": "SOURCE_91e9029d297e4ce5c3941c61",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012048192771084338
+          },
+          {
+            "id": "SOURCE_1a96a6ce14decb4c99fb4c17",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011764705882352941
+          },
+          {
+            "id": "SOURCE_597580fb76d051d81e345c2e",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011764705882352941
+          },
+          {
+            "id": "SOURCE_6311fb2de7019c2976f28a41",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011627906976744186
+          },
+          {
+            "id": "SOURCE_5e6a5f53ed923fc946efd53e",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          },
+          {
+            "id": "SOURCE_00797a4b2aefe1436264feb8",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_d57c3de6d73df9560ff9575c",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_468f7329dac6ddca72d5e8ef",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          },
+          {
+            "id": "SOURCE_65fa7804a55d1558ad0b967a",
+            "lexical_overlap": 0.125,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          },
+          {
+            "id": "SOURCE_bd6f7dc3a03b8ec54d8b5a56",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012658227848101266
+          },
+          {
+            "id": "SOURCE_d11584e30ccbbbcc67e06c75",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012345679012345678
+          },
+          {
+            "id": "SOURCE_3b02c5d13915359e7778d622",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          }
+        ],
+        "mode": "STANDARD",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 985038,
+          "hits": 3,
+          "misses": 1
+        },
+        "claim_gate": {
+          "version": "pre-release-v1",
+          "before_release": true,
+          "claims": [],
+          "rejected": [
+            {
+              "text": "According to the document excerpt , receiving a prediction and explanation together does not necessarily mean the explanation is intrinsic. The text states that \"this does not necessarily mean the explanation is intrinsic, as it may be that the service first generates the prediction, then the explanation, before returning both together.\"",
+              "source_ids": [
+                "SOURCE_ffe62067f2c3053203b0f26d"
+              ],
+              "support": "unresolved",
+              "reason": "insufficient lexical support"
+            }
+          ],
+          "fallback": true,
+          "field_conflicts": [],
+          "independent_semantic_verification": false,
+          "output_sha256": "9e3e38fda44af20e3c8af8cca16c14ee7de9f1775b8c8f874f42a63c8db6e6b1",
+          "limitation": "Non-extractive narrative is explicitly an interpretation, not a verified fact."
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 4125.0,
+        "estimated_input_tokens": 1131,
+        "model_token_usage": [
+          {
+            "purpose": "routing",
+            "prompt_eval_count": 143,
+            "eval_count": 64,
+            "prompt_eval_duration": 121975000,
+            "eval_duration": 1334650000
+          },
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1161,
+            "eval_count": 61,
+            "prompt_eval_duration": 194888000,
+            "eval_duration": 802115000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "routing": 1,
+          "metadata": 2,
+          "embedding": 1,
+          "generation": 1
+        },
+        "model_call_count": 3,
+        "timings_ms": {
+          "model_queue": 0.02,
+          "model_inference": 2652.02,
+          "routing": 1592.56,
+          "history_compression": 0.01,
+          "query_rewrite": 0.0,
+          "lexical_search": 5.94,
+          "embedding": 20.04,
+          "dense_search": 34.12,
+          "reranking": 3.28,
+          "answer_generation": 1071.97
+        },
+        "total_ms": 4125.18,
+        "time_to_first_token_ms": 3883.19,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "Contrast local, cohort and global explanations; explain why local explanations on novel data can contradict global explanations.",
+      "expected": [
+        "local",
+        "cohort",
+        "global",
+        "novel"
+      ],
+      "passed": true,
+      "answer": "I couldn't verify the drafted answer. The available source evidence is:\n\n> agnostic technique. Local, Cohort, and Global Explanations Explanations themselves can cover a wide variety of topics, but one of the most fundamental is whether the explanation is local, cohort, or global with respect to the range of predictions the explanation covers. A local explanation seeks to provide context and understanding for a single prediction. A global explanation provides information about the overall behavior of the model across all predictions. Cohort explanations lie in between, providing an understanding for a subset of predictions made by the model. Local explanations may be similar for comparable inferences, but this is no [SOURCE_13ec95b27ce56d70cc8a37c8]\n\n> global explanations. Explainable methods for cohorts are usually the same techniques as what is used to calculate global explanations, just applied to a smaller set of data. One powerful aspect of cohort explanations is that one cohort can be compared against another cohort to provide insights about the global behavior of the model that may not be apparent if we just sought a global explanation. These comparisons are useful Fairness techniques seek to evaluate how a model performs for one cohort of predictions compared to another, with the goal of ensu [SOURCE_e80b8ec118e3480d73bd8c76]\n\n> for serving as a guide to compare the deployed model\u2019s behavior against its original performance. WARNING Global explanations are not a set of rules describing the boundaries of a model\u2019s behavior, but instead only what has been observed based in the original training data. Once a model is deployed and is exposed to novel data not seen during training, it is possible that during inference local explanations can differ from or even directly contradict global explanations. Explainable methods for cohorts are usually the s [SOURCE_79833c29c4e8a8c6e55c5ee7]\n\nThese excerpts do not establish that every part of the question has been answered.",
+      "content_match": true,
+      "required_page_groups_found": 2,
+      "required_page_groups": 2,
+      "cited_pages": [
+        10,
+        11
+      ],
+      "citation_resolution": [
+        {
+          "id": "SOURCE_13ec95b27ce56d70cc8a37c8",
+          "status": 200
+        },
+        {
+          "id": "SOURCE_e80b8ec118e3480d73bd8c76",
+          "status": 200
+        },
+        {
+          "id": "SOURCE_79833c29c4e8a8c6e55c5ee7",
+          "status": 200
+        }
+      ],
+      "seconds": 10.460364099999424,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 7,
+          "assistant_message_id": 8,
+          "generation_id": "78da7bad-8b06-44ae-b18d-6d9de819cea4"
+        },
+        {
+          "type": "status",
+          "message": "Document task: document qa...",
+          "generation_id": "78da7bad-8b06-44ae-b18d-6d9de819cea4"
+        },
+        {
+          "type": "status",
+          "message": "Checking evidence before releasing the answer...",
+          "generation_id": "78da7bad-8b06-44ae-b18d-6d9de819cea4"
+        },
+        {
+          "type": "delta",
+          "content": "I couldn't verify the drafted an",
+          "generation_id": "78da7bad-8b06-44ae-b18d-6d9de819cea4"
+        },
+        {
+          "type": "delta",
+          "content": "swer. The available source evidence is:\n\n> agnostic technique. Local, Cohort, and Global Explanations Explanations themselves can cover a wide variety of topics, but one of the most fundamental is whether the explanation is local, cohort, or global with re",
+          "generation_id": "78da7bad-8b06-44ae-b18d-6d9de819cea4"
+        },
+        {
+          "type": "delta",
+          "content": "spect to the range of predictions the explanation covers. A local explanation seeks to provide context and understanding for a single prediction. A global explanation provides information about the overall behavior of the model across all predictions. Coho",
+          "generation_id": "78da7bad-8b06-44ae-b18d-6d9de819cea4"
+        },
+        {
+          "type": "delta",
+          "content": "rt explanations lie in between, providing an understanding for a subset of predictions made by the model. Local explanations may be similar for comparable inferences, but this is no [SOURCE_13ec95b27ce56d70cc8a37c8]\n\n> global explanations. Explainable meth",
+          "generation_id": "78da7bad-8b06-44ae-b18d-6d9de819cea4"
+        },
+        {
+          "type": "delta",
+          "content": "ods for cohorts are usually the same techniques as what is used to calculate global explanations, just applied to a smaller set of data. One powerful aspect of cohort explanations is that one cohort can be compared against another cohort to provide insight",
+          "generation_id": "78da7bad-8b06-44ae-b18d-6d9de819cea4"
+        },
+        {
+          "type": "delta",
+          "content": "s about the global behavior of the model that may not be apparent if we just sought a global explanation. These comparisons are useful Fairness techniques seek to evaluate how a model performs for one cohort of predictions compared to another, with the goa",
+          "generation_id": "78da7bad-8b06-44ae-b18d-6d9de819cea4"
+        },
+        {
+          "type": "delta",
+          "content": "l of ensu [SOURCE_e80b8ec118e3480d73bd8c76]\n\n> for serving as a guide to compare the deployed model\u2019s behavior against its original performance. WARNING Global explanations are not a set of rules describing the boundaries of a model\u2019s behavior, but instead",
+          "generation_id": "78da7bad-8b06-44ae-b18d-6d9de819cea4"
+        },
+        {
+          "type": "delta",
+          "content": " only what has been observed based in the original training data. Once a model is deployed and is exposed to novel data not seen during training, it is possible that during inference local explanations can differ from or even directly contradict global exp",
+          "generation_id": "78da7bad-8b06-44ae-b18d-6d9de819cea4"
+        },
+        {
+          "type": "delta",
+          "content": "lanations. Explainable methods for cohorts are usually the s [SOURCE_79833c29c4e8a8c6e55c5ee7]\n\nThese excerpts do not establish that every part of the question has been answered.",
+          "generation_id": "78da7bad-8b06-44ae-b18d-6d9de819cea4"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "78da7bad-8b06-44ae-b18d-6d9de819cea4"
+        }
+      ],
+      "sources": [
+        {
+          "id": "SOURCE_13ec95b27ce56d70cc8a37c8",
+          "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 10, \"section\": \"Page 10\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_ba265c7a3c1f2df4cec693bd\", \"parent_id\": \"PARENT_9504d5075d4f23f4149b68f7\", \"block_index\": 9, \"start\": 0, \"end\": 3509, \"logical_group\": \"BLOCK_ba265c7a3c1f2df4cec693bd\", \"offset\": 2625, \"end_offset\": 3325, \"chunk_index\": 46}",
+          "ordinal": 0
+        },
+        {
+          "id": "SOURCE_e80b8ec118e3480d73bd8c76",
+          "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 11, \"section\": \"Page 11\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_1743ed858b3c6cce39de5a6d\", \"parent_id\": \"PARENT_af6001cc1c8ba3bf53041b69\", \"block_index\": 10, \"start\": 0, \"end\": 3560, \"logical_group\": \"BLOCK_1743ed858b3c6cce39de5a6d\", \"offset\": 1365, \"end_offset\": 2065, \"chunk_index\": 51}",
+          "ordinal": 1
+        },
+        {
+          "id": "SOURCE_79833c29c4e8a8c6e55c5ee7",
+          "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+          "original_filename": "Explainable-AI-for-Practitioners.pdf",
+          "metadata": "{\"page\": 11, \"section\": \"Page 11\", \"type\": \"page_text\", \"origin\": \"native\", \"id\": \"BLOCK_1743ed858b3c6cce39de5a6d\", \"parent_id\": \"PARENT_af6001cc1c8ba3bf53041b69\", \"block_index\": 10, \"start\": 0, \"end\": 3560, \"logical_group\": \"BLOCK_1743ed858b3c6cce39de5a6d\", \"offset\": 910, \"end_offset\": 1435, \"chunk_index\": 50}",
+          "ordinal": 2
+        }
+      ],
+      "tools": [],
+      "trace": {
+        "route": "DOCUMENT_QA",
+        "original_query": "Contrast local, cohort and global explanations; explain why local explanations on novel data can contradict global explanations.",
+        "operation": {
+          "version": 1,
+          "route": {
+            "route": "DOCUMENT_QA",
+            "operation": "",
+            "term": "",
+            "section": "",
+            "page": 0,
+            "slide": 0,
+            "line_start": 0,
+            "line_end": 0,
+            "case_sensitive": false
+          },
+          "question": "Contrast local, cohort and global explanations; explain why local explanations on novel data can contradict global explanations.",
+          "files": [
+            {
+              "id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "name": "Explainable-AI-for-Practitioners.pdf"
+            }
+          ],
+          "tools": []
+        },
+        "task_state": {
+          "version": 1,
+          "objective": "Contrast local, cohort and global explanations; explain why local explanations on novel data can contradict global explanations.",
+          "authorized_files": [
+            "175d73e4075e417a9b1eda7ddc25cf61"
+          ],
+          "required_scope": "selected documents",
+          "audience_and_format": "Follow the requirements in the original objective.",
+          "unresolved": [],
+          "limits": {
+            "planning_steps": 4,
+            "tools": 8,
+            "retrieval_rounds": 2
+          }
+        },
+        "answer_prompt_version": "attachment-answer-v2-compact-evidence",
+        "research": {
+          "version": 1,
+          "paths": [
+            {
+              "round": 1,
+              "query": "Contrast local, cohort and global explanations; explain why local explanations on novel data can contradict global explanations.",
+              "source_ids": [
+                "SOURCE_79833c29c4e8a8c6e55c5ee7",
+                "SOURCE_13ec95b27ce56d70cc8a37c8",
+                "SOURCE_e80b8ec118e3480d73bd8c76"
+              ]
+            }
+          ],
+          "coverage": {
+            "subquestions": [
+              {
+                "question": "Contrast local, cohort and global explanations",
+                "source_ids": [
+                  "SOURCE_79833c29c4e8a8c6e55c5ee7",
+                  "SOURCE_13ec95b27ce56d70cc8a37c8",
+                  "SOURCE_e80b8ec118e3480d73bd8c76"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              },
+              {
+                "question": "explain why local explanations on novel data can contradict global explanations.",
+                "source_ids": [
+                  "SOURCE_79833c29c4e8a8c6e55c5ee7",
+                  "SOURCE_13ec95b27ce56d70cc8a37c8",
+                  "SOURCE_e80b8ec118e3480d73bd8c76"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": true,
+            "subquestion_budget": 4,
+            "partial": false,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          },
+          "stop_reason": "candidate_coverage_sufficient",
+          "round_limit": 2,
+          "supplied_coverage": {
+            "subquestions": [
+              {
+                "question": "Contrast local, cohort and global explanations",
+                "source_ids": [
+                  "SOURCE_79833c29c4e8a8c6e55c5ee7",
+                  "SOURCE_13ec95b27ce56d70cc8a37c8",
+                  "SOURCE_e80b8ec118e3480d73bd8c76"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              },
+              {
+                "question": "explain why local explanations on novel data can contradict global explanations.",
+                "source_ids": [
+                  "SOURCE_79833c29c4e8a8c6e55c5ee7",
+                  "SOURCE_13ec95b27ce56d70cc8a37c8",
+                  "SOURCE_e80b8ec118e3480d73bd8c76"
+                ],
+                "status": "candidate_evidence",
+                "semantic_completeness_verified": false
+              }
+            ],
+            "missing_files": [],
+            "complete": true,
+            "subquestion_budget": 4,
+            "partial": false,
+            "policy": "Lexical acquisition coverage only; not final-answer entailment."
+          }
+        },
+        "field_conflicts": [],
+        "acquisition": "hybrid_retrieval",
+        "evidence_bundle": {
+          "version": 2,
+          "strategy": "hybrid_retrieval",
+          "documents": [
+            {
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ],
+          "sources": [
+            {
+              "id": "SOURCE_79833c29c4e8a8c6e55c5ee7",
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "text_fingerprint": "6d2ba019ee19115b5be3cdf5eee041ee25bc46a4aa9f446ca4b6178da3b044b0",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_13ec95b27ce56d70cc8a37c8",
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "text_fingerprint": "bc6523783d7aecde11242e7fcb0d0aab8a2c1d7fc40a5f314617691494993aad",
+              "origin": "native"
+            },
+            {
+              "id": "SOURCE_e80b8ec118e3480d73bd8c76",
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "text_fingerprint": "96bd4029d4e45eeefcf87f017f140619d9dfdbe91df7282c7f241c071614dff8",
+              "origin": "native"
+            }
+          ]
+        },
+        "rewritten_query": "Contrast local, cohort and global explanations; explain why local explanations on novel data can contradict global explanations.",
+        "rewrite": "not needed",
+        "embedding_config": "structured-v2:tokens350:parent-v2:hybrid-rrf60:embeddinggemma:latest:85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1:title:  | text: :task: search result | query: ",
+        "rounds": 1,
+        "sources": [
+          {
+            "id": "SOURCE_79833c29c4e8a8c6e55c5ee7",
+            "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+            "score": 0.03252247488101534
+          },
+          {
+            "id": "SOURCE_13ec95b27ce56d70cc8a37c8",
+            "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+            "score": 0.03252247488101534
+          },
+          {
+            "id": "SOURCE_e80b8ec118e3480d73bd8c76",
+            "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+            "score": 0.031746031746031744
+          }
+        ],
+        "evidence_revision": {
+          "version": 1,
+          "identity": "6c086d213e86d6130eed789f6e8e62fb8580f727d29198114eac372040c052b9",
+          "files": [
+            {
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "rerank_status": "deterministic lexical/structural ranking",
+        "ranking_features": [
+          {
+            "id": "SOURCE_79833c29c4e8a8c6e55c5ee7",
+            "lexical_overlap": 0.8888888888888888,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03252247488101534
+          },
+          {
+            "id": "SOURCE_13ec95b27ce56d70cc8a37c8",
+            "lexical_overlap": 0.5555555555555556,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.03252247488101534
+          },
+          {
+            "id": "SOURCE_e80b8ec118e3480d73bd8c76",
+            "lexical_overlap": 0.5555555555555556,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.031746031746031744
+          },
+          {
+            "id": "SOURCE_ba086517b96eeadb0d1f270b",
+            "lexical_overlap": 0.4444444444444444,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.030776515151515152
+          },
+          {
+            "id": "SOURCE_0c351e674256b7ed5e290f45",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.030536130536130537
+          },
+          {
+            "id": "SOURCE_ffe62067f2c3053203b0f26d",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.027912386121341344
+          },
+          {
+            "id": "SOURCE_897fe10bda723dd8a3859d59",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.02564102564102564
+          },
+          {
+            "id": "SOURCE_8a1f1254feb23480bc312053",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014492753623188406
+          },
+          {
+            "id": "SOURCE_3f582946d5d7987714e9d5ca",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012658227848101266
+          },
+          {
+            "id": "SOURCE_408d8b4bdd31a9817fc97268",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0125
+          },
+          {
+            "id": "SOURCE_bda66e6be3d0ce6d2f6b87ef",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0125
+          },
+          {
+            "id": "SOURCE_0586e98165f4f284832a650d",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012048192771084338
+          },
+          {
+            "id": "SOURCE_cd2677adb7d0f090893f5eac",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011627906976744186
+          },
+          {
+            "id": "SOURCE_05669eb763f5cbff8c1b3e48",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          },
+          {
+            "id": "SOURCE_82bf15ff83c9f367ab1397c8",
+            "lexical_overlap": 0.3333333333333333,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          },
+          {
+            "id": "SOURCE_d0ebdd21b467ecb0dcd0fe02",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.030330882352941176
+          },
+          {
+            "id": "SOURCE_2a68f293b2375100bf6416eb",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.027031963470319637
+          },
+          {
+            "id": "SOURCE_485abe0b3a68bcd358a45b6c",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.023581634068525453
+          },
+          {
+            "id": "SOURCE_d3b63b07fcfe12889f4fd845",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.015384615384615385
+          },
+          {
+            "id": "SOURCE_fd2008bb08c0718fa1633ae7",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014705882352941176
+          },
+          {
+            "id": "SOURCE_7802c522fb1c72ef3be2157a",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_9f04b4336debfcb97d5ec4b4",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013888888888888888
+          },
+          {
+            "id": "SOURCE_f1bf6d5a17d4ec749a2e7df7",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013888888888888888
+          },
+          {
+            "id": "SOURCE_3892a4d5eadb0b3dbf1ced5b",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013513513513513514
+          },
+          {
+            "id": "SOURCE_4d60adf4a1f43abea29e6ea7",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013513513513513514
+          },
+          {
+            "id": "SOURCE_91e9029d297e4ce5c3941c61",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012195121951219513
+          },
+          {
+            "id": "SOURCE_5f93788ce11b4f1a384e4814",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011904761904761904
+          },
+          {
+            "id": "SOURCE_bbe3876acb5e8f62b70fd2fd",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011764705882352941
+          },
+          {
+            "id": "SOURCE_ea408f83a5c59078e66ead9a",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          },
+          {
+            "id": "SOURCE_29df57c074c36933fc5c0ef8",
+            "lexical_overlap": 0.2222222222222222,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011111111111111112
+          },
+          {
+            "id": "SOURCE_41bd8dfa04179b4299ff1106",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.027912386121341344
+          },
+          {
+            "id": "SOURCE_f78195016d284a95fd42c0b3",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014492753623188406
+          },
+          {
+            "id": "SOURCE_8787014c700f5694d087f83f",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_c772ee6ed2e572efdc32714e",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014084507042253521
+          },
+          {
+            "id": "SOURCE_b41a73c084622635d0194fc9",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013333333333333334
+          },
+          {
+            "id": "SOURCE_39661d2cfefc3ddfbb62319d",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013157894736842105
+          },
+          {
+            "id": "SOURCE_d57c3de6d73df9560ff9575c",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.013157894736842105
+          },
+          {
+            "id": "SOURCE_5031f5b45efe1ec754d136af",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012658227848101266
+          },
+          {
+            "id": "SOURCE_17f78e82d26906662bbfe630",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012345679012345678
+          },
+          {
+            "id": "SOURCE_04b56936cbca971e27cdb24c",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012195121951219513
+          },
+          {
+            "id": "SOURCE_3220ac407adf76672c22a05e",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.012048192771084338
+          },
+          {
+            "id": "SOURCE_419896f6c672bd4d8a67cfc5",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011904761904761904
+          },
+          {
+            "id": "SOURCE_be3077b1c0f9a0036860e2a8",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011764705882352941
+          },
+          {
+            "id": "SOURCE_0084eb88b5303dacda09aa3c",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011627906976744186
+          },
+          {
+            "id": "SOURCE_5f62f67bc45e31dcf0ececaa",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011363636363636364
+          },
+          {
+            "id": "SOURCE_468f7329dac6ddca72d5e8ef",
+            "lexical_overlap": 0.1111111111111111,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011235955056179775
+          },
+          {
+            "id": "SOURCE_dd630d964a0088fb396ec817",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.014285714285714285
+          },
+          {
+            "id": "SOURCE_fa32b3b1548517ea62e167c1",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.0136986301369863
+          },
+          {
+            "id": "SOURCE_d11584e30ccbbbcc67e06c75",
+            "lexical_overlap": 0.0,
+            "identifier_match": 0,
+            "heading_overlap": 0,
+            "structured": 0,
+            "fusion": 0.011494252873563218
+          }
+        ],
+        "mode": "DEEP",
+        "evidence_assessment": {
+          "answerable": true,
+          "reason": "supported candidates",
+          "policy": "evidence-v2"
+        },
+        "reranking_skipped": false,
+        "vector_cache": {
+          "bytes": 985038,
+          "hits": 4,
+          "misses": 1
+        },
+        "claim_gate": {
+          "version": "pre-release-v1",
+          "before_release": true,
+          "claims": [],
+          "rejected": [
+            {
+              "text": "Explainable AI Methods: Local, Cohort, and Global Explanations",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "Explainable AI (XAI) methods provide insights into the behavior of machine learning models. Three fundamental types of explanations are used: local, cohort, and global explanations. Understanding the differences between these explanations is crucial for evaluating model performance and fairness.",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "Local Explanations",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "Local explanations aim to provide context and understanding for a single prediction. They focus on the specific input data that led to the prediction and provide insights into the model's decision-making process. Local explanations can be useful for identifying the most important features contributing to a particular prediction.",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "Cohort Explanations",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "Cohort explanations lie between local and global explanations. They provide an understanding for a subset of predictions made by the model. Cohort explanations can be used to identify patterns and trends in the data that are not apparent from individual predictions.",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "Global Explanations",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "Global explanations provide information about the overall behavior of the model across all predictions. They offer insights into the model's performance and can be used to evaluate its fairness and accuracy.",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "Contradiction between Local and Global Explanations",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "Local explanations on novel data can contradict global explanations because they are based on the original training data. When a model is deployed and exposed to novel data, the local explanations may not accurately reflect the model's behavior on new data. This is because the local explanations are based on the specific input data that led to the prediction, whereas the global explanations provide a broader understanding of the model's behavior.",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "For example, consider a model that predicts whether a person will buy a product based on their demographic information. If the model is trained on a dataset that contains a bias towards a particular demographic group, the local explanations for individual predictions may not reveal this bias. However, the global explanations can provide insights into the model's overall bias and performance on this demographic group.",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            },
+            {
+              "text": "In summary, local explanations provide context for individual predictions, cohort explanations offer insights into patterns and trends, and global explanations provide a broader understanding of the model's behavior. However, local explanations on novel data can contradict global explanations, highlighting the need for careful evaluation and testing of the model's performance and fairness.",
+              "source_ids": [],
+              "support": "unresolved",
+              "reason": "missing or invalid source"
+            }
+          ],
+          "fallback": true,
+          "field_conflicts": [],
+          "independent_semantic_verification": false,
+          "output_sha256": "716e4344fa5928e67d8ebfd2bfedbebbc09cd478fb7c85548c4852ce7d247cd0",
+          "limitation": "Non-extractive narrative is explicitly an interpretation, not a verified fact."
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 9655.1,
+        "estimated_input_tokens": 1536,
+        "model_token_usage": [
+          {
+            "purpose": "generation",
+            "prompt_eval_count": 1478,
+            "eval_count": 446,
+            "prompt_eval_duration": 389442000,
+            "eval_duration": 5731974000
+          }
+        ],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {
+          "metadata": 2,
+          "embedding": 1,
+          "generation": 1
+        },
+        "model_call_count": 2,
+        "timings_ms": {
+          "history_compression": 0.01,
+          "query_rewrite": 0.01,
+          "lexical_search": 5.05,
+          "embedding": 15.29,
+          "dense_search": 28.45,
+          "reranking": 2.84,
+          "model_queue": 0.04,
+          "model_inference": 6191.6,
+          "answer_generation": 6200.21
+        },
+        "total_ms": 9655.32,
+        "time_to_first_token_ms": 7197.04,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "How many check valve symbols appear on PDF page 1?",
+      "expected": [
+        "Unverified"
+      ],
+      "passed": true,
+      "answer": "**Unverified:** select a symbol reference or define a supported template in the drawing viewer. No symbol total has been established.\n\nSource: Explainable-AI-for-Practitioners.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "content_match": true,
+      "required_page_groups_found": 0,
+      "required_page_groups": 0,
+      "cited_pages": [],
+      "citation_resolution": [],
+      "seconds": 2.867575099997339,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 9,
+          "assistant_message_id": 10,
+          "generation_id": "430926d4-d948-488b-aaf2-b1fb45a5f1af"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "430926d4-d948-488b-aaf2-b1fb45a5f1af"
+        },
+        {
+          "type": "delta",
+          "content": "**Unverified:** select a symbol ",
+          "generation_id": "430926d4-d948-488b-aaf2-b1fb45a5f1af"
+        },
+        {
+          "type": "delta",
+          "content": "reference or define a supported template in the drawing viewer. No symbol total has been established.\n\nSource: Explainable-AI-for-Practitioners.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+          "generation_id": "430926d4-d948-488b-aaf2-b1fb45a5f1af"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "430926d4-d948-488b-aaf2-b1fb45a5f1af"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_0907b66bc0f6b5ca90df459e",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_SYMBOLS",
+        "original_query": "How many check valve symbols appear on PDF page 1?",
+        "drawing_context": {
+          "files": {
+            "175d73e4075e417a9b1eda7ddc25cf61": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21"
+          },
+          "page": 1,
+          "kind": "symbols"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "ea5ceff28297087cfd9b2b25e460c74350543ac8e0acbe11809a032a04f6a1fa",
+          "files": [
+            {
+              "file_id": "175d73e4075e417a9b1eda7ddc25cf61",
+              "fingerprint": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+              "generation": 374,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 1849.1,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 0.07
+        },
+        "total_ms": 1849.11,
+        "time_to_first_token_ms": 1577.94,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    }
+  ],
+  "artifacts": "D:\\Projects\\LLM-chat-interface-tutorial\\Stage 9(Files attachments and RAG)\\tests\\.artifacts\\drawing-qa-d4db591732714d5f921b7c28b545a6a2",
+  "ingestion": [
+    {
+      "name": "Explainable-AI-for-Practitioners.pdf",
+      "sha256": "92f92d40c9b94deefa0d98d0c384a0402755d69cf7485641513fc8bbeb968d21",
+      "state": "ready",
+      "seconds": 20.32183399999485
+    }
+  ],
+  "passed": 5,
+  "total": 5,
+  "p50_seconds": 6.12603990000207,
+  "p95_seconds": 10.460364099999424
+}

@@ -144,6 +144,9 @@ def validate_job(docs, job):
     revision = job.get("evidence_revision")
     if revision:
         revision.validate(docs)
+    if job.get('drawing_versions'):
+        from .drawings import Drawings
+        Drawings(docs).check(job['conversation_id'],job['drawing_versions'])
 
 
 async def queue_delta(docs, job, text):

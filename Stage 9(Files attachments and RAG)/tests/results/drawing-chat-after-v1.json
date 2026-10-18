@@ -1,0 +1,910 @@
+{
+  "complete": true,
+  "fixture_sha256": "0628537c6a01bd36b9688b866bf98c432a2bf32a69bf26f9e2372a93b00ef589",
+  "application": "D:\\Projects\\LLM-chat-interface-tutorial\\Stage 9(Files attachments and RAG)",
+  "main_sha256": "3b63f24327b36eb69b20ec863b786cb6c023f30be60553a0ff6ff209d5e187a6",
+  "models": [
+    {
+      "model": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72"
+    },
+    {
+      "model": "embeddinggemma:latest",
+      "digest": "85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1"
+    },
+    {
+      "model": "phi4-mini:latest",
+      "digest": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753"
+    }
+  ],
+  "limitations": "Seven development probes with fixed string checks, not independently human-reviewed answer quality or symbol ground truth. Latency is one observation per case.",
+  "rows": [
+    {
+      "question": "In page_14.pdf, what is the drawing number?",
+      "expected": [
+        "GP3201-G41-PA081-000008"
+      ],
+      "passed": true,
+      "answer": "Drawing number: **GP3201-G41-PA081-000008**.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "seconds": 7.8760481999997864,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 1,
+          "assistant_message_id": 2,
+          "generation_id": "378f12a8-4247-4d31-bf9a-adbd33abd4b9"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "378f12a8-4247-4d31-bf9a-adbd33abd4b9"
+        },
+        {
+          "type": "delta",
+          "content": "Drawing number: **GP3201-G41-PA0",
+          "generation_id": "378f12a8-4247-4d31-bf9a-adbd33abd4b9"
+        },
+        {
+          "type": "delta",
+          "content": "81-000008**.\n\nSource: page\\_14.p",
+          "generation_id": "378f12a8-4247-4d31-bf9a-adbd33abd4b9"
+        },
+        {
+          "type": "delta",
+          "content": "df \u00b7 PDF page 1. Open the drawin",
+          "generation_id": "378f12a8-4247-4d31-bf9a-adbd33abd4b9"
+        },
+        {
+          "type": "delta",
+          "content": "g evidence to inspect the origin",
+          "generation_id": "378f12a8-4247-4d31-bf9a-adbd33abd4b9"
+        },
+        {
+          "type": "delta",
+          "content": "al region.",
+          "generation_id": "378f12a8-4247-4d31-bf9a-adbd33abd4b9"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "378f12a8-4247-4d31-bf9a-adbd33abd4b9"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_7c36b96b2f80eec12010a5cb",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_METADATA",
+        "original_query": "In page_14.pdf, what is the drawing number?",
+        "drawing_context": {
+          "files": {
+            "e0c597b3489d48fa8a63f0c48c3cd4c5": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585"
+          },
+          "page": 1,
+          "kind": "metadata"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "030da1ac2b544fc029c834837c5553e466499497fd52e2ecc3c1244c0f0b4d07",
+          "files": [
+            {
+              "file_id": "e0c597b3489d48fa8a63f0c48c3cd4c5",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "7b7cd63e06ed4343bdaeeb5de66367cd",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 6280.0,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 0.05
+        },
+        "total_ms": 6280.01,
+        "time_to_first_token_ms": 4944.62,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the REV. value?",
+      "expected": [
+        "04"
+      ],
+      "passed": true,
+      "answer": "Revision: **04**.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "seconds": 2.4699035000012373,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 3,
+          "assistant_message_id": 4,
+          "generation_id": "8c0254fa-bffc-473b-921c-944dd06fc67c"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "8c0254fa-bffc-473b-921c-944dd06fc67c"
+        },
+        {
+          "type": "delta",
+          "content": "Revision: **04**.\n\nSource: page\\",
+          "generation_id": "8c0254fa-bffc-473b-921c-944dd06fc67c"
+        },
+        {
+          "type": "delta",
+          "content": "_14.pdf \u00b7 PDF page 1. Open the d",
+          "generation_id": "8c0254fa-bffc-473b-921c-944dd06fc67c"
+        },
+        {
+          "type": "delta",
+          "content": "rawing evidence to inspect the o",
+          "generation_id": "8c0254fa-bffc-473b-921c-944dd06fc67c"
+        },
+        {
+          "type": "delta",
+          "content": "riginal region.",
+          "generation_id": "8c0254fa-bffc-473b-921c-944dd06fc67c"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "8c0254fa-bffc-473b-921c-944dd06fc67c"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_10ae59d2cb6b6985daf856c7",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_METADATA",
+        "original_query": "What is the REV. value?",
+        "drawing_context": {
+          "files": {
+            "e0c597b3489d48fa8a63f0c48c3cd4c5": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585"
+          },
+          "page": 1,
+          "kind": "metadata"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "39f18e288544303dcfdeb1a76c12d3b822f6c1bb1d706b157de0273210c139ef",
+          "files": [
+            {
+              "file_id": "e0c597b3489d48fa8a63f0c48c3cd4c5",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "7b7cd63e06ed4343bdaeeb5de66367cd",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 1702.3,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 2.1
+        },
+        "total_ms": 1702.31,
+        "time_to_first_token_ms": 705.54,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What does 04 mean?",
+      "expected": [
+        "revision"
+      ],
+      "passed": true,
+      "answer": "**04** is the revision shown in this drawing's title block.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "seconds": 1.1977745999975014,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 5,
+          "assistant_message_id": 6,
+          "generation_id": "03c8504b-12f4-4017-8e7e-81a2dbcb2dfb"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "03c8504b-12f4-4017-8e7e-81a2dbcb2dfb"
+        },
+        {
+          "type": "delta",
+          "content": "**04** is the revision shown in ",
+          "generation_id": "03c8504b-12f4-4017-8e7e-81a2dbcb2dfb"
+        },
+        {
+          "type": "delta",
+          "content": "this drawing's title block.\n\nSou",
+          "generation_id": "03c8504b-12f4-4017-8e7e-81a2dbcb2dfb"
+        },
+        {
+          "type": "delta",
+          "content": "rce: page\\_14.pdf \u00b7 PDF page 1. ",
+          "generation_id": "03c8504b-12f4-4017-8e7e-81a2dbcb2dfb"
+        },
+        {
+          "type": "delta",
+          "content": "Open the drawing evidence to ins",
+          "generation_id": "03c8504b-12f4-4017-8e7e-81a2dbcb2dfb"
+        },
+        {
+          "type": "delta",
+          "content": "pect the original region.",
+          "generation_id": "03c8504b-12f4-4017-8e7e-81a2dbcb2dfb"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "03c8504b-12f4-4017-8e7e-81a2dbcb2dfb"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_e499f71c418f81d2ed99af81",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_METADATA",
+        "original_query": "What does 04 mean?",
+        "drawing_context": {
+          "files": {
+            "e0c597b3489d48fa8a63f0c48c3cd4c5": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585"
+          },
+          "page": 1,
+          "kind": "metadata"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "173837a62d370fcfdabd842ba03fc46e5e95ba6295588822b1f5d478c925a19e",
+          "files": [
+            {
+              "file_id": "e0c597b3489d48fa8a63f0c48c3cd4c5",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "7b7cd63e06ed4343bdaeeb5de66367cd",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 738.2,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 2.13
+        },
+        "total_ms": 738.23,
+        "time_to_first_token_ms": 542.29,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the revision of page_15.pdf?",
+      "expected": [
+        "02"
+      ],
+      "passed": true,
+      "answer": "Revision: **02**.\n\nSource: page\\_15.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "seconds": 3.2844726000002993,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 7,
+          "assistant_message_id": 8,
+          "generation_id": "be98cf15-918d-4418-9774-1812c626d8be"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "be98cf15-918d-4418-9774-1812c626d8be"
+        },
+        {
+          "type": "delta",
+          "content": "Revision: **02**.\n\nSource: page\\",
+          "generation_id": "be98cf15-918d-4418-9774-1812c626d8be"
+        },
+        {
+          "type": "delta",
+          "content": "_15.pdf \u00b7 PDF page 1. Open the d",
+          "generation_id": "be98cf15-918d-4418-9774-1812c626d8be"
+        },
+        {
+          "type": "delta",
+          "content": "rawing evidence to inspect the o",
+          "generation_id": "be98cf15-918d-4418-9774-1812c626d8be"
+        },
+        {
+          "type": "delta",
+          "content": "riginal region.",
+          "generation_id": "be98cf15-918d-4418-9774-1812c626d8be"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "be98cf15-918d-4418-9774-1812c626d8be"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_6df3ca34fef0477cf96e557d",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_METADATA",
+        "original_query": "What is the revision of page_15.pdf?",
+        "drawing_context": {
+          "files": {
+            "7b7cd63e06ed4343bdaeeb5de66367cd": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07"
+          },
+          "page": 1,
+          "kind": "metadata"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "af031d92a6e72589b604befeaf9998f5d65d21c783f559039d74483201f92cb5",
+          "files": [
+            {
+              "file_id": "e0c597b3489d48fa8a63f0c48c3cd4c5",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "7b7cd63e06ed4343bdaeeb5de66367cd",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 2750.9,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 0.08
+        },
+        "total_ms": 2750.94,
+        "time_to_first_token_ms": 2555.73,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the project title in page_14.pdf?",
+      "expected": [
+        "VINYLS PROGRAM",
+        "CHLOR ALKALI"
+      ],
+      "passed": true,
+      "answer": "Project title: **VINYLS PROGRAM : CHLOR ALKALI \\(1035 KTA CHLORINE\\)**.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "seconds": 0.7163134000002174,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 9,
+          "assistant_message_id": 10,
+          "generation_id": "ba1479fc-f253-49e2-977b-92f41e885139"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "ba1479fc-f253-49e2-977b-92f41e885139"
+        },
+        {
+          "type": "delta",
+          "content": "Project title: **VINYLS PROGRAM ",
+          "generation_id": "ba1479fc-f253-49e2-977b-92f41e885139"
+        },
+        {
+          "type": "delta",
+          "content": ": CHLOR ALKALI \\(1035 KTA CHLORI",
+          "generation_id": "ba1479fc-f253-49e2-977b-92f41e885139"
+        },
+        {
+          "type": "delta",
+          "content": "NE\\)**.\n\nSource: page\\_14.pdf \u00b7 ",
+          "generation_id": "ba1479fc-f253-49e2-977b-92f41e885139"
+        },
+        {
+          "type": "delta",
+          "content": "PDF page 1. Open the drawing evi",
+          "generation_id": "ba1479fc-f253-49e2-977b-92f41e885139"
+        },
+        {
+          "type": "delta",
+          "content": "dence to inspect the original re",
+          "generation_id": "ba1479fc-f253-49e2-977b-92f41e885139"
+        },
+        {
+          "type": "delta",
+          "content": "gion.",
+          "generation_id": "ba1479fc-f253-49e2-977b-92f41e885139"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "ba1479fc-f253-49e2-977b-92f41e885139"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_fe76a75a31821a2a01ec8f20",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_METADATA",
+        "original_query": "What is the project title in page_14.pdf?",
+        "drawing_context": {
+          "files": {
+            "e0c597b3489d48fa8a63f0c48c3cd4c5": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585"
+          },
+          "page": 1,
+          "kind": "metadata"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "3b9904ab7ab90d96ce3f51989ade69986efc2db6c8a8102ce506f7d64289d988",
+          "files": [
+            {
+              "file_id": "e0c597b3489d48fa8a63f0c48c3cd4c5",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "7b7cd63e06ed4343bdaeeb5de66367cd",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 308.1,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 2.17
+        },
+        "total_ms": 308.14,
+        "time_to_first_token_ms": 289.27,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "How many check valves are in page_14.pdf?",
+      "expected": [
+        "Unverified"
+      ],
+      "passed": true,
+      "answer": "**Unverified:** select a symbol reference or define a supported template in the drawing viewer. No symbol total has been established.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "seconds": 3.2401441000001796,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 11,
+          "assistant_message_id": 12,
+          "generation_id": "585145c4-ac7c-4837-b6f5-3082692eaa90"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "585145c4-ac7c-4837-b6f5-3082692eaa90"
+        },
+        {
+          "type": "delta",
+          "content": "**Unverified:** select a symbol ",
+          "generation_id": "585145c4-ac7c-4837-b6f5-3082692eaa90"
+        },
+        {
+          "type": "delta",
+          "content": "reference or define a supported ",
+          "generation_id": "585145c4-ac7c-4837-b6f5-3082692eaa90"
+        },
+        {
+          "type": "delta",
+          "content": "template in the drawing viewer. ",
+          "generation_id": "585145c4-ac7c-4837-b6f5-3082692eaa90"
+        },
+        {
+          "type": "delta",
+          "content": "No symbol total has been establi",
+          "generation_id": "585145c4-ac7c-4837-b6f5-3082692eaa90"
+        },
+        {
+          "type": "delta",
+          "content": "shed.\n\nSource: page\\_14.pdf \u00b7 PD",
+          "generation_id": "585145c4-ac7c-4837-b6f5-3082692eaa90"
+        },
+        {
+          "type": "delta",
+          "content": "F page 1. Open the drawing evide",
+          "generation_id": "585145c4-ac7c-4837-b6f5-3082692eaa90"
+        },
+        {
+          "type": "delta",
+          "content": "nce to inspect the original regi",
+          "generation_id": "585145c4-ac7c-4837-b6f5-3082692eaa90"
+        },
+        {
+          "type": "delta",
+          "content": "on.",
+          "generation_id": "585145c4-ac7c-4837-b6f5-3082692eaa90"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "585145c4-ac7c-4837-b6f5-3082692eaa90"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_288c4e4103466f8faed7794d",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_SYMBOLS",
+        "original_query": "How many check valves are in page_14.pdf?",
+        "drawing_context": {
+          "files": {
+            "e0c597b3489d48fa8a63f0c48c3cd4c5": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585"
+          },
+          "page": 1,
+          "kind": "symbols"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "bb527fc0ddc251f1f74fa05bcea889eedb94502a1e3db97a94f97a82cc35ff63",
+          "files": [
+            {
+              "file_id": "e0c597b3489d48fa8a63f0c48c3cd4c5",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "7b7cd63e06ed4343bdaeeb5de66367cd",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 2615.3,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 2.08
+        },
+        "total_ms": 2615.28,
+        "time_to_first_token_ms": 465.91,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    },
+    {
+      "question": "What is the height of the tank in page_14.pdf?",
+      "expected": [
+        "not to scale"
+      ],
+      "passed": true,
+      "answer": "A dimension for the requested object has not been established from an associated specification or dimension line. This drawing is marked NTS (not to scale), so image distances cannot establish physical dimensions. Native dimension annotations are available in the evidence viewer; their equipment association remains unresolved.\n\nSource: page\\_14.pdf \u00b7 PDF page 1. Open the drawing evidence to inspect the original region.",
+      "seconds": 0.759148400000413,
+      "events": [
+        {
+          "type": "start",
+          "conversation_id": 1,
+          "user_message_id": 13,
+          "assistant_message_id": 14,
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "status",
+          "message": "Inspecting native drawing geometry and title-block evidence...",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": "A dimension for the requested ob",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": "ject has not been established fr",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": "om an associated specification o",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": "r dimension line. This drawing i",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": "s marked NTS (not to scale), so ",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": "image distances cannot establish",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": " physical dimensions. Native dim",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": "ension annotations are available",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": " in the evidence viewer; their e",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": "quipment association remains unr",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": "esolved.\n\nSource: page\\_14.pdf \u00b7",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": " PDF page 1. Open the drawing ev",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": "idence to inspect the original r",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "delta",
+          "content": "egion.",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        },
+        {
+          "type": "done",
+          "status": "completed",
+          "generation_id": "673f151e-eb4a-44b7-aea5-2f44a2803d34"
+        }
+      ],
+      "sources": [],
+      "tools": [
+        {
+          "id": "TOOL_25a8f09813560e25fed7bd1e",
+          "ordinal": 0
+        }
+      ],
+      "trace": {
+        "route": "DRAWING_DIMENSION",
+        "original_query": "What is the height of the tank in page_14.pdf?",
+        "drawing_context": {
+          "files": {
+            "e0c597b3489d48fa8a63f0c48c3cd4c5": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585"
+          },
+          "page": 1,
+          "kind": "dimension"
+        },
+        "claim_gate": {
+          "before_release": true,
+          "method": "deterministic_drawing_tool",
+          "independent_semantic_verification": false
+        },
+        "evidence_revision": {
+          "version": 1,
+          "identity": "98af6953d6f1aa581c993761ff2fc69ad52aa06049362a2380dca4abb2a66288",
+          "files": [
+            {
+              "file_id": "e0c597b3489d48fa8a63f0c48c3cd4c5",
+              "fingerprint": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+              "generation": 24,
+              "parser": "structured-v2"
+            },
+            {
+              "file_id": "7b7cd63e06ed4343bdaeeb5de66367cd",
+              "fingerprint": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+              "generation": 15,
+              "parser": "structured-v2"
+            }
+          ]
+        },
+        "deterministic_grounding": {
+          "findings": [],
+          "scope": "Explicit citations, attributed quotes, page references and tool provenance; not general entailment proof."
+        },
+        "claim_review": {
+          "mode": "off",
+          "ran": false,
+          "latency_ms": 0,
+          "status": "disabled"
+        },
+        "generation_ms": 319.0,
+        "estimated_input_tokens": 32,
+        "model_token_usage": [],
+        "token_usage_scope": "Reported Ollama call counts only; missing counts are unknown",
+        "model_calls": {},
+        "model_call_count": 0,
+        "timings_ms": {
+          "answer_generation": 1.93
+        },
+        "total_ms": 319.0,
+        "time_to_first_token_ms": 274.66,
+        "output_accounting": "ASGI send completed; no client acknowledgments"
+      }
+    }
+  ],
+  "artifacts": "D:\\Projects\\LLM-chat-interface-tutorial\\Stage 9(Files attachments and RAG)\\tests\\.artifacts\\drawing-qa-8d5fedd0f611448d9ef88adecd22c238",
+  "ingestion": [
+    {
+      "name": "page_14.pdf",
+      "sha256": "e4c64cd5c3b8ac6bf6cddc7fc81147e3f5ffc4c9dba1cfc11fb913eb8d6c7585",
+      "state": "ready",
+      "seconds": 3.757119000001694
+    },
+    {
+      "name": "page_15.pdf",
+      "sha256": "e3c1a700e21a2d3aaa23b70699ee7ecbd04067c27612285b9b85f4505294ac07",
+      "state": "ready",
+      "seconds": 3.0992651999986265
+    }
+  ],
+  "passed": 7,
+  "total": 7,
+  "p50_seconds": 2.4699035000012373,
+  "p95_seconds": 7.8760481999997864
+}

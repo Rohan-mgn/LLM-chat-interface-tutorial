@@ -1,0 +1,11 @@
+.drawing-review { min-width:0; }
+.drawing-review button,.drawing-review input,.drawing-review select { margin:.25rem; max-width:100%; }
+.drawing-viewport { max-height:65dvh; overflow:auto; border:1px solid var(--border); background:white; }
+.drawing-viewport:focus-visible,.drawing-review button:focus-visible { outline:3px solid var(--accent); outline-offset:2px; }
+.drawing-surface { position:relative; width:100%; min-width:100%; }
+.drawing-surface img { display:block; width:100%; height:100%; max-height:none!important; max-width:none!important; object-fit:fill; }
+.drawing-surface svg { position:absolute; inset:0; width:100%; height:100%; touch-action:none; }
+.drawing-review fieldset { min-width:0; display:flex; flex-wrap:wrap; gap:.3rem; }
+.drawing-review .count-review-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); }
+.drawing-review fieldset input,.drawing-review fieldset select { min-width:0; }
+.drawing-review pre { max-height:25dvh; overflow:auto; white-space:pre-wrap; overflow-wrap:anywhere; }

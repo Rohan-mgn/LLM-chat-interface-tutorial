@@ -14,6 +14,19 @@ BASE_DIR = Path(__file__).resolve().parent
 # to the application, then restart this launcher to pick up the changed list.
 RUNTIME_FILES = (
     "RAG/__init__.py",
+    "RAG/claim_gate.py", "RAG/research.py",
+    "RAG/drawings.py",
+    "RAG/drawing_annotations.py",
+    "RAG/drawing_revisions.py",
+    "RAG/drawing_chat.py",
+    "RAG/drawing_extract.py", "RAG/drawing_measurements.py",
+    "RAG/drawing_geometry.py",
+    "RAG/drawing_graph.py",
+    "RAG/drawing_routes.py",
+    "RAG/drawing_symbols.py",
+    "RAG/drawing_validation.py",
+    "RAG/drawing_worker.py",
+    "static/drawings.js", "static/drawings.css",
     "RAG/storage_gate.py", "RAG/vector_store.py", "RAG/index_lifecycle.py", "RAG/vector_migration.py",
     "RAG/evidence_release.py", "RAG/answering.py", "RAG/answer_references.py",
     "RAG/parser_registry.py", "RAG/parser_worker.py", "RAG/parser_limits.py", "RAG/structured_formats.py",
@@ -26,6 +39,7 @@ RUNTIME_FILES = (
     "RAG/document_parsers.py",
     "RAG/document_tools.py", "RAG/document_agent.py", "RAG/summarizer.py",
     "RAG/table_tools.py",
+    "RAG/table_schema.py",
     "RAG/rag.py",
     "RAG/file_routes.py",
     "static/files.js",
@@ -67,7 +81,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", type=int, default=8000)
     options = parser.parse_args()
-    dependencies = ("uvicorn", "watchfiles", "fastapi", "ollama", "multipart", "PIL", "pypdf", "openpyxl", "defusedxml")
+    dependencies = ("uvicorn", "watchfiles", "fastapi", "ollama", "multipart", "PIL", "pypdf", "openpyxl", "defusedxml", "pdfplumber", "pypdfium2", "cv2")
     missing = [name for name in dependencies if find_spec(name) is None]
     if missing:
         # IDE Run buttons may select system Python rather than the project's

@@ -126,7 +126,7 @@ class ReleaseTests(unittest.TestCase):
             self.assertEqual(self.rows()[-1]["content"],"")
             self.assertEqual(self.rows()[-1]["status"],"stopped")
 
-    def test_replacement_after_first_send_keeps_only_emitted_prefix(self):
+    def test_replacement_during_draft_releases_no_unverified_prefix(self):
         file=self.upload()
         async def run():
             first=asyncio.Event();resume=asyncio.Event()
@@ -147,9 +147,9 @@ class ReleaseTests(unittest.TestCase):
                 resume.set()
                 await asyncio.wait_for(transport,5)
                 emitted="".join(e["content"] for e in events._queue if e["type"]=="delta")
-                self.assertEqual(emitted,"Already sent. ")
+                self.assertEqual(emitted,"")
         asyncio.run(run())
-        self.assertEqual((self.rows()[-1]["content"],self.rows()[-1]["status"]),("Already sent. ","stopped"))
+        self.assertEqual((self.rows()[-1]["content"],self.rows()[-1]["status"]),("","stopped"))
         self.assertIsNone(self.app.documents.row(self.cid,file["id"]))
 
     def test_revocation_during_model_wait_cancels_without_waiting_for_a_token(self):
@@ -179,19 +179,18 @@ class ReleaseTests(unittest.TestCase):
         file=self.upload()
         async def run():
             entered=asyncio.Event();finish_send=asyncio.Event();next_token=asyncio.Event()
-            original=fixtures.FakeModel.chat
-            async def controlled(raw,**kwargs):
-                if not kwargs.get("stream"):return await original(raw,**kwargs)
-                async def chunks():
-                    yield {"message":{"content":"Before deletion."}}
+            original_delta=self.app.queue_delta
+            released=[]
+            async def bounded_delta(docs,job,text):
+                await original_delta(docs,job,text)
+                if not released:
+                    released.append(text)
                     await next_token.wait()
-                    yield {"message":{"content":"Forbidden later output."}}
-                return chunks()
             async def sending(event):
                 if event["type"]=="delta":
                     entered.set()
                     await finish_send.wait()
-            with patch.object(fixtures.FakeModel,"chat",controlled):
+            with patch.object(self.app,"queue_delta",bounded_delta):
                 response=await self.request(file)
                 transport,events=start_stream(response,sending)
                 await asyncio.wait_for(entered.wait(),5)
@@ -213,7 +212,7 @@ class ReleaseTests(unittest.TestCase):
                     next_token.set()
                     await asyncio.wait_for(transport,5)
                     text="".join(e["content"] for e in events._queue if e["type"]=="delta")
-                    self.assertEqual(text,"Before deletion.")
+                    self.assertEqual(text,"".join(released));self.assertTrue(text.startswith("Blue Falcon"))
                     self.assertEqual(list(events._queue)[-1]["status"],"stopped")
                 finally:
                     if worker.returncode is None:
@@ -222,7 +221,7 @@ class ReleaseTests(unittest.TestCase):
                     if not transport.done():
                         transport.cancel();await asyncio.gather(transport,return_exceptions=True)
         asyncio.run(run())
-        self.assertEqual(self.rows()[-1]["content"],"Before deletion.")
+        self.assertTrue(self.rows()[-1]["content"].startswith("Blue Falcon"))
 
     def test_revocation_after_last_send_before_completion_never_marks_complete(self):
         file=self.upload()

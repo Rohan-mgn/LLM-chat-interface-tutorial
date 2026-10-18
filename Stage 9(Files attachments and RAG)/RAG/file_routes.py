@@ -170,5 +170,14 @@ def router_for(app_module):
             row=db.execute("SELECT data FROM tool_runs WHERE id=? AND conversation_id=?",(tool_id,cid)).fetchone()
         if not row:
             raise HTTPException(404,"Tool evidence is unavailable; its source may have been deleted or changed.")
-        return json.loads(row[0])
+        data=json.loads(row[0])
+        if data.get('operation','').startswith('drawing_'):
+            from .drawings import Drawings
+            from .evidence_release import SourceInvalidated
+            try:
+                service=Drawings(docs)
+                if service.file(cid,data['file_id'])['sha256']!=data['fingerprint']:raise SourceInvalidated()
+                service.check(cid,{data['file_id']:data['drawing_revision']})
+            except SourceInvalidated as error:raise HTTPException(409,'Drawing evidence changed; ask again against the current review.') from error
+        return data
     return router

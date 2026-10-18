@@ -43,9 +43,14 @@ window.FileUI = (() => {
         });
         return el;
     }
+    function usable(file) {
+        // Native drawing inspection does not require a successful text index.
+        return !!file?.available && (!!file.capabilities?.tools ||
+            (file.mime_type === "application/pdf" && file.state === "failed"));
+    }
     function blocked() {
         return loading || pending.some(p => p.state === "uploading" || p.state === "failed") ||
-            (enabled && (!selected.size || [...selected].some(id => !files.find(f => f.id === id)?.capabilities?.tools)));
+            (enabled && (!selected.size || [...selected].some(id => !usable(files.find(f => f.id === id)))));
     }
     function render() {
         list.replaceChildren();
@@ -84,14 +89,16 @@ window.FileUI = (() => {
             const label = node("label");
             const check = node("input"); check.type = "checkbox";
             check.checked = selected.has(file.id);
-            check.disabled = busy || !file.capabilities?.tools || !file.available;
+            check.disabled = busy || !usable(file);
             check.addEventListener("change", () => {
                 if (check.checked) selected.add(file.id); else selected.delete(file.id);
                 render();
             });
             label.append(check, node("span", file.original_filename));
             row.append(label, node("small", file.mime_type + " · " + sizes(file.size) + " · " + file.state));
-            if (file.error || !file.available) row.append(node("p", file.available ? file.error : "Stored file unavailable.", "file-error"));
+            const error = file.mime_type === "application/pdf" && file.error?.includes("Vision/OCR") ?
+                "Native text is unavailable. Model-free PDF drawing inspection can still be attempted." : file.error;
+            if (error || !file.available) row.append(node("p", file.available ? error : "Stored file unavailable.", "file-error"));
             const actions = node("div", undefined, "file-actions");
             actions.append(control("Preview", () => showFile(file)));
             const download = node("a", "Download");
@@ -208,6 +215,9 @@ window.FileUI = (() => {
     }
     async function showFile(file) {
         const target = cid, body = openPreview(file.original_filename);
+        if (file.mime_type === "application/pdf" && window.DrawingViewer) {
+            await DrawingViewer.open(body,target,file.id); return;
+        }
         if (file.mime_type.startsWith("image/")) {
             const image = node("img"); image.alt = file.original_filename;
             image.src = url(target)+"/"+file.id+"/download?preview=true";
@@ -231,6 +241,10 @@ window.FileUI = (() => {
         const body = openPreview(source.original_filename);
         try {
             const data = await api("/conversations/"+target+"/sources/"+source.id);
+            if (/\.pdf$/i.test(data.original_filename) && data.metadata.page && window.DrawingViewer) {
+                await DrawingViewer.open(body,target,data.file_id,{page:data.metadata.page,bbox:data.metadata.bbox});
+                body.append(node("h3","Cited native passage"),node("pre",data.text)); return;
+            }
             body.append(node("p",data.metadata.section || "Document passage"),node("pre",data.text));
         } catch (error) { body.append(node("p",error.message)); }
     }
@@ -297,6 +311,9 @@ window.FileUI = (() => {
                     const body=openPreview("Deterministic tool evidence");
                     try {
                         const data=await api("/conversations/"+target+"/tool-evidence/"+evidence.id);
+                        if (data.operation?.startsWith("drawing_") && window.DrawingViewer) {
+                            await DrawingViewer.open(body,target,data.file_id,{page:data.arguments.page,regions:data.source_regions}); return;
+                        }
                         body.append(node("h3",data.filename),node("pre",JSON.stringify(data,null,2)));
                     } catch(error) { body.append(node("p",error.message)); }
                 });

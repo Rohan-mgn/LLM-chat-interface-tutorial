@@ -1,6 +1,8 @@
 """Bounded structured table parsing and deterministic operations; never evaluates code."""
 from collections import defaultdict
-from decimal import Decimal, InvalidOperation, localcontext
+from decimal import Decimal, InvalidOperation, localcontext, ROUND_HALF_EVEN
+from fractions import Fraction
+import hashlib
 import io
 import json
 import re
@@ -154,7 +156,7 @@ def analyze(blocks,spec):
         return _analyze(blocks,spec)
 
 def _analyze(blocks, spec):
-    if not isinstance(spec,dict) or set(spec)-{"table","group_by","filters","aggregates"}:
+    if not isinstance(spec,dict) or set(spec)-{"table","group_by","filters","aggregates","comparisons","ranking"}:
         raise ValueError("Invalid table operation.")
     if not all(isinstance(spec.get(k,[]),list) for k in ("group_by","filters","aggregates")):
         raise ValueError("Invalid table operation lists.")
@@ -189,6 +191,7 @@ def _analyze(blocks, spec):
             column(a["column"])
         elif a.get("op")!="count":
             raise ValueError("An aggregate column is required.")
+    validate_derived(spec, groups, aggregates)
     selected = []
     formula_examples=[];formula_count=0
     missing = excluded = 0
@@ -226,14 +229,18 @@ def _analyze(blocks, spec):
     if len(buckets)>200:
         raise ValueError("More than 200 result groups; narrow the filters.")
     for keys,rows in sorted(buckets.items()):
-        output={"group":dict(zip(groups,keys)),"matched_rows":len(rows),"values":[]}
+        row_ids=[str(r.get("id",r.get("row",""))) for r in rows]
+        output={"group":dict(zip(groups,keys)),"matched_rows":len(rows),"values":[],
+            "source_rows":{"count":len(rows),"ids":row_ids[:200],"truncated":len(rows)>200,
+                "sha256":hashlib.sha256(json.dumps(row_ids,ensure_ascii=False).encode()).hexdigest()}}
         for a in aggregates:
             op,c=a["op"],a.get("column")
             raw=[r["cells"].get(c) for r in rows] if c else [1]*len(rows)
-            valid=[]
+            valid=[]; value_missing=value_excluded=0
             for value in raw:
                 if value is None or str(value).strip()=="":
                     missing+=1
+                    value_missing+=1
                     continue
                 if op=="count":
                     valid.append(1)
@@ -241,19 +248,123 @@ def _analyze(blocks, spec):
                     try:
                         numeric=number(value)
                         if numeric is not None:valid.append(numeric)
-                        else:excluded+=1
+                        else:excluded+=1;value_excluded+=1
                     except ValueError:
                         excluded+=1
+                        value_excluded+=1
             if op=="count":result=len(valid)
             elif not valid:result=None
             elif op=="sum":result=str(sum(valid,Decimal(0)))
             elif op=="average":result=str(sum(valid,Decimal(0))/len(valid))
             elif op=="min":result=str(min(valid))
             else:result=str(max(valid))
-            output["values"].append({"operation":op,"column":c,"result":result})
+            exact=(sum((Fraction(v) for v in valid),Fraction())/len(valid)
+                   if op=="average" and valid else Fraction(str(result)) if result is not None else None)
+            output["values"].append({"operation":op,"column":c,"result":result,
+                "exact_fraction":None if exact is None else {"numerator":str(exact.numerator),"denominator":str(exact.denominator)},
+                "missing_values":value_missing,"excluded_values":value_excluded})
         results.append(output)
-    return {"table":name,"arguments":spec,"rows_examined":len(table["rows"]),
+    report={"table":name,"arguments":spec,"rows_examined":len(table["rows"]),
             "cells_examined":len(table["rows"])*len(relevant),
             "columns_examined":sorted(relevant),"formula_cells":formula_count,"formula_examples":formula_examples,
             "matched_rows":len(selected),"missing_values":missing,"excluded_values":excluded,
             "coverage":"complete","results":results}
+    if spec.get("comparisons"):
+        report["comparisons"]=compare_groups(results,spec["comparisons"])
+    if spec.get("ranking"):
+        report["ranking"]=rank_groups(results,spec["ranking"])
+    return report
+
+
+def validate_derived(spec, groups, aggregates):
+    """Derived operations address an aggregate and exact, fully specified groups."""
+    comparisons=spec.get("comparisons",[])
+    if not isinstance(comparisons,list) or len(comparisons)>8:
+        raise ValueError("At most eight comparisons are supported.")
+    def index(value):
+        if type(value) is not int or not 0<=value<len(aggregates):
+            raise ValueError("Unknown aggregate index.")
+    for item in comparisons:
+        if not isinstance(item,dict) or set(item)!={"aggregate","baseline","current","metrics"}:
+            raise ValueError("Invalid comparison operation.")
+        index(item["aggregate"])
+        for side in ("baseline","current"):
+            selector=item[side]
+            if not groups or not isinstance(selector,dict) or set(selector)!=set(groups) or any(type(v) is not str for v in selector.values()):
+                raise ValueError("Comparison selectors must specify every group column exactly.")
+        if item["baseline"]==item["current"]:
+            raise ValueError("Choose distinct baseline and current groups.")
+        metrics=item["metrics"]
+        if not isinstance(metrics,list) or not 1<=len(metrics)<=3 or any(type(m) is not str or m not in ("difference","percent_change","ratio") for m in metrics) or len(set(metrics))!=len(metrics):
+            raise ValueError("Unsupported comparison metrics.")
+    ranking=spec.get("ranking")
+    if ranking is not None:
+        if not isinstance(ranking,dict) or set(ranking)!={"aggregate","direction","limit"}:
+            raise ValueError("Invalid ranking operation.")
+        index(ranking["aggregate"])
+        if not groups or ranking["direction"] not in ("ascending","descending") or type(ranking["limit"]) is not int or not 1<=ranking["limit"]<=200:
+            raise ValueError("Ranking needs group columns, direction and a limit from 1 to 200.")
+
+
+def usable_value(group, index):
+    value=group["values"][index]
+    # Counts deliberately count nonempty cells. Other comparisons must never
+    # silently rank/compare a partial sum after excluding an invalid cell.
+    return (group["matched_rows"]>0 and value["result"] is not None and
+            (value["operation"]=="count" or not (value["missing_values"] or value["excluded_values"])))
+
+
+def ratio_value(numerator, denominator):
+    if denominator==0:
+        return {"value":None,"status":"undefined_zero_baseline"}
+    exact=Fraction(numerator)/Fraction(denominator)
+    value=(Decimal(exact.numerator)/Decimal(exact.denominator)).quantize(Decimal("0.000001"),rounding=ROUND_HALF_EVEN)
+    return {"value":str(value),"status":"ok","rounded":Fraction(value)!=exact,
+            "exact_fraction":{"numerator":str(exact.numerator),"denominator":str(exact.denominator)},
+            "decimal_places":6,"rounding":"half_even"}
+
+
+def exact_value(group, index):
+    exact=group["values"][index]["exact_fraction"]
+    return Fraction(int(exact["numerator"]),int(exact["denominator"]))
+
+
+def compare_groups(results, comparisons):
+    output=[]
+    for spec in comparisons:
+        item={"arguments":spec,"metrics":{},"status":"ok"}
+        baseline=next((g for g in results if g["group"]==spec["baseline"]),None)
+        current=next((g for g in results if g["group"]==spec["current"]),None)
+        if baseline is None or current is None:
+            item["status"]="missing_group"
+        elif not all(usable_value(g,spec["aggregate"]) for g in (baseline,current)):
+            item["status"]="incomplete_numeric_values"
+        else:
+            before=exact_value(baseline,spec["aggregate"])
+            after=exact_value(current,spec["aggregate"])
+            item.update(baseline=baseline["values"][spec["aggregate"]]["result"],current=current["values"][spec["aggregate"]]["result"],
+                formula="difference = current - baseline; percent_change = difference / baseline * 100; ratio = current / baseline")
+            for metric in spec["metrics"]:
+                if metric=="difference" and baseline["values"][spec["aggregate"]]["operation"]!="average":
+                    item["metrics"][metric]={"value":str(Decimal((after-before).numerator)/Decimal((after-before).denominator)),"status":"ok","rounded":False}
+                else:
+                    item["metrics"][metric]=ratio_value(after-before,1) if metric=="difference" else ratio_value((after-before)*100 if metric=="percent_change" else after,before)
+        output.append(item)
+    return output
+
+
+def rank_groups(results, spec):
+    if not results or any(not usable_value(g,spec["aggregate"]) for g in results):
+        return {"arguments":spec,"status":"incomplete_numeric_values","entries":[]}
+    ordered=sorted(results,key=lambda g:exact_value(g,spec["aggregate"]),
+                   reverse=spec["direction"]=="descending")
+    entries=[];previous=None;rank=0
+    for position,group in enumerate(ordered,1):
+        value=exact_value(group,spec["aggregate"])
+        if value!=previous:rank=position
+        # Include all ties at the boundary; never choose an arbitrary winner.
+        if rank>spec["limit"]:break
+        entries.append({"rank":rank,"group":group["group"],"value":str(group["values"][spec["aggregate"]]["result"])})
+        previous=value
+    return {"arguments":spec,"status":"ok","entries":entries,"groups_examined":len(results),
+            "ties":"competition rank; all boundary ties included"}

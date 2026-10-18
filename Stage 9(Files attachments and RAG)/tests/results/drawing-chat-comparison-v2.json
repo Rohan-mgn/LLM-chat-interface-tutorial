@@ -1,0 +1,50 @@
+{
+  "same_fixture": true,
+  "fixture_sha256": "0628537c6a01bd36b9688b866bf98c432a2bf32a69bf26f9e2372a93b00ef589",
+  "before": {
+    "passed": 0,
+    "total": 7,
+    "p50_seconds": 8.54058779999832,
+    "maximum_observed_seconds": 47.639619600002334,
+    "model_calls": {
+      "routing": 1,
+      "metadata": 12,
+      "embedding": 6,
+      "reranking": 6,
+      "generation": 4
+    },
+    "required_page_groups_found": 0,
+    "required_page_groups": 0,
+    "requests_without_attributable_call_metrics": [
+      "How many check valves are in page_14.pdf?"
+    ],
+    "resolved_citations": 0,
+    "checked_citations": 0,
+    "failures": [
+      "In page_14.pdf, what is the drawing number?",
+      "What is the REV. value?",
+      "What does 04 mean?",
+      "What is the revision of page_15.pdf?",
+      "What is the project title in page_14.pdf?",
+      "How many check valves are in page_14.pdf?",
+      "What is the height of the tank in page_14.pdf?"
+    ]
+  },
+  "after": {
+    "passed": 7,
+    "total": 7,
+    "p50_seconds": 2.124385600000096,
+    "maximum_observed_seconds": 18.194828400002734,
+    "model_calls": {},
+    "required_page_groups_found": 0,
+    "required_page_groups": 0,
+    "requests_without_attributable_call_metrics": [],
+    "resolved_citations": 0,
+    "checked_citations": 0,
+    "failures": []
+  },
+  "limitations": "Seven development probes with fixed string checks, not independently human-reviewed answer quality or symbol ground truth. Latency is one observation per case.",
+  "broad_answer_quality_acceptance": false,
+  "human_reviewed_real_drawing_annotations": false,
+  "latency_comparison": "Small single-observation development probes; concurrent offline regression may affect timings."
+}

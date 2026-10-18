@@ -40,6 +40,7 @@ class IndexLifecycle:
     def init(self):
         with self.gate.hold(), closing(self.connect()) as db, db:
             db.executescript("""
+                BEGIN IMMEDIATE;
                 CREATE TABLE IF NOT EXISTS vector_control(
                     singleton INTEGER PRIMARY KEY CHECK(singleton=1),
                     epoch INTEGER NOT NULL, backend TEXT NOT NULL,

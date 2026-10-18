@@ -1,0 +1,31 @@
+{
+  "full_regression_before_final_corrections": {
+    "report": "evidence-drawing-final-regression.json",
+    "tests": 282,
+    "failures": 0,
+    "errors": 0
+  },
+  "affected_regression_on_qualified_corrections": {
+    "tests": 104,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 768.43,
+    "log": "answer-corrections-regression.log",
+    "original_log_sha256": "8903363fcfeb58c2200f3ad6c73ef5e690f5609c709d4f134018bb409ed9685a"
+  },
+  "integrated_files": {
+    "RAG/claim_gate.py": {
+      "full_regression_sha256": "756bf34120007bcfcb9782a4ff04d0e4049f88f12125cf3b1be0be7015059e92",
+      "qualified_and_integrated_sha256": "405229fdbfd6a60af62757e3125fb70114d768639a742457e28c1b2a45682fea"
+    },
+    "RAG/document_agent.py": {
+      "full_regression_sha256": "9ff812728ac0fe9e44d349dc8b7a8a4175c90487a83f4559dade84dcb45fd97f",
+      "qualified_and_integrated_sha256": "3ce88aeb761782ec6a3c9ebda8a2005e1ee1f9453f35fbba3646259802f1e9db"
+    },
+    "tests/check_claim_release.py": {
+      "full_regression_sha256": null,
+      "qualified_and_integrated_sha256": "2e4da08bbdf09e0dab484012cd8c30772ac42d7915d203b6d019264a28f41a7b"
+    }
+  },
+  "qualification": "Exact byte-for-byte promotion after affected suites passed. No claim of a single 284-test full run."
+}

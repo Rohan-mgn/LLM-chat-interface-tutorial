@@ -31,8 +31,10 @@ record source coverage without claiming final-answer semantic completeness.
 
 Passage evidence and deterministic calculation provenance are separate. Exact
 calculations use the existing validated table engine; formulas are not executed.
-Current calculation bindings cover aggregation and filtering. Additional
-difference/percentage/ranking operations remain pending.
+Calculation bindings cover aggregation, filtering, exact-group differences,
+percentage changes, ratios and rankings. Production table requests and planner
+bindings share this arithmetic engine; enabling these operations does not qualify
+or enable the experimental planner. See [TABLE_COMPARISONS.md](TABLE_COMPARISONS.md).
 
 ## Live development evaluation
 

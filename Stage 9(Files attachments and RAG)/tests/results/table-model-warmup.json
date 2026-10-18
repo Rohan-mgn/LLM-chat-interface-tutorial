@@ -1,0 +1,8 @@
+{
+  "completed": true,
+  "seconds": 0.40236240000012913,
+  "load_duration": 2576100,
+  "context": 16384,
+  "model": "llama3.2:3b",
+  "purpose": "Explicit development warmup outside measured requests; no model download."
+}

@@ -1,0 +1,249 @@
+{
+  "complete": false,
+  "completed": {
+    "check_claim_release.ClaimReleaseTests.test_fabricated_numeric_claim_never_reaches_sse": {
+      "status": "passed"
+    },
+    "check_claim_release.ClaimReleaseTests.test_missing_citations_fall_back_to_actual_passages": {
+      "status": "passed"
+    },
+    "check_claim_release.ClaimReleaseTests.test_omitted_competing_value_is_disclosed_before_sse_release": {
+      "status": "failed",
+      "traceback": "Traceback (most recent call last):\n  File \"D:\\Projects\\LLM-chat-interface-tutorial\\Stage 9(Files attachments and RAG)\\tests\\check_claim_release.py\", line 60, in test_omitted_competing_value_is_disclosed_before_sse_release\n    self.assertTrue(any('Competing explicit field values exist' in m['content'] for p in prompts for m in p))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n"
+    },
+    "check_claim_release.ClaimReleaseTests.test_source_substring_cannot_remove_a_numeric_condition": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_conceptual_contrast_routes_to_document_evidence": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_field_conflicts_normalize_units_but_not_revision_identifiers": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_gap_matrix_preserves_missing_subquestion_and_file": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_ranking_keeps_features_and_exact_identifier": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_short_excerpt_preserves_byline_and_normalizes_layout_whitespace": {
+      "status": "passed"
+    },
+    "check_claim_release.ResearchTests.test_subquestion_budget_is_disclosed_instead_of_dropping_requests": {
+      "status": "passed"
+    },
+    "check_drawing_annotations.AnnotationTests.test_exhaustive_review_total_uses_reviewed_boxes_and_saved_label": {
+      "status": "passed"
+    },
+    "check_drawing_annotations.AnnotationTests.test_json_result_is_rejected_if_review_changes_before_release": {
+      "status": "passed"
+    },
+    "check_drawing_annotations.AnnotationTests.test_review_draft_restoration_is_scoped_versioned_and_never_attests": {
+      "status": "passed"
+    },
+    "check_drawing_annotations.AnnotationTests.test_reviewed_connection_reaches_chat_and_signal_is_not_process": {
+      "status": "passed"
+    },
+    "check_drawing_annotations.AnnotationTests.test_uploaded_reference_is_scoped_and_deleted_reference_invalidates_template": {
+      "status": "passed"
+    },
+    "check_drawing_safety.DrawingSafetyTests.test_artifact_integrity_and_delete_outbox": {
+      "status": "passed"
+    },
+    "check_drawing_safety.DrawingSafetyTests.test_explicit_table_dimension_and_unit_conversion_through_chat": {
+      "status": "passed"
+    },
+    "check_drawing_safety.DrawingSafetyTests.test_review_change_invalidates_saved_tool_evidence_and_release_revision": {
+      "status": "passed"
+    },
+    "check_drawing_safety.DrawingSafetyTests.test_revision_table_corroborates_without_selecting_largest_revision": {
+      "status": "passed"
+    },
+    "check_drawing_safety.DrawingSafetyTests.test_zero_count_review_requires_analyzed_real_page": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_background_extraction_change_cancels_queued_answer": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_cross_process_commit_waits_for_release_then_blocks_later_output": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_disconnect_and_send_timeout_do_not_persist_unsent_text": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_permission_change_after_queueing_blocks_release": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_queue_bounded_and_progress_coalesced": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_queued_answer_deleted_before_release_is_never_persisted": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_replacement_during_draft_releases_no_unverified_prefix": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_revocation_after_last_send_before_completion_never_marks_complete": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_revocation_during_model_wait_cancels_without_waiting_for_a_token": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_unchanged_extraction_keeps_revision_valid": {
+      "status": "passed"
+    },
+    "check_evidence_release.ReleaseTests.test_use_files_false_has_no_source_dependency": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ExactTests.test_block_identifiers_stable_but_content_sensitive": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ExactTests.test_budget_unicode_and_oversize": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ExactTests.test_pages_sections_extraction_and_statistics": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ExactTests.test_router_acceptance_and_no_arithmetic_fallback": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ExactTests.test_structural_boundaries_and_explicit_continuation": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ExactTests.test_unicode_whole_word_phrase_offsets": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_changed_parse_invalidates_obsolete_source_before_embedding": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_csv_calculation_and_provenance": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_exact_count_and_scoped_tool_evidence_without_model": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_exact_extract_preserves_citation_like_source_text": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_filter_phrase_is_not_silently_ignored": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_first_appearance_order_and_stable_reindex": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_fts_lexical_fallback_and_pipeline_scope": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_hierarchical_summary_covers_end_and_cancellation": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_history_compression_is_branch_keyed": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_hybrid_fusion_reranker_fallback_and_diversity": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_migration_preserves_history_and_citations_backup_repeatable": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_no_planning_round_without_deep_information_gap": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_parsed_tools_survive_embedding_failure": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_summary_comparison_uses_every_selected_file": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_summary_deadline_applies_to_final_stream": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_summary_full_coverage_section_cache_and_limits": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_two_conversations_and_same_conversation_conflict": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_use_files_false_bypasses_router_and_tools": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_vision_cache_native_preservation_and_no_vision_dependency": {
+      "status": "passed"
+    },
+    "check_document_intelligence.Integration.test_vision_work_does_not_block_native_indexing": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ProviderTests.test_default_one_configurable_two_and_cancelled_waiter": {
+      "status": "passed"
+    },
+    "check_document_intelligence.ProviderTests.test_same_model_name_still_separates_text_and_image_slots": {
+      "status": "passed"
+    },
+    "check_document_intelligence.WorkbookTests.test_cached_formula_used_without_evaluation": {
+      "status": "passed"
+    },
+    "check_document_intelligence.WorkbookTests.test_formula_expression_and_absent_cache": {
+      "status": "passed"
+    },
+    "check_document_intelligence.WorkbookTests.test_invalid_columns_and_operators_are_not_code": {
+      "status": "passed"
+    },
+    "check_document_intelligence.WorkbookTests.test_useful_cell_and_merge_limits": {
+      "status": "passed"
+    },
+    "check_document_intelligence.WorkbookTests.test_xlsx_grouping_and_zero_not_missing": {
+      "status": "passed"
+    }
+  },
+  "source_hashes": {
+    "RAG\\__init__.py": "5037fb3fa7a0bb63b16b3aac545f3831a4e808bf9be469f5332d645236ffb83d",
+    "RAG\\answer_references.py": "4c8ba81a4e3f27f2776196693219b30a59c4cf5bd4ec579aa49eba375df2a76e",
+    "RAG\\answering.py": "042ee5464494e98e6c30a0d4544348c24d18dfce850ebb1d10fff4bfccc28171",
+    "RAG\\attachment_tools.py": "a10aa39a832b985b1f69e0449557dec3f1c5edaf951bded4157d64ee1ccef677",
+    "RAG\\claim_gate.py": "9b521eea5b4cbecf5fc486ca7a006055b3a345be6bdfe55b2005a7fad3abea22",
+    "RAG\\context_budget.py": "2da74c82d652d9387908109c27fbd8dc522717a969cb89da5d76b6c917232a67",
+    "RAG\\document_agent.py": "7b191a75f9e7475d08113a30f357b21f9b37a48ffe0a0400597c283973f54357",
+    "RAG\\document_parsers.py": "37b7ee327faf287862661c544512ed178230b540f07cdba2f9c44fccd50e21b8",
+    "RAG\\document_tools.py": "68f34a0a592dff4379bd92c81968be1e0272c6614eaf4f4ca95d22733949d106",
+    "RAG\\documents.py": "0ff8dccc76eb836f75d3c0b089d124daabaf51ae7ddbc4c4c145ed39b3051eed",
+    "RAG\\drawing_annotations.py": "af233d8a68083b9d6474f49c39af360d213e50616e859eba0f2b0482c35d8026",
+    "RAG\\drawing_chat.py": "d53f470f45fd0c0bd9f418f9218fc90b6fab4450e3e40551f17debf3d5a4aa8a",
+    "RAG\\drawing_extract.py": "403b6db0b7b1a2d681a8b392e66722e1af11244c504deb70a62f536bfbf7a7da",
+    "RAG\\drawing_geometry.py": "dda65354d4c27831547f79bd4c402f810863ea786a1b59b82f383ad5450dedaf",
+    "RAG\\drawing_graph.py": "0686a8782417cdaa77e06ba23eb60c4b5f96535043ffb557664ab91b5030f6cd",
+    "RAG\\drawing_measurements.py": "5ef03c6924a54cf2cb4994450e1ba61d78bc457f032c30328a73a07172017b57",
+    "RAG\\drawing_revisions.py": "26fef2bfe309d337a86907f7af32068efd29910a8a97abcca4b1dc6ae6172096",
+    "RAG\\drawing_routes.py": "bf70af159ffd61fd02c4f23b25782198ded1f0d6a55d5e6efbb7de803d013f78",
+    "RAG\\drawing_symbols.py": "01caf312d3b8d8614ad723fd78b48469200a510a647a68a8384299fbf97b5928",
+    "RAG\\drawing_validation.py": "1161ac5d03fbb9562d636a6f3d08db8335b7dbbe557f7ea69706a8d88c7e0c6a",
+    "RAG\\drawing_worker.py": "8759ddb92fbafd3409e8b735c4fd6b2e93f24b21f8a3cba8faa34f64b94a37ce",
+    "RAG\\drawings.py": "5d65d627b28b009a09cb3ed48141e7c4fe54df8e091217303599e6aee7c91e45",
+    "RAG\\evidence.py": "7f081f9ce7f711e52a25691767f5c19375b1d5880b39da91b632e327a4d2d669",
+    "RAG\\evidence_release.py": "fe9b8d0f957375a522309c6ba4a0fc82ae510ba488a7710879c8a736a22019b6",
+    "RAG\\file_routes.py": "3fc281b8315d7140e8c406470c3d4fea4317bebd36fe1588837fa41af0c36b2c",
+    "RAG\\grounding.py": "ade6a6fa4ac64568646885373a2081b53810f56d4a88d55c7ee00a795327cd4d",
+    "RAG\\index_lifecycle.py": "a311813f277c83576b4562a142dc85aea47824496a183006e2cd2349b26283dc",
+    "RAG\\model_provider.py": "c75ba488e4534a11741f2396408a01c99727926142e3b5017cab46e667511ecb",
+    "RAG\\operations.py": "8808bc782c63eaec6f1a79c49b4f8c2048daa065a1bf438a6bf96d1243ec486f",
+    "RAG\\parser_limits.py": "fd77392f25f948c0d5d495cc635c943a43d24f217af086dcc78a074dfa105cab",
+    "RAG\\parser_registry.py": "9e3ff85f90c030bf80953d048d02d8633bd9098463d96b1579cf51e48715d375",
+    "RAG\\parser_worker.py": "94b8315c5b919ca61bb62c3c318d07a9ee1d1e233714a74a5e705bbbf62cd9dd",
+    "RAG\\planner.py": "2076d7d763159324f96edff5a0054ef03cbaf550b4ebc2cdd672a9769649c42e",
+    "RAG\\rag.py": "9510e36449bf35f1b75b7da6c26a069c2487a24870af12cc84ecd04ce1685e48",
+    "RAG\\request_state.py": "1627d77e45309d8e6a505c22f026ee71f770ddb112c2eb40f2c2151f89e117e9",
+    "RAG\\research.py": "36fef19edc097eb63d9afa1ec4eaafb071fc79b4728906c0d5b38f3cb8252f11",
+    "RAG\\storage_gate.py": "d9ca6539bd66daf62cfa33c0c87c55a83eaa2c05d79ac2ea79be4fed1c221fd0",
+    "RAG\\structured_formats.py": "a2d1d37eea523fd027320d2f566940735dec528548a0ac3a212c6b8eebd725bd",
+    "RAG\\summarizer.py": "62561ddebf27b3b4e85fb69b0a24f49aa579da30a5772aa165e0aa39a5e665b9",
+    "RAG\\table_schema.py": "379b1134f0fd4ed71751aaf50b08bfd9450b1873adb28e9c73b685f403baf7c7",
+    "RAG\\table_tools.py": "cfbb9c74ea6e51c71ceb5f5817434c45a834f34e18eb0a007e89ffe8f260b6db",
+    "RAG\\vector_cache.py": "67ac8bf10fe1abacc9fd362dcc2755478955305a9a1bc52cb7b9c4e3b924c0c2",
+    "RAG\\vector_migration.py": "133a6e2bb95400551a26ef47a43849a6d66f80584a6afec8dde3f273c9ff2ae9",
+    "RAG\\vector_recovery.py": "2d5c6798de0cd05aaf4aff54df87b69fcb82c854350bdf47c779e9e9a4600088",
+    "RAG\\vector_store.py": "597eac4109afaa2a85c177c8026b69a706ee076f7ca7983bd6d0386b7309593e",
+    "main.py": "3fd5badb77f6559461381e3cf56aeab9332ddc010fd9246e1cdc7df8141227f0",
+    "run.py": "1557aaefa2d2cb4c4e4000a0cc7583e395d1059dcd731193bbe92bf88c003ad5",
+    "tree_store.py": "ed7d73884b0f34678316e4ee237b19aefd14de333963ea673ae6a56bcb787ca9"
+  },
+  "seconds": 287.7706112999949
+}

@@ -175,8 +175,12 @@ class Integration(unittest.TestCase):
         self.assertGreater(fused[0]["score"],1/61)
         diversified=Rag.diversify(fused,balanced=True)
         self.assertEqual({r["file_id"] for r in diversified},{"1","2"});self.assertEqual(len(diversified),2)
-        with patch.object(self.app.provider,"structured",AsyncMock(side_effect=ValueError("bad JSON"))):
-            self.assertEqual(asyncio.run(self.app.rag.rerank("question",fused)),fused[:12])
+        with patch.object(self.app.provider,"structured",AsyncMock(side_effect=ValueError("bad JSON"))) as model:
+            ranked=asyncio.run(self.app.rag.rerank("relevant evidence",fused))
+        model.assert_not_called()
+        self.assertEqual(ranked[0]["id"],"c")
+        self.assertEqual({r["id"] for r in ranked},{r["id"] for r in fused})
+        self.assertTrue(all("ranking_features" in r for r in ranked))
     def test_first_appearance_order_and_stable_reindex(self):
         file=self.upload(data=b"Falcon project first.\n\nFalcon project second.")
         with closing(self.app.get_connection()) as db:

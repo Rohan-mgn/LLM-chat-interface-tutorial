@@ -13,15 +13,15 @@
     --syntax-function: #95d8ff;
     --syntax-punctuation: #d1ded5;
 }
-.response-body { max-height: var(--response-max-height); overflow-y: hidden; overflow-x: hidden; overflow-anchor: none; scrollbar-width: thin; scrollbar-color: #91a797 transparent; padding: 3px; }
-.response-body.inner-scroll-active { overflow-y: auto; overscroll-behavior-y: contain; box-shadow: inset 3px 0 #90b19a; }
-.response-body:focus-visible, .code-block pre:focus-visible { outline: 3px solid #85bda4; outline-offset: 3px; }
-.response-scroll-hint { display: block; border: 0; background: transparent; color: var(--muted); padding: 8px 3px; text-align: left; font-size: 11px; }
-.response-scroll-hint:hover { color: var(--accent); text-decoration: underline; }
-@media (hover: none), (pointer: coarse) {
-    .response-body.response-overflow { overflow-y: auto; overscroll-behavior-y: contain; -webkit-overflow-scrolling: touch; }
-    .copy-code, .response-scroll-hint { min-height: 44px; }
-}
+.response-body { max-height:none; overflow:visible; overflow-anchor:none; padding:3px; }
+.response-component { overflow:auto; max-height:min(60dvh,36rem); scrollbar-width:thin; overscroll-behavior:auto; }
+.response-component.component-expanded { max-height:none; }
+.response-component:focus-visible,.expand-component:focus-visible { outline:3px solid #85bda4; outline-offset:3px; }
+.table-viewport { max-height:min(50dvh,28rem); overflow:auto; }
+.markdown-content .table-viewport table { display:table; max-width:none; margin:0; overflow:visible; }
+.table-component { margin:1em 0; min-width:0; max-width:100%; }
+.expand-component { padding:5px 9px; border:1px solid currentColor; border-radius:6px; color:inherit; background:transparent; cursor:pointer; }
+@media (hover:none),(pointer:coarse) { .copy-code,.expand-component { min-height:44px; } }
 .composer-area { position: relative; }
 .scroll-to-bottom { display: block; margin: 0 auto 10px; padding: 8px 16px; border: 1px solid var(--border); border-radius: 20px; color: var(--accent); background: #f0f4ed; font-size: 12px; box-shadow: 0 2px 8px #172b2314; }
 .scroll-to-bottom[data-unread="true"] { font-weight: 650; border-color: var(--accent); }

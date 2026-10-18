@@ -403,6 +403,14 @@ class Rag:
         return sorted(fused.values(),key=lambda r:(-r["score"],r["id"]))
 
     async def rerank(self,query,candidates):
+        from .research import rank
+        ranked=rank(query,candidates)
+        if current.get():
+            current.get().retrieval.update(rerank_status="deterministic lexical/structural ranking",
+                ranking_features=[{'id':r['id'],**r['ranking_features']} for r in ranked])
+        return ranked[:30]
+
+    async def advisory_rerank(self,query,candidates):
         top=candidates[:12]
         schema={"type":"object","properties":{"scores":{"type":"array","items":{
             "type":"object","properties":{"id":{"type":"string"},"relevance":{"type":"integer","minimum":0,"maximum":3}},
@@ -437,7 +445,7 @@ class Rag:
                 -.3*max([similarity(r,s) for s in selected] or [0])
                 +(1 if balanced and r["file_id"] not in represented else 0))
             pool.remove(row)
-            digest=hashlib.sha256(row["text"].encode()).hexdigest()
+            digest=row['file_id']+':'+hashlib.sha256(row["text"].encode()).hexdigest()
             if digest not in seen and not any(row["file_id"]==s["file_id"] and similarity(row,s)>.9 for s in selected):
                 selected.append(row);seen.add(digest)
         return selected
